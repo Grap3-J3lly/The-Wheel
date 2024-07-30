@@ -9,7 +9,7 @@ public partial class SpinButton : Button
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		this.Pressed += ButtonPressed;
+		this.Pressed += PressButton;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -17,8 +17,9 @@ public partial class SpinButton : Button
 	{
 	}
 
-	private void ButtonPressed()
-	{	
+	private void PressButton()
+	{
+
 		GD.Print("Spinning Wheel!");
 		
 	}

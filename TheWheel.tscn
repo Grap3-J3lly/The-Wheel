@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://TheWheel.cs" id="1_6qagf"]
 [ext_resource type="Theme" uid="uid://cpm3ymheyptc0" path="res://tempButtonColor.tres" id="2_3bb4o"]
-[ext_resource type="Texture2D" uid="uid://ba74tx6ws4qi2" path="res://Circle.png" id="2_68uad"]
+[ext_resource type="Texture2D" uid="uid://bxyqmlbgyn7io" path="res://Circle.png" id="2_68uad"]
 [ext_resource type="Script" path="res://SpinButton.cs" id="3_qqfjg"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_k51wu"]
