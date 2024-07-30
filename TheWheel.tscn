@@ -1,3 +1,60 @@
-[gd_scene format=3 uid="uid://54p3xdglstau"]
+[gd_scene load_steps=10 format=3 uid="uid://54p3xdglstau"]
+
+[ext_resource type="Script" path="res://TheWheel.cs" id="1_6qagf"]
+[ext_resource type="Theme" uid="uid://cpm3ymheyptc0" path="res://tempButtonColor.tres" id="2_3bb4o"]
+[ext_resource type="Texture2D" uid="uid://ba74tx6ws4qi2" path="res://Circle.png" id="2_68uad"]
+[ext_resource type="Script" path="res://SpinButton.cs" id="3_qqfjg"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_k51wu"]
+
+[sub_resource type="Gradient" id="Gradient_wkpca"]
+colors = PackedColorArray(0.54902, 0.54902, 0.54902, 1, 0.54902, 0.54902, 0.54902, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_c1kk4"]
+gradient = SubResource("Gradient_wkpca")
+
+[sub_resource type="Gradient" id="Gradient_lij4e"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ktnk4"]
+gradient = SubResource("Gradient_lij4e")
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_6qagf")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Background" type="MeshInstance2D" parent="CanvasLayer"]
+position = Vector2(576.5, 323.5)
+scale = Vector2(1151, 647)
+mesh = SubResource("QuadMesh_k51wu")
+texture = SubResource("GradientTexture1D_c1kk4")
+
+[node name="Wheel" type="Sprite2D" parent="CanvasLayer/Background"]
+modulate = Color(0.611947, 0.00266259, 0.868309, 1)
+scale = Vector2(0.000568202, 0.00101082)
+texture = ExtResource("2_68uad")
+
+[node name="TestBox" type="Sprite2D" parent="CanvasLayer/Background/Wheel"]
+position = Vector2(-116.972, -346.33)
+scale = Vector2(0.789914, 87.5383)
+texture = SubResource("GradientTexture1D_ktnk4")
+
+[node name="Button" type="Button" parent="CanvasLayer" node_paths=PackedStringArray("wheel")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -76.0
+offset_top = -33.5
+offset_right = 76.0
+offset_bottom = 33.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_3bb4o")
+text = "TEST BUTTON"
+script = ExtResource("3_qqfjg")
+wheel = NodePath("../Background/Wheel")
