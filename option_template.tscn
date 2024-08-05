@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://rxhcvkshxcd1"]
+[gd_scene load_steps=5 format=3 uid="uid://rxhcvkshxcd1"]
 
 [ext_resource type="Script" path="res://DisableButton.cs" id="1_4k7kn"]
 [ext_resource type="Script" path="res://RemoveButton.cs" id="1_5l6pj"]
+[ext_resource type="Script" path="res://OptionName.cs" id="2_1qtey"]
+[ext_resource type="Script" path="res://OptionWeight.cs" id="3_t7gkw"]
 
 [node name="OptionTemplate" type="Control"]
 custom_minimum_size = Vector2(300, 35)
@@ -17,23 +19,24 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="DisableButton" type="Button" parent="HBoxContainer" node_paths=PackedStringArray("optionNameField", "optionWeightField")]
+[node name="DisableButton" type="Button" parent="HBoxContainer" node_paths=PackedStringArray("optionParent")]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 script = ExtResource("1_4k7kn")
-optionNameField = NodePath("../OptionName")
-optionWeightField = NodePath("../OptionWeight")
+optionParent = NodePath("../..")
 
 [node name="OptionName" type="TextEdit" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Enter Option Title"
+script = ExtResource("2_1qtey")
 
 [node name="OptionWeight" type="TextEdit" parent="HBoxContainer"]
 custom_minimum_size = Vector2(32.505, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 10
 text = "1"
+script = ExtResource("3_t7gkw")
 
 [node name="RemoveButton" type="Button" parent="HBoxContainer" node_paths=PackedStringArray("optionParent")]
 custom_minimum_size = Vector2(30, 0)

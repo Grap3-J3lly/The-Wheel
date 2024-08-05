@@ -3,32 +3,56 @@ using System.Collections.Generic;
 
 public partial class WheelProgress : Control
 {
-	private	OptionManager optionManager;
-	private List<TextureProgressBar> progressBars = new List<TextureProgressBar>();
+    // --------------------------------
+    //			VARIABLES	
+    // --------------------------------
+
+    [Signal]
+	public delegate void WheelProgressUpdateEventHandler(TextureProgressBar targetBar);
+
 	[Export]
 	private PackedScene progressBarTemplate;
 
+	private	OptionManager optionManager;
 	private Color previousColor;
+	private List<TextureProgressBar> progressBars = new List<TextureProgressBar>();
+
+    // --------------------------------
+    //		STANDARD FUNCTIONS	
+    // --------------------------------
 
     public override void _Ready()
 	{
 		base._Ready();
 		optionManager = OptionManager.Instance;
+		optionManager.WheelProgressParent = this;
+		progressBars = optionManager.CreatedProgressBars;
+				
+		WheelProgressUpdate += CreateProgressBars;
 	}
 
-	public override void _Process(double delta)
-	{
-		base._Process(delta);
+    // --------------------------------
+    //		EVENT CALL FUNCTIONS	
+    // --------------------------------
 
-		CreateProgressBars();
-	}
-
-	private void CreateProgressBars()
+    private void CreateProgressBars(TextureProgressBar targetBar)
 	{
 		if (progressBars == null) { return; }
-		if (progressBars.Count < optionManager.CreatedOptions.Count)
+
+
+        // If less progress bars are needed
+        if (progressBars.Count > optionManager.CreatedOptions.Count)
+        {
+            // Remove Option from Wheel
+            GD.Print("Called During RemoveButton");
+
+            optionManager.CreatedProgressBars.Remove(targetBar);
+            targetBar.QueueFree();
+        }
+
+		// If more progress bars are needed
+        if (progressBars.Count <= optionManager.CreatedOptions.Count)
 		{
-			
 			if (progressBars.Count > 0)
 			{
 				foreach (var progressBar in progressBars)
@@ -53,8 +77,6 @@ public partial class WheelProgress : Control
 					newBar.RadialFillDegrees -= .5f;
 				}
 
-				GD.Print(optionManager.PrimaryColor);
-				GD.Print(optionManager.SecondaryColor);
 				if (previousColor == Color.Color8(0,0,0,0) || previousColor == optionManager.SecondaryColor)
 				{
 					previousColor = optionManager.PrimaryColor;

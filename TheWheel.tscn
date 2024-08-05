@@ -60,7 +60,7 @@ grow_vertical = 2
 script = ExtResource("3_iyf3y")
 progressBarTemplate = ExtResource("4_hrrrl")
 
-[node name="Button" type="Button" parent="CanvasLayer/WheelArea" node_paths=PackedStringArray("wheel")]
+[node name="SpinButton" type="Button" parent="CanvasLayer/WheelArea" node_paths=PackedStringArray("wheel")]
 z_index = 1
 layout_mode = 2
 anchor_left = 0.5
@@ -82,7 +82,7 @@ wheel = NodePath("../WheelProgressBars")
 maxTime = 5.0
 speed = 2.0
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/WheelArea/Button"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/WheelArea/SpinButton"]
 modulate = Color(0.247059, 0.00784314, 0.321569, 1)
 z_as_relative = false
 layout_mode = 1
@@ -166,3 +166,5 @@ offset_top = 75.0
 offset_right = 325.0
 offset_bottom = 475.0
 vertical = true
+
+[connection signal="WheelProgressUpdate" from="CanvasLayer/WheelArea/WheelProgressBars" to="CanvasLayer/OptionArea/TopBar/AddOptionButton" method="_on_wheel_progress_bars_wheel_progress_update"]

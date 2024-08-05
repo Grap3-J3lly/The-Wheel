@@ -3,16 +3,28 @@ using System;
 
 public partial class DisableButton : Button
 {
-	[Export]
-	private TextEdit optionNameField;
-	[Export]
-	private TextEdit optionWeightField;
+    // --------------------------------
+    //			VARIABLES	
+    // --------------------------------
+
+    [Export]
+    private Control optionParent;
 
 	private OptionManager optionManager;
 	private bool enabled = true;
 
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
+    // --------------------------------
+    //		    PROPERTIES
+    // --------------------------------
+
+    public bool Enabled { get=>  enabled;}
+
+    // --------------------------------
+    //		STANDARD FUNCTIONS	
+    // --------------------------------
+
+    // Called when the node enters the scene tree for the first time.
+    public override void _Ready()
 	{
 		base._Ready();
 		optionManager = OptionManager.Instance;
@@ -20,17 +32,32 @@ public partial class DisableButton : Button
 		this.Pressed += PressButton;
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
+    // --------------------------------
+    //		INPUT FUNCTIONS	
+    // --------------------------------
 
-	private void PressButton()
+    private void PressButton()
 	{
         if (optionManager.WheelSpinning) { return; }
 
         enabled = !enabled;
-		optionNameField.Editable = enabled;
-		optionWeightField.Editable = enabled;
-	}
+        
+        if(enabled)
+        {
+            optionManager.DisabledOptions.Remove(optionParent);
+            optionManager.CreatedOptions.Add(optionParent);
+            optionManager.WheelProgressParent.EmitSignal(WheelProgress.SignalName.WheelProgressUpdate, new TextureProgressBar());
+        }
+        else
+        {
+            TextureProgressBar targetBar = optionManager.CreatedProgressBars[optionManager.CreatedOptions.IndexOf(optionParent)];
+
+            optionManager.DisabledOptions.Add(optionParent);
+            optionManager.CreatedOptions.Remove(optionParent);
+
+            optionManager.WheelProgressParent.EmitSignal(WheelProgress.SignalName.WheelProgressUpdate, targetBar);
+        }
+
+        
+    }
 }

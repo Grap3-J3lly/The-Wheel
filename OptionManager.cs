@@ -8,6 +8,8 @@ public partial class OptionManager : Node
     // --------------------------------
 
 	private List<Control> createdOptions = new List<Control>();
+	private List<Control> disabledOptions = new List<Control>();
+	private List<TextureProgressBar> createdProgressBars = new List<TextureProgressBar>();
 
     [Export]
     private Color primaryColor;
@@ -15,6 +17,7 @@ public partial class OptionManager : Node
     private Color secondaryColor;
 
 	private bool wheelSpinning;
+	private WheelProgress wheelProgressParent;
 
     // --------------------------------
     //			PROPERTIES	
@@ -22,6 +25,8 @@ public partial class OptionManager : Node
 
     public static OptionManager Instance { get; private set; }
     public List<Control> CreatedOptions {  get { return createdOptions; } }
+	public List<Control> DisabledOptions { get { return disabledOptions; } }
+	public List<TextureProgressBar> CreatedProgressBars { get { return createdProgressBars; } }
 
 	public Color PrimaryColor 
 	{
@@ -33,6 +38,7 @@ public partial class OptionManager : Node
 	}
 
 	public bool WheelSpinning { get => wheelSpinning; set => wheelSpinning = value; }
+	public WheelProgress WheelProgressParent { get => wheelProgressParent; set => wheelProgressParent = value; }
 
     // --------------------------------
     //		STANDARD FUNCTIONS

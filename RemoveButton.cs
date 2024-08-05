@@ -22,9 +22,15 @@ public partial class RemoveButton : Button
 
 	private void PressButton()
 	{
-        if (optionManager.WheelSpinning) { return; }
+        if (optionManager.WheelSpinning || optionManager.CreatedOptions.Count <= 1) { return; }
+		
+		GD.Print(optionManager.CreatedProgressBars.Count);
+		TextureProgressBar targetBar = optionManager.CreatedProgressBars[optionManager.CreatedOptions.IndexOf(optionParent)];
 
+		// Remove Option from List of Options
         optionManager.CreatedOptions.Remove(optionParent);
 		optionParent.QueueFree();
+
+		optionManager.WheelProgressParent.EmitSignal(WheelProgress.SignalName.WheelProgressUpdate, targetBar);
 	}
 }

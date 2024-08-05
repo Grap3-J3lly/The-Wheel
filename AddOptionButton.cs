@@ -10,6 +10,7 @@ public partial class AddOptionButton : Button
 	private List<Control> createdOptions = new List<Control>();
 	private OptionManager optionManager;
 
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -30,9 +31,9 @@ public partial class AddOptionButton : Button
 	{
 		if(optionManager.WheelSpinning) { return; }
 
-		GD.Print("Creating New Option");
 		Control newControl = (Control)optionTemplate.Instantiate();
 		optionParent.AddChild(newControl);
 		optionManager.CreatedOptions.Add(newControl);
+		optionManager.WheelProgressParent.EmitSignal(WheelProgress.SignalName.WheelProgressUpdate, new TextureProgressBar());
 	}
 }
