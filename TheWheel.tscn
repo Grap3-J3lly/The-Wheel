@@ -1,9 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://dnsettbrbfs1p"]
+[gd_scene load_steps=14 format=3 uid="uid://dnsettbrbfs1p"]
 
-[ext_resource type="Script" path="res://TheWheel.cs" id="1_6qagf"]
 [ext_resource type="Theme" uid="uid://cpm3ymheyptc0" path="res://tempButtonColor.tres" id="2_3bb4o"]
-[ext_resource type="Texture2D" uid="uid://bxyqmlbgyn7io" path="res://Circle.png" id="2_68uad"]
+[ext_resource type="Script" path="res://OptionManager.cs" id="2_yv2g8"]
+[ext_resource type="Script" path="res://WheelProgress.cs" id="3_iyf3y"]
 [ext_resource type="Script" path="res://SpinButton.cs" id="3_qqfjg"]
+[ext_resource type="PackedScene" uid="uid://dj3kppad7ygsl" path="res://wheel_progress_template.tscn" id="4_hrrrl"]
+[ext_resource type="Script" path="res://AddOptionButton.cs" id="5_tmtid"]
+[ext_resource type="PackedScene" uid="uid://rxhcvkshxcd1" path="res://option_template.tscn" id="5_xkam3"]
+[ext_resource type="Texture2D" uid="uid://d0nwpyh2o5hoj" path="res://Triangle.png" id="6_84g8d"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_k51wu"]
 
@@ -13,12 +17,6 @@ colors = PackedColorArray(0.54902, 0.54902, 0.54902, 1, 0.54902, 0.54902, 0.5490
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_c1kk4"]
 gradient = SubResource("Gradient_wkpca")
 
-[sub_resource type="Gradient" id="Gradient_lij4e"]
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_ktnk4"]
-gradient = SubResource("Gradient_lij4e")
-
 [sub_resource type="Gradient" id="Gradient_y0d6l"]
 colors = PackedColorArray(0, 0.419608, 0, 1, 0, 0.419608, 0, 1)
 
@@ -26,7 +24,11 @@ colors = PackedColorArray(0, 0.419608, 0, 1, 0, 0.419608, 0, 1)
 gradient = SubResource("Gradient_y0d6l")
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_6qagf")
+
+[node name="OptionManager" type="Node" parent="."]
+script = ExtResource("2_yv2g8")
+primaryColor = Color(0.626637, 0.386466, 0.935588, 1)
+secondaryColor = Color(0.853281, 0.454139, 0.954567, 1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -48,17 +50,18 @@ offset_right = 269.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Wheel" type="Sprite2D" parent="CanvasLayer/WheelArea"]
-modulate = Color(0.611947, 0.00266259, 0.868309, 1)
-scale = Vector2(0.654001, 0.654001)
-texture = ExtResource("2_68uad")
-
-[node name="TestBox" type="Sprite2D" parent="CanvasLayer/WheelArea/Wheel"]
-position = Vector2(-116.972, -346.33)
-scale = Vector2(0.789914, 87.5383)
-texture = SubResource("GradientTexture1D_ktnk4")
+[node name="WheelProgressBars" type="Control" parent="CanvasLayer/WheelArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_iyf3y")
+progressBarTemplate = ExtResource("4_hrrrl")
 
 [node name="Button" type="Button" parent="CanvasLayer/WheelArea" node_paths=PackedStringArray("wheel")]
+z_index = 1
 layout_mode = 2
 anchor_left = 0.5
 anchor_top = 0.5
@@ -75,9 +78,30 @@ size_flags_vertical = 4
 theme = ExtResource("2_3bb4o")
 text = "TEST BUTTON"
 script = ExtResource("3_qqfjg")
-wheel = NodePath("../Wheel")
+wheel = NodePath("../WheelProgressBars")
+maxTime = 5.0
+speed = 2.0
 
-[node name="Control" type="Control" parent="CanvasLayer"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/WheelArea/Button"]
+modulate = Color(0.247059, 0.00784314, 0.321569, 1)
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -66.0
+offset_top = -82.0
+offset_right = 66.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(66, 57)
+texture = ExtResource("6_84g8d")
+
+[node name="OptionArea" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -91,7 +115,7 @@ offset_bottom = 259.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="OptionBackground" type="TextureRect" parent="CanvasLayer/Control"]
+[node name="OptionBackground" type="TextureRect" parent="CanvasLayer/OptionArea"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -100,103 +124,45 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture1D_yt4pb")
 
-[node name="TopBar" type="HBoxContainer" parent="CanvasLayer/Control"]
+[node name="TopBar" type="HBoxContainer" parent="CanvasLayer/OptionArea"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 60.0
+offset_left = 75.0
 offset_top = 11.0
-offset_right = -40.0
+offset_right = -75.0
 offset_bottom = 61.0
 grow_horizontal = 2
 
-[node name="OpenOptionMenuButton" type="Button" parent="CanvasLayer/Control/TopBar"]
-visible = false
+[node name="OpenOptionMenuButton" type="Button" parent="CanvasLayer/OptionArea/TopBar"]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 2
 size_flags_vertical = 4
 
-[node name="OptionText" type="RichTextLabel" parent="CanvasLayer/Control/TopBar"]
+[node name="OptionText" type="RichTextLabel" parent="CanvasLayer/OptionArea/TopBar"]
 custom_minimum_size = Vector2(100, 25)
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 6
 size_flags_vertical = 4
-text = "Options"
+focus_neighbor_left = NodePath("../OpenOptionMenuButton")
+focus_neighbor_right = NodePath("../AddOptionButton")
+bbcode_enabled = true
+text = "[center]Options[/center]"
 
-[node name="AddOptionButton" type="Button" parent="CanvasLayer/Control/TopBar"]
+[node name="AddOptionButton" type="Button" parent="CanvasLayer/OptionArea/TopBar" node_paths=PackedStringArray("optionParent")]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 10
 size_flags_vertical = 4
+script = ExtResource("5_tmtid")
+optionTemplate = ExtResource("5_xkam3")
+optionParent = NodePath("../../OptionList")
 
-[node name="OptionList" type="BoxContainer" parent="CanvasLayer/Control"]
+[node name="OptionList" type="BoxContainer" parent="CanvasLayer/OptionArea"]
 layout_mode = 0
-offset_left = 30.0
+offset_left = 25.0
 offset_top = 75.0
-offset_right = 324.345
+offset_right = 325.0
 offset_bottom = 475.0
 vertical = true
-
-[node name="OptionTemplate" type="Control" parent="CanvasLayer/Control/OptionList"]
-custom_minimum_size = Vector2(0, 35)
-layout_mode = 2
-size_flags_vertical = 0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/OptionList/OptionTemplate"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="DisableButton" type="Button" parent="CanvasLayer/Control/OptionList/OptionTemplate/HBoxContainer"]
-custom_minimum_size = Vector2(30, 0)
-layout_mode = 2
-
-[node name="OptionName" type="TextEdit" parent="CanvasLayer/Control/OptionList/OptionTemplate/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-placeholder_text = "Enter Option Title"
-
-[node name="OptionWeight" type="TextEdit" parent="CanvasLayer/Control/OptionList/OptionTemplate/HBoxContainer"]
-custom_minimum_size = Vector2(32.505, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 10
-text = "1"
-
-[node name="RemoveButton" type="Button" parent="CanvasLayer/Control/OptionList/OptionTemplate/HBoxContainer"]
-custom_minimum_size = Vector2(30, 0)
-layout_mode = 2
-
-[node name="OptionTemplate2" type="Control" parent="CanvasLayer/Control/OptionList"]
-custom_minimum_size = Vector2(0, 35)
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/OptionList/OptionTemplate2"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="DisableButton" type="Button" parent="CanvasLayer/Control/OptionList/OptionTemplate2/HBoxContainer"]
-custom_minimum_size = Vector2(30, 0)
-layout_mode = 2
-
-[node name="OptionName" type="TextEdit" parent="CanvasLayer/Control/OptionList/OptionTemplate2/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-placeholder_text = "Enter Option Title"
-
-[node name="OptionWeight" type="TextEdit" parent="CanvasLayer/Control/OptionList/OptionTemplate2/HBoxContainer"]
-custom_minimum_size = Vector2(32.505, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 10
-text = "1"
-
-[node name="RemoveButton" type="Button" parent="CanvasLayer/Control/OptionList/OptionTemplate2/HBoxContainer"]
-custom_minimum_size = Vector2(30, 0)
-layout_mode = 2

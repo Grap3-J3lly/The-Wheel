@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://dj3kppad7ygsl"]
+
+[ext_resource type="Texture2D" uid="uid://bxyqmlbgyn7io" path="res://Circle.png" id="1_h1bqp"]
+
+[node name="WheelProgressTemplate" type="TextureProgressBar"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -464.0
+offset_top = -464.0
+offset_right = 464.0
+offset_bottom = 464.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.65, 0.65)
+pivot_offset = Vector2(464, 464)
+value = 100.0
+fill_mode = 4
+texture_progress = ExtResource("1_h1bqp")
+tint_progress = Color(0.636477, 0.119472, 0.714226, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(41.955, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.9775
+offset_top = 42.785
+offset_right = 41.9125
+offset_bottom = 82.785
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 25
+text = "Test"
