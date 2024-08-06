@@ -8,14 +8,14 @@ public partial class WheelProgress : Control
     // --------------------------------
 
     [Signal]
-	public delegate void WheelProgressUpdateEventHandler(TextureProgressBar targetBar);
+	public delegate void WheelProgressUpdateEventHandler(bool needsReset);
 
 	[Export]
 	private PackedScene progressBarTemplate;
 
 	private	OptionManager optionManager;
 	private Color previousColor;
-	private List<TextureProgressBar> progressBars = new List<TextureProgressBar>();
+	private List<Option> options = new List<Option>();
 
     // --------------------------------
     //		STANDARD FUNCTIONS	
@@ -26,7 +26,7 @@ public partial class WheelProgress : Control
 		base._Ready();
 		optionManager = OptionManager.Instance;
 		optionManager.WheelProgressParent = this;
-		progressBars = optionManager.CreatedProgressBars;
+		options = optionManager.CreatedOptions;
 				
 		WheelProgressUpdate += CreateProgressBars;
 	}
@@ -35,44 +35,28 @@ public partial class WheelProgress : Control
     //		EVENT CALL FUNCTIONS	
     // --------------------------------
 
-    private void CreateProgressBars(TextureProgressBar targetBar)
+    private void CreateProgressBars(bool needsReset)
 	{
-		if (progressBars == null) { return; }
-
-
-        // If less progress bars are needed
-        if (progressBars.Count > optionManager.CreatedOptions.Count)
-        {
-            // Remove Option from Wheel
-            GD.Print("Called During RemoveButton");
-
-            optionManager.CreatedProgressBars.Remove(targetBar);
-            targetBar.QueueFree();
-        }
+		if (options == null) { return; }
 
 		// If more progress bars are needed
-        if (progressBars.Count <= optionManager.CreatedOptions.Count)
+        if (Option.CheckForMissingProgressBar(options) || needsReset)
 		{
-			if (progressBars.Count > 0)
-			{
-				foreach (var progressBar in progressBars)
-				{
-					progressBar.QueueFree();
-				}
-				progressBars.Clear();
-			}
+			Option.RemoveAllProgressBars(options);
 
 			// Assign Options Initial Angle = Fill Degree * Option Number (using array indices)
 			// Reduce Fill Degree for every option on wheel to evenly distribute across wheel
-            for (int i = 0; i < optionManager.CreatedOptions.Count; i++)
+            for (int i = 0; i < options.Count; i++)
 			{
 				TextureProgressBar newBar = (TextureProgressBar)progressBarTemplate.Instantiate();
 				AddChild(newBar);
-				progressBars.Add(newBar);
-				newBar.RadialFillDegrees = 360.0f / optionManager.CreatedOptions.Count;
-				newBar.RadialInitialAngle = newBar.RadialFillDegrees * i;
+				options[i].OptionProgressBar = newBar;
 
-				if(i == optionManager.CreatedOptions.Count - 1 && optionManager.CreatedOptions.Count % 2 == 1)
+				newBar.RadialFillDegrees = (360.0f / Option.GetTotalWeight(options)) * options[i].OptionWeight
+				newBar.RadialInitialAngle = newBar.RadialFillDegrees * i;
+				GD.Print("Current Fill Degree: " + newBar.RadialFillDegrees);	
+
+				if(i == options.Count - 1 && options.Count % 2 == 1)
 				{
 					newBar.RadialFillDegrees -= .5f;
 				}

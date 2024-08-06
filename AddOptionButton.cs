@@ -33,7 +33,7 @@ public partial class AddOptionButton : Button
 
 		Control newControl = (Control)optionTemplate.Instantiate();
 		optionParent.AddChild(newControl);
-		optionManager.CreatedOptions.Add(newControl);
-		optionManager.WheelProgressParent.EmitSignal(WheelProgress.SignalName.WheelProgressUpdate, new TextureProgressBar());
+		optionManager.CreatedOptions.Add((Option)newControl);
+		optionManager.WheelProgressParent.EmitSignal(WheelProgress.SignalName.WheelProgressUpdate, false);
 	}
 }

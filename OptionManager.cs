@@ -7,9 +7,8 @@ public partial class OptionManager : Node
 	//			VARIABLES	
     // --------------------------------
 
-	private List<Control> createdOptions = new List<Control>();
-	private List<Control> disabledOptions = new List<Control>();
-	private List<TextureProgressBar> createdProgressBars = new List<TextureProgressBar>();
+	private List<Option> createdOptions = new List<Option>();
+	private List<Option> disabledOptions = new List<Option>();
 
     [Export]
     private Color primaryColor;
@@ -24,9 +23,8 @@ public partial class OptionManager : Node
     // --------------------------------
 
     public static OptionManager Instance { get; private set; }
-    public List<Control> CreatedOptions {  get { return createdOptions; } }
-	public List<Control> DisabledOptions { get { return disabledOptions; } }
-	public List<TextureProgressBar> CreatedProgressBars { get { return createdProgressBars; } }
+    public List<Option> CreatedOptions {  get { return createdOptions; } }
+	public List<Option> DisabledOptions { get { return disabledOptions; } }
 
 	public Color PrimaryColor 
 	{
@@ -51,8 +49,4 @@ public partial class OptionManager : Node
 		Instance = this;
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
 }
