@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class OptionWeight : TextEdit
+public partial class OptionWeight : LineEdit
 {
 	OptionManager optionManager;
 	Option optionParent;
@@ -10,7 +10,7 @@ public partial class OptionWeight : TextEdit
 	{
 		optionManager = OptionManager.Instance;
 		optionParent = (Option)GetParentControl().GetParentControl();
-
+		
 		this.TextChanged += UpdateOptionWeight;
 	}
 
@@ -20,7 +20,7 @@ public partial class OptionWeight : TextEdit
         this.Editable = !optionManager.WheelSpinning && optionParent.OptionEnabled;
 	}
 
-	public void UpdateOptionWeight()
+	public void UpdateOptionWeight(string newText)
 	{
 		if(int.TryParse(this.Text, out int result))
 		{

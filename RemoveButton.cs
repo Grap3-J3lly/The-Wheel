@@ -27,12 +27,6 @@ public partial class RemoveButton : Button
 		optionManager.CreatedOptions.Remove(optionParent);
 		Option.DeleteOption(optionParent);
 
-		//TextureProgressBar targetBar = optionManager.CreatedProgressBars[optionManager.CreatedOptions.IndexOf(optionParent)];
-
-		//// Remove Option from List of Options
-		//optionManager.CreatedOptions.Remove(optionParent);
-		//optionParent.QueueFree();
-
 		optionManager.WheelProgressParent.EmitSignal(WheelProgress.SignalName.WheelProgressUpdate, true);
 	}
 }

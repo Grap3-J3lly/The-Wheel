@@ -24,5 +24,6 @@ public partial class OptionName : TextEdit
 	private void UpdateOptionName()
 	{
 		optionParent.OptionName = this.Text;
+		optionParent.OptionProgressBar.SetName(this.Text);
 	}
 }

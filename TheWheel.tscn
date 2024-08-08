@@ -1,13 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://dnsettbrbfs1p"]
+[gd_scene load_steps=17 format=3 uid="uid://8cgspyr8gob4"]
 
-[ext_resource type="Theme" uid="uid://cpm3ymheyptc0" path="res://tempButtonColor.tres" id="2_3bb4o"]
+[ext_resource type="Theme" path="res://tempButtonColor.tres" id="2_3bb4o"]
 [ext_resource type="Script" path="res://OptionManager.cs" id="2_yv2g8"]
 [ext_resource type="Script" path="res://WheelProgress.cs" id="3_iyf3y"]
 [ext_resource type="Script" path="res://SpinButton.cs" id="3_qqfjg"]
-[ext_resource type="PackedScene" uid="uid://dj3kppad7ygsl" path="res://wheel_progress_template.tscn" id="4_hrrrl"]
+[ext_resource type="PackedScene" uid="uid://c1ofuprn5cbnr" path="res://wheel_progress_template.tscn" id="4_hrrrl"]
 [ext_resource type="Script" path="res://AddOptionButton.cs" id="5_tmtid"]
-[ext_resource type="PackedScene" uid="uid://rxhcvkshxcd1" path="res://option_template.tscn" id="5_xkam3"]
+[ext_resource type="PackedScene" uid="uid://c2jsx0bgu2s1j" path="res://option_template.tscn" id="5_xkam3"]
 [ext_resource type="Texture2D" uid="uid://d0nwpyh2o5hoj" path="res://Triangle.png" id="6_84g8d"]
+[ext_resource type="Script" path="res://ClosePopupButton.cs" id="9_ddoft"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_k51wu"]
 
@@ -22,6 +23,12 @@ colors = PackedColorArray(0, 0.419608, 0, 1, 0, 0.419608, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_yt4pb"]
 gradient = SubResource("Gradient_y0d6l")
+
+[sub_resource type="Gradient" id="Gradient_hdojw"]
+colors = PackedColorArray(1, 0.941176, 0.666667, 1, 1, 0.941176, 0.666667, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_giqmg"]
+gradient = SubResource("Gradient_hdojw")
 
 [node name="Node2D" type="Node2D"]
 
@@ -60,7 +67,7 @@ grow_vertical = 2
 script = ExtResource("3_iyf3y")
 progressBarTemplate = ExtResource("4_hrrrl")
 
-[node name="SpinButton" type="Button" parent="CanvasLayer/WheelArea" node_paths=PackedStringArray("wheel")]
+[node name="SpinButton" type="Button" parent="CanvasLayer/WheelArea" node_paths=PackedStringArray("wheel", "popupArea")]
 z_index = 1
 layout_mode = 2
 anchor_left = 0.5
@@ -81,6 +88,7 @@ script = ExtResource("3_qqfjg")
 wheel = NodePath("../WheelProgressBars")
 maxTime = 5.0
 speed = 2.0
+popupArea = NodePath("../../PopupArea")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/WheelArea/SpinButton"]
 modulate = Color(0.247059, 0.00784314, 0.321569, 1)
@@ -157,14 +165,81 @@ size_flags_horizontal = 10
 size_flags_vertical = 4
 script = ExtResource("5_tmtid")
 optionTemplate = ExtResource("5_xkam3")
-optionParent = NodePath("../../OptionList")
+optionParent = NodePath("../../ScrollContainer/OptionList")
 
-[node name="OptionList" type="BoxContainer" parent="CanvasLayer/OptionArea"]
-layout_mode = 0
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/OptionArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = 25.0
-offset_top = 75.0
-offset_right = 325.0
-offset_bottom = 475.0
+offset_top = 61.0
+offset_right = -25.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="OptionList" type="BoxContainer" parent="CanvasLayer/OptionArea/ScrollContainer"]
+layout_mode = 2
 vertical = true
+
+[node name="PopupArea" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PopupBackground" type="TextureRect" parent="CanvasLayer/PopupArea"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = -128.0
+offset_right = 192.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(192, 128)
+texture = SubResource("GradientTexture1D_giqmg")
+
+[node name="CorrectOptionText" type="RichTextLabel" parent="CanvasLayer/PopupArea/PopupBackground"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 120.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(0.356863, 0.219608, 0.392157, 1)
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "[center]THIS WAS THE OPTION SELECTED[/center]"
+
+[node name="ClosePopupButton" type="Button" parent="CanvasLayer/PopupArea/PopupBackground" node_paths=PackedStringArray("popupArea")]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 106.0
+offset_top = -108.0
+offset_right = -106.0
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(172, 100)
+theme_override_font_sizes/font_size = 30
+text = "CLOSE"
+script = ExtResource("9_ddoft")
+popupArea = NodePath("../..")
 
 [connection signal="WheelProgressUpdate" from="CanvasLayer/WheelArea/WheelProgressBars" to="CanvasLayer/OptionArea/TopBar/AddOptionButton" method="_on_wheel_progress_bars_wheel_progress_update"]

@@ -10,7 +10,7 @@ public partial class Option : Control
     private bool optionEnabled = true;
 	private string optionName = "";
 	private int optionWeight = 1;
-	private TextureProgressBar optionProgressBar;
+	private ProgressBar optionProgressBar;
 
     // --------------------------------
     //			PROPERTIES	
@@ -19,7 +19,7 @@ public partial class Option : Control
     public bool OptionEnabled { get => optionEnabled; set => optionEnabled = value; }
     public string OptionName { get => optionName; set => optionName = value; }
     public int OptionWeight { get => optionWeight; set => optionWeight = value; }
-    public TextureProgressBar OptionProgressBar { get => optionProgressBar; set => optionProgressBar = value; }
+    public ProgressBar OptionProgressBar { get => optionProgressBar; set => optionProgressBar = value; }
 
     // --------------------------------
     //		OPTION FUNCTIONS	

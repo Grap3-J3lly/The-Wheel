@@ -46,15 +46,21 @@ public partial class WheelProgress : Control
 
 			// Assign Options Initial Angle = Fill Degree * Option Number (using array indices)
 			// Reduce Fill Degree for every option on wheel to evenly distribute across wheel
+
+			float previousAngle = 0f;
             for (int i = 0; i < options.Count; i++)
 			{
 				TextureProgressBar newBar = (TextureProgressBar)progressBarTemplate.Instantiate();
 				AddChild(newBar);
-				options[i].OptionProgressBar = newBar;
+				ProgressBar progressBar = (ProgressBar)newBar;
+				options[i].OptionProgressBar = progressBar;
+				progressBar.AssignedOption = options[i];
+				progressBar.SetName(options[i].OptionName);
 
-				newBar.RadialFillDegrees = (360.0f / Option.GetTotalWeight(options)) * options[i].OptionWeight
-				newBar.RadialInitialAngle = newBar.RadialFillDegrees * i;
-				GD.Print("Current Fill Degree: " + newBar.RadialFillDegrees);	
+				newBar.RadialFillDegrees = (360.0f / Option.GetTotalWeight(options)) * options[i].OptionWeight;
+				newBar.RadialInitialAngle = previousAngle;
+				previousAngle += newBar.RadialFillDegrees;
+				progressBar.AssignTextRotation();
 
 				if(i == options.Count - 1 && options.Count % 2 == 1)
 				{

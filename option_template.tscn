@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://rxhcvkshxcd1"]
+[gd_scene load_steps=6 format=3 uid="uid://c2jsx0bgu2s1j"]
 
 [ext_resource type="Script" path="res://Option.cs" id="1_1c5ab"]
 [ext_resource type="Script" path="res://DisableButton.cs" id="1_4k7kn"]
@@ -32,7 +32,7 @@ size_flags_horizontal = 3
 placeholder_text = "Enter Option Title"
 script = ExtResource("2_1qtey")
 
-[node name="OptionWeight" type="TextEdit" parent="HBoxContainer"]
+[node name="OptionWeight" type="LineEdit" parent="HBoxContainer"]
 custom_minimum_size = Vector2(32.505, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 10
