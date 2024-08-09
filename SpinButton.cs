@@ -9,8 +9,8 @@ public partial class SpinButton : Button
 	private double maxTime = 3d;
 	[Export]
 	private float speed = .75f;
-	[Export]
-	private Control popupArea;
+	//[Export]
+	//private Control popupArea;
 
 	private OptionManager optionManager;	
 	private double timer;
@@ -51,25 +51,30 @@ public partial class SpinButton : Button
 
 	private void HandleWheelSpin(double delta)
 	{
-        if (startRotation && timer < maxTime)
-        {
-            timer += delta;
-            wheel.RotationDegrees += speed * (float)timer;
-        }
-        if (timer >= maxTime)
-        {
-            startRotation = false;
-            slowDownValue = timer;
-            timer = 0;
-        }
-        if (slowDownValue > 0)
-        {
-            wheel.RotationDegrees += speed * (float)slowDownValue + (extraPerAngle * (float)delta);
-            slowDownValue -= delta;
-        }
-        if (!startRotation && slowDownValue <= 0)
-        {
-            optionManager.WheelSpinning = false;
+		if(optionManager.WheelSpinning)
+		{
+            if (startRotation && timer < maxTime)
+            {
+                timer += delta;
+                wheel.RotationDegrees += speed * (float)timer;
+            }
+            if (timer >= maxTime)
+            {
+                startRotation = false;
+                slowDownValue = timer;
+                timer = 0;
+            }
+            if (slowDownValue > 0)
+            {
+                wheel.RotationDegrees += speed * (float)slowDownValue + (extraPerAngle * (float)delta);
+                slowDownValue -= delta;
+            }
+            if (!startRotation && slowDownValue <= 0)
+            {
+                optionManager.WheelSpinning = false;
+				string winnerName = GetChild<WinnerSelection>(0).OnWheelStop();
+				PopupManager.Instance.CreateWinPopup(winnerName);
+            }
         }
     }
 }

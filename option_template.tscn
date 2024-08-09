@@ -37,6 +37,7 @@ custom_minimum_size = Vector2(32.505, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 10
 text = "1"
+alignment = 1
 script = ExtResource("3_t7gkw")
 
 [node name="RemoveButton" type="Button" parent="HBoxContainer"]

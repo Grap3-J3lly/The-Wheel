@@ -25,6 +25,5 @@ public partial class ProgressBar : TextureProgressBar
 	{
 		float rotation = (this.RadialFillDegrees/2) + this.RadialInitialAngle + rotationOffset;
 		optionName.RotationDegrees = rotation;
-		GD.Print(optionName.RotationDegrees);
 	}
 }

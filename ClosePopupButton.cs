@@ -3,9 +3,6 @@ using System;
 
 public partial class ClosePopupButton : Button
 {
-	[Export]
-	private Control popupArea;
-
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -14,6 +11,6 @@ public partial class ClosePopupButton : Button
 
 	private void OnButtonPress()
 	{
-		popupArea.Visible = false;
+		PopupManager.Instance.ClosePopup(GetParent<Control>());
 	}
 }
