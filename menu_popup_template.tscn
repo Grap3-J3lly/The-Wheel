@@ -1,0 +1,153 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1lc8f4e26bea"]
+
+[ext_resource type="Script" path="res://ClosePopupButton.cs" id="1_x3pfe"]
+
+[sub_resource type="Gradient" id="Gradient_bbwgr"]
+colors = PackedColorArray(1, 0.941176, 0.666667, 1, 1, 0.941176, 0.666667, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2feyk"]
+gradient = SubResource("Gradient_bbwgr")
+
+[node name="MenuBackground" type="TextureRect"]
+z_index = 6
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = -192.0
+offset_right = 192.0
+offset_bottom = 192.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_2feyk")
+
+[node name="MenuName" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -40.0
+offset_top = 10.0
+offset_right = 40.0
+offset_bottom = 50.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(0.356863, 0.219608, 0.392157, 1)
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+text = "[center]MENU[/center]"
+
+[node name="MenuItemContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = 54.0
+offset_right = -25.0
+offset_bottom = -55.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="SaveItem" type="Control" parent="MenuItemContainer"]
+custom_minimum_size = Vector2(0, 55)
+layout_mode = 2
+
+[node name="SaveLabel" type="RichTextLabel" parent="MenuItemContainer/SaveItem"]
+custom_minimum_size = Vector2(80, 25)
+layout_mode = 1
+offset_left = 15.0
+offset_right = 95.0
+offset_bottom = 25.0
+size_flags_horizontal = 0
+theme_override_colors/default_color = Color(0.356863, 0.219608, 0.392157, 1)
+text = "SAVE LIST"
+
+[node name="SaveItemContainer" type="HBoxContainer" parent="MenuItemContainer/SaveItem"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.5
+offset_top = -31.0
+offset_right = 150.5
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ListNameField" type="LineEdit" parent="MenuItemContainer/SaveItem/SaveItemContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+
+[node name="SaveListButton" type="Button" parent="MenuItemContainer/SaveItem/SaveItemContainer"]
+layout_mode = 2
+text = "SAVE"
+
+[node name="LoadItem" type="Control" parent="MenuItemContainer"]
+custom_minimum_size = Vector2(0, 55)
+layout_mode = 2
+
+[node name="LoadLabel" type="RichTextLabel" parent="MenuItemContainer/LoadItem"]
+custom_minimum_size = Vector2(75, 25)
+layout_mode = 1
+offset_left = 15.0
+offset_right = 95.0
+offset_bottom = 25.0
+size_flags_horizontal = 0
+theme_override_colors/default_color = Color(0.356863, 0.219608, 0.392157, 1)
+bbcode_enabled = true
+text = "LOAD LIST"
+
+[node name="LoadItemContainer" type="HBoxContainer" parent="MenuItemContainer/LoadItem"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -153.0
+offset_top = -31.0
+offset_right = 153.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ListOptions" type="OptionButton" parent="MenuItemContainer/LoadItem/LoadItemContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+
+[node name="LoadListButton" type="Button" parent="MenuItemContainer/LoadItem/LoadItemContainer"]
+layout_mode = 2
+text = "LOAD"
+
+[node name="CustomizeButton" type="Button" parent="MenuItemContainer"]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "CUSTOMIZE"
+
+[node name="CloseButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -43.0
+offset_top = -54.0
+offset_right = 43.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "CLOSE"
+script = ExtResource("1_x3pfe")

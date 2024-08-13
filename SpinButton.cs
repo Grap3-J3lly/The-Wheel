@@ -72,9 +72,36 @@ public partial class SpinButton : Button
             if (!startRotation && slowDownValue <= 0)
             {
                 optionManager.WheelSpinning = false;
-				string winnerName = GetChild<WinnerSelection>(0).OnWheelStop();
-				PopupManager.Instance.CreateWinPopup(winnerName);
+                string winnerName = DecideWinner();
+
+				if(winnerName != "")
+				{
+                    TextureRect result = PopupManager.Instance.CreatePopup(PopupManager.Instance.SelectedOptionPopup);
+					PopupManager.Instance.AssignWinningText(result, winnerName);
+                }
+				else
+				{
+					GD.PushError(winnerName, "DecideWinner() not returning correct name value");
+				}
+
+
             }
         }
     }
+
+	private string DecideWinner()
+	{
+		float currentRotationDegrees = 360 - (wheel.RotationDegrees % 360);
+		GD.Print(currentRotationDegrees);
+		foreach(Option option in optionManager.CreatedOptions)
+		{
+			float initialAngle = option.OptionProgressBar.RadialInitialAngle;
+			float finalAngle = initialAngle + option.OptionProgressBar.RadialFillDegrees;
+			if(currentRotationDegrees > initialAngle && currentRotationDegrees < finalAngle)
+			{
+				return option.OptionName;
+			}
+		}
+		return "";
+	}
 }

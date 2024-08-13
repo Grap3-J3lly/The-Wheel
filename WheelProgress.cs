@@ -62,11 +62,13 @@ public partial class WheelProgress : Control
 				previousAngle += newBar.RadialFillDegrees;
 				progressBar.AssignTextRotation();
 
+				// Gives a slight separation between options when necessary
 				if(i == options.Count - 1 && options.Count % 2 == 1)
 				{
 					newBar.RadialFillDegrees -= .5f;
 				}
 
+				// Handles coloring the wheel slices
 				if (previousColor == Color.Color8(0,0,0,0) || previousColor == optionManager.SecondaryColor)
 				{
 					previousColor = optionManager.PrimaryColor;

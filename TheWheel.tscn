@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://8cgspyr8gob4"]
+[gd_scene load_steps=19 format=3 uid="uid://8cgspyr8gob4"]
 
 [ext_resource type="Theme" uid="uid://cpm3ymheyptc0" path="res://tempButtonColor.tres" id="2_3bb4o"]
 [ext_resource type="Script" path="res://OptionManager.cs" id="2_yv2g8"]
@@ -8,9 +8,10 @@
 [ext_resource type="Script" path="res://AddOptionButton.cs" id="5_tmtid"]
 [ext_resource type="PackedScene" uid="uid://c2jsx0bgu2s1j" path="res://option_template.tscn" id="5_xkam3"]
 [ext_resource type="Texture2D" uid="uid://d0nwpyh2o5hoj" path="res://Triangle.png" id="6_84g8d"]
-[ext_resource type="Script" path="res://WinnerSelection.cs" id="7_fkx3v"]
+[ext_resource type="Script" path="res://OpenPopupButton.cs" id="7_b0qvu"]
 [ext_resource type="Script" path="res://PopupManager.cs" id="9_4p5xn"]
 [ext_resource type="PackedScene" uid="uid://cwucnn6t72ta5" path="res://selected_option_popup_template.tscn" id="10_fm5px"]
+[ext_resource type="PackedScene" uid="uid://b1lc8f4e26bea" path="res://menu_popup_template.tscn" id="11_osn7t"]
 
 [sub_resource type="Gradient" id="Gradient_wkpca"]
 colors = PackedColorArray(0.54902, 0.54902, 0.54902, 1, 0.54902, 0.54902, 0.54902, 1)
@@ -108,14 +109,6 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(66, 57)
 texture = ExtResource("6_84g8d")
-script = ExtResource("7_fkx3v")
-
-[node name="RayCast2D" type="RayCast2D" parent="CanvasLayer/WheelArea/SpinButton/TextureRect"]
-position = Vector2(66, 0)
-rotation = 3.14159
-hit_from_inside = true
-collide_with_areas = true
-collide_with_bodies = false
 
 [node name="OptionArea" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -155,6 +148,7 @@ custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 4
+script = ExtResource("7_b0qvu")
 
 [node name="OptionText" type="RichTextLabel" parent="CanvasLayer/OptionArea/TopBar"]
 custom_minimum_size = Vector2(100, 25)
@@ -202,9 +196,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("9_4p5xn")
 selectedOptionPopup = ExtResource("10_fm5px")
+menuPopup = ExtResource("11_osn7t")
 
 [node name="FadedBackground" type="TextureRect" parent="CanvasLayer/PopupArea"]
-visible = false
 z_index = 5
 layout_mode = 1
 anchors_preset = 15

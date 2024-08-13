@@ -1,9 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://c1ofuprn5cbnr"]
+[gd_scene load_steps=3 format=3 uid="uid://c1ofuprn5cbnr"]
 
 [ext_resource type="Texture2D" uid="uid://bxyqmlbgyn7io" path="res://Circle.png" id="1_h1bqp"]
 [ext_resource type="Script" path="res://ProgressBar.cs" id="2_ge17i"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_pbbo3"]
 
 [node name="WheelProgressTemplate" type="TextureProgressBar"]
 anchors_preset = 8
@@ -44,10 +42,3 @@ theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 text = "[right]Test[/right]"
 fit_content = true
-
-[node name="Area2D" type="Area2D" parent="."]
-position = Vector2(464.378, 463.158)
-scale = Vector2(47.885, 47.885)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_pbbo3")
