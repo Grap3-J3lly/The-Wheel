@@ -15,6 +15,9 @@ public partial class OptionManager : Node
     [Export]
     private Color secondaryColor;
 
+	[Export]
+	private ColorRect applicationBackground;
+
 	private bool wheelSpinning;
 	private WheelProgress wheelProgressParent;
 
@@ -35,6 +38,8 @@ public partial class OptionManager : Node
 		get => secondaryColor; set => secondaryColor = value;
 	}
 
+	public ColorRect ApplicationBackground { get => applicationBackground; }
+
 	public bool WheelSpinning { get => wheelSpinning; set => wheelSpinning = value; }
 	public WheelProgress WheelProgressParent { get => wheelProgressParent; set => wheelProgressParent = value; }
 
@@ -47,6 +52,18 @@ public partial class OptionManager : Node
 	{
 		base._Ready();
 		Instance = this;
+	}
+
+    // --------------------------------
+    //		CUSTOMIZATION LOGIC
+    // --------------------------------
+
+	public void UpdateWheelColors()
+	{
+		foreach(Option option in CreatedOptions)
+		{
+			option.OptionProgressBar.AssignBarColor();
+		}
 	}
 
 }

@@ -14,7 +14,6 @@ public partial class WheelProgress : Control
 	private PackedScene progressBarTemplate;
 
 	private	OptionManager optionManager;
-	private Color previousColor;
 	private List<Option> options = new List<Option>();
 
     // --------------------------------
@@ -50,35 +49,25 @@ public partial class WheelProgress : Control
 			float previousAngle = 0f;
             for (int i = 0; i < options.Count; i++)
 			{
-				TextureProgressBar newBar = (TextureProgressBar)progressBarTemplate.Instantiate();
-				AddChild(newBar);
-				ProgressBar progressBar = (ProgressBar)newBar;
+				ProgressBar progressBar = (ProgressBar)progressBarTemplate.Instantiate();
+				AddChild(progressBar);
 				options[i].OptionProgressBar = progressBar;
 				progressBar.AssignedOption = options[i];
 				progressBar.SetName(options[i].OptionName);
 
-				newBar.RadialFillDegrees = (360.0f / Option.GetTotalWeight(options)) * options[i].OptionWeight;
-				newBar.RadialInitialAngle = previousAngle;
-				previousAngle += newBar.RadialFillDegrees;
+				progressBar.RadialFillDegrees = (360.0f / Option.GetTotalWeight(options)) * options[i].OptionWeight;
+				progressBar.RadialInitialAngle = previousAngle;
+				previousAngle += progressBar.RadialFillDegrees;
 				progressBar.AssignTextRotation();
 
 				// Gives a slight separation between options when necessary
 				if(i == options.Count - 1 && options.Count % 2 == 1)
 				{
-					newBar.RadialFillDegrees -= .5f;
+					progressBar.RadialFillDegrees -= .5f;
 				}
 
 				// Handles coloring the wheel slices
-				if (previousColor == Color.Color8(0,0,0,0) || previousColor == optionManager.SecondaryColor)
-				{
-					previousColor = optionManager.PrimaryColor;
-					newBar.TintProgress = optionManager.PrimaryColor;
-				}
-				else
-				{
-					previousColor = optionManager.SecondaryColor;
-					newBar.TintProgress = optionManager.SecondaryColor;
-				}
+				progressBar.AssignBarColor();
 			}
 		}
 	}

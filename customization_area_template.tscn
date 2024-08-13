@@ -1,0 +1,79 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctgy026yqcb0v"]
+
+[ext_resource type="Script" path="res://CustomizationManager.cs" id="1_e1qy6"]
+
+[node name="CustomizationArea" type="Control" node_paths=PackedStringArray("generalBackgroundColor", "wheelPrimaryColor", "wheelSecondaryColor")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 384.0
+offset_right = 768.0
+offset_bottom = 384.0
+script = ExtResource("1_e1qy6")
+generalBackgroundColor = NodePath("CustomizationOptions/CustomizationItem/ItemColorButton")
+wheelPrimaryColor = NodePath("CustomizationOptions/CustomizationItem2/ItemColorButton")
+wheelSecondaryColor = NodePath("CustomizationOptions/CustomizationItem3/ItemColorButton")
+
+[node name="CustomizationOptions" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -150.0
+offset_right = 150.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CustomizationItem" type="HBoxContainer" parent="CustomizationOptions"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+
+[node name="ItemText" type="RichTextLabel" parent="CustomizationOptions/CustomizationItem"]
+custom_minimum_size = Vector2(175, 25)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_colors/default_color = Color(0.384314, 0.25098, 0.403922, 1)
+text = "General Background"
+
+[node name="ItemColorButton" type="ColorPickerButton" parent="CustomizationOptions/CustomizationItem"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="CustomizationItem2" type="HBoxContainer" parent="CustomizationOptions"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+
+[node name="ItemText" type="RichTextLabel" parent="CustomizationOptions/CustomizationItem2"]
+custom_minimum_size = Vector2(175, 25)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_colors/default_color = Color(0.384314, 0.25098, 0.403922, 1)
+text = "Wheel Primary"
+
+[node name="ItemColorButton" type="ColorPickerButton" parent="CustomizationOptions/CustomizationItem2"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="CustomizationItem3" type="HBoxContainer" parent="CustomizationOptions"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+
+[node name="ItemText" type="RichTextLabel" parent="CustomizationOptions/CustomizationItem3"]
+custom_minimum_size = Vector2(175, 25)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_colors/default_color = Color(0.384314, 0.25098, 0.403922, 1)
+text = "Wheel Secondary"
+
+[node name="ItemColorButton" type="ColorPickerButton" parent="CustomizationOptions/CustomizationItem3"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_vertical = 4

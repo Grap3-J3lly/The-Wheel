@@ -76,7 +76,7 @@ public partial class SpinButton : Button
 
 				if(winnerName != "")
 				{
-                    TextureRect result = PopupManager.Instance.CreatePopup(PopupManager.Instance.SelectedOptionPopup);
+                    ColorRect result = PopupManager.Instance.CreatePopup(PopupManager.Instance.SelectedOptionPopup);
 					PopupManager.Instance.AssignWinningText(result, winnerName);
                 }
 				else

@@ -11,8 +11,6 @@ public partial class PopupManager : Control
 	private PackedScene selectedOptionPopup;
     [Export]
     private PackedScene menuPopup;
-    [Export]
-    private TextureRect fadedBackground;
 
     // --------------------------------
     //			PROPERTIES
@@ -38,7 +36,7 @@ public partial class PopupManager : Control
     //		WIN POPUP LOGIC
     // --------------------------------
 
-	public void AssignWinningText(TextureRect popup, string winnerName)
+	public void AssignWinningText(ColorRect popup, string winnerName)
 	{
 		RichTextLabel winText = popup.GetChild<RichTextLabel>(0);
 		winText.Text = "[center]The Winning Choice Is:\n" + winnerName + "[/center]";
@@ -48,10 +46,10 @@ public partial class PopupManager : Control
     //		GENERAL LOGIC
     // --------------------------------
 
-    public TextureRect CreatePopup(PackedScene popup)
+    public ColorRect CreatePopup(PackedScene popup)
     {
         this.Visible = true;
-        TextureRect newPopup = (TextureRect)popup.Instantiate();
+        ColorRect newPopup = (ColorRect)popup.Instantiate();
         AddChild(newPopup);
         return newPopup;
     }

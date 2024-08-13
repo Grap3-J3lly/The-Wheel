@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://8cgspyr8gob4"]
+[gd_scene load_steps=17 format=3 uid="uid://8cgspyr8gob4"]
 
 [ext_resource type="Theme" uid="uid://cpm3ymheyptc0" path="res://tempButtonColor.tres" id="2_3bb4o"]
 [ext_resource type="Script" path="res://OptionManager.cs" id="2_yv2g8"]
@@ -12,12 +12,6 @@
 [ext_resource type="Script" path="res://PopupManager.cs" id="9_4p5xn"]
 [ext_resource type="PackedScene" uid="uid://cwucnn6t72ta5" path="res://selected_option_popup_template.tscn" id="10_fm5px"]
 [ext_resource type="PackedScene" uid="uid://b1lc8f4e26bea" path="res://menu_popup_template.tscn" id="11_osn7t"]
-
-[sub_resource type="Gradient" id="Gradient_wkpca"]
-colors = PackedColorArray(0.54902, 0.54902, 0.54902, 1, 0.54902, 0.54902, 0.54902, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_c1kk4"]
-gradient = SubResource("Gradient_wkpca")
 
 [sub_resource type="Gradient" id="Gradient_y0d6l"]
 colors = PackedColorArray(0, 0.419608, 0, 1, 0, 0.419608, 0, 1)
@@ -33,20 +27,21 @@ gradient = SubResource("Gradient_8bcs7")
 
 [node name="Node2D" type="Node2D"]
 
-[node name="OptionManager" type="Node" parent="."]
+[node name="OptionManager" type="Node" parent="." node_paths=PackedStringArray("applicationBackground")]
 script = ExtResource("2_yv2g8")
 primaryColor = Color(0.626637, 0.386466, 0.935588, 1)
 secondaryColor = Color(0.853281, 0.454139, 0.954567, 1)
+applicationBackground = NodePath("../CanvasLayer/ApplicationBackground")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="ApplicationBackground" type="TextureRect" parent="CanvasLayer"]
+[node name="ApplicationBackground" type="ColorRect" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture1D_c1kk4")
+color = Color(0.54902, 0.54902, 0.54902, 1)
 
 [node name="WheelArea" type="Control" parent="CanvasLayer"]
 layout_mode = 3

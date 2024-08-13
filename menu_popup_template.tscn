@@ -1,14 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://b1lc8f4e26bea"]
 
+[ext_resource type="Script" path="res://CustomizeButton.cs" id="1_lh7j3"]
 [ext_resource type="Script" path="res://ClosePopupButton.cs" id="1_x3pfe"]
+[ext_resource type="PackedScene" uid="uid://ctgy026yqcb0v" path="res://customization_area_template.tscn" id="3_wd6i2"]
 
-[sub_resource type="Gradient" id="Gradient_bbwgr"]
-colors = PackedColorArray(1, 0.941176, 0.666667, 1, 1, 0.941176, 0.666667, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_2feyk"]
-gradient = SubResource("Gradient_bbwgr")
-
-[node name="MenuBackground" type="TextureRect"]
+[node name="MenuBackground" type="ColorRect"]
 z_index = 6
 anchors_preset = 8
 anchor_left = 0.5
@@ -21,18 +17,14 @@ offset_right = 192.0
 offset_bottom = 192.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture1D_2feyk")
+color = Color(1, 0.941176, 0.666667, 1)
 
 [node name="MenuName" type="RichTextLabel" parent="."]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -40.0
-offset_top = 10.0
-offset_right = 40.0
-offset_bottom = 50.0
-grow_horizontal = 2
+offset_left = 150.0
+offset_top = 20.0
+offset_right = 230.0
+offset_bottom = 60.0
 theme_override_colors/default_color = Color(0.356863, 0.219608, 0.392157, 1)
 theme_override_font_sizes/normal_font_size = 25
 bbcode_enabled = true
@@ -41,14 +33,13 @@ text = "[center]MENU[/center]"
 [node name="MenuItemContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
 offset_left = 25.0
-offset_top = 54.0
-offset_right = -25.0
-offset_bottom = -55.0
-grow_horizontal = 2
+offset_top = -112.0
+offset_right = 355.0
+offset_bottom = 108.0
 grow_vertical = 2
 theme_override_constants/separation = 15
 
@@ -129,25 +120,25 @@ layout_mode = 2
 layout_mode = 2
 text = "LOAD"
 
-[node name="CustomizeButton" type="Button" parent="MenuItemContainer"]
+[node name="CustomizeButton" type="Button" parent="MenuItemContainer" node_paths=PackedStringArray("menuBackground")]
 custom_minimum_size = Vector2(150, 40)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 text = "CUSTOMIZE"
+script = ExtResource("1_lh7j3")
+menuBackground = NodePath("../..")
+customizationAreaTemplate = ExtResource("3_wd6i2")
 
 [node name="CloseButton" type="Button" parent="."]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
+anchors_preset = 2
 anchor_top = 1.0
-anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -43.0
-offset_top = -54.0
-offset_right = 43.0
-offset_bottom = -14.0
-grow_horizontal = 2
+offset_left = 150.0
+offset_top = -60.0
+offset_right = 236.0
+offset_bottom = -20.0
 grow_vertical = 0
 text = "CLOSE"
 script = ExtResource("1_x3pfe")
