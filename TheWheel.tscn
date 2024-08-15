@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://8cgspyr8gob4"]
+[gd_scene load_steps=16 format=3 uid="uid://8cgspyr8gob4"]
 
 [ext_resource type="Theme" uid="uid://cpm3ymheyptc0" path="res://tempButtonColor.tres" id="2_3bb4o"]
 [ext_resource type="Script" path="res://OptionManager.cs" id="2_yv2g8"]
@@ -9,15 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://c2jsx0bgu2s1j" path="res://option_template.tscn" id="5_xkam3"]
 [ext_resource type="Texture2D" uid="uid://d0nwpyh2o5hoj" path="res://Triangle.png" id="6_84g8d"]
 [ext_resource type="Script" path="res://OpenPopupButton.cs" id="7_b0qvu"]
+[ext_resource type="Theme" uid="uid://dlf27rdr7dp0n" path="res://ListFontColorTheme.tres" id="8_f126f"]
 [ext_resource type="Script" path="res://PopupManager.cs" id="9_4p5xn"]
 [ext_resource type="PackedScene" uid="uid://cwucnn6t72ta5" path="res://selected_option_popup_template.tscn" id="10_fm5px"]
 [ext_resource type="PackedScene" uid="uid://b1lc8f4e26bea" path="res://menu_popup_template.tscn" id="11_osn7t"]
-
-[sub_resource type="Gradient" id="Gradient_y0d6l"]
-colors = PackedColorArray(0, 0.419608, 0, 1, 0, 0.419608, 0, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_yt4pb"]
-gradient = SubResource("Gradient_y0d6l")
 
 [sub_resource type="Gradient" id="Gradient_8bcs7"]
 colors = PackedColorArray(0.2564, 0.26799, 0.244015, 0.5, 0.2564, 0.26799, 0.244015, 0.5)
@@ -27,11 +22,14 @@ gradient = SubResource("Gradient_8bcs7")
 
 [node name="Node2D" type="Node2D"]
 
-[node name="OptionManager" type="Node" parent="." node_paths=PackedStringArray("applicationBackground")]
+[node name="OptionManager" type="Node" parent="." node_paths=PackedStringArray("applicationBackground", "listBackground", "spinButton")]
 script = ExtResource("2_yv2g8")
 primaryColor = Color(0.626637, 0.386466, 0.935588, 1)
 secondaryColor = Color(0.853281, 0.454139, 0.954567, 1)
 applicationBackground = NodePath("../CanvasLayer/ApplicationBackground")
+listBackground = NodePath("../CanvasLayer/OptionArea/OptionBackground")
+spinButton = NodePath("../CanvasLayer/WheelArea/SpinButton")
+listFontTheme = ExtResource("8_f126f")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -119,14 +117,14 @@ offset_bottom = 259.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="OptionBackground" type="TextureRect" parent="CanvasLayer/OptionArea"]
+[node name="OptionBackground" type="ColorRect" parent="CanvasLayer/OptionArea"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture1D_yt4pb")
+color = Color(0, 0.419608, 0, 1)
 
 [node name="TopBar" type="HBoxContainer" parent="CanvasLayer/OptionArea"]
 layout_mode = 1
@@ -152,6 +150,7 @@ size_flags_horizontal = 6
 size_flags_vertical = 4
 focus_neighbor_left = NodePath("../OpenOptionMenuButton")
 focus_neighbor_right = NodePath("../AddOptionButton")
+theme = ExtResource("8_f126f")
 bbcode_enabled = true
 text = "[center]Options[/center]"
 

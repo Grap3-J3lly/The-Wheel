@@ -12,12 +12,16 @@ public partial class PopupManager : Control
     [Export]
     private PackedScene menuPopup;
 
+    private bool isCustomizationOpen = false;
+
     // --------------------------------
     //			PROPERTIES
     // --------------------------------
 
     public PackedScene SelectedOptionPopup { get => selectedOptionPopup; }
     public PackedScene MenuPopup { get => menuPopup; }
+
+    public bool IsCustomizationOpen { get => isCustomizationOpen; set => isCustomizationOpen = value; }
 
     public static PopupManager Instance { get; private set; }
 
@@ -51,6 +55,7 @@ public partial class PopupManager : Control
         this.Visible = true;
         ColorRect newPopup = (ColorRect)popup.Instantiate();
         AddChild(newPopup);
+        isCustomizationOpen = false;
         return newPopup;
     }
 

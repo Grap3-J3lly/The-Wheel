@@ -18,6 +18,7 @@ public partial class CustomizeButton : Button
 
 	private void OnButtonPressed()
 	{
+		if(PopupManager.Instance.IsCustomizationOpen) { return; }
 		menuBackground.Size = new Vector2(menuBackground.Size.X * 2, menuBackground.Size.Y);
 		menuBackground.Position = new Vector2(menuBackground.Position.X/2, menuBackground.Position.Y);
 

@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://c2jsx0bgu2s1j"]
+[gd_scene load_steps=7 format=3 uid="uid://c2jsx0bgu2s1j"]
 
 [ext_resource type="Script" path="res://Option.cs" id="1_1c5ab"]
 [ext_resource type="Script" path="res://DisableButton.cs" id="1_4k7kn"]
 [ext_resource type="Script" path="res://RemoveButton.cs" id="1_5l6pj"]
 [ext_resource type="Script" path="res://OptionName.cs" id="2_1qtey"]
 [ext_resource type="Script" path="res://OptionWeight.cs" id="3_t7gkw"]
+[ext_resource type="Theme" uid="uid://dlf27rdr7dp0n" path="res://ListFontColorTheme.tres" id="3_yd0c1"]
 
 [node name="OptionTemplate" type="Control"]
 custom_minimum_size = Vector2(300, 35)
@@ -18,6 +19,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 19.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -27,14 +29,19 @@ layout_mode = 2
 script = ExtResource("1_4k7kn")
 
 [node name="OptionName" type="TextEdit" parent="HBoxContainer"]
+custom_minimum_size = Vector2(190, 0)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 4
+theme = ExtResource("3_yd0c1")
 placeholder_text = "Enter Option Title"
 script = ExtResource("2_1qtey")
 
 [node name="OptionWeight" type="LineEdit" parent="HBoxContainer"]
-custom_minimum_size = Vector2(32.505, 0)
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.0
+theme = ExtResource("3_yd0c1")
 theme_override_font_sizes/font_size = 10
 text = "1"
 alignment = 1
