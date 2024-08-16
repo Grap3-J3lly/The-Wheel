@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b1lc8f4e26bea"]
+[gd_scene load_steps=7 format=3 uid="uid://b1lc8f4e26bea"]
 
 [ext_resource type="Script" path="res://CustomizeButton.cs" id="1_lh7j3"]
 [ext_resource type="Theme" uid="uid://d3dvb7e4l28py" path="res://PopupBackgroundTheme.tres" id="1_tjypc"]
 [ext_resource type="Script" path="res://ClosePopupButton.cs" id="1_x3pfe"]
+[ext_resource type="Theme" uid="uid://rxn0ric1nvrl" path="res://PopupFontTheme.tres" id="2_6ym2x"]
+[ext_resource type="Script" path="res://SaveListButton.cs" id="3_w6nua"]
 [ext_resource type="PackedScene" uid="uid://ctgy026yqcb0v" path="res://customization_area_template.tscn" id="3_wd6i2"]
 
 [node name="MenuBackground" type="Panel"]
@@ -26,7 +28,7 @@ offset_left = 150.0
 offset_top = 20.0
 offset_right = 230.0
 offset_bottom = 60.0
-theme_override_colors/default_color = Color(0.356863, 0.219608, 0.392157, 1)
+theme = ExtResource("2_6ym2x")
 theme_override_font_sizes/normal_font_size = 25
 bbcode_enabled = true
 text = "[center]MENU[/center]"
@@ -39,7 +41,7 @@ anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 25.0
 offset_top = -112.0
-offset_right = 355.0
+offset_right = 365.0
 offset_bottom = 108.0
 grow_vertical = 2
 theme_override_constants/separation = 15
@@ -55,21 +57,17 @@ offset_left = 15.0
 offset_right = 95.0
 offset_bottom = 25.0
 size_flags_horizontal = 0
-theme_override_colors/default_color = Color(0.356863, 0.219608, 0.392157, 1)
+theme = ExtResource("2_6ym2x")
 text = "SAVE LIST"
 
 [node name="SaveItemContainer" type="HBoxContainer" parent="MenuItemContainer/SaveItem"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
+anchors_preset = 2
 anchor_top = 1.0
-anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -150.5
 offset_top = -31.0
-offset_right = 150.5
-grow_horizontal = 2
+offset_right = 301.0
 grow_vertical = 0
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -81,6 +79,7 @@ layout_mode = 2
 [node name="SaveListButton" type="Button" parent="MenuItemContainer/SaveItem/SaveItemContainer"]
 layout_mode = 2
 text = "SAVE"
+script = ExtResource("3_w6nua")
 
 [node name="LoadItem" type="Control" parent="MenuItemContainer"]
 custom_minimum_size = Vector2(0, 55)
@@ -93,7 +92,7 @@ offset_left = 15.0
 offset_right = 95.0
 offset_bottom = 25.0
 size_flags_horizontal = 0
-theme_override_colors/default_color = Color(0.356863, 0.219608, 0.392157, 1)
+theme = ExtResource("2_6ym2x")
 bbcode_enabled = true
 text = "LOAD LIST"
 
@@ -121,13 +120,19 @@ layout_mode = 2
 layout_mode = 2
 text = "LOAD"
 
-[node name="CustomizeButton" type="Button" parent="MenuItemContainer"]
+[node name="DeleteButton" type="Button" parent="MenuItemContainer/LoadItem/LoadItemContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="CustomizeButton" type="Button" parent="MenuItemContainer" node_paths=PackedStringArray("menuBackground")]
 custom_minimum_size = Vector2(150, 40)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
+theme = ExtResource("2_6ym2x")
 text = "CUSTOMIZE"
 script = ExtResource("1_lh7j3")
+menuBackground = NodePath("../..")
 customizationAreaTemplate = ExtResource("3_wd6i2")
 
 [node name="CloseButton" type="Button" parent="."]
@@ -140,5 +145,6 @@ offset_top = -60.0
 offset_right = 236.0
 offset_bottom = -20.0
 grow_vertical = 0
+theme = ExtResource("2_6ym2x")
 text = "CLOSE"
 script = ExtResource("1_x3pfe")

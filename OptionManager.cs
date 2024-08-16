@@ -7,8 +7,12 @@ public partial class OptionManager : Node
 	//			VARIABLES	
     // --------------------------------
 
+	private List<object> dataToSave = new List<object>();
+	private List<Color> colors = new List<Color>();
 	private List<Option> createdOptions = new List<Option>();
 	private List<Option> disabledOptions = new List<Option>();
+
+	private string listName;
 
 	private bool wheelSpinning;
 	private WheelProgress wheelProgressParent;
@@ -24,16 +28,19 @@ public partial class OptionManager : Node
 	private ColorRect listBackground;
 	[Export]
 	private SpinButton spinButton;
-	[Export]
-	private Theme listFontTheme;
 
     // --------------------------------
     //			PROPERTIES	
     // --------------------------------
 
     public static OptionManager Instance { get; private set; }
+
+	public List<Color> Colors { get => colors; set => colors = value; }
     public List<Option> CreatedOptions {  get { return createdOptions; } }
 	public List<Option> DisabledOptions { get { return disabledOptions; } }
+
+	public string ListName { get => listName; set => listName = value; }
+
 	public bool WheelSpinning { get => wheelSpinning; set => wheelSpinning = value; }
 	public WheelProgress WheelProgressParent { get => wheelProgressParent; set => wheelProgressParent = value; }
 
@@ -49,7 +56,6 @@ public partial class OptionManager : Node
 	public ColorRect ApplicationBackground { get => applicationBackground; }
 	public ColorRect ListBackground { get => listBackground; }
 	public SpinButton SpinButton { get => spinButton; }
-	public Theme ListFontTheme {  get => listFontTheme; }
 
     // --------------------------------
     //		STANDARD FUNCTIONS
@@ -74,18 +80,18 @@ public partial class OptionManager : Node
 		}
 	}
 
-	public Color GetFontColor()
+    // --------------------------------
+    //		SAVE/LOAD LOGIC
+    // --------------------------------
+
+    // Save/Load in Godot:
+	// https://docs.godotengine.org/en/stable/tutorials/io/saving_games.html
+
+    private void PopulateDataToSave()
 	{
-		Color fontColor = (Color)listFontTheme.Get("LineEdit/colors/font_color");
-		GD.Print(fontColor);
-		return fontColor;
+		dataToSave.Add(ListName);
+		dataToSave.Add(colors);
+		dataToSave.Add(createdOptions);
 	}
 
-	public void SetFontColor(Color color)
-	{
-		listFontTheme.Set("LineEdit/colors/font_color", color);
-		listFontTheme.Set("TextEdit/colors/font_color", color);
-		listFontTheme.Set("TextEdit/colors/font_placeholder_color", new Color(color, color.A * .6f));
-		listFontTheme.Set("RichTextLabel/colors/default_color", color);
-	}
 }

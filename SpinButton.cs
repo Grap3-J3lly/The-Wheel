@@ -76,7 +76,7 @@ public partial class SpinButton : Button
 
 				if(winnerName != "")
 				{
-                    ColorRect result = PopupManager.Instance.CreatePopup(PopupManager.Instance.SelectedOptionPopup);
+                    Panel result = PopupManager.Instance.CreatePopup(PopupManager.Instance.SelectedOptionPopup);
 					PopupManager.Instance.AssignWinningText(result, winnerName);
                 }
 				else
@@ -103,22 +103,4 @@ public partial class SpinButton : Button
 		}
 		return "";
 	}
-
-	public Color GetButtonColor()
-	{
-        StyleBoxFlat result = (StyleBoxFlat)GetThemeStylebox("normal");
-        return (Color)result.Get("bg_color");
-    }
-
-	public void SetButtonColor(Color color)
-	{
-        StyleBoxFlat normalResult = (StyleBoxFlat)GetThemeStylebox("normal");
-        normalResult.Set("bg_color", color);
-
-		StyleBoxFlat hoverResult = (StyleBoxFlat)GetThemeStylebox("hover");
-		hoverResult.Set("bg_color", color.Darkened(.25f));
-
-		StyleBoxFlat pressedResult = (StyleBoxFlat)GetThemeStylebox("pressed");
-		pressedResult.Set("bg_color", color.Darkened(.5f));
-    }
 }

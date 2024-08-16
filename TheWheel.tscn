@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://8cgspyr8gob4"]
 
-[ext_resource type="Theme" uid="uid://cpm3ymheyptc0" path="res://tempButtonColor.tres" id="2_3bb4o"]
+[ext_resource type="Theme" uid="uid://cpm3ymheyptc0" path="res://WheelButtonTheme.tres" id="2_3bb4o"]
 [ext_resource type="Script" path="res://OptionManager.cs" id="2_yv2g8"]
 [ext_resource type="Script" path="res://WheelProgress.cs" id="3_iyf3y"]
 [ext_resource type="Script" path="res://SpinButton.cs" id="3_qqfjg"]
@@ -29,7 +29,6 @@ secondaryColor = Color(0.853281, 0.454139, 0.954567, 1)
 applicationBackground = NodePath("../CanvasLayer/ApplicationBackground")
 listBackground = NodePath("../CanvasLayer/OptionArea/OptionBackground")
 spinButton = NodePath("../CanvasLayer/WheelArea/SpinButton")
-listFontTheme = ExtResource("8_f126f")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

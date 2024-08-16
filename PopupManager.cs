@@ -40,7 +40,7 @@ public partial class PopupManager : Control
     //		WIN POPUP LOGIC
     // --------------------------------
 
-	public void AssignWinningText(ColorRect popup, string winnerName)
+	public void AssignWinningText(Panel popup, string winnerName)
 	{
 		RichTextLabel winText = popup.GetChild<RichTextLabel>(0);
 		winText.Text = "[center]The Winning Choice Is:\n" + winnerName + "[/center]";
@@ -50,10 +50,10 @@ public partial class PopupManager : Control
     //		GENERAL LOGIC
     // --------------------------------
 
-    public ColorRect CreatePopup(PackedScene popup)
+    public Panel CreatePopup(PackedScene popup)
     {
         this.Visible = true;
-        ColorRect newPopup = (ColorRect)popup.Instantiate();
+        Panel newPopup = (Panel)popup.Instantiate();
         AddChild(newPopup);
         isCustomizationOpen = false;
         return newPopup;

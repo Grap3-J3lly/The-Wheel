@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://ctgy026yqcb0v"]
+[gd_scene load_steps=6 format=3 uid="uid://ctgy026yqcb0v"]
 
 [ext_resource type="Script" path="res://CustomizationManager.cs" id="1_e1qy6"]
+[ext_resource type="Theme" uid="uid://d3dvb7e4l28py" path="res://PopupBackgroundTheme.tres" id="2_lxquq"]
+[ext_resource type="Theme" uid="uid://rxn0ric1nvrl" path="res://PopupFontTheme.tres" id="3_n1x8u"]
+[ext_resource type="Theme" uid="uid://dlf27rdr7dp0n" path="res://ListFontColorTheme.tres" id="4_ykns8"]
+[ext_resource type="Theme" uid="uid://cpm3ymheyptc0" path="res://WheelButtonTheme.tres" id="5_v58tj"]
 
-[node name="CustomizationArea" type="Control" node_paths=PackedStringArray("generalBackgroundColor", "wheelPrimaryColor", "wheelSecondaryColor", "wheelButtonColor", "listBackgroundColor", "listFontColor")]
+[node name="CustomizationArea" type="Control" node_paths=PackedStringArray("generalBackgroundColor", "wheelPrimaryColor", "wheelSecondaryColor", "wheelButtonColor", "listBackgroundColor", "listFontColor", "popupBackgroundColor", "popupFontColor")]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 384.0
@@ -15,6 +19,12 @@ wheelSecondaryColor = NodePath("CustomizationOptions/WheelSecondary/ItemColorBut
 wheelButtonColor = NodePath("CustomizationOptions/WheelButton/ItemColorButton")
 listBackgroundColor = NodePath("CustomizationOptions/ListBackground/ItemColorButton")
 listFontColor = NodePath("CustomizationOptions/ListFontColor/ItemColorButton")
+popupBackgroundColor = NodePath("CustomizationOptions/PopupBackgroundColor/ItemColorButton")
+popupFontColor = NodePath("CustomizationOptions/PopupFontColor/ItemColorButton")
+popupBackgroundTheme = ExtResource("2_lxquq")
+popupFontTheme = ExtResource("3_n1x8u")
+listFontTheme = ExtResource("4_ykns8")
+wheelButtonTheme = ExtResource("5_v58tj")
 
 [node name="CustomizationOptions" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -39,7 +49,7 @@ custom_minimum_size = Vector2(175, 25)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
-theme_override_colors/default_color = Color(0.384314, 0.25098, 0.403922, 1)
+theme = ExtResource("3_n1x8u")
 text = "General Background"
 
 [node name="ItemColorButton" type="ColorPickerButton" parent="CustomizationOptions/GeneralBackground"]
@@ -56,7 +66,7 @@ custom_minimum_size = Vector2(175, 25)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
-theme_override_colors/default_color = Color(0.384314, 0.25098, 0.403922, 1)
+theme = ExtResource("3_n1x8u")
 text = "Wheel Primary"
 
 [node name="ItemColorButton" type="ColorPickerButton" parent="CustomizationOptions/WheelPrimary"]
@@ -73,7 +83,7 @@ custom_minimum_size = Vector2(175, 25)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
-theme_override_colors/default_color = Color(0.384314, 0.25098, 0.403922, 1)
+theme = ExtResource("3_n1x8u")
 text = "Wheel Secondary"
 
 [node name="ItemColorButton" type="ColorPickerButton" parent="CustomizationOptions/WheelSecondary"]
@@ -90,7 +100,7 @@ custom_minimum_size = Vector2(175, 25)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
-theme_override_colors/default_color = Color(0.384314, 0.25098, 0.403922, 1)
+theme = ExtResource("3_n1x8u")
 text = "Wheel Button"
 
 [node name="ItemColorButton" type="ColorPickerButton" parent="CustomizationOptions/WheelButton"]
@@ -107,7 +117,7 @@ custom_minimum_size = Vector2(175, 25)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
-theme_override_colors/default_color = Color(0.384314, 0.25098, 0.403922, 1)
+theme = ExtResource("3_n1x8u")
 text = "List Background"
 
 [node name="ItemColorButton" type="ColorPickerButton" parent="CustomizationOptions/ListBackground"]
@@ -124,7 +134,7 @@ custom_minimum_size = Vector2(175, 25)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
-theme_override_colors/default_color = Color(0.384314, 0.25098, 0.403922, 1)
+theme = ExtResource("3_n1x8u")
 text = "List Font"
 
 [node name="ItemColorButton" type="ColorPickerButton" parent="CustomizationOptions/ListFontColor"]
@@ -141,7 +151,7 @@ custom_minimum_size = Vector2(175, 25)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
-theme_override_colors/default_color = Color(0.384314, 0.25098, 0.403922, 1)
+theme = ExtResource("3_n1x8u")
 text = "Menu Background"
 
 [node name="ItemColorButton" type="ColorPickerButton" parent="CustomizationOptions/PopupBackgroundColor"]
@@ -158,7 +168,7 @@ custom_minimum_size = Vector2(175, 25)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
-theme_override_colors/default_color = Color(0.384314, 0.25098, 0.403922, 1)
+theme = ExtResource("3_n1x8u")
 text = "Menu Font"
 
 [node name="ItemColorButton" type="ColorPickerButton" parent="CustomizationOptions/PopupFontColor"]

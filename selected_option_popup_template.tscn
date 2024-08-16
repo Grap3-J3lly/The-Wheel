@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://cwucnn6t72ta5"]
+[gd_scene load_steps=4 format=3 uid="uid://cwucnn6t72ta5"]
 
 [ext_resource type="Script" path="res://ClosePopupButton.cs" id="1_g7cxh"]
+[ext_resource type="Theme" uid="uid://d3dvb7e4l28py" path="res://PopupBackgroundTheme.tres" id="1_sn5gn"]
+[ext_resource type="Theme" uid="uid://rxn0ric1nvrl" path="res://PopupFontTheme.tres" id="2_i2gxd"]
 
-[node name="SelectedOptionPopup" type="ColorRect"]
+[node name="SelectedOptionPopup" type="Panel"]
 z_index = 5
 anchors_preset = 8
 anchor_left = 0.5
@@ -16,7 +18,7 @@ offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(192, 128)
-color = Color(1, 0.941176, 0.666667, 1)
+theme = ExtResource("1_sn5gn")
 
 [node name="CorrectOptionText" type="RichTextLabel" parent="."]
 layout_mode = 1
@@ -27,7 +29,7 @@ offset_top = 20.0
 offset_right = -20.0
 offset_bottom = 120.0
 grow_horizontal = 2
-theme_override_colors/default_color = Color(0.356863, 0.219608, 0.392157, 1)
+theme = ExtResource("2_i2gxd")
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
 text = "[center]THIS WAS THE OPTION SELECTED[/center]"
@@ -45,6 +47,7 @@ offset_bottom = -28.0
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(172, 100)
+theme = ExtResource("2_i2gxd")
 theme_override_font_sizes/font_size = 30
 text = "CLOSE"
 script = ExtResource("1_g7cxh")
