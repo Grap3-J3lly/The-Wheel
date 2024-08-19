@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 using System.Collections.Generic;
 
 public partial class OptionManager : Node
@@ -7,12 +8,12 @@ public partial class OptionManager : Node
 	//			VARIABLES	
     // --------------------------------
 
-	private List<object> dataToSave = new List<object>();
+	private List<Variant> dataToSave = new List<Variant>();
 	private List<Color> colors = new List<Color>();
 	private List<Option> createdOptions = new List<Option>();
 	private List<Option> disabledOptions = new List<Option>();
 
-	private string listName;
+	private string listName = "New List";
 
 	private bool wheelSpinning;
 	private WheelProgress wheelProgressParent;
@@ -89,9 +90,31 @@ public partial class OptionManager : Node
 
     private void PopulateDataToSave()
 	{
+		List<Option> allOptions = new List<Option>();
+		allOptions.AddRange(createdOptions);
+		allOptions.AddRange(disabledOptions);
+
+		Color[] colorsArray = colors.ToArray();
+		Array optionsArray = new Array();
+
+		foreach (Option option in allOptions)
+		{
+			optionsArray.Add(option.GetOptionData());
+		}
+
 		dataToSave.Add(ListName);
-		dataToSave.Add(colors);
-		dataToSave.Add(createdOptions);
+		dataToSave.Add(colorsArray);
+		dataToSave.Add(optionsArray);
 	}
 
+	public void SaveGame()
+	{
+		PopulateDataToSave();
+        using var saveFile = FileAccess.Open("user://savegame.save", FileAccess.ModeFlags.Write);
+
+		Array dataToSaveArray = new Array(dataToSave.ToArray());
+
+		var jsonData = Json.Stringify(dataToSaveArray, "\t");
+		saveFile.StoreLine(jsonData);
+	}
 }

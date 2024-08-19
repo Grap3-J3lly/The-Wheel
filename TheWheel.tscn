@@ -192,6 +192,7 @@ selectedOptionPopup = ExtResource("10_fm5px")
 menuPopup = ExtResource("11_osn7t")
 
 [node name="FadedBackground" type="TextureRect" parent="CanvasLayer/PopupArea"]
+visible = false
 z_index = 5
 layout_mode = 1
 anchors_preset = 15

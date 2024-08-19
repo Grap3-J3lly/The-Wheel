@@ -76,10 +76,11 @@ size_flags_vertical = 4
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 
-[node name="SaveListButton" type="Button" parent="MenuItemContainer/SaveItem/SaveItemContainer"]
+[node name="SaveListButton" type="Button" parent="MenuItemContainer/SaveItem/SaveItemContainer" node_paths=PackedStringArray("listNameField")]
 layout_mode = 2
 text = "SAVE"
 script = ExtResource("3_w6nua")
+listNameField = NodePath("../ListNameField")
 
 [node name="LoadItem" type="Control" parent="MenuItemContainer"]
 custom_minimum_size = Vector2(0, 55)

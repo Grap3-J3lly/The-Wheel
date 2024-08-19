@@ -12,11 +12,17 @@ public partial class SaveListButton : Button
 	{
 		base._Ready();
 		optionManager = OptionManager.Instance;
-		optionManager.ListName = GetListName();
+		this.Pressed += SaveList;
 	}
 
 	public string GetListName()
 	{
 		return listNameField.Text;
+	}
+
+	public void SaveList()
+	{
+		optionManager.ListName = GetListName();
+		optionManager.SaveGame();
 	}
 }

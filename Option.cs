@@ -64,4 +64,15 @@ public partial class Option : Control
         }
         return result;
     }
+
+    public Godot.Collections.Array GetOptionData()
+    {
+        Godot.Collections.Array result = new Godot.Collections.Array();
+
+        result.Add(optionEnabled);
+        result.Add(optionName);
+        result.Add(optionWeight);
+
+        return result;
+    }
 }
