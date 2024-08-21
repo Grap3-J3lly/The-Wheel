@@ -22,13 +22,15 @@ gradient = SubResource("Gradient_8bcs7")
 
 [node name="Node2D" type="Node2D"]
 
-[node name="OptionManager" type="Node" parent="." node_paths=PackedStringArray("applicationBackground", "listBackground", "spinButton")]
+[node name="OptionManager" type="Node" parent="." node_paths=PackedStringArray("applicationBackground", "listBackground", "spinButton", "optionParent")]
 script = ExtResource("2_yv2g8")
 primaryColor = Color(0.626637, 0.386466, 0.935588, 1)
 secondaryColor = Color(0.853281, 0.454139, 0.954567, 1)
 applicationBackground = NodePath("../CanvasLayer/ApplicationBackground")
 listBackground = NodePath("../CanvasLayer/OptionArea/OptionBackground")
 spinButton = NodePath("../CanvasLayer/WheelArea/SpinButton")
+optionTemplate = ExtResource("5_xkam3")
+optionParent = NodePath("../CanvasLayer/OptionArea/ScrollContainer/OptionList")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -153,14 +155,12 @@ theme = ExtResource("8_f126f")
 bbcode_enabled = true
 text = "[center]Options[/center]"
 
-[node name="AddOptionButton" type="Button" parent="CanvasLayer/OptionArea/TopBar" node_paths=PackedStringArray("optionParent")]
+[node name="AddOptionButton" type="Button" parent="CanvasLayer/OptionArea/TopBar"]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 4
 script = ExtResource("5_tmtid")
-optionTemplate = ExtResource("5_xkam3")
-optionParent = NodePath("../../ScrollContainer/OptionList")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/OptionArea"]
 layout_mode = 1

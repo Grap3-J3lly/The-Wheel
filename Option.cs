@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 using System.Collections.Generic;
 
 public partial class Option : Control
@@ -6,6 +7,13 @@ public partial class Option : Control
     // --------------------------------
     //			VARIABLES	
     // --------------------------------
+
+    [Export]
+    private DisableButton optionEnabledField;
+    [Export]
+    private OptionName optionNameField;
+    [Export]
+    private OptionWeight optionWeightField;
 
     private bool optionEnabled = true;
 	private string optionName = "";
@@ -74,5 +82,19 @@ public partial class Option : Control
         result.Add(optionWeight);
 
         return result;
+    }
+
+    public static Option CreateOptions(Array optionData, PackedScene optionTemplate, Control optionParent)
+    {
+        Option newOption = (Option)optionTemplate.Instantiate();
+        optionParent.AddChild(newOption);
+        newOption.OptionEnabled = (bool)optionData[0];
+        newOption.optionEnabledField.Enabled = newOption.OptionEnabled;
+        newOption.OptionName = (string)optionData[1];
+        newOption.optionNameField.Text = newOption.OptionName;
+        newOption.OptionWeight = (int)optionData[2];
+        newOption.optionWeightField.Text = newOption.OptionWeight.ToString();
+
+        return newOption;
     }
 }

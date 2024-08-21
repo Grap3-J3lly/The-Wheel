@@ -30,6 +30,12 @@ public partial class OptionManager : Node
 	[Export]
 	private SpinButton spinButton;
 
+	// Option Data
+    [Export]
+    private PackedScene optionTemplate;
+    [Export]
+    private Control optionParent;
+
     // --------------------------------
     //			PROPERTIES	
     // --------------------------------
@@ -57,6 +63,10 @@ public partial class OptionManager : Node
 	public ColorRect ApplicationBackground { get => applicationBackground; }
 	public ColorRect ListBackground { get => listBackground; }
 	public SpinButton SpinButton { get => spinButton; }
+
+	// Option Data
+	public PackedScene OptionTemplate { get => optionTemplate; }
+	public Control OptionParent { get => optionParent; }
 
     // --------------------------------
     //		STANDARD FUNCTIONS
@@ -110,11 +120,94 @@ public partial class OptionManager : Node
 	public void SaveGame()
 	{
 		PopulateDataToSave();
-        using var saveFile = FileAccess.Open("user://savegame.save", FileAccess.ModeFlags.Write);
+        using var saveFile = FileAccess.Open("user://" + listName + ".save", FileAccess.ModeFlags.Write);
 
 		Array dataToSaveArray = new Array(dataToSave.ToArray());
 
-		var jsonData = Json.Stringify(dataToSaveArray, "\t");
+		var jsonData = Json.Stringify(dataToSaveArray);
 		saveFile.StoreLine(jsonData);
 	}
+
+	public void LoadGame(string specificFile)
+	{
+		DeleteOptions(createdOptions);
+		DeleteOptions(disabledOptions);
+
+        using var saveFile = FileAccess.Open("user://" + specificFile + ".save", FileAccess.ModeFlags.Read);
+
+		while (saveFile.GetPosition() < saveFile.GetLength())
+		{
+			var jsonString = saveFile.GetLine();
+
+			var json = new Json();
+			var parseResult = json.Parse(jsonString, true);
+
+            if (parseResult != Error.Ok)
+            {
+                GD.Print($"JSON Parse Error: {json.GetErrorMessage()} in {jsonString} at line {json.GetErrorLine()}");
+                continue;
+            }
+
+			Array data = new Godot.Collections.Array((Godot.Collections.Array)json.Data);
+
+			// ListName
+			listName = (string)data[0];
+			// Colors
+			Color[] colors = (Color[])data[1];
+			PopulateColors(colors);
+
+			// Options
+			Array options = (Array)data[2];
+			PopulateOptions(options);
+        }
+    }
+
+	private void DeleteOptions(List<Option> listToRemove)
+	{
+		foreach(Option option in listToRemove)
+		{
+			option.QueueFree();
+		}
+		listToRemove.Clear();
+	}
+
+	public List<string> GetSaveFiles()
+	{
+		string[] allFiles = DirAccess.GetFilesAt("user://");
+        List<string> saveFiles = new List<string>();
+
+		foreach (string file in allFiles)
+		{
+			if(file.EndsWith(".save"))
+			{
+				saveFiles.Add(file);
+			}
+		}
+
+		return saveFiles;
+    }
+
+	private void PopulateColors(Color[] newColors)
+	{
+		colors.Clear();
+		foreach(Color color in newColors)
+		{
+			colors.Add(color);
+		}
+	}
+
+	private void PopulateOptions(Array loadOptions)
+	{
+		foreach(Array option in loadOptions)
+		{
+			Option newOption = Option.CreateOptions(option, optionTemplate, optionParent);
+			if(newOption.OptionEnabled)
+			{
+				createdOptions.Add(newOption);
+				continue;
+			}
+			disabledOptions.Add(newOption);
+		}
+        WheelProgressParent.EmitSignal(WheelProgress.SignalName.WheelProgressUpdate, true);
+    }
 }

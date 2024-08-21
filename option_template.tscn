@@ -7,12 +7,15 @@
 [ext_resource type="Script" path="res://OptionWeight.cs" id="3_t7gkw"]
 [ext_resource type="Theme" uid="uid://dlf27rdr7dp0n" path="res://ListFontColorTheme.tres" id="3_yd0c1"]
 
-[node name="OptionTemplate" type="Control"]
+[node name="OptionTemplate" type="Control" node_paths=PackedStringArray("optionEnabledField", "optionNameField", "optionWeightField")]
 custom_minimum_size = Vector2(300, 35)
 layout_mode = 3
 anchors_preset = 0
 size_flags_vertical = 0
 script = ExtResource("1_1c5ab")
+optionEnabledField = NodePath("HBoxContainer/DisableButton")
+optionNameField = NodePath("HBoxContainer/OptionName")
+optionWeightField = NodePath("HBoxContainer/OptionWeight")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1

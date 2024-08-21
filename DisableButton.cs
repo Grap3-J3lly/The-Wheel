@@ -16,7 +16,7 @@ public partial class DisableButton : Button
     //		    PROPERTIES
     // --------------------------------
 
-    public bool Enabled { get=>  enabled;}
+    public bool Enabled { get => enabled; set => enabled = value; }
 
     // --------------------------------
     //		STANDARD FUNCTIONS	

@@ -3,10 +3,6 @@ using System.Collections.Generic;
 
 public partial class AddOptionButton : Button
 {
-	[Export]
-	private PackedScene optionTemplate;
-	[Export]
-	private Control optionParent;
 	private List<Control> createdOptions = new List<Control>();
 	private OptionManager optionManager;
 
@@ -31,8 +27,8 @@ public partial class AddOptionButton : Button
 	{
 		if(optionManager.WheelSpinning) { return; }
 
-		Control newControl = (Control)optionTemplate.Instantiate();
-		optionParent.AddChild(newControl);
+		Control newControl = (Control)optionManager.OptionTemplate.Instantiate();
+		optionManager.OptionParent.AddChild(newControl);
 		optionManager.CreatedOptions.Add((Option)newControl);
 		optionManager.WheelProgressParent.EmitSignal(WheelProgress.SignalName.WheelProgressUpdate, false);
 	}

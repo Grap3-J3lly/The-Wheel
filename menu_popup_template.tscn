@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b1lc8f4e26bea"]
+[gd_scene load_steps=9 format=3 uid="uid://b1lc8f4e26bea"]
 
 [ext_resource type="Script" path="res://CustomizeButton.cs" id="1_lh7j3"]
 [ext_resource type="Theme" uid="uid://d3dvb7e4l28py" path="res://PopupBackgroundTheme.tres" id="1_tjypc"]
@@ -6,6 +6,8 @@
 [ext_resource type="Theme" uid="uid://rxn0ric1nvrl" path="res://PopupFontTheme.tres" id="2_6ym2x"]
 [ext_resource type="Script" path="res://SaveListButton.cs" id="3_w6nua"]
 [ext_resource type="PackedScene" uid="uid://ctgy026yqcb0v" path="res://customization_area_template.tscn" id="3_wd6i2"]
+[ext_resource type="Script" path="res://ListOptions.cs" id="4_n8vde"]
+[ext_resource type="Script" path="res://LoadListButton.cs" id="5_qlgbo"]
 
 [node name="MenuBackground" type="Panel"]
 z_index = 6
@@ -116,10 +118,13 @@ size_flags_vertical = 4
 [node name="ListOptions" type="OptionButton" parent="MenuItemContainer/LoadItem/LoadItemContainer"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
+script = ExtResource("4_n8vde")
 
-[node name="LoadListButton" type="Button" parent="MenuItemContainer/LoadItem/LoadItemContainer"]
+[node name="LoadListButton" type="Button" parent="MenuItemContainer/LoadItem/LoadItemContainer" node_paths=PackedStringArray("loadListOptionButton")]
 layout_mode = 2
 text = "LOAD"
+script = ExtResource("5_qlgbo")
+loadListOptionButton = NodePath("../ListOptions")
 
 [node name="DeleteButton" type="Button" parent="MenuItemContainer/LoadItem/LoadItemContainer"]
 custom_minimum_size = Vector2(30, 0)
