@@ -4,6 +4,8 @@ using System;
 public partial class LoadListButton : Button
 {
 	[Export]
+	private CustomizeButton customizeButton;
+	[Export]
 	private OptionButton loadListOptionButton;
 	private OptionManager optionManager;
 
@@ -16,6 +18,7 @@ public partial class LoadListButton : Button
 
 	private void OnButtonPress()
 	{
+		customizeButton.OnButtonPressed();
 		optionManager.LoadGame(loadListOptionButton.Text);
 	}
 }

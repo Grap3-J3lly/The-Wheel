@@ -36,6 +36,24 @@ public partial class OptionManager : Node
     [Export]
     private Control optionParent;
 
+	// Default Color Data
+	[Export]
+	private Color default_generalBackgroundColor;
+    [Export]
+    private Color default_wheelPrimaryColor;
+    [Export]
+    private Color default_wheelSecondaryColor;
+    [Export]
+    private Color default_wheelButtonColor;
+    [Export]
+    private Color default_listBackgroundColor;
+    [Export]
+    private Color default_listFontColor;
+    [Export]
+    private Color default_popupBackgroundColor;
+    [Export]
+    private Color default_popupFontColor;
+
     // --------------------------------
     //			PROPERTIES	
     // --------------------------------
@@ -77,11 +95,24 @@ public partial class OptionManager : Node
 	{
 		base._Ready();
 		Instance = this;
+		SetDefaultColors();
 	}
 
     // --------------------------------
     //		CUSTOMIZATION LOGIC
     // --------------------------------
+
+	private void SetDefaultColors()
+	{
+		colors.Add(default_generalBackgroundColor);
+		colors.Add(default_wheelPrimaryColor);
+		colors.Add(default_wheelSecondaryColor);
+		colors.Add(default_wheelButtonColor);
+		colors.Add(default_listBackgroundColor);
+		colors.Add(default_listFontColor);
+		colors.Add(default_popupBackgroundColor);
+		colors.Add(default_popupFontColor);
+	}
 
 	public void UpdateWheelColors()
 	{
@@ -95,16 +126,19 @@ public partial class OptionManager : Node
     //		SAVE/LOAD LOGIC
     // --------------------------------
 
-    // Save/Load in Godot:
-	// https://docs.godotengine.org/en/stable/tutorials/io/saving_games.html
-
     private void PopulateDataToSave()
 	{
 		List<Option> allOptions = new List<Option>();
 		allOptions.AddRange(createdOptions);
 		allOptions.AddRange(disabledOptions);
 
-		Color[] colorsArray = colors.ToArray();
+		Array colorsArray = new Array();
+		
+		foreach(Color color in colors)
+		{
+			colorsArray.Add(color.ToHtml());
+		}
+		
 		Array optionsArray = new Array();
 
 		foreach (Option option in allOptions)
@@ -126,10 +160,12 @@ public partial class OptionManager : Node
 
 		var jsonData = Json.Stringify(dataToSaveArray);
 		saveFile.StoreLine(jsonData);
+		dataToSave.Clear();
 	}
 
 	public void LoadGame(string specificFile)
 	{
+		
 		DeleteOptions(createdOptions);
 		DeleteOptions(disabledOptions);
 
@@ -153,8 +189,9 @@ public partial class OptionManager : Node
 			// ListName
 			listName = (string)data[0];
 			// Colors
-			Color[] colors = (Color[])data[1];
-			PopulateColors(colors);
+			Array colorsArray = (Array)data[1];
+			PopulateColors(colorsArray);
+			CustomizationManager.Instance.RunColorUpdate(colors);
 
 			// Options
 			Array options = (Array)data[2];
@@ -164,6 +201,8 @@ public partial class OptionManager : Node
 
 	private void DeleteOptions(List<Option> listToRemove)
 	{
+		if(listToRemove == null || listToRemove.Count == 0) return;
+
 		foreach(Option option in listToRemove)
 		{
 			option.QueueFree();
@@ -187,12 +226,17 @@ public partial class OptionManager : Node
 		return saveFiles;
     }
 
-	private void PopulateColors(Color[] newColors)
+	private void PopulateColors(Array newColors)
 	{
-		colors.Clear();
-		foreach(Color color in newColors)
+		for(int i = 0; i < newColors.Count; i++)
 		{
-			colors.Add(color);
+			newColors[i] = (string)newColors[i];
+		}
+
+		colors.Clear();
+		foreach(string color in newColors)
+		{
+			colors.Add(new Color(color));
 		}
 	}
 

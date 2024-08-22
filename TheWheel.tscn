@@ -31,6 +31,14 @@ listBackground = NodePath("../CanvasLayer/OptionArea/OptionBackground")
 spinButton = NodePath("../CanvasLayer/WheelArea/SpinButton")
 optionTemplate = ExtResource("5_xkam3")
 optionParent = NodePath("../CanvasLayer/OptionArea/ScrollContainer/OptionList")
+default_generalBackgroundColor = Color(0.549, 0.549, 0.549, 1)
+default_wheelPrimaryColor = Color(0.627, 0.386, 0.936, 1)
+default_wheelSecondaryColor = Color(0.853, 0.454, 0.955, 1)
+default_wheelButtonColor = Color(0.247, 0.008, 0.322, 1)
+default_listBackgroundColor = Color(0, 0.42, 0, 1)
+default_listFontColor = Color(1, 1, 1, 1)
+default_popupBackgroundColor = Color(1, 0.941, 0.667, 1)
+default_popupFontColor = Color(0.357, 0.22, 0.392, 1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

@@ -6,7 +6,6 @@ public partial class RemoveButton : Button
 	private Option optionParent;
 	private OptionManager optionManager;
 
-	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		base._Ready();
@@ -15,16 +14,19 @@ public partial class RemoveButton : Button
 		optionParent = (Option)GetParentControl().GetParentControl();
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
-
 	private void PressButton()
 	{
         if (optionManager.WheelSpinning || optionManager.CreatedOptions.Count <= 1) { return; }
 
-		optionManager.CreatedOptions.Remove(optionParent);
+		if(optionManager.CreatedOptions.Contains(optionParent))
+		{
+			optionManager.CreatedOptions.Remove(optionParent);
+		}	
+		if(optionManager.DisabledOptions.Contains(optionParent))
+		{
+			optionManager.DisabledOptions.Remove(optionParent);
+		}
+
 		Option.DeleteOption(optionParent);
 
 		optionManager.WheelProgressParent.EmitSignal(WheelProgress.SignalName.WheelProgressUpdate, true);

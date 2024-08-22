@@ -120,10 +120,11 @@ custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 script = ExtResource("4_n8vde")
 
-[node name="LoadListButton" type="Button" parent="MenuItemContainer/LoadItem/LoadItemContainer" node_paths=PackedStringArray("loadListOptionButton")]
+[node name="LoadListButton" type="Button" parent="MenuItemContainer/LoadItem/LoadItemContainer" node_paths=PackedStringArray("customizeButton", "loadListOptionButton")]
 layout_mode = 2
 text = "LOAD"
 script = ExtResource("5_qlgbo")
+customizeButton = NodePath("../../../CustomizeButton")
 loadListOptionButton = NodePath("../ListOptions")
 
 [node name="DeleteButton" type="Button" parent="MenuItemContainer/LoadItem/LoadItemContainer"]

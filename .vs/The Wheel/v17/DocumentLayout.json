@@ -3,8 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\James\\Dev\\Godot\\The Wheel\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{FEEAFA91-FBD4-46E7-8667-46C993B1C4AB}|The Wheel.csproj|c:\\users\\james\\dev\\godot\\the wheel\\loadlistbutton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FEEAFA91-FBD4-46E7-8667-46C993B1C4AB}|The Wheel.csproj|solutionrelative:loadlistbutton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FEEAFA91-FBD4-46E7-8667-46C993B1C4AB}|The Wheel.csproj|c:\\users\\james\\dev\\godot\\the wheel\\customizebutton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FEEAFA91-FBD4-46E7-8667-46C993B1C4AB}|The Wheel.csproj|solutionrelative:customizebutton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{FEEAFA91-FBD4-46E7-8667-46C993B1C4AB}|The Wheel.csproj|c:\\users\\james\\dev\\godot\\the wheel\\optionmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FEEAFA91-FBD4-46E7-8667-46C993B1C4AB}|The Wheel.csproj|solutionrelative:optionmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FEEAFA91-FBD4-46E7-8667-46C993B1C4AB}|The Wheel.csproj|c:\\users\\james\\dev\\godot\\the wheel\\customizationmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FEEAFA91-FBD4-46E7-8667-46C993B1C4AB}|The Wheel.csproj|solutionrelative:customizationmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FEEAFA91-FBD4-46E7-8667-46C993B1C4AB}|The Wheel.csproj|c:\\users\\james\\dev\\godot\\the wheel\\removebutton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FEEAFA91-FBD4-46E7-8667-46C993B1C4AB}|The Wheel.csproj|solutionrelative:removebutton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FEEAFA91-FBD4-46E7-8667-46C993B1C4AB}|The Wheel.csproj|c:\\users\\james\\dev\\godot\\the wheel\\savelistbutton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -19,10 +35,6 @@
       "RelativeMoniker": "D:0:0:{FEEAFA91-FBD4-46E7-8667-46C993B1C4AB}|The Wheel.csproj|solutionrelative:disablebutton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FEEAFA91-FBD4-46E7-8667-46C993B1C4AB}|The Wheel.csproj|c:\\users\\james\\dev\\godot\\the wheel\\optionname.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FEEAFA91-FBD4-46E7-8667-46C993B1C4AB}|The Wheel.csproj|solutionrelative:optionname.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FEEAFA91-FBD4-46E7-8667-46C993B1C4AB}|The Wheel.csproj|c:\\users\\james\\dev\\godot\\the wheel\\wheelprogress.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FEEAFA91-FBD4-46E7-8667-46C993B1C4AB}|The Wheel.csproj|solutionrelative:wheelprogress.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -31,28 +43,12 @@
       "RelativeMoniker": "D:0:0:{FEEAFA91-FBD4-46E7-8667-46C993B1C4AB}|The Wheel.csproj|solutionrelative:addoptionbutton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\James\\Dev\\Godot\\The Wheel\\LoadListButton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:LoadListButton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\James\\Dev\\Godot\\The Wheel\\ListOptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ListOptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FEEAFA91-FBD4-46E7-8667-46C993B1C4AB}|The Wheel.csproj|c:\\users\\james\\dev\\godot\\the wheel\\optionweight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FEEAFA91-FBD4-46E7-8667-46C993B1C4AB}|The Wheel.csproj|solutionrelative:optionweight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FEEAFA91-FBD4-46E7-8667-46C993B1C4AB}|The Wheel.csproj|c:\\users\\james\\dev\\godot\\the wheel\\customizationmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FEEAFA91-FBD4-46E7-8667-46C993B1C4AB}|The Wheel.csproj|solutionrelative:customizationmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FEEAFA91-FBD4-46E7-8667-46C993B1C4AB}|The Wheel.csproj|c:\\users\\james\\dev\\godot\\the wheel\\popupmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FEEAFA91-FBD4-46E7-8667-46C993B1C4AB}|The Wheel.csproj|solutionrelative:popupmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FEEAFA91-FBD4-46E7-8667-46C993B1C4AB}|The Wheel.csproj|c:\\users\\james\\dev\\godot\\the wheel\\progressbar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FEEAFA91-FBD4-46E7-8667-46C993B1C4AB}|The Wheel.csproj|solutionrelative:progressbar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FEEAFA91-FBD4-46E7-8667-46C993B1C4AB}|The Wheel.csproj|c:\\users\\james\\dev\\godot\\the wheel\\listoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FEEAFA91-FBD4-46E7-8667-46C993B1C4AB}|The Wheel.csproj|solutionrelative:listoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -62,11 +58,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 12,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
+              "Title": "CustomizeButton.cs",
+              "DocumentMoniker": "C:\\Users\\James\\Dev\\Godot\\The Wheel\\CustomizeButton.cs",
+              "RelativeDocumentMoniker": "CustomizeButton.cs",
+              "ToolTip": "C:\\Users\\James\\Dev\\Godot\\The Wheel\\CustomizeButton.cs",
+              "RelativeToolTip": "CustomizeButton.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-21T23:55:17.191Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RemoveButton.cs",
+              "DocumentMoniker": "C:\\Users\\James\\Dev\\Godot\\The Wheel\\RemoveButton.cs",
+              "RelativeDocumentMoniker": "RemoveButton.cs",
+              "ToolTip": "C:\\Users\\James\\Dev\\Godot\\The Wheel\\RemoveButton.cs",
+              "RelativeToolTip": "RemoveButton.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-21T22:31:10.656Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "DisableButton.cs",
               "DocumentMoniker": "C:\\Users\\James\\Dev\\Godot\\The Wheel\\DisableButton.cs",
               "RelativeDocumentMoniker": "DisableButton.cs",
@@ -74,38 +96,24 @@
               "RelativeToolTip": "DisableButton.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAABDAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-20T23:46:51.222Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-20T23:46:51.222Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "OptionName.cs",
-              "DocumentMoniker": "C:\\Users\\James\\Dev\\Godot\\The Wheel\\OptionName.cs",
-              "RelativeDocumentMoniker": "OptionName.cs",
-              "ToolTip": "C:\\Users\\James\\Dev\\Godot\\The Wheel\\OptionName.cs",
-              "RelativeToolTip": "OptionName.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-20T23:35:12.063Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 0,
               "Title": "LoadListButton.cs",
               "DocumentMoniker": "C:\\Users\\James\\Dev\\Godot\\The Wheel\\LoadListButton.cs",
               "RelativeDocumentMoniker": "LoadListButton.cs",
               "ToolTip": "C:\\Users\\James\\Dev\\Godot\\The Wheel\\LoadListButton.cs",
               "RelativeToolTip": "LoadListButton.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-20T23:28:55.441Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "AddOptionButton.cs",
               "DocumentMoniker": "C:\\Users\\James\\Dev\\Godot\\The Wheel\\AddOptionButton.cs",
               "RelativeDocumentMoniker": "AddOptionButton.cs",
@@ -113,12 +121,11 @@
               "RelativeToolTip": "AddOptionButton.cs",
               "ViewState": "AQIAAAUAAAAAAAAAAAAAwCAAAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-20T23:10:10.915Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-20T23:10:10.915Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 11,
               "Title": "ListOptions.cs",
               "DocumentMoniker": "C:\\Users\\James\\Dev\\Godot\\The Wheel\\ListOptions.cs",
               "RelativeDocumentMoniker": "ListOptions.cs",
@@ -126,12 +133,11 @@
               "RelativeToolTip": "ListOptions.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAA6AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-20T22:12:59.523Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-20T22:12:59.523Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "SaveListButton.cs",
               "DocumentMoniker": "C:\\Users\\James\\Dev\\Godot\\The Wheel\\SaveListButton.cs",
               "RelativeDocumentMoniker": "SaveListButton.cs",
@@ -139,38 +145,24 @@
               "RelativeToolTip": "SaveListButton.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-15T23:27:14.233Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-15T23:27:14.233Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "OptionWeight.cs",
-              "DocumentMoniker": "C:\\Users\\James\\Dev\\Godot\\The Wheel\\OptionWeight.cs",
-              "RelativeDocumentMoniker": "OptionWeight.cs",
-              "ToolTip": "C:\\Users\\James\\Dev\\Godot\\The Wheel\\OptionWeight.cs",
-              "RelativeToolTip": "OptionWeight.cs",
-              "ViewState": "AQIAAAUAAAAAAAAAAAAAwBwAAABpAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-13T23:18:53.303Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 3,
               "Title": "CustomizationManager.cs",
               "DocumentMoniker": "C:\\Users\\James\\Dev\\Godot\\The Wheel\\CustomizationManager.cs",
               "RelativeDocumentMoniker": "CustomizationManager.cs",
               "ToolTip": "C:\\Users\\James\\Dev\\Godot\\The Wheel\\CustomizationManager.cs",
               "RelativeToolTip": "CustomizationManager.cs",
-              "ViewState": "AQIAAFIAAAAAAAAAAAAcwG0AAAA3AAAA",
+              "ViewState": "AQIAAG8AAAAAAAAAAAAzwJQAAAArAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-13T22:51:00.516Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 10,
               "Title": "PopupManager.cs",
               "DocumentMoniker": "C:\\Users\\James\\Dev\\Godot\\The Wheel\\PopupManager.cs",
               "RelativeDocumentMoniker": "PopupManager.cs",
@@ -182,19 +174,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "ProgressBar.cs",
-              "DocumentMoniker": "C:\\Users\\James\\Dev\\Godot\\The Wheel\\ProgressBar.cs",
-              "RelativeDocumentMoniker": "ProgressBar.cs",
-              "ToolTip": "C:\\Users\\James\\Dev\\Godot\\The Wheel\\ProgressBar.cs",
-              "RelativeToolTip": "ProgressBar.cs",
-              "ViewState": "AQIAAAEAAAAAAAAAAAAIwD4AAAAqAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-07T22:20:30.17Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "Option.cs",
               "DocumentMoniker": "C:\\Users\\James\\Dev\\Godot\\The Wheel\\Option.cs",
               "RelativeDocumentMoniker": "Option.cs",
@@ -202,12 +182,11 @@
               "RelativeToolTip": "Option.cs",
               "ViewState": "AQIAAEYAAAAAAAAAAADwv1sAAABGAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-06T22:03:19.237Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-06T22:03:19.237Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "WheelProgress.cs",
               "DocumentMoniker": "C:\\Users\\James\\Dev\\Godot\\The Wheel\\WheelProgress.cs",
               "RelativeDocumentMoniker": "WheelProgress.cs",
@@ -215,18 +194,17 @@
               "RelativeToolTip": "WheelProgress.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAB0AAAAsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-31T23:40:13.229Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-31T23:40:13.229Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "OptionManager.cs",
               "DocumentMoniker": "C:\\Users\\James\\Dev\\Godot\\The Wheel\\OptionManager.cs",
               "RelativeDocumentMoniker": "OptionManager.cs",
               "ToolTip": "C:\\Users\\James\\Dev\\Godot\\The Wheel\\OptionManager.cs",
               "RelativeToolTip": "OptionManager.cs",
-              "ViewState": "AQIAAF8AAAAAAAAAAAAvwHkAAAACAAAA",
+              "ViewState": "AQIAANoAAAAAAAAAAAAcwM8AAAAWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-31T22:48:39.368Z",
               "EditorCaption": ""
