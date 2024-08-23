@@ -33,6 +33,29 @@ public partial class Option : Control
     //		OPTION FUNCTIONS	
     // --------------------------------
 
+    public void ResetDefaultWeight()
+    {
+        OptionWeight = 1;
+        UpdateOptionFields();
+    }
+
+    public void UpdateOptionFields()
+    {
+        optionWeightField.UpdateOptionWeightField();
+        optionNameField.UpdateOptionNameField();
+    }
+
+    public Godot.Collections.Array GetOptionData()
+    {
+        Godot.Collections.Array result = new Godot.Collections.Array();
+
+        result.Add(optionEnabled);
+        result.Add(optionName);
+        result.Add(optionWeight);
+
+        return result;
+    }
+
     public static bool CheckForMissingProgressBar(List<Option> options)
     {
         foreach (Option option in options)
@@ -70,17 +93,6 @@ public partial class Option : Control
         {
             result += option.optionWeight;
         }
-        return result;
-    }
-
-    public Godot.Collections.Array GetOptionData()
-    {
-        Godot.Collections.Array result = new Godot.Collections.Array();
-
-        result.Add(optionEnabled);
-        result.Add(optionName);
-        result.Add(optionWeight);
-
         return result;
     }
 

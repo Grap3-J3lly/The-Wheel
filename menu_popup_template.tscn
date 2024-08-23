@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b1lc8f4e26bea"]
+[gd_scene load_steps=10 format=3 uid="uid://b1lc8f4e26bea"]
 
 [ext_resource type="Script" path="res://CustomizeButton.cs" id="1_lh7j3"]
 [ext_resource type="Theme" uid="uid://d3dvb7e4l28py" path="res://PopupBackgroundTheme.tres" id="1_tjypc"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ctgy026yqcb0v" path="res://customization_area_template.tscn" id="3_wd6i2"]
 [ext_resource type="Script" path="res://ListOptions.cs" id="4_n8vde"]
 [ext_resource type="Script" path="res://LoadListButton.cs" id="5_qlgbo"]
+[ext_resource type="Script" path="res://DeleteButton.cs" id="6_x6u8j"]
 
 [node name="MenuBackground" type="Panel"]
 z_index = 6
@@ -78,11 +79,12 @@ size_flags_vertical = 4
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 
-[node name="SaveListButton" type="Button" parent="MenuItemContainer/SaveItem/SaveItemContainer" node_paths=PackedStringArray("listNameField")]
+[node name="SaveListButton" type="Button" parent="MenuItemContainer/SaveItem/SaveItemContainer" node_paths=PackedStringArray("listNameField", "listOptions")]
 layout_mode = 2
 text = "SAVE"
 script = ExtResource("3_w6nua")
 listNameField = NodePath("../ListNameField")
+listOptions = NodePath("../../../LoadItem/LoadItemContainer/ListOptions")
 
 [node name="LoadItem" type="Control" parent="MenuItemContainer"]
 custom_minimum_size = Vector2(0, 55)
@@ -127,9 +129,11 @@ script = ExtResource("5_qlgbo")
 customizeButton = NodePath("../../../CustomizeButton")
 loadListOptionButton = NodePath("../ListOptions")
 
-[node name="DeleteButton" type="Button" parent="MenuItemContainer/LoadItem/LoadItemContainer"]
+[node name="DeleteButton" type="Button" parent="MenuItemContainer/LoadItem/LoadItemContainer" node_paths=PackedStringArray("listOptions")]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
+script = ExtResource("6_x6u8j")
+listOptions = NodePath("../ListOptions")
 
 [node name="CustomizeButton" type="Button" parent="MenuItemContainer" node_paths=PackedStringArray("menuBackground")]
 custom_minimum_size = Vector2(150, 40)

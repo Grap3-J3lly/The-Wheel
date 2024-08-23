@@ -11,9 +11,11 @@ public partial class ListOptions : OptionButton
 		LoadLists();
 	}
 
-	private void LoadLists()
+	public void LoadLists()
 	{
 		List<string> saveFiles = optionManager.GetSaveFiles();
+
+		this.Clear();
 
 		foreach (string file in saveFiles) 
 		{

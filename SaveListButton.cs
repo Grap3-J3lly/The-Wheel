@@ -6,6 +6,9 @@ public partial class SaveListButton : Button
 	[Export]
 	private LineEdit listNameField;
 
+	[Export]
+	private ListOptions listOptions;
+
 	private OptionManager optionManager;
 
 	public override void _Ready()
@@ -24,5 +27,6 @@ public partial class SaveListButton : Button
 	{
 		optionManager.ListName = GetListName();
 		optionManager.SaveGame();
+		listOptions.LoadLists();
 	}
 }

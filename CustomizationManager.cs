@@ -7,7 +7,7 @@ public partial class CustomizationManager : Control
     //			VARIABLES	
     // --------------------------------
 
-    private List<ColorPickerButton> colorPickers = new List<ColorPickerButton>();
+    private List<ColorPickerButton> colorPickerButtons = new List<ColorPickerButton>();
 
     // Color Picker Buttons
     [Export]
@@ -43,6 +43,7 @@ public partial class CustomizationManager : Control
     // --------------------------------
 
     public static CustomizationManager Instance { get; private set; }
+    public List<ColorPickerButton> ColorPickerButtons { get => colorPickerButtons; }
 
     // --------------------------------
     //		STANDARD FUNCTIONS	
@@ -95,18 +96,18 @@ public partial class CustomizationManager : Control
 
     private void PopulateColorPickerList()
     {
-        if(colorPickers.Count > 0)
+        if(colorPickerButtons.Count > 0)
         {
             return;
         }
-        colorPickers.Add(generalBackgroundColor);
-        colorPickers.Add(wheelPrimaryColor);
-        colorPickers.Add(wheelSecondaryColor);
-        colorPickers.Add(wheelButtonColor);
-        colorPickers.Add(listBackgroundColor);
-        colorPickers.Add(listFontColor);
-        colorPickers.Add(popupBackgroundColor);
-        colorPickers.Add(popupFontColor);
+        colorPickerButtons.Add(generalBackgroundColor);
+        colorPickerButtons.Add(wheelPrimaryColor);
+        colorPickerButtons.Add(wheelSecondaryColor);
+        colorPickerButtons.Add(wheelButtonColor);
+        colorPickerButtons.Add(listBackgroundColor);
+        colorPickerButtons.Add(listFontColor);
+        colorPickerButtons.Add(popupBackgroundColor);
+        colorPickerButtons.Add(popupFontColor);
     }
 
     private void PopulateColorList()
@@ -123,16 +124,16 @@ public partial class CustomizationManager : Control
         optionManager.Colors[7] = popupFontColor.Color;
     }
 
-    public void RunColorUpdate(List<Color> assignmentColors)
+    public void AssignColorsToList(List<Color> assignmentColors)
     {
-        if(assignmentColors.Count < colorPickers.Count)
+        if(assignmentColors.Count < colorPickerButtons.Count)
         {
             return;
         }
 
         for (int i = 0; i < assignmentColors.Count; i++)
         {
-            colorPickers[i].Color = assignmentColors[i];
+            colorPickerButtons[i].Color = assignmentColors[i];
         }
         ManuallyRunListeners(assignmentColors);
     }
@@ -147,6 +148,21 @@ public partial class CustomizationManager : Control
         ChangeListFontColor(newColors[5]);
         ChangePopupBackgroundColor(newColors[6]);
         ChangePopupFontColor(newColors[7]);
+    }
+
+    /// <summary>
+    /// Force Color Updates across application based off current color picker button colors
+    /// </summary>
+    public void UpdateColors()
+    {
+        ChangeGeneralBackgroundColor(colorPickerButtons[0].Color);
+        ChangeWheelPrimaryColor(colorPickerButtons[1].Color);
+        ChangeWheelSecondaryColor(colorPickerButtons[2].Color);
+        ChangeWheelButtonColor(colorPickerButtons[3].Color);
+        ChangeListBackgroundColor(colorPickerButtons[4].Color);
+        ChangeListFontColor(colorPickerButtons[5].Color);
+        ChangePopupBackgroundColor(colorPickerButtons[6].Color);
+        ChangePopupFontColor(colorPickerButtons[7].Color);
     }
 
     // --------------------------------

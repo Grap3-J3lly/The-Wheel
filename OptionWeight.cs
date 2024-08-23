@@ -28,4 +28,10 @@ public partial class OptionWeight : LineEdit
 		}
         optionManager.WheelProgressParent.EmitSignal(WheelProgress.SignalName.WheelProgressUpdate, true);
     }
+
+	public void UpdateOptionWeightField()
+	{
+		this.Text = optionParent.OptionWeight.ToString();
+        optionManager.WheelProgressParent.EmitSignal(WheelProgress.SignalName.WheelProgressUpdate, true);
+    }
 }

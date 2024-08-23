@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://ctgy026yqcb0v"]
+[gd_scene load_steps=7 format=3 uid="uid://ctgy026yqcb0v"]
 
 [ext_resource type="Script" path="res://CustomizationManager.cs" id="1_e1qy6"]
 [ext_resource type="Theme" uid="uid://d3dvb7e4l28py" path="res://PopupBackgroundTheme.tres" id="2_lxquq"]
 [ext_resource type="Theme" uid="uid://rxn0ric1nvrl" path="res://PopupFontTheme.tres" id="3_n1x8u"]
 [ext_resource type="Theme" uid="uid://dlf27rdr7dp0n" path="res://ListFontColorTheme.tres" id="4_ykns8"]
 [ext_resource type="Theme" uid="uid://cpm3ymheyptc0" path="res://WheelButtonTheme.tres" id="5_v58tj"]
+[ext_resource type="Script" path="res://ResetButton.cs" id="6_jge7y"]
 
 [node name="CustomizationArea" type="Control" node_paths=PackedStringArray("generalBackgroundColor", "wheelPrimaryColor", "wheelSecondaryColor", "wheelButtonColor", "listBackgroundColor", "listFontColor", "popupBackgroundColor", "popupFontColor")]
 layout_mode = 3
@@ -57,6 +58,14 @@ custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
 
+[node name="ResetButton" type="Button" parent="CustomizationOptions/GeneralBackground" node_paths=PackedStringArray("colorPickerButton")]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+script = ExtResource("6_jge7y")
+colorPickerButton = NodePath("../ItemColorButton")
+
 [node name="WheelPrimary" type="HBoxContainer" parent="CustomizationOptions"]
 custom_minimum_size = Vector2(300, 40)
 layout_mode = 2
@@ -73,6 +82,14 @@ text = "Wheel Primary"
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
+
+[node name="ResetButton" type="Button" parent="CustomizationOptions/WheelPrimary" node_paths=PackedStringArray("colorPickerButton")]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+script = ExtResource("6_jge7y")
+colorPickerButton = NodePath("../ItemColorButton")
 
 [node name="WheelSecondary" type="HBoxContainer" parent="CustomizationOptions"]
 custom_minimum_size = Vector2(300, 40)
@@ -91,6 +108,14 @@ custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
 
+[node name="ResetButton" type="Button" parent="CustomizationOptions/WheelSecondary" node_paths=PackedStringArray("colorPickerButton")]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+script = ExtResource("6_jge7y")
+colorPickerButton = NodePath("../ItemColorButton")
+
 [node name="WheelButton" type="HBoxContainer" parent="CustomizationOptions"]
 custom_minimum_size = Vector2(300, 40)
 layout_mode = 2
@@ -107,6 +132,14 @@ text = "Wheel Button"
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
+
+[node name="ResetButton" type="Button" parent="CustomizationOptions/WheelButton" node_paths=PackedStringArray("colorPickerButton")]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+script = ExtResource("6_jge7y")
+colorPickerButton = NodePath("../ItemColorButton")
 
 [node name="ListBackground" type="HBoxContainer" parent="CustomizationOptions"]
 custom_minimum_size = Vector2(300, 40)
@@ -125,6 +158,14 @@ custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
 
+[node name="ResetButton" type="Button" parent="CustomizationOptions/ListBackground" node_paths=PackedStringArray("colorPickerButton")]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+script = ExtResource("6_jge7y")
+colorPickerButton = NodePath("../ItemColorButton")
+
 [node name="ListFontColor" type="HBoxContainer" parent="CustomizationOptions"]
 custom_minimum_size = Vector2(300, 40)
 layout_mode = 2
@@ -141,6 +182,14 @@ text = "List Font"
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
+
+[node name="ResetButton" type="Button" parent="CustomizationOptions/ListFontColor" node_paths=PackedStringArray("colorPickerButton")]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+script = ExtResource("6_jge7y")
+colorPickerButton = NodePath("../ItemColorButton")
 
 [node name="PopupBackgroundColor" type="HBoxContainer" parent="CustomizationOptions"]
 custom_minimum_size = Vector2(300, 40)
@@ -159,6 +208,14 @@ custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
 
+[node name="ResetButton" type="Button" parent="CustomizationOptions/PopupBackgroundColor" node_paths=PackedStringArray("colorPickerButton")]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+script = ExtResource("6_jge7y")
+colorPickerButton = NodePath("../ItemColorButton")
+
 [node name="PopupFontColor" type="HBoxContainer" parent="CustomizationOptions"]
 custom_minimum_size = Vector2(300, 40)
 layout_mode = 2
@@ -175,3 +232,11 @@ text = "Menu Font"
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
+
+[node name="ResetButton" type="Button" parent="CustomizationOptions/PopupFontColor" node_paths=PackedStringArray("colorPickerButton")]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+script = ExtResource("6_jge7y")
+colorPickerButton = NodePath("../ItemColorButton")

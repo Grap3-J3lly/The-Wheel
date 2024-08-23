@@ -53,6 +53,8 @@ public partial class OptionManager : Node
     private Color default_popupBackgroundColor;
     [Export]
     private Color default_popupFontColor;
+	private List<Color> defaultColors = new List<Color>();
+
 
     // --------------------------------
     //			PROPERTIES	
@@ -86,6 +88,9 @@ public partial class OptionManager : Node
 	public PackedScene OptionTemplate { get => optionTemplate; }
 	public Control OptionParent { get => optionParent; }
 
+	// Default Color Data
+	public List<Color> DefaultColors { get => defaultColors; }
+
     // --------------------------------
     //		STANDARD FUNCTIONS
     // --------------------------------
@@ -96,6 +101,7 @@ public partial class OptionManager : Node
 		base._Ready();
 		Instance = this;
 		SetDefaultColors();
+		PopulateDefaultColorList();
 	}
 
     // --------------------------------
@@ -112,6 +118,18 @@ public partial class OptionManager : Node
 		colors.Add(default_listFontColor);
 		colors.Add(default_popupBackgroundColor);
 		colors.Add(default_popupFontColor);
+	}
+
+	private void PopulateDefaultColorList()
+	{
+		defaultColors.Add(default_generalBackgroundColor);
+		defaultColors.Add(default_wheelPrimaryColor);
+		defaultColors.Add(default_wheelSecondaryColor);
+		defaultColors.Add(default_wheelButtonColor);
+		defaultColors.Add(default_listBackgroundColor);
+		defaultColors.Add(default_listFontColor);
+		defaultColors.Add(default_popupBackgroundColor);
+		defaultColors.Add(default_popupFontColor);
 	}
 
 	public void UpdateWheelColors()
@@ -191,7 +209,7 @@ public partial class OptionManager : Node
 			// Colors
 			Array colorsArray = (Array)data[1];
 			PopulateColors(colorsArray);
-			CustomizationManager.Instance.RunColorUpdate(colors);
+			CustomizationManager.Instance.AssignColorsToList(colors);
 
 			// Options
 			Array options = (Array)data[2];

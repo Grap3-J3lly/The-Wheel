@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://8cgspyr8gob4"]
+[gd_scene load_steps=17 format=3 uid="uid://8cgspyr8gob4"]
 
 [ext_resource type="Theme" uid="uid://cpm3ymheyptc0" path="res://WheelButtonTheme.tres" id="2_3bb4o"]
 [ext_resource type="Script" path="res://OptionManager.cs" id="2_yv2g8"]
+[ext_resource type="Script" path="res://TwitchChatFeed.cs" id="3_16l3w"]
 [ext_resource type="Script" path="res://WheelProgress.cs" id="3_iyf3y"]
 [ext_resource type="Script" path="res://SpinButton.cs" id="3_qqfjg"]
 [ext_resource type="PackedScene" uid="uid://c1ofuprn5cbnr" path="res://wheel_progress_template.tscn" id="4_hrrrl"]
@@ -11,14 +12,10 @@
 [ext_resource type="Script" path="res://OpenPopupButton.cs" id="7_b0qvu"]
 [ext_resource type="Theme" uid="uid://dlf27rdr7dp0n" path="res://ListFontColorTheme.tres" id="8_f126f"]
 [ext_resource type="Script" path="res://PopupManager.cs" id="9_4p5xn"]
+[ext_resource type="Script" path="res://ToggleChatInputButton.cs" id="10_05f66"]
 [ext_resource type="PackedScene" uid="uid://cwucnn6t72ta5" path="res://selected_option_popup_template.tscn" id="10_fm5px"]
 [ext_resource type="PackedScene" uid="uid://b1lc8f4e26bea" path="res://menu_popup_template.tscn" id="11_osn7t"]
-
-[sub_resource type="Gradient" id="Gradient_8bcs7"]
-colors = PackedColorArray(0.2564, 0.26799, 0.244015, 0.5, 0.2564, 0.26799, 0.244015, 0.5)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_iyg1o"]
-gradient = SubResource("Gradient_8bcs7")
+[ext_resource type="Script" path="res://ClearOptionWeightsButton.cs" id="12_654ys"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -39,6 +36,9 @@ default_listBackgroundColor = Color(0, 0.42, 0, 1)
 default_listFontColor = Color(1, 1, 1, 1)
 default_popupBackgroundColor = Color(1, 0.941, 0.667, 1)
 default_popupFontColor = Color(0.357, 0.22, 0.392, 1)
+
+[node name="TwitchManager" type="Node" parent="."]
+script = ExtResource("3_16l3w")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -150,7 +150,16 @@ custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 4
+text = "Menu"
 script = ExtResource("7_b0qvu")
+
+[node name="ToggleChatInputButton" type="Button" parent="CanvasLayer/OptionArea/TopBar" node_paths=PackedStringArray("feed")]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+script = ExtResource("10_05f66")
+feed = NodePath("../../../../TwitchManager")
 
 [node name="OptionText" type="RichTextLabel" parent="CanvasLayer/OptionArea/TopBar"]
 custom_minimum_size = Vector2(100, 25)
@@ -163,11 +172,19 @@ theme = ExtResource("8_f126f")
 bbcode_enabled = true
 text = "[center]Options[/center]"
 
+[node name="ClearOptionWeightsButton" type="Button" parent="CanvasLayer/OptionArea/TopBar"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+script = ExtResource("12_654ys")
+
 [node name="AddOptionButton" type="Button" parent="CanvasLayer/OptionArea/TopBar"]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 4
+text = "+"
 script = ExtResource("5_tmtid")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/OptionArea"]
@@ -199,7 +216,7 @@ script = ExtResource("9_4p5xn")
 selectedOptionPopup = ExtResource("10_fm5px")
 menuPopup = ExtResource("11_osn7t")
 
-[node name="FadedBackground" type="TextureRect" parent="CanvasLayer/PopupArea"]
+[node name="FadedBackground" type="ColorRect" parent="CanvasLayer/PopupArea"]
 visible = false
 z_index = 5
 layout_mode = 1
@@ -208,6 +225,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture1D_iyg1o")
+color = Color(0.254902, 0.266667, 0.243137, 0.501961)
 
 [connection signal="WheelProgressUpdate" from="CanvasLayer/WheelArea/WheelProgressBars" to="CanvasLayer/OptionArea/TopBar/AddOptionButton" method="_on_wheel_progress_bars_wheel_progress_update"]

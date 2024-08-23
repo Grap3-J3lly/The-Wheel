@@ -3,12 +3,17 @@ using System.Collections.Generic;
 
 public partial class AddOptionButton : Button
 {
-	private List<Control> createdOptions = new List<Control>();
+    // --------------------------------
+    //			VARIABLES	
+    // --------------------------------
+    private List<Control> createdOptions = new List<Control>();
 	private OptionManager optionManager;
 
+    // --------------------------------
+    //		STANDARD FUNCTIONS	
+    // --------------------------------
 
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
+    public override void _Ready()
 	{
 		base._Ready();
 		this.Pressed += PressButton;
@@ -18,12 +23,15 @@ public partial class AddOptionButton : Button
 		PressButton();
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
+    // --------------------------------
+    //			BUTTON LOGIC	
+    // --------------------------------
 
-	private void PressButton()
+	/// <summary>
+	/// Creates a new option and adds it to the option list. 
+	/// Triggers the WheelProgressUpdate event to update the Wheel
+	/// </summary>
+    private void PressButton()
 	{
 		if(optionManager.WheelSpinning) { return; }
 

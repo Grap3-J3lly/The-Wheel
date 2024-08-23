@@ -19,9 +19,15 @@ public partial class OptionName : TextEdit
         this.Editable = !optionManager.WheelSpinning && optionParent.OptionEnabled;
     }
 
-	private void UpdateOptionName()
+	public void UpdateOptionName()
 	{
 		optionParent.OptionName = this.Text;
 		optionParent.OptionProgressBar.SetName(this.Text);
 	}
+
+	public void UpdateOptionNameField()
+	{
+		this.Text = optionParent.OptionName;
+        optionParent.OptionProgressBar.SetName(this.Text);
+    }
 }
