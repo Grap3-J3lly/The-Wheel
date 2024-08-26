@@ -29,9 +29,10 @@ offset_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="DisableButton" type="Button" parent="HBoxContainer"]
+[node name="DisableButton" type="CheckBox" parent="HBoxContainer"]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
+icon_alignment = 1
 script = ExtResource("1_4k7kn")
 
 [node name="OptionName" type="TextEdit" parent="HBoxContainer"]
