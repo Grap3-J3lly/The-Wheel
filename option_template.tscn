@@ -11,6 +11,8 @@
 custom_minimum_size = Vector2(300, 35)
 layout_mode = 3
 anchors_preset = 0
+offset_right = 312.0
+offset_bottom = 43.0
 size_flags_vertical = 0
 script = ExtResource("1_1c5ab")
 optionEnabledField = NodePath("DisableButton")
@@ -30,9 +32,9 @@ script = ExtResource("1_4k7kn")
 [node name="OptionName" type="TextEdit" parent="."]
 custom_minimum_size = Vector2(185, 0)
 layout_mode = 2
-offset_left = 30.0
+offset_left = 32.0
 offset_top = 5.0
-offset_right = 223.0
+offset_right = 225.0
 offset_bottom = 40.0
 size_flags_horizontal = 4
 theme = ExtResource("3_yd0c1")
@@ -42,9 +44,9 @@ script = ExtResource("2_1qtey")
 [node name="OptionWeight" type="LineEdit" parent="."]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
-offset_left = 227.0
+offset_left = 229.0
 offset_top = 5.0
-offset_right = 272.0
+offset_right = 274.0
 offset_bottom = 40.0
 size_flags_horizontal = 4
 size_flags_stretch_ratio = 0.0
@@ -57,8 +59,8 @@ script = ExtResource("3_t7gkw")
 [node name="RemoveButton" type="Button" parent="."]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
-offset_left = 276.0
+offset_left = 278.0
 offset_top = 5.0
-offset_right = 306.0
+offset_right = 308.0
 offset_bottom = 40.0
 script = ExtResource("1_5l6pj")

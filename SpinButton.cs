@@ -30,6 +30,8 @@ public partial class SpinButton : Button
 		this.Pressed += PressButton;
 		timer = 0.0d;
 		slowDownValue = timer;
+
+		optionManager.AudioStreamPlayer.MaxPolyphony = 2;
     }
 
 	public override void _Process(double delta)
@@ -90,6 +92,10 @@ public partial class SpinButton : Button
         {
 			timer += delta;
 			wheel.RotationDegrees += speed * (float)timer;
+
+			GD.Print(Mathf.RoundToInt(timer));
+			optionManager.AudioStreamPlayer.MaxPolyphony = Mathf.RoundToInt(timer);
+            optionManager.AudioStreamPlayer.Play();
         }
     }
 
@@ -116,6 +122,7 @@ public partial class SpinButton : Button
         {
             wheel.RotationDegrees += speed * (float)slowDownValue + (extraPerAngle * (float)delta);
             slowDownValue -= delta;
+            --optionManager.AudioStreamPlayer.MaxPolyphony;
         }
     }
 

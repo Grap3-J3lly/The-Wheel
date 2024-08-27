@@ -27,6 +27,7 @@ public partial class DisableButton : Button
 		base._Ready();
 		optionManager = OptionManager.Instance;
 		enabled = true;
+        ButtonPressed = enabled;
         optionParent = (Option)GetParentControl();
 		this.Pressed += PressButton;
 	}
@@ -56,5 +57,6 @@ public partial class DisableButton : Button
             optionManager.CreatedOptions.Remove(optionParent);
         }
         optionManager.WheelProgressParent.EmitSignal(WheelProgress.SignalName.WheelProgressUpdate, true);
+        ButtonPressed = enabled;
     }
 }

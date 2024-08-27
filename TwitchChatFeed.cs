@@ -58,6 +58,9 @@ public partial class TwitchChatFeed : Node
     //		TWITCH CONNECTION	
     // --------------------------------
 
+    /// <summary>
+    /// If config exists, and is properly filled out, attempts to establish a connection with the Twitch client using TCP
+    /// </summary>
     private void EstablishTwitchConnection()
     {
         if (!Godot.FileAccess.FileExists("user://twitch.config"))
@@ -136,6 +139,9 @@ public partial class TwitchChatFeed : Node
         ready = true;
     }
 
+    /// <summary>
+    /// Communicates with the twitch client to maintain connection, reads in all chat messages and their corresponding sender
+    /// </summary>
     private void ReadChat()
     {
         try
@@ -168,6 +174,10 @@ public partial class TwitchChatFeed : Node
         }
     }
 
+    /// <summary>
+    /// Logs connection status to the console
+    /// </summary>
+    /// <param name="message"></param>
     private void Print(string message)
     {
         if (EnableLogging)

@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://8cgspyr8gob4"]
+[gd_scene load_steps=18 format=3 uid="uid://8cgspyr8gob4"]
 
 [ext_resource type="Theme" uid="uid://cpm3ymheyptc0" path="res://WheelButtonTheme.tres" id="2_3bb4o"]
 [ext_resource type="Script" path="res://OptionManager.cs" id="2_yv2g8"]
 [ext_resource type="Script" path="res://TwitchChatFeed.cs" id="3_16l3w"]
 [ext_resource type="Script" path="res://WheelProgress.cs" id="3_iyf3y"]
 [ext_resource type="Script" path="res://SpinButton.cs" id="3_qqfjg"]
+[ext_resource type="AudioStream" uid="uid://dkwj7334s12jg" path="res://block.wav" id="4_a0jfc"]
 [ext_resource type="PackedScene" uid="uid://c1ofuprn5cbnr" path="res://wheel_progress_template.tscn" id="4_hrrrl"]
 [ext_resource type="Script" path="res://AddOptionButton.cs" id="5_tmtid"]
 [ext_resource type="PackedScene" uid="uid://c2jsx0bgu2s1j" path="res://option_template.tscn" id="5_xkam3"]
@@ -19,7 +20,7 @@
 
 [node name="Node2D" type="Node2D"]
 
-[node name="OptionManager" type="Node" parent="." node_paths=PackedStringArray("applicationBackground", "listBackground", "spinButton", "optionParent")]
+[node name="OptionManager" type="Node" parent="." node_paths=PackedStringArray("applicationBackground", "listBackground", "spinButton", "optionParent", "audioStreamPlayer")]
 script = ExtResource("2_yv2g8")
 primaryColor = Color(0.626637, 0.386466, 0.935588, 1)
 secondaryColor = Color(0.853281, 0.454139, 0.954567, 1)
@@ -36,9 +37,13 @@ default_listBackgroundColor = Color(0, 0.42, 0, 1)
 default_listFontColor = Color(1, 1, 1, 1)
 default_popupBackgroundColor = Color(1, 0.941, 0.667, 1)
 default_popupFontColor = Color(0.357, 0.22, 0.392, 1)
+audioStreamPlayer = NodePath("../AudioManager")
 
 [node name="TwitchManager" type="Node" parent="."]
 script = ExtResource("3_16l3w")
+
+[node name="AudioManager" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_a0jfc")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -193,9 +198,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 25.0
+offset_left = 20.0
 offset_top = 61.0
-offset_right = -25.0
+offset_right = -20.0
 offset_bottom = -25.0
 grow_horizontal = 2
 grow_vertical = 2

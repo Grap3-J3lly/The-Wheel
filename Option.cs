@@ -136,6 +136,7 @@ public partial class Option : Control
         Option newOption = (Option)optionTemplate.Instantiate();
         optionParent.AddChild(newOption);
         newOption.OptionEnabled = (bool)optionData[0];
+        newOption.optionEnabledField.ButtonPressed = newOption.OptionEnabled;
         newOption.optionEnabledField.Enabled = newOption.OptionEnabled;
         newOption.OptionName = (string)optionData[1];
         newOption.optionNameField.Text = newOption.OptionName;

@@ -8,6 +8,7 @@ public partial class OptionManager : Node
 	//			VARIABLES	
     // --------------------------------
 
+	// Save Data
 	private List<Variant> dataToSave = new List<Variant>();
 	private List<Color> colors = new List<Color>();
 	private List<Option> createdOptions = new List<Option>();
@@ -55,6 +56,9 @@ public partial class OptionManager : Node
     private Color default_popupFontColor;
 	private List<Color> defaultColors = new List<Color>();
 
+	// Audio Info
+	[Export]
+	private AudioStreamPlayer audioStreamPlayer;
 
     // --------------------------------
     //			PROPERTIES	
@@ -91,47 +95,43 @@ public partial class OptionManager : Node
 	// Default Color Data
 	public List<Color> DefaultColors { get => defaultColors; }
 
+	// Audio Info
+	public AudioStreamPlayer AudioStreamPlayer { get => audioStreamPlayer; }
+
     // --------------------------------
     //		STANDARD FUNCTIONS
     // --------------------------------
 
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
 		base._Ready();
 		Instance = this;
-		SetDefaultColors();
-		PopulateDefaultColorList();
+		SetListToDefaultValues(colors);
+		SetListToDefaultValues(defaultColors);
 	}
 
     // --------------------------------
     //		CUSTOMIZATION LOGIC
     // --------------------------------
 
-	private void SetDefaultColors()
+	/// <summary>
+	/// Populates the given list with the assigned default color values
+	/// </summary>
+	private void SetListToDefaultValues(List<Color> list)
 	{
-		colors.Add(default_generalBackgroundColor);
-		colors.Add(default_wheelPrimaryColor);
-		colors.Add(default_wheelSecondaryColor);
-		colors.Add(default_wheelButtonColor);
-		colors.Add(default_listBackgroundColor);
-		colors.Add(default_listFontColor);
-		colors.Add(default_popupBackgroundColor);
-		colors.Add(default_popupFontColor);
+		list.Add(default_generalBackgroundColor);
+        list.Add(default_wheelPrimaryColor);
+		list.Add(default_wheelSecondaryColor);
+        list.Add(default_wheelButtonColor);
+        list.Add(default_listBackgroundColor);
+		list.Add(default_listFontColor);
+        list.Add(default_popupBackgroundColor);
+		list.Add(default_popupFontColor);
 	}
 
-	private void PopulateDefaultColorList()
-	{
-		defaultColors.Add(default_generalBackgroundColor);
-		defaultColors.Add(default_wheelPrimaryColor);
-		defaultColors.Add(default_wheelSecondaryColor);
-		defaultColors.Add(default_wheelButtonColor);
-		defaultColors.Add(default_listBackgroundColor);
-		defaultColors.Add(default_listFontColor);
-		defaultColors.Add(default_popupBackgroundColor);
-		defaultColors.Add(default_popupFontColor);
-	}
-
+	/// <summary>
+	/// Assigns the Progress Bars to their primary or secondary colors
+	/// </summary>
 	public void UpdateWheelColors()
 	{
 		foreach(Option option in CreatedOptions)
@@ -144,6 +144,9 @@ public partial class OptionManager : Node
     //		SAVE/LOAD LOGIC
     // --------------------------------
 
+	/// <summary>
+	/// Prepares all necessary data for saving into the appropriate list
+	/// </summary>
     private void PopulateDataToSave()
 	{
 		List<Option> allOptions = new List<Option>();
@@ -169,6 +172,9 @@ public partial class OptionManager : Node
 		dataToSave.Add(optionsArray);
 	}
 
+	/// <summary>
+	/// Stores all data in the appropriate data list into a json object and writes it into a file, using the listName for the fileName
+	/// </summary>
 	public void SaveGame()
 	{
 		PopulateDataToSave();
@@ -181,6 +187,10 @@ public partial class OptionManager : Node
 		dataToSave.Clear();
 	}
 
+	/// <summary>
+	/// Takes in a specific file and attempts to load in the data of said file. Deletes relevant data from the application prior to loading in new data.
+	/// </summary>
+	/// <param name="specificFile"></param>
 	public void LoadGame(string specificFile)
 	{
 		
@@ -204,19 +214,23 @@ public partial class OptionManager : Node
 
 			Array data = new Godot.Collections.Array((Godot.Collections.Array)json.Data);
 
-			// ListName
+			// Update ListName
 			listName = (string)data[0];
-			// Colors
+			// Update Colors
 			Array colorsArray = (Array)data[1];
 			PopulateColors(colorsArray);
 			CustomizationManager.Instance.AssignColorsToList(colors);
 
-			// Options
+			// Update Option List
 			Array options = (Array)data[2];
 			PopulateOptions(options);
         }
     }
 
+	/// <summary>
+	/// Deletes all options objects from a given list
+	/// </summary>
+	/// <param name="listToRemove"></param>
 	private void DeleteOptions(List<Option> listToRemove)
 	{
 		if(listToRemove == null || listToRemove.Count == 0) return;
@@ -228,6 +242,10 @@ public partial class OptionManager : Node
 		listToRemove.Clear();
 	}
 
+	/// <summary>
+	/// Grabs all files at correct location and returns any qualifying save files
+	/// </summary>
+	/// <returns>A list of .save files</returns>
 	public List<string> GetSaveFiles()
 	{
 		string[] allFiles = DirAccess.GetFilesAt("user://");
@@ -244,6 +262,10 @@ public partial class OptionManager : Node
 		return saveFiles;
     }
 
+	/// <summary>
+	/// Takes in a generic array (should be strings of hexcode) and loads them into the colors list
+	/// </summary>
+	/// <param name="newColors"></param>
 	private void PopulateColors(Array newColors)
 	{
 		for(int i = 0; i < newColors.Count; i++)
@@ -258,6 +280,10 @@ public partial class OptionManager : Node
 		}
 	}
 
+	/// <summary>
+	/// Creates and populates options based off the general array provided (primarily through the load system)
+	/// </summary>
+	/// <param name="loadOptions"></param>
 	private void PopulateOptions(Array loadOptions)
 	{
 		foreach(Array option in loadOptions)
