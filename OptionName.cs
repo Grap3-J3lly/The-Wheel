@@ -3,13 +3,21 @@ using System;
 
 public partial class OptionName : TextEdit
 {
-	OptionManager optionManager;
-	Option optionParent;
-	
-	public override void _Ready()
+    // --------------------------------
+    //			VARIABLES	
+    // --------------------------------
+
+    private OptionManager optionManager;
+	private Option optionParent;
+
+    // --------------------------------
+    //		STANDARD LOGIC	
+    // --------------------------------
+
+    public override void _Ready()
 	{
 		optionManager = OptionManager.Instance;
-        optionParent = (Option)GetParentControl().GetParentControl();
+        optionParent = (Option)GetParentControl();
 
         this.TextChanged += UpdateOptionName;
     }
@@ -19,12 +27,22 @@ public partial class OptionName : TextEdit
         this.Editable = !optionManager.WheelSpinning && optionParent.OptionEnabled;
     }
 
-	public void UpdateOptionName()
+    // --------------------------------
+    //			TEXT LOGIC	
+    // --------------------------------
+
+    /// <summary>
+    /// Attached to the TextChanged listener, this assigns the Options name value based off the current text value. Also updates the text on the assigned ProgressBar
+    /// </summary>
+    public void UpdateOptionName()
 	{
 		optionParent.OptionName = this.Text;
 		optionParent.OptionProgressBar.SetName(this.Text);
 	}
 
+    /// <summary>
+    /// Updates the text field to match the option's value, and updates the assigned ProgressBar as well
+    /// </summary>
 	public void UpdateOptionNameField()
 	{
 		this.Text = optionParent.OptionName;

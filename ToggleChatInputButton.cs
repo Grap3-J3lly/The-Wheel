@@ -3,14 +3,18 @@ using System.Collections.Generic;
 
 public partial class ToggleChatInputButton : Button
 {
+    // --------------------------------
+    //			VARIABLES	
+    // --------------------------------
+
     [Export]
     private TwitchChatFeed feed;
     private OptionManager optionManager;
     private bool toggleChatInput = false;
-    List<string> users = new List<string>();
+    private List<string> users = new List<string>();
 
     // --------------------------------
-    //		    STANDARD FUNCTIONS	
+    //		STANDARD FUNCTIONS	
     // --------------------------------
 
     public override void _Ready()
@@ -26,10 +30,13 @@ public partial class ToggleChatInputButton : Button
     //		    BUTTON LOGIC	
     // --------------------------------
 
+    /// <summary>
+    /// Toggles the variable to listen to the chat or not
+    /// Upon toggling off, clears the tracked list of users
+    /// </summary>
     private void OnButtonPress()
     {
         toggleChatInput = !toggleChatInput;
-        GD.Print("Button Toggled to: " + toggleChatInput);
 
         if(!toggleChatInput)
         {
@@ -41,6 +48,11 @@ public partial class ToggleChatInputButton : Button
     //		    CHAT LOGIC	
     // --------------------------------
 
+    /// <summary>
+    /// Checks the incoming chat logs to determine if a vote was made on an existing option and updates the weight if the user has not already voted previously
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="message"></param>
     private void OnMessage(string sender, string message)
     {
         if (!toggleChatInput)

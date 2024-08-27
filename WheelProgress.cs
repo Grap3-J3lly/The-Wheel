@@ -34,6 +34,10 @@ public partial class WheelProgress : Control
     //		EVENT CALL FUNCTIONS	
     // --------------------------------
 
+	/// <summary>
+	/// Creates Progress Bar objects, evaluating the necessary size, rotation, and color, before adding them to the correct option object
+	/// </summary>
+	/// <param name="needsReset"></param>
     private void CreateProgressBars(bool needsReset)
 	{
 		if (options == null) { return; }

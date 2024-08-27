@@ -40,6 +40,11 @@ public partial class PopupManager : Control
     //		WIN POPUP LOGIC
     // --------------------------------
 
+    /// <summary>
+    /// Assigns the text value on the winning text of the popup to match the given result of the spin
+    /// </summary>
+    /// <param name="popup"></param>
+    /// <param name="winnerName"></param>
 	public void AssignWinningText(Panel popup, string winnerName)
 	{
 		RichTextLabel winText = popup.GetChild<RichTextLabel>(0);
@@ -50,6 +55,11 @@ public partial class PopupManager : Control
     //		GENERAL LOGIC
     // --------------------------------
 
+    /// <summary>
+    /// Creates a popup of the given type
+    /// </summary>
+    /// <param name="popup"></param>
+    /// <returns>The panel created</returns>
     public Panel CreatePopup(PackedScene popup)
     {
         this.Visible = true;
@@ -59,6 +69,10 @@ public partial class PopupManager : Control
         return newPopup;
     }
 
+    /// <summary>
+    /// Closes the given popup and sets its visibility to false
+    /// </summary>
+    /// <param name="popupToRemove"></param>
     public void ClosePopup(Control popupToRemove)
     {
         this.Visible = false;

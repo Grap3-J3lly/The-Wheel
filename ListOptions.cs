@@ -3,15 +3,30 @@ using System.Collections.Generic;
 
 public partial class ListOptions : OptionButton
 {
-	OptionManager optionManager;
+    // --------------------------------
+    //			VARIABLES	
+    // --------------------------------
 
-	public override void _Ready()
+    OptionManager optionManager;
+
+    // --------------------------------
+    //		STANDARD FUNCTIONS	
+    // --------------------------------
+
+    public override void _Ready()
 	{
 		optionManager = OptionManager.Instance;
 		LoadLists();
 	}
 
-	public void LoadLists()
+    // --------------------------------
+    //			LOAD LOGIC	
+    // --------------------------------
+
+    /// <summary>
+    /// Populates the list options on this object using all appropriate save files
+    /// </summary>
+    public void LoadLists()
 	{
 		List<string> saveFiles = optionManager.GetSaveFiles();
 

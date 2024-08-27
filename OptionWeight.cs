@@ -3,24 +3,38 @@ using System;
 
 public partial class OptionWeight : LineEdit
 {
-	OptionManager optionManager;
-	Option optionParent;
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
+    // --------------------------------
+    //			VARIABLES	
+    // --------------------------------
+
+    private OptionManager optionManager;
+	private Option optionParent;
+
+    // --------------------------------
+    //		STANDARD FUNCTIONS	
+    // --------------------------------
+    public override void _Ready()
 	{
 		optionManager = OptionManager.Instance;
-		optionParent = (Option)GetParentControl().GetParentControl();
+		optionParent = (Option)GetParentControl();
 		
 		this.TextChanged += UpdateOptionWeight;
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
         this.Editable = !optionManager.WheelSpinning && optionParent.OptionEnabled;
 	}
 
-	public void UpdateOptionWeight(string newText)
+    // --------------------------------
+    //			WEIGHT LOGIC	
+    // --------------------------------
+
+	/// <summary>
+	/// Attempts to assign the text in the weight field as an integer, before refreshing the wheel
+	/// </summary>
+	/// <param name="newText"></param>
+    public void UpdateOptionWeight(string newText)
 	{
 		if(int.TryParse(this.Text, out int result))
 		{
@@ -29,6 +43,9 @@ public partial class OptionWeight : LineEdit
         optionManager.WheelProgressParent.EmitSignal(WheelProgress.SignalName.WheelProgressUpdate, true);
     }
 
+	/// <summary>
+	/// Assigns the text in the weight field to the value on the option, before refreshing the wheel
+	/// </summary>
 	public void UpdateOptionWeightField()
 	{
 		this.Text = optionParent.OptionWeight.ToString();

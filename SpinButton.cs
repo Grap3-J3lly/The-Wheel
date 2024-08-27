@@ -1,26 +1,29 @@
 using Godot;
-using System;
 
 public partial class SpinButton : Button 
 {
-	[Export]
+    // --------------------------------
+    //			VARIABLES	
+    // --------------------------------
+
+    [Export]
 	private Control wheel;
 	[Export]
 	private double maxTime = 3d;
 	[Export]
 	private float speed = .75f;
-	//[Export]
-	//private Control popupArea;
 
-	private OptionManager optionManager;	
+    private OptionManager optionManager;	
 	private double timer;
 	private double slowDownValue;
 	private bool startRotation = false;
 	private float randomAngle;
 	private float extraPerAngle = 0;
 
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
+    // --------------------------------
+    //		STANDARD FUNCTIONS	
+    // --------------------------------
+    public override void _Ready()
 	{
 		base._Ready();
 		optionManager = OptionManager.Instance;
@@ -29,14 +32,20 @@ public partial class SpinButton : Button
 		slowDownValue = timer;
     }
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
 		base._Process(delta);
 		HandleWheelSpin(delta);
 	}
 
-	private void PressButton()
+    // --------------------------------
+    //			BUTTON LOGIC	
+    // --------------------------------
+
+	/// <summary>
+	/// If the wheel isn't spinning, rests the timer, grabs a random value to rotate the wheel by, and assigns necessary values to true to begin wheel spinning
+	/// </summary>
+    private void PressButton()
 	{
 		if(optionManager.WheelSpinning) { return; }
 		timer = 0d;
@@ -49,47 +58,94 @@ public partial class SpinButton : Button
 		optionManager.WheelSpinning = true;
     }
 
+	/// <summary>
+	/// Runs on _Process, handles all wheel spinning logic, such as speeding up, slowing down, and selecting a winner
+	/// </summary>
+	/// <param name="delta"></param>
 	private void HandleWheelSpin(double delta)
 	{
 		if(optionManager.WheelSpinning)
 		{
-            if (startRotation && timer < maxTime)
-            {
-                timer += delta;
-                wheel.RotationDegrees += speed * (float)timer;
-            }
-            if (timer >= maxTime)
-            {
-                startRotation = false;
-                slowDownValue = timer;
-                timer = 0;
-            }
-            if (slowDownValue > 0)
-            {
-                wheel.RotationDegrees += speed * (float)slowDownValue + (extraPerAngle * (float)delta);
-                slowDownValue -= delta;
-            }
-            if (!startRotation && slowDownValue <= 0)
-            {
-                optionManager.WheelSpinning = false;
-                string winnerName = DecideWinner();
+            // Speeding up the wheel
+            WheelSpeedingUp(delta);
 
-				if(winnerName != "")
-				{
-                    Panel result = PopupManager.Instance.CreatePopup(PopupManager.Instance.SelectedOptionPopup);
-					PopupManager.Instance.AssignWinningText(result, winnerName);
-                }
-				else
-				{
-					GD.PushError(winnerName, "DecideWinner() not returning correct name value");
-				}
+			// Apex of wheel speed
+			WheelAtApexSpeed();
 
+			// Slowing down the wheel
+			WheelSlowingDown(delta);
+            
+			// Wheel has come to a stop, determine Winner
+            SelectingWinner();
+        }
+    }
 
+    /// <summary>
+    /// Handles logic for when the wheel is speeding up, such as updating the timer and the amount that the wheel is rotating
+    /// </summary>
+    /// <param name="delta"></param>
+    private void WheelSpeedingUp(double delta)
+	{
+        if (startRotation && timer < maxTime)
+        {
+			timer += delta;
+			wheel.RotationDegrees += speed * (float)timer;
+        }
+    }
+
+	/// <summary>
+	/// Handles the logic for when the wheel is at it's apex speed, such as updating the tracker values, storing the timer value and reseting the timer for later
+	/// </summary>
+	private void WheelAtApexSpeed()
+	{
+        if (timer >= maxTime)
+        {
+            startRotation = false;
+            slowDownValue = timer;
+            timer = 0;
+        }
+    }
+
+	/// <summary>
+	/// Handles the logic for when the wheel is slowing down, such as decreasing the rotation speed, and introducing the random value calculated earlier
+	/// </summary>
+	/// <param name="delta"></param>
+	private void WheelSlowingDown(double delta)
+	{
+        if (slowDownValue > 0)
+        {
+            wheel.RotationDegrees += speed * (float)slowDownValue + (extraPerAngle * (float)delta);
+            slowDownValue -= delta;
+        }
+    }
+
+	/// <summary>
+	/// Handles the logic for selecting a winner, such as deciding the winner and opening the popup
+	/// </summary>
+	private void SelectingWinner()
+	{
+        if (!startRotation && slowDownValue <= 0)
+        {
+            optionManager.WheelSpinning = false;
+            string winnerName = DecideWinner();
+
+            if (winnerName != "")
+            {
+                Panel result = PopupManager.Instance.CreatePopup(PopupManager.Instance.SelectedOptionPopup);
+                PopupManager.Instance.AssignWinningText(result, winnerName);
+            }
+            else
+            {
+                GD.PushError(winnerName, "DecideWinner() not returning correct name value");
             }
         }
     }
 
-	private string DecideWinner()
+    /// <summary>
+    /// Determines the winning option by running through all options and determining which rotation overlaps with the wheel's final rotation
+    /// </summary>
+    /// <returns>The name of the winnning option</returns>
+    private string DecideWinner()
 	{
 		float currentRotationDegrees = 360 - (wheel.RotationDegrees % 360);
 		foreach(Option option in optionManager.CreatedOptions)

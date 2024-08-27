@@ -1,4 +1,5 @@
 using Godot;
+using System;
 using System.Collections.Generic;
 
 public partial class CustomizationManager : Control
@@ -7,6 +8,7 @@ public partial class CustomizationManager : Control
     //			VARIABLES	
     // --------------------------------
 
+    private OptionManager optionManager;
     private List<ColorPickerButton> colorPickerButtons = new List<ColorPickerButton>();
 
     // Color Picker Buttons
@@ -27,6 +29,7 @@ public partial class CustomizationManager : Control
     [Export]
     private ColorPickerButton popupFontColor;
 
+    // Various Themes
     [Export]
     private Theme popupBackgroundTheme;
     [Export]
@@ -36,7 +39,6 @@ public partial class CustomizationManager : Control
     [Export]
     private Theme wheelButtonTheme;
 
-    private OptionManager optionManager;
 
     // --------------------------------
     //		    PROPERTIES	
@@ -51,9 +53,7 @@ public partial class CustomizationManager : Control
 
     public override void _Ready()
 	{
-        base._Ready();
-        Instance = this;
-        optionManager = OptionManager.Instance;
+        base._Ready();        
         Setup();
     }
 
@@ -61,8 +61,13 @@ public partial class CustomizationManager : Control
     //		    SETUP LOGIC
     // --------------------------------
 
+    /// <summary>
+    /// Handles Starting Initialization and Misc. Setup Logic
+    /// </summary>
     private void Setup()
     {
+        Instance = this;
+        optionManager = OptionManager.Instance;
         PopupManager.Instance.IsCustomizationOpen = true;
         AssignInitialPickerColors();
         AttachListeners();
@@ -70,6 +75,9 @@ public partial class CustomizationManager : Control
         PopulateColorList();
     }
 
+    /// <summary>
+    /// Assigns initial colors to designated colior picker buttons
+    /// </summary>
     private void AssignInitialPickerColors()
     {
         generalBackgroundColor.Color = optionManager.ApplicationBackground.Color;
@@ -82,6 +90,9 @@ public partial class CustomizationManager : Control
         popupFontColor.Color = GetPopupFontColor();
     }
 
+    /// <summary>
+    /// Attaches proper logic to each color picker's ColorChanged event listener
+    /// </summary>
     private void AttachListeners()
     {
         generalBackgroundColor.ColorChanged += ChangeGeneralBackgroundColor;
@@ -94,6 +105,9 @@ public partial class CustomizationManager : Control
         popupFontColor.ColorChanged += ChangePopupFontColor;
     }
 
+    /// <summary>
+    /// Populates the list of color pickers if empty
+    /// </summary>
     private void PopulateColorPickerList()
     {
         if(colorPickerButtons.Count > 0)
@@ -110,6 +124,9 @@ public partial class CustomizationManager : Control
         colorPickerButtons.Add(popupFontColor);
     }
 
+    /// <summary>
+    /// Assigns current colors to each color picker button
+    /// </summary>
     private void PopulateColorList()
     {
         if (optionManager.Colors.Count == 0) return;
@@ -124,6 +141,10 @@ public partial class CustomizationManager : Control
         optionManager.Colors[7] = popupFontColor.Color;
     }
 
+    /// <summary>
+    /// Given a list of colors of the same size as the color picker list, assigns color to each color picker button and updates the corresponding application element
+    /// </summary>
+    /// <param name="assignmentColors"></param>
     public void AssignColorsToList(List<Color> assignmentColors)
     {
         if(assignmentColors.Count < colorPickerButtons.Count)
@@ -138,7 +159,11 @@ public partial class CustomizationManager : Control
         ManuallyRunListeners(assignmentColors);
     }
 
-    public void ManuallyRunListeners(List<Color> newColors)
+    /// <summary>
+    /// Updates all potential application elements with the given list of colors
+    /// </summary>
+    /// <param name="newColors"></param>
+    private void ManuallyRunListeners(List<Color> newColors)
     {
         ChangeGeneralBackgroundColor(newColors[0]);
         ChangeWheelPrimaryColor(newColors[1]);
@@ -169,12 +194,20 @@ public partial class CustomizationManager : Control
     //		COLOR PICKER LOGIC
     // --------------------------------
 
+    /// <summary>
+    /// Assigns the application background color and the corresponding Color list element for future save data
+    /// </summary>
+    /// <param name="color"></param>
     private void ChangeGeneralBackgroundColor(Color color)
     {
         optionManager.ApplicationBackground.Color = color;
         optionManager.Colors[0] = color;
     }
 
+    /// <summary>
+    /// Assigns the new primary color value, refreshes the wheel, and updates the corresponding Color list element for future save data
+    /// </summary>
+    /// <param name="color"></param>
     private void ChangeWheelPrimaryColor(Color color)
     {
         optionManager.PrimaryColor = color;
@@ -182,6 +215,10 @@ public partial class CustomizationManager : Control
         optionManager.Colors[1] = color;
     }
 
+    /// <summary>
+    /// Assigns the new secondary color value, refreshes the wheel, and updates the corresponding Color list element for future save data
+    /// </summary>
+    /// <param name="color"></param>
     private void ChangeWheelSecondaryColor(Color color)
     {
         optionManager.SecondaryColor = color;
@@ -189,30 +226,50 @@ public partial class CustomizationManager : Control
         optionManager.Colors[2] = color;
     }
 
+    /// <summary>
+    /// Assigns the wheel button color value and updates the corresponding Color list element for future save data
+    /// </summary>
+    /// <param name="color"></param>
     private void ChangeWheelButtonColor(Color color)
     {
         SetWheelButtonColor(color);
         optionManager.Colors[3] = color;
     }
 
+    /// <summary>
+    /// Assigns the list background color value and updates the corresponding Color list element for future save data
+    /// </summary>
+    /// <param name="color"></param>
     private void ChangeListBackgroundColor(Color color)
     {
         optionManager.ListBackground.Color = color;
         optionManager.Colors[4] = color;
     }
 
+    /// <summary>
+    /// Assigns the list font color value and updates the corresponding Color list element for future save data
+    /// </summary>
+    /// <param name="color"></param>
     private void ChangeListFontColor(Color color)
     {
         SetListFontColor(color);
         optionManager.Colors[5] = color;
     }
 
+    /// <summary>
+    /// Assigns the popup background color value and updates the corresponding Color list element for future save data
+    /// </summary>
+    /// <param name="color"></param>
     private void ChangePopupBackgroundColor(Color color)
     {
         SetPopupBackgroundColor(color);
         optionManager.Colors[6] = color;
     }
 
+    /// <summary>
+    /// Assigns the popup font color value and updates the corresponding Color list element for future save data
+    /// </summary>
+    /// <param name="color"></param>
     private void ChangePopupFontColor(Color color)
     {
         SetPopupFontColor(color);
@@ -223,53 +280,20 @@ public partial class CustomizationManager : Control
     //			THEME LOGIC
     // --------------------------------
 
-    private Color GetPopupBackgroundColor()
-    {
-        StyleBoxFlat styleBoxFlat = (StyleBoxFlat)popupBackgroundTheme.Get("Panel/styles/panel");
-        Color color = (Color)styleBoxFlat.Get("bg_color");
-        return color;
-    }
-
-    private void SetPopupBackgroundColor(Color color)
-    {
-        StyleBoxFlat styleBoxFlat = (StyleBoxFlat)popupBackgroundTheme.Get("Panel/styles/panel");
-        styleBoxFlat.Set("bg_color", color);
-    }
-
-    private Color GetPopupFontColor()
-    {
-        return (Color)popupFontTheme.Get("Button/colors/font_color");
-    }
-
-    private void SetPopupFontColor(Color color)
-    {
-        popupFontTheme.Set("RichTextLabel/colors/default_color", color);
-        
-        popupFontTheme.Set("Button/colors/font_color", color);
-        popupFontTheme.Set("Button/colors/font_hover_color", color.Darkened(.25f));
-        popupFontTheme.Set("Button/colors/font_pressed_color", color.Darkened(.5f));
-    }
-
-    private Color GetListFontColor()
-    {
-        Color fontColor = (Color)listFontTheme.Get("LineEdit/colors/font_color");
-        return fontColor;
-    }
-
-    private void SetListFontColor(Color color)
-    {
-        listFontTheme.Set("LineEdit/colors/font_color", color);
-        listFontTheme.Set("TextEdit/colors/font_color", color);
-        listFontTheme.Set("TextEdit/colors/font_placeholder_color", new Color(color, color.A * .6f));
-        listFontTheme.Set("RichTextLabel/colors/default_color", color);
-    }
-
+    /// <summary>
+    /// Grabs and returns the desired color from the wheel button theme
+    /// </summary>
+    /// <returns></returns>
     private Color GetWheelButtonColor()
     {
         StyleBoxFlat styleBoxFlat = (StyleBoxFlat)wheelButtonTheme.Get("Button/styles/normal");
         return (Color)styleBoxFlat.Get("bg_color");
     }
 
+    /// <summary>
+    /// Assigns the given color to all elements of the wheel button theme
+    /// </summary>
+    /// <param name="color"></param>
     private void SetWheelButtonColor(Color color)
     {
         StyleBoxFlat normalResult = (StyleBoxFlat)wheelButtonTheme.Get("Button/styles/normal");
@@ -280,5 +304,69 @@ public partial class CustomizationManager : Control
 
         StyleBoxFlat pressedResult = (StyleBoxFlat)wheelButtonTheme.Get("Button/styles/pressed");
         pressedResult.Set("bg_color", color.Darkened(.5f));
+    }
+
+    /// <summary>
+    /// Grabs and returns the desired color from the list font theme
+    /// </summary>
+    /// <returns></returns>
+    private Color GetListFontColor()
+    {
+        Color fontColor = (Color)listFontTheme.Get("LineEdit/colors/font_color");
+        return fontColor;
+    }
+
+    /// <summary>
+    /// Assigns the given color to all elements of the list font theme
+    /// </summary>
+    /// <param name="color"></param>
+    private void SetListFontColor(Color color)
+    {
+        listFontTheme.Set("LineEdit/colors/font_color", color);
+        listFontTheme.Set("TextEdit/colors/font_color", color);
+        listFontTheme.Set("TextEdit/colors/font_placeholder_color", new Color(color, color.A * .6f));
+        listFontTheme.Set("RichTextLabel/colors/default_color", color);
+    }
+
+    /// <summary>
+    /// Grabs and returns the desired color from the popup background theme
+    /// </summary>
+    /// <returns></returns>
+    private Color GetPopupBackgroundColor()
+    {
+        StyleBoxFlat styleBoxFlat = (StyleBoxFlat)popupBackgroundTheme.Get("Panel/styles/panel");
+        Color color = (Color)styleBoxFlat.Get("bg_color");
+        return color;
+    }
+    /// <summary>
+    /// Assigns the given color to the popup background theme
+    /// </summary>
+    /// <param name="color"></param>
+    private void SetPopupBackgroundColor(Color color)
+    {
+        StyleBoxFlat styleBoxFlat = (StyleBoxFlat)popupBackgroundTheme.Get("Panel/styles/panel");
+        styleBoxFlat.Set("bg_color", color);
+    }
+
+    /// <summary>
+    /// Grabs and returns the desired color from the popup font theme
+    /// </summary>
+    /// <returns></returns>
+    private Color GetPopupFontColor()
+    {
+        return (Color)popupFontTheme.Get("Button/colors/font_color");
+    }
+
+    /// <summary>
+    /// Assigns the given color to all elements of the popup font theme
+    /// </summary>
+    /// <param name="color"></param>
+    private void SetPopupFontColor(Color color)
+    {
+        popupFontTheme.Set("RichTextLabel/colors/default_color", color);
+
+        popupFontTheme.Set("Button/colors/font_color", color);
+        popupFontTheme.Set("Button/colors/font_hover_color", color.Darkened(.25f));
+        popupFontTheme.Set("Button/colors/font_pressed_color", color.Darkened(.5f));
     }
 }

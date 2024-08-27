@@ -3,20 +3,33 @@ using System.Collections.Generic;
 
 public partial class CustomizeButton : Button
 {
-	[Export]
+    // --------------------------------
+    //			VARIABLES	
+    // --------------------------------
+    [Export]
 	private Panel menuBackground;
 
 	[Export]
 	private PackedScene customizationAreaTemplate;
 
-	public override void _Ready()
+    // --------------------------------
+    //		STANDARD FUNCTIONS	
+    // --------------------------------
+
+    public override void _Ready()
 	{
 		base._Ready();
 		this.Pressed += OnButtonPressed;
 	}
 
+    // --------------------------------
+    //			BUTTON LOGIC	
+    // --------------------------------
 
-	public void OnButtonPressed()
+	/// <summary>
+	/// Resize the menu background to fit the customization elements, instantiate the Customization Area
+	/// </summary>
+    public void OnButtonPressed()
 	{
 		if(PopupManager.Instance.IsCustomizationOpen) { return; }
 		menuBackground.Size = new Vector2(menuBackground.Size.X * 2, menuBackground.Size.Y);

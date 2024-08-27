@@ -3,18 +3,33 @@ using System;
 
 public partial class RemoveButton : Button
 {
-	private Option optionParent;
+    // --------------------------------
+    //			VARIABLES	
+    // --------------------------------
+
+    private Option optionParent;
 	private OptionManager optionManager;
 
-	public override void _Ready()
+    // --------------------------------
+    //			STANDARD LOGIC	
+    // --------------------------------
+
+    public override void _Ready()
 	{
 		base._Ready();
 		this.Pressed += PressButton;
 		optionManager = OptionManager.Instance;
-		optionParent = (Option)GetParentControl().GetParentControl();
+		optionParent = (Option)GetParentControl();
 	}
 
-	private void PressButton()
+    // --------------------------------
+    //			BUTTON LOGIC	
+    // --------------------------------
+
+	/// <summary>
+	/// If the wheel isn't spinning, removes the current button from whichever list it's in (disabled or otherwise), before deleting the entire option and refreshing the wheel
+	/// </summary>
+    private void PressButton()
 	{
         if (optionManager.WheelSpinning || optionManager.CreatedOptions.Count <= 1) { return; }
 

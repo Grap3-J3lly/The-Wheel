@@ -3,13 +3,23 @@ using System;
 
 public partial class OpenPopupButton : Button
 {
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
+    // --------------------------------
+    //		STANDARD FUNCTIONS
+    // --------------------------------
+
+    public override void _Ready()
 	{
 		this.Pressed += OnButtonPress;
 	}
 
-	private void OnButtonPress()
+    // --------------------------------
+    //			BUTTON LOGIC	
+    // --------------------------------
+
+    /// <summary>
+    /// Creates a Menu Popup
+    /// </summary>
+    private void OnButtonPress()
 	{
 		PopupManager.Instance.CreatePopup(PopupManager.Instance.MenuPopup);
 	}

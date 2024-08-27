@@ -22,20 +22,22 @@ public partial class DisableButton : Button
     //		STANDARD FUNCTIONS	
     // --------------------------------
 
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
 		base._Ready();
 		optionManager = OptionManager.Instance;
 		enabled = true;
-        optionParent = (Option)GetParentControl().GetParentControl();
+        optionParent = (Option)GetParentControl();
 		this.Pressed += PressButton;
 	}
 
     // --------------------------------
-    //		INPUT FUNCTIONS	
+    //		    BUTTON LOGIC	
     // --------------------------------
 
+    /// <summary>
+    /// Enables or disables assigned option based on current enabled value, moving the option to the correct list for tracking, and refreshes the wheel
+    /// </summary>
     private void PressButton()
 	{
         if (optionManager.WheelSpinning) { return; }

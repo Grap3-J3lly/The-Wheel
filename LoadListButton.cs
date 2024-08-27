@@ -3,20 +3,35 @@ using System;
 
 public partial class LoadListButton : Button
 {
-	[Export]
+    // --------------------------------
+    //			VARIABLES	
+    // --------------------------------
+
+    [Export]
 	private CustomizeButton customizeButton;
 	[Export]
 	private OptionButton loadListOptionButton;
 	private OptionManager optionManager;
 
-	public override void _Ready()
+    // --------------------------------
+    //		STANDARD FUNCTIONS	
+    // --------------------------------
+
+    public override void _Ready()
 	{
 		optionManager = OptionManager.Instance;
 		this.Pressed += OnButtonPress;
 
 	}
 
-	private void OnButtonPress()
+    // --------------------------------
+    //			BUTTON LOGIC	
+    // --------------------------------
+
+    /// <summary>
+    /// Opens the customization area before loading in the option selected in the designated OptionButton
+    /// </summary>
+    private void OnButtonPress()
 	{
 		customizeButton.OnButtonPressed();
 		optionManager.LoadGame(loadListOptionButton.Text);
