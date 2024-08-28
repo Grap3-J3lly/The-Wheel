@@ -2,10 +2,12 @@ using Godot;
 
 public partial class SpinButton : Button 
 {
-    // --------------------------------
-    //			VARIABLES	
-    // --------------------------------
+	// --------------------------------
+	//			VARIABLES	
+	// --------------------------------
 
+	[Export]
+	private AudioStreamPlayer audioStreamPlayer;
     [Export]
 	private Control wheel;
 	[Export]
@@ -20,6 +22,14 @@ public partial class SpinButton : Button
 	private float randomAngle;
 	private float extraPerAngle = 0;
 
+	private int polyphonyCount = 1;
+	private float audioTimer = 0;
+	[Export]
+	private float audioDecrementer = .005f;
+	private float currentAudioDecrementer;
+	[Export]
+	private float maxAudioTimer = 1;
+
     // --------------------------------
     //		STANDARD FUNCTIONS	
     // --------------------------------
@@ -31,7 +41,7 @@ public partial class SpinButton : Button
 		timer = 0.0d;
 		slowDownValue = timer;
 
-		optionManager.AudioStreamPlayer.MaxPolyphony = 2;
+		optionManager.AudioStreamPlayer.MaxPolyphony = polyphonyCount;
     }
 
 	public override void _Process(double delta)
@@ -58,6 +68,8 @@ public partial class SpinButton : Button
 		extraPerAngle = randomAngle / (float)maxTime;
 
 		optionManager.WheelSpinning = true;
+		audioTimer = maxAudioTimer / optionManager.CreatedOptions.Count;
+		currentAudioDecrementer = audioDecrementer * optionManager.CreatedOptions.Count;
     }
 
 	/// <summary>
@@ -79,6 +91,7 @@ public partial class SpinButton : Button
             
 			// Wheel has come to a stop, determine Winner
             SelectingWinner();
+			HandleAudio();
         }
     }
 
@@ -92,12 +105,14 @@ public partial class SpinButton : Button
         {
 			timer += delta;
 			wheel.RotationDegrees += speed * (float)timer;
+			currentAudioDecrementer += (float)delta;
 
-			GD.Print(Mathf.RoundToInt(timer));
-			optionManager.AudioStreamPlayer.MaxPolyphony = Mathf.RoundToInt(timer);
-            optionManager.AudioStreamPlayer.Play();
-        }
-    }
+			if (Mathf.RoundToInt(timer) > polyphonyCount)
+			{
+                optionManager.AudioStreamPlayer.MaxPolyphony = Mathf.RoundToInt(timer);
+			}
+		}
+	}
 
 	/// <summary>
 	/// Handles the logic for when the wheel is at it's apex speed, such as updating the tracker values, storing the timer value and reseting the timer for later
@@ -122,7 +137,11 @@ public partial class SpinButton : Button
         {
             wheel.RotationDegrees += speed * (float)slowDownValue + (extraPerAngle * (float)delta);
             slowDownValue -= delta;
-            --optionManager.AudioStreamPlayer.MaxPolyphony;
+            currentAudioDecrementer -= (float)delta;
+            if (Mathf.RoundToInt(slowDownValue) < polyphonyCount)
+            {
+                optionManager.AudioStreamPlayer.MaxPolyphony = Mathf.RoundToInt(slowDownValue);
+            }
         }
     }
 
@@ -166,4 +185,17 @@ public partial class SpinButton : Button
 		}
 		return "";
 	}
+
+	/// <summary>
+	/// Determine if any options have passed the ticker and plays corresponding sound effect
+	/// </summary>
+	private void HandleAudio()
+	{
+		if(audioTimer <= 0)
+		{
+			optionManager.AudioStreamPlayer.Play();
+			audioTimer = maxAudioTimer;
+		}
+		audioTimer -= currentAudioDecrementer;
+    }
 }
