@@ -60,6 +60,10 @@ public partial class OptionManager : Node
 	[Export]
 	private AudioStreamPlayer audioStreamPlayer;
 
+	// Twitch Variables
+	[Export]
+	private ColorRect twitchInfoArea;
+
     // --------------------------------
     //			PROPERTIES	
     // --------------------------------
@@ -98,6 +102,9 @@ public partial class OptionManager : Node
 	// Audio Info
 	public AudioStreamPlayer AudioStreamPlayer { get => audioStreamPlayer; }
 
+	// Twitch Variables
+	public ColorRect TwitchInfoArea { get => twitchInfoArea; }
+
     // --------------------------------
     //		STANDARD FUNCTIONS
     // --------------------------------
@@ -108,6 +115,7 @@ public partial class OptionManager : Node
 		Instance = this;
 		SetListToDefaultValues(colors);
 		SetListToDefaultValues(defaultColors);
+		twitchInfoArea.Visible = false;
 	}
 
     // --------------------------------

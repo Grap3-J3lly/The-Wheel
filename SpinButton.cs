@@ -70,6 +70,7 @@ public partial class SpinButton : Button
 		optionManager.WheelSpinning = true;
 		audioTimer = maxAudioTimer / optionManager.CreatedOptions.Count;
 		currentAudioDecrementer = audioDecrementer * optionManager.CreatedOptions.Count;
+		optionManager.TwitchInfoArea.Visible = false;
     }
 
 	/// <summary>

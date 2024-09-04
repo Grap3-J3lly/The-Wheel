@@ -42,6 +42,7 @@ public partial class ToggleChatInputButton : Button
         {
             users.Clear();
         }
+        optionManager.TwitchInfoArea.Visible = toggleChatInput;
     }
 
     // --------------------------------
@@ -62,7 +63,7 @@ public partial class ToggleChatInputButton : Button
 
         foreach (Option option in optionManager.CreatedOptions)
         {
-            if(option.OptionName.ToLower() == message.ToLower() && !users.Contains(sender)) 
+            if((message.ToLower()).Contains(option.OptionName.ToLower()) && !users.Contains(sender)) 
             {
                 users.Add(sender);
                 ++option.OptionWeight;

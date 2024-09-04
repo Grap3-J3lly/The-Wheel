@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://8cgspyr8gob4"]
+[gd_scene load_steps=20 format=3 uid="uid://8cgspyr8gob4"]
 
 [ext_resource type="Theme" uid="uid://cpm3ymheyptc0" path="res://WheelButtonTheme.tres" id="2_3bb4o"]
 [ext_resource type="Script" path="res://OptionManager.cs" id="2_yv2g8"]
@@ -15,12 +15,14 @@
 [ext_resource type="Script" path="res://PopupManager.cs" id="9_4p5xn"]
 [ext_resource type="Script" path="res://ToggleChatInputButton.cs" id="10_05f66"]
 [ext_resource type="PackedScene" uid="uid://cwucnn6t72ta5" path="res://selected_option_popup_template.tscn" id="10_fm5px"]
+[ext_resource type="Theme" uid="uid://d3dvb7e4l28py" path="res://PopupBackgroundTheme.tres" id="10_w6lq7"]
+[ext_resource type="Theme" uid="uid://rxn0ric1nvrl" path="res://PopupFontTheme.tres" id="11_2pqje"]
 [ext_resource type="PackedScene" uid="uid://b1lc8f4e26bea" path="res://menu_popup_template.tscn" id="11_osn7t"]
 [ext_resource type="Script" path="res://ClearOptionWeightsButton.cs" id="12_654ys"]
 
 [node name="Node2D" type="Node2D"]
 
-[node name="OptionManager" type="Node" parent="." node_paths=PackedStringArray("applicationBackground", "listBackground", "spinButton", "optionParent", "audioStreamPlayer")]
+[node name="OptionManager" type="Node" parent="." node_paths=PackedStringArray("applicationBackground", "listBackground", "spinButton", "optionParent", "audioStreamPlayer", "twitchInfoArea")]
 script = ExtResource("2_yv2g8")
 primaryColor = Color(0.626637, 0.386466, 0.935588, 1)
 secondaryColor = Color(0.853281, 0.454139, 0.954567, 1)
@@ -38,12 +40,14 @@ default_listFontColor = Color(1, 1, 1, 1)
 default_popupBackgroundColor = Color(1, 0.941, 0.667, 1)
 default_popupFontColor = Color(0.357, 0.22, 0.392, 1)
 audioStreamPlayer = NodePath("../AudioManager")
+twitchInfoArea = NodePath("../CanvasLayer/TwitchInfoArea")
 
 [node name="TwitchManager" type="Node" parent="."]
 script = ExtResource("3_16l3w")
 
 [node name="AudioManager" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_a0jfc")
+volume_db = 24.0
 max_polyphony = 10
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -120,6 +124,35 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(66, 57)
 texture = ExtResource("6_84g8d")
+
+[node name="TwitchInfoArea" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -650.0
+offset_top = -150.0
+offset_right = -50.0
+offset_bottom = -50.0
+grow_horizontal = 0
+grow_vertical = 0
+pivot_offset = Vector2(600, 100)
+theme = ExtResource("10_w6lq7")
+color = Color(1, 0.941176, 0.666667, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/TwitchInfoArea"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.025
+anchor_top = 0.1
+anchor_right = 0.975
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("11_2pqje")
+theme_override_font_sizes/normal_font_size = 17
+text = "Twitch Chat is Now Enabled! Type in the name of any option on the list to vote and change the weight of said option. Voting is NOT case sensitive, only one vote per user will register with the system!"
 
 [node name="OptionArea" type="Control" parent="CanvasLayer"]
 layout_mode = 3

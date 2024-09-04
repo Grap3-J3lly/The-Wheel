@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b1lc8f4e26bea"]
+[gd_scene load_steps=11 format=3 uid="uid://b1lc8f4e26bea"]
 
 [ext_resource type="Script" path="res://CustomizeButton.cs" id="1_lh7j3"]
 [ext_resource type="Theme" uid="uid://d3dvb7e4l28py" path="res://PopupBackgroundTheme.tres" id="1_tjypc"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://ListOptions.cs" id="4_n8vde"]
 [ext_resource type="Script" path="res://LoadListButton.cs" id="5_qlgbo"]
 [ext_resource type="Script" path="res://DeleteButton.cs" id="6_x6u8j"]
+[ext_resource type="Script" path="res://AudioControl.cs" id="7_poh36"]
 
 [node name="MenuBackground" type="Panel"]
 z_index = 6
@@ -134,6 +135,35 @@ custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 script = ExtResource("6_x6u8j")
 listOptions = NodePath("../ListOptions")
+
+[node name="AudioControl" type="Control" parent="MenuItemContainer" node_paths=PackedStringArray("volumeControl")]
+custom_minimum_size = Vector2(0, 55)
+layout_mode = 2
+script = ExtResource("7_poh36")
+volumeControl = NodePath("AudioSlider")
+
+[node name="AudioLabel" type="RichTextLabel" parent="MenuItemContainer/AudioControl"]
+custom_minimum_size = Vector2(75, 25)
+layout_mode = 0
+offset_left = 15.0
+offset_top = -1.0
+offset_right = 95.0
+offset_bottom = 24.0
+size_flags_horizontal = 0
+theme = ExtResource("2_6ym2x")
+bbcode_enabled = true
+text = "VOLUME"
+
+[node name="AudioSlider" type="HSlider" parent="MenuItemContainer/AudioControl"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 0
+offset_left = 45.0
+offset_top = 25.0
+offset_right = 295.0
+offset_bottom = 41.0
+max_value = 1.0
+step = 0.01
+value = 1.0
 
 [node name="CustomizeButton" type="Button" parent="MenuItemContainer" node_paths=PackedStringArray("menuBackground")]
 custom_minimum_size = Vector2(150, 40)
