@@ -7,7 +7,7 @@ public partial class ListOptions : OptionButton
     //			VARIABLES	
     // --------------------------------
 
-    OptionManager optionManager;
+    GameManager gameManager;
 
     // --------------------------------
     //		STANDARD FUNCTIONS	
@@ -15,7 +15,7 @@ public partial class ListOptions : OptionButton
 
     public override void _Ready()
 	{
-		optionManager = OptionManager.Instance;
+		gameManager = GameManager.Instance;
 		LoadLists();
 	}
 
@@ -28,7 +28,7 @@ public partial class ListOptions : OptionButton
     /// </summary>
     public void LoadLists()
 	{
-		List<string> saveFiles = optionManager.GetSaveFiles();
+		List<string> saveFiles = gameManager.GetSaveFiles();
 
 		this.Clear();
 

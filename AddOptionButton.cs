@@ -7,7 +7,7 @@ public partial class AddOptionButton : Button
     //			VARIABLES	
     // --------------------------------
     private List<Control> createdOptions = new List<Control>();
-	private OptionManager optionManager;
+	private GameManager gameManager;
 
     // --------------------------------
     //		STANDARD FUNCTIONS	
@@ -17,7 +17,7 @@ public partial class AddOptionButton : Button
 	{
 		base._Ready();
 		this.Pressed += PressButton;
-		optionManager = OptionManager.Instance;
+		gameManager = GameManager.Instance;
 
 		// Create Default Option
 		PressButton();
@@ -33,11 +33,11 @@ public partial class AddOptionButton : Button
 	/// </summary>
     private void PressButton()
 	{
-		if(optionManager.WheelSpinning) { return; }
+		if(gameManager.WheelSpinning) { return; }
 
-		Control newControl = (Control)optionManager.OptionTemplate.Instantiate();
-		optionManager.OptionParent.AddChild(newControl);
-		optionManager.CreatedOptions.Add((Option)newControl);
-		optionManager.WheelProgressParent.EmitSignal(WheelProgress.SignalName.WheelProgressUpdate, false);
+		Control newControl = (Control)gameManager.OptionTemplate.Instantiate();
+		gameManager.OptionParent.AddChild(newControl);
+		gameManager.CreatedOptions.Add((Option)newControl);
+		gameManager.WheelProgressParent.EmitSignal(WheelProgress.SignalName.WheelProgressUpdate, false);
 	}
 }

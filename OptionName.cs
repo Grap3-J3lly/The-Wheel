@@ -7,7 +7,7 @@ public partial class OptionName : TextEdit
     //			VARIABLES	
     // --------------------------------
 
-    private OptionManager optionManager;
+    private GameManager gameManager;
 	private Option optionParent;
 
     // --------------------------------
@@ -16,7 +16,7 @@ public partial class OptionName : TextEdit
 
     public override void _Ready()
 	{
-		optionManager = OptionManager.Instance;
+		gameManager = GameManager.Instance;
         optionParent = (Option)GetParentControl();
 
         this.TextChanged += UpdateOptionName;
@@ -24,7 +24,7 @@ public partial class OptionName : TextEdit
 
 	public override void _Process(double delta)
 	{
-        this.Editable = !optionManager.WheelSpinning && optionParent.OptionEnabled;
+        this.Editable = !gameManager.WheelSpinning && optionParent.OptionEnabled;
     }
 
     // --------------------------------

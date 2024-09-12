@@ -7,7 +7,7 @@ public partial class OptionWeight : LineEdit
     //			VARIABLES	
     // --------------------------------
 
-    private OptionManager optionManager;
+    private GameManager gameManager;
 	private Option optionParent;
 
     // --------------------------------
@@ -15,7 +15,7 @@ public partial class OptionWeight : LineEdit
     // --------------------------------
     public override void _Ready()
 	{
-		optionManager = OptionManager.Instance;
+		gameManager = GameManager.Instance;
 		optionParent = (Option)GetParentControl();
 		
 		this.TextChanged += UpdateOptionWeight;
@@ -23,7 +23,7 @@ public partial class OptionWeight : LineEdit
 
 	public override void _Process(double delta)
 	{
-        this.Editable = !optionManager.WheelSpinning && optionParent.OptionEnabled;
+        this.Editable = !gameManager.WheelSpinning && optionParent.OptionEnabled;
 	}
 
     // --------------------------------
@@ -40,7 +40,7 @@ public partial class OptionWeight : LineEdit
 		{
 			optionParent.OptionWeight = result;
 		}
-        optionManager.WheelProgressParent.EmitSignal(WheelProgress.SignalName.WheelProgressUpdate, true);
+        gameManager.WheelProgressParent.EmitSignal(WheelProgress.SignalName.WheelProgressUpdate, true);
     }
 
 	/// <summary>
@@ -49,6 +49,6 @@ public partial class OptionWeight : LineEdit
 	public void UpdateOptionWeightField()
 	{
 		this.Text = optionParent.OptionWeight.ToString();
-        optionManager.WheelProgressParent.EmitSignal(WheelProgress.SignalName.WheelProgressUpdate, true);
+        gameManager.WheelProgressParent.EmitSignal(WheelProgress.SignalName.WheelProgressUpdate, true);
     }
 }

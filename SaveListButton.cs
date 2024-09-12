@@ -7,7 +7,7 @@ public partial class SaveListButton : Button
     //			VARIABLES	
     // --------------------------------
 
-	private OptionManager optionManager;
+	private GameManager gameManager;
 
     [Export]
 	private LineEdit listNameField;
@@ -21,7 +21,7 @@ public partial class SaveListButton : Button
     public override void _Ready()
 	{
 		base._Ready();
-		optionManager = OptionManager.Instance;
+		gameManager = GameManager.Instance;
 		this.Pressed += SaveList;
 	}
 
@@ -35,7 +35,13 @@ public partial class SaveListButton : Button
 	/// <returns></returns>
     public string GetListName()
 	{
-		return listNameField.Text;
+		string name = listNameField.Text;
+		if(name == "")
+		{
+			name = listOptions.Text;
+			GD.Print(name);
+		}
+		return name;
 	}
 
 	/// <summary>
@@ -43,8 +49,8 @@ public partial class SaveListButton : Button
 	/// </summary>
 	public void SaveList()
 	{
-		optionManager.ListName = GetListName();
-		optionManager.SaveGame();
+		gameManager.ListName = GetListName();
+		gameManager.SaveGame();
 		listOptions.LoadLists();
 	}
 }

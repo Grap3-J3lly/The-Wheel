@@ -8,7 +8,7 @@ public partial class RemoveButton : Button
     // --------------------------------
 
     private Option optionParent;
-	private OptionManager optionManager;
+	private GameManager gameManager;
 
     // --------------------------------
     //			STANDARD LOGIC	
@@ -18,7 +18,7 @@ public partial class RemoveButton : Button
 	{
 		base._Ready();
 		this.Pressed += PressButton;
-		optionManager = OptionManager.Instance;
+		gameManager = GameManager.Instance;
 		optionParent = (Option)GetParentControl();
 	}
 
@@ -31,19 +31,19 @@ public partial class RemoveButton : Button
 	/// </summary>
     private void PressButton()
 	{
-        if (optionManager.WheelSpinning || optionManager.CreatedOptions.Count <= 1) { return; }
+        if (gameManager.WheelSpinning || gameManager.CreatedOptions.Count <= 1) { return; }
 
-		if(optionManager.CreatedOptions.Contains(optionParent))
+		if(gameManager.CreatedOptions.Contains(optionParent))
 		{
-			optionManager.CreatedOptions.Remove(optionParent);
+			gameManager.CreatedOptions.Remove(optionParent);
 		}	
-		if(optionManager.DisabledOptions.Contains(optionParent))
+		if(gameManager.DisabledOptions.Contains(optionParent))
 		{
-			optionManager.DisabledOptions.Remove(optionParent);
+			gameManager.DisabledOptions.Remove(optionParent);
 		}
 
 		Option.DeleteOption(optionParent);
 
-		optionManager.WheelProgressParent.EmitSignal(WheelProgress.SignalName.WheelProgressUpdate, true);
+		gameManager.WheelProgressParent.EmitSignal(WheelProgress.SignalName.WheelProgressUpdate, true);
 	}
 }

@@ -9,7 +9,7 @@ public partial class DisableButton : Button
 
     private Option optionParent;
 
-	private OptionManager optionManager;
+	private GameManager gameManager;
 	private bool enabled = true;
 
     // --------------------------------
@@ -25,7 +25,7 @@ public partial class DisableButton : Button
     public override void _Ready()
 	{
 		base._Ready();
-		optionManager = OptionManager.Instance;
+		gameManager = GameManager.Instance;
 		enabled = true;
         ButtonPressed = enabled;
         optionParent = (Option)GetParentControl();
@@ -41,22 +41,22 @@ public partial class DisableButton : Button
     /// </summary>
     private void PressButton()
 	{
-        if (optionManager.WheelSpinning) { return; }
+        if (gameManager.WheelSpinning) { return; }
 
         enabled = !enabled;
         optionParent.OptionEnabled = enabled;
         
         if(enabled)
         {
-            optionManager.DisabledOptions.Remove(optionParent);
-            optionManager.CreatedOptions.Add(optionParent);
+            gameManager.DisabledOptions.Remove(optionParent);
+            gameManager.CreatedOptions.Add(optionParent);
         }
         else
         {
-            optionManager.DisabledOptions.Add(optionParent);
-            optionManager.CreatedOptions.Remove(optionParent);
+            gameManager.DisabledOptions.Add(optionParent);
+            gameManager.CreatedOptions.Remove(optionParent);
         }
-        optionManager.WheelProgressParent.EmitSignal(WheelProgress.SignalName.WheelProgressUpdate, true);
+        gameManager.WheelProgressParent.EmitSignal(WheelProgress.SignalName.WheelProgressUpdate, true);
         ButtonPressed = enabled;
     }
 }

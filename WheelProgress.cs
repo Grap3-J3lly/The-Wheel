@@ -13,7 +13,7 @@ public partial class WheelProgress : Control
 	[Export]
 	private PackedScene progressBarTemplate;
 
-	private	OptionManager optionManager;
+	private	GameManager gameManager;
 	private List<Option> options = new List<Option>();
 
     // --------------------------------
@@ -23,9 +23,9 @@ public partial class WheelProgress : Control
     public override void _Ready()
 	{
 		base._Ready();
-		optionManager = OptionManager.Instance;
-		optionManager.WheelProgressParent = this;
-		options = optionManager.CreatedOptions;
+		gameManager = GameManager.Instance;
+		gameManager.WheelProgressParent = this;
+		options = gameManager.CreatedOptions;
 				
 		WheelProgressUpdate += CreateProgressBars;
 	}

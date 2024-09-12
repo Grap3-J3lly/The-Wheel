@@ -11,7 +11,7 @@ public partial class LoadListButton : Button
 	private CustomizeButton customizeButton;
 	[Export]
 	private OptionButton loadListOptionButton;
-	private OptionManager optionManager;
+	private GameManager gameManager;
 
     // --------------------------------
     //		STANDARD FUNCTIONS	
@@ -19,7 +19,7 @@ public partial class LoadListButton : Button
 
     public override void _Ready()
 	{
-		optionManager = OptionManager.Instance;
+		gameManager = GameManager.Instance;
 		this.Pressed += OnButtonPress;
 
 	}
@@ -34,6 +34,6 @@ public partial class LoadListButton : Button
     private void OnButtonPress()
 	{
 		customizeButton.OnButtonPressed();
-		optionManager.LoadGame(loadListOptionButton.Text);
+		gameManager.LoadGame(loadListOptionButton.Text);
 	}
 }

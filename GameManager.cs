@@ -2,7 +2,7 @@ using Godot;
 using Godot.Collections;
 using System.Collections.Generic;
 
-public partial class OptionManager : Node
+public partial class GameManager : Node
 {
     // --------------------------------
 	//			VARIABLES	
@@ -68,7 +68,7 @@ public partial class OptionManager : Node
     //			PROPERTIES	
     // --------------------------------
 
-    public static OptionManager Instance { get; private set; }
+    public static GameManager Instance { get; private set; }
 
 	public List<Color> Colors { get => colors; set => colors = value; }
     public List<Option> CreatedOptions {  get { return createdOptions; } }

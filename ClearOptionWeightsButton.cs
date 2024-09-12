@@ -6,7 +6,7 @@ public partial class ClearOptionWeightsButton : Button
     //			VARIABLES	
     // --------------------------------
 
-    private OptionManager optionManager;
+    private GameManager gameManager;
 
     // --------------------------------
     //		STANDARD FUNCTIONS	
@@ -14,7 +14,7 @@ public partial class ClearOptionWeightsButton : Button
 
     public override void _Ready()
 	{
-		optionManager = OptionManager.Instance;
+		gameManager = GameManager.Instance;
 		this.Pressed += OnButtonPress;
 	}
 
@@ -27,11 +27,11 @@ public partial class ClearOptionWeightsButton : Button
     /// </summary>
     private void OnButtonPress()
 	{
-		foreach (Option option in optionManager.CreatedOptions)
+		foreach (Option option in gameManager.CreatedOptions)
 		{
             option.ResetDefaultWeight();
         }
-		foreach(Option option in optionManager.DisabledOptions)
+		foreach(Option option in gameManager.DisabledOptions)
 		{
             option.ResetDefaultWeight();
         }

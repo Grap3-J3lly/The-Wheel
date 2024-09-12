@@ -9,7 +9,7 @@ public partial class ToggleChatInputButton : Button
 
     [Export]
     private TwitchChatFeed feed;
-    private OptionManager optionManager;
+    private GameManager gameManager;
     private bool toggleChatInput = false;
     private List<string> users = new List<string>();
 
@@ -19,11 +19,16 @@ public partial class ToggleChatInputButton : Button
 
     public override void _Ready()
     {
+        if(OS.GetName() == "Android")
+        {
+            Visible = false;
+        }
+
         base._Ready();
         this.Pressed += OnButtonPress;
         feed.listener += OnMessage;
 
-        optionManager = OptionManager.Instance;
+        gameManager = GameManager.Instance;
     }
 
     // --------------------------------
@@ -42,7 +47,7 @@ public partial class ToggleChatInputButton : Button
         {
             users.Clear();
         }
-        optionManager.TwitchInfoArea.Visible = toggleChatInput;
+        gameManager.TwitchInfoArea.Visible = toggleChatInput;
     }
 
     // --------------------------------
@@ -61,7 +66,7 @@ public partial class ToggleChatInputButton : Button
             return;
         }
 
-        foreach (Option option in optionManager.CreatedOptions)
+        foreach (Option option in gameManager.CreatedOptions)
         {
             if((message.ToLower()).Contains(option.OptionName.ToLower()) && !users.Contains(sender)) 
             {

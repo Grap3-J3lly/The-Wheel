@@ -8,7 +8,7 @@ public partial class CustomizationManager : Control
     //			VARIABLES	
     // --------------------------------
 
-    private OptionManager optionManager;
+    private GameManager gameManager;
     private List<ColorPickerButton> colorPickerButtons = new List<ColorPickerButton>();
 
     // Color Picker Buttons
@@ -67,7 +67,7 @@ public partial class CustomizationManager : Control
     private void Setup()
     {
         Instance = this;
-        optionManager = OptionManager.Instance;
+        gameManager = GameManager.Instance;
         PopupManager.Instance.IsCustomizationOpen = true;
         AssignInitialPickerColors();
         AttachListeners();
@@ -80,11 +80,11 @@ public partial class CustomizationManager : Control
     /// </summary>
     private void AssignInitialPickerColors()
     {
-        generalBackgroundColor.Color = optionManager.ApplicationBackground.Color;
-        wheelPrimaryColor.Color = optionManager.PrimaryColor;
-        wheelSecondaryColor.Color = optionManager.SecondaryColor;
+        generalBackgroundColor.Color = gameManager.ApplicationBackground.Color;
+        wheelPrimaryColor.Color = gameManager.PrimaryColor;
+        wheelSecondaryColor.Color = gameManager.SecondaryColor;
         wheelButtonColor.Color = GetWheelButtonColor();
-        listBackgroundColor.Color = optionManager.ListBackground.Color;
+        listBackgroundColor.Color = gameManager.ListBackground.Color;
         listFontColor.Color = GetListFontColor();
         popupBackgroundColor.Color = GetPopupBackgroundColor();
         popupFontColor.Color = GetPopupFontColor();
@@ -129,16 +129,16 @@ public partial class CustomizationManager : Control
     /// </summary>
     private void PopulateColorList()
     {
-        if (optionManager.Colors.Count == 0) return;
+        if (gameManager.Colors.Count == 0) return;
 
-        optionManager.Colors[0] = generalBackgroundColor.Color;
-        optionManager.Colors[1] = wheelPrimaryColor.Color;
-        optionManager.Colors[2] = wheelSecondaryColor.Color;
-        optionManager.Colors[3] = wheelButtonColor.Color;
-        optionManager.Colors[4] = listBackgroundColor.Color;
-        optionManager.Colors[5] = listFontColor.Color;
-        optionManager.Colors[6] = popupBackgroundColor.Color;
-        optionManager.Colors[7] = popupFontColor.Color;
+        gameManager.Colors[0] = generalBackgroundColor.Color;
+        gameManager.Colors[1] = wheelPrimaryColor.Color;
+        gameManager.Colors[2] = wheelSecondaryColor.Color;
+        gameManager.Colors[3] = wheelButtonColor.Color;
+        gameManager.Colors[4] = listBackgroundColor.Color;
+        gameManager.Colors[5] = listFontColor.Color;
+        gameManager.Colors[6] = popupBackgroundColor.Color;
+        gameManager.Colors[7] = popupFontColor.Color;
     }
 
     /// <summary>
@@ -200,8 +200,8 @@ public partial class CustomizationManager : Control
     /// <param name="color"></param>
     private void ChangeGeneralBackgroundColor(Color color)
     {
-        optionManager.ApplicationBackground.Color = color;
-        optionManager.Colors[0] = color;
+        gameManager.ApplicationBackground.Color = color;
+        gameManager.Colors[0] = color;
     }
 
     /// <summary>
@@ -210,9 +210,9 @@ public partial class CustomizationManager : Control
     /// <param name="color"></param>
     private void ChangeWheelPrimaryColor(Color color)
     {
-        optionManager.PrimaryColor = color;
-        optionManager.UpdateWheelColors();
-        optionManager.Colors[1] = color;
+        gameManager.PrimaryColor = color;
+        gameManager.UpdateWheelColors();
+        gameManager.Colors[1] = color;
     }
 
     /// <summary>
@@ -221,9 +221,9 @@ public partial class CustomizationManager : Control
     /// <param name="color"></param>
     private void ChangeWheelSecondaryColor(Color color)
     {
-        optionManager.SecondaryColor = color;
-        optionManager.UpdateWheelColors();
-        optionManager.Colors[2] = color;
+        gameManager.SecondaryColor = color;
+        gameManager.UpdateWheelColors();
+        gameManager.Colors[2] = color;
     }
 
     /// <summary>
@@ -233,7 +233,7 @@ public partial class CustomizationManager : Control
     private void ChangeWheelButtonColor(Color color)
     {
         SetWheelButtonColor(color);
-        optionManager.Colors[3] = color;
+        gameManager.Colors[3] = color;
     }
 
     /// <summary>
@@ -242,8 +242,8 @@ public partial class CustomizationManager : Control
     /// <param name="color"></param>
     private void ChangeListBackgroundColor(Color color)
     {
-        optionManager.ListBackground.Color = color;
-        optionManager.Colors[4] = color;
+        gameManager.ListBackground.Color = color;
+        gameManager.Colors[4] = color;
     }
 
     /// <summary>
@@ -253,7 +253,7 @@ public partial class CustomizationManager : Control
     private void ChangeListFontColor(Color color)
     {
         SetListFontColor(color);
-        optionManager.Colors[5] = color;
+        gameManager.Colors[5] = color;
     }
 
     /// <summary>
@@ -263,7 +263,7 @@ public partial class CustomizationManager : Control
     private void ChangePopupBackgroundColor(Color color)
     {
         SetPopupBackgroundColor(color);
-        optionManager.Colors[6] = color;
+        gameManager.Colors[6] = color;
     }
 
     /// <summary>
@@ -273,7 +273,7 @@ public partial class CustomizationManager : Control
     private void ChangePopupFontColor(Color color)
     {
         SetPopupFontColor(color);
-        optionManager.Colors[7] = color;
+        gameManager.Colors[7] = color;
     }
 
     // --------------------------------

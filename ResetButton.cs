@@ -9,7 +9,7 @@ public partial class ResetButton : Button
 
     [Export]
 	private ColorPickerButton colorPickerButton;
-	private OptionManager optionManager;
+	private GameManager gameManager;
 
     // --------------------------------
     //		STANDARD FUNCTIONS	
@@ -18,7 +18,7 @@ public partial class ResetButton : Button
     public override void _Ready()
 	{
 		base._Ready();
-		optionManager = OptionManager.Instance;
+		gameManager = GameManager.Instance;
 		this.Pressed += OnButtonPressed;
 	}
 
@@ -32,7 +32,7 @@ public partial class ResetButton : Button
     private void OnButtonPressed()
 	{
 		int colorPickerIndex = CustomizationManager.Instance.ColorPickerButtons.IndexOf(colorPickerButton);
-		colorPickerButton.Color = optionManager.DefaultColors[colorPickerIndex];
+		colorPickerButton.Color = gameManager.DefaultColors[colorPickerIndex];
 		CustomizationManager.Instance.UpdateColors();
 	}
 }

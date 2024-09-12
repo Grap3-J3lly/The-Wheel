@@ -12,7 +12,7 @@ public partial class ProgressBar : TextureProgressBar
 	private RichTextLabel optionName;
 	private Option assignedOption;
     private static Color previousColor;
-	private OptionManager optionManager;
+	private GameManager gameManager;
 
     // --------------------------------
     //			PROPERTIES	
@@ -27,7 +27,7 @@ public partial class ProgressBar : TextureProgressBar
     public override void _Ready()
 	{
 		base._Ready();
-		optionManager = OptionManager.Instance;
+		gameManager = GameManager.Instance;
 		optionName = GetChild<RichTextLabel>(0);
 	}
 
@@ -71,14 +71,14 @@ public partial class ProgressBar : TextureProgressBar
     /// </summary>
     public void AssignBarColor()
 	{
-        if (previousColor == Color.Color8(0, 0, 0, 0) || previousColor == optionManager.SecondaryColor)
+        if (previousColor == Color.Color8(0, 0, 0, 0) || previousColor == gameManager.SecondaryColor)
         {
-            previousColor = optionManager.PrimaryColor;
+            previousColor = gameManager.PrimaryColor;
             AssignBarColor(previousColor);
         }
         else
         {
-            previousColor = optionManager.SecondaryColor;
+            previousColor = gameManager.SecondaryColor;
             AssignBarColor(previousColor);
         }
     }
@@ -91,13 +91,13 @@ public partial class ProgressBar : TextureProgressBar
 	{
 		this.TintProgress = color;
 
-        if (this.TintProgress == optionManager.PrimaryColor)
+        if (this.TintProgress == gameManager.PrimaryColor)
         {
-            AssignBarTextColor(optionManager.SecondaryColor);
+            AssignBarTextColor(gameManager.SecondaryColor);
         }
         else
         {
-            AssignBarTextColor(optionManager.PrimaryColor);
+            AssignBarTextColor(gameManager.PrimaryColor);
         }
     }
 }

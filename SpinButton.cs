@@ -5,7 +5,8 @@ public partial class SpinButton : Button
 	// --------------------------------
 	//			VARIABLES	
 	// --------------------------------
-
+	[Export]
+	private ToggleChatInputButton chatInputButton;
 	[Export]
 	private AudioStreamPlayer audioStreamPlayer;
     [Export]
@@ -15,7 +16,7 @@ public partial class SpinButton : Button
 	[Export]
 	private float speed = .75f;
 
-    private OptionManager optionManager;	
+    private GameManager gameManager;	
 	private double timer;
 	private double slowDownValue;
 	private bool startRotation = false;
@@ -36,12 +37,12 @@ public partial class SpinButton : Button
     public override void _Ready()
 	{
 		base._Ready();
-		optionManager = OptionManager.Instance;
+		gameManager = GameManager.Instance;
 		this.Pressed += PressButton;
 		timer = 0.0d;
 		slowDownValue = timer;
 
-		optionManager.AudioStreamPlayer.MaxPolyphony = polyphonyCount;
+		gameManager.AudioStreamPlayer.MaxPolyphony = polyphonyCount;
     }
 
 	public override void _Process(double delta)
@@ -59,7 +60,7 @@ public partial class SpinButton : Button
 	/// </summary>
     private void PressButton()
 	{
-		if(optionManager.WheelSpinning) { return; }
+		if(gameManager.WheelSpinning) { return; }
 		timer = 0d;
 		startRotation = true;
 
@@ -67,10 +68,11 @@ public partial class SpinButton : Button
         randomAngle = rand.RandfRange(0, 360);
 		extraPerAngle = randomAngle / (float)maxTime;
 
-		optionManager.WheelSpinning = true;
-		audioTimer = maxAudioTimer / optionManager.CreatedOptions.Count;
-		currentAudioDecrementer = audioDecrementer * optionManager.CreatedOptions.Count;
-		optionManager.TwitchInfoArea.Visible = false;
+		gameManager.WheelSpinning = true;
+		audioTimer = maxAudioTimer / gameManager.CreatedOptions.Count;
+		currentAudioDecrementer = audioDecrementer * gameManager.CreatedOptions.Count;
+		gameManager.TwitchInfoArea.Visible = false;
+		chatInputButton.ButtonPressed = false;
     }
 
 	/// <summary>
@@ -79,7 +81,7 @@ public partial class SpinButton : Button
 	/// <param name="delta"></param>
 	private void HandleWheelSpin(double delta)
 	{
-		if(optionManager.WheelSpinning)
+		if(gameManager.WheelSpinning)
 		{
             // Speeding up the wheel
             WheelSpeedingUp(delta);
@@ -110,7 +112,7 @@ public partial class SpinButton : Button
 
 			if (Mathf.RoundToInt(timer) > polyphonyCount)
 			{
-                optionManager.AudioStreamPlayer.MaxPolyphony = Mathf.RoundToInt(timer);
+                gameManager.AudioStreamPlayer.MaxPolyphony = Mathf.RoundToInt(timer);
 			}
 		}
 	}
@@ -141,7 +143,7 @@ public partial class SpinButton : Button
             currentAudioDecrementer -= (float)delta;
             if (Mathf.RoundToInt(slowDownValue) < polyphonyCount)
             {
-                optionManager.AudioStreamPlayer.MaxPolyphony = Mathf.RoundToInt(slowDownValue);
+                gameManager.AudioStreamPlayer.MaxPolyphony = Mathf.RoundToInt(slowDownValue);
             }
         }
     }
@@ -153,7 +155,7 @@ public partial class SpinButton : Button
 	{
         if (!startRotation && slowDownValue <= 0)
         {
-            optionManager.WheelSpinning = false;
+            gameManager.WheelSpinning = false;
             string winnerName = DecideWinner();
 
             if (winnerName != "")
@@ -175,7 +177,11 @@ public partial class SpinButton : Button
     private string DecideWinner()
 	{
 		float currentRotationDegrees = 360 - (wheel.RotationDegrees % 360);
-		foreach(Option option in optionManager.CreatedOptions)
+		if(currentRotationDegrees >= 359.5)
+		{
+			OS.ShellOpen("https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygUJcmljayByb2xs");
+		}
+		foreach(Option option in gameManager.CreatedOptions)
 		{
 			float initialAngle = option.OptionProgressBar.RadialInitialAngle;
 			float finalAngle = initialAngle + option.OptionProgressBar.RadialFillDegrees;
@@ -194,7 +200,7 @@ public partial class SpinButton : Button
 	{
 		if(audioTimer <= 0)
 		{
-			optionManager.AudioStreamPlayer.Play();
+			gameManager.AudioStreamPlayer.Play();
 			audioTimer = maxAudioTimer;
 		}
 		audioTimer -= currentAudioDecrementer;
