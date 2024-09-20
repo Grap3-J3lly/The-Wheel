@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\James\\Dev\\Godot\\The Wheel\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{FEEAFA91-FBD4-46E7-8667-46C993B1C4AB}|The Wheel.csproj|c:\\users\\james\\dev\\godot\\the wheel\\customizationmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FEEAFA91-FBD4-46E7-8667-46C993B1C4AB}|The Wheel.csproj|solutionrelative:customizationmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FEEAFA91-FBD4-46E7-8667-46C993B1C4AB}|The Wheel.csproj|c:\\users\\james\\dev\\godot\\the wheel\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FEEAFA91-FBD4-46E7-8667-46C993B1C4AB}|The Wheel.csproj|solutionrelative:gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{FEEAFA91-FBD4-46E7-8667-46C993B1C4AB}|The Wheel.csproj|c:\\users\\james\\dev\\godot\\the wheel\\spinbutton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FEEAFA91-FBD4-46E7-8667-46C993B1C4AB}|The Wheel.csproj|solutionrelative:spinbutton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -21,14 +29,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{FEEAFA91-FBD4-46E7-8667-46C993B1C4AB}|The Wheel.csproj|c:\\users\\james\\dev\\godot\\the wheel\\option.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FEEAFA91-FBD4-46E7-8667-46C993B1C4AB}|The Wheel.csproj|solutionrelative:option.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FEEAFA91-FBD4-46E7-8667-46C993B1C4AB}|The Wheel.csproj|c:\\users\\james\\dev\\godot\\the wheel\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FEEAFA91-FBD4-46E7-8667-46C993B1C4AB}|The Wheel.csproj|solutionrelative:gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FEEAFA91-FBD4-46E7-8667-46C993B1C4AB}|The Wheel.csproj|c:\\users\\james\\dev\\godot\\the wheel\\customizationmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FEEAFA91-FBD4-46E7-8667-46C993B1C4AB}|The Wheel.csproj|solutionrelative:customizationmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FEEAFA91-FBD4-46E7-8667-46C993B1C4AB}|The Wheel.csproj|c:\\users\\james\\dev\\godot\\the wheel\\savelistbutton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -50,11 +50,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "WheelProgress.cs",
               "DocumentMoniker": "C:\\Users\\James\\Dev\\Godot\\The Wheel\\WheelProgress.cs",
               "RelativeDocumentMoniker": "WheelProgress.cs",
@@ -62,12 +62,11 @@
               "RelativeToolTip": "WheelProgress.cs",
               "ViewState": "AQIAAC0AAAAAAAAAAAAYwBUAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-12T22:58:54.907Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-12T22:58:54.907Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "Option.cs",
               "DocumentMoniker": "C:\\Users\\James\\Dev\\Godot\\The Wheel\\Option.cs",
               "RelativeDocumentMoniker": "Option.cs",
@@ -75,18 +74,17 @@
               "RelativeToolTip": "Option.cs",
               "ViewState": "AQIAACcAAAAAAAAAAAAowA4AAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-12T22:57:57.43Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-12T22:57:57.43Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "GameManager.cs",
               "DocumentMoniker": "C:\\Users\\James\\Dev\\Godot\\The Wheel\\GameManager.cs",
               "RelativeDocumentMoniker": "GameManager.cs",
               "ToolTip": "C:\\Users\\James\\Dev\\Godot\\The Wheel\\GameManager.cs",
               "RelativeToolTip": "GameManager.cs",
-              "ViewState": "AQIAAJUAAAAAAAAAAAAgwBgAAAAMAAAA",
+              "ViewState": "AQIAAMsAAAAAAAAAAAAewEAAAAAiAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-12T22:41:42.012Z",
               "EditorCaption": ""
@@ -101,8 +99,7 @@
               "RelativeToolTip": "ListOptions.cs",
               "ViewState": "AQIAAAkAAAAAAAAAAADgvxwAAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-12T22:36:45.522Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-12T22:36:45.522Z"
             },
             {
               "$type": "Document",
@@ -114,8 +111,7 @@
               "RelativeToolTip": "LoadListButton.cs",
               "ViewState": "AQIAAAsAAAAAAAAAAAAAwBQAAAACAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-12T22:36:33.852Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-12T22:36:33.852Z"
             },
             {
               "$type": "Document",
@@ -127,12 +123,11 @@
               "RelativeToolTip": "SaveListButton.cs",
               "ViewState": "AQIAABYAAAAAAAAAAAAQwCkAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-12T22:34:12.619Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-12T22:34:12.619Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "ProgressBar.cs",
               "DocumentMoniker": "C:\\Users\\James\\Dev\\Godot\\The Wheel\\ProgressBar.cs",
               "RelativeDocumentMoniker": "ProgressBar.cs",
@@ -140,25 +135,24 @@
               "RelativeToolTip": "ProgressBar.cs",
               "ViewState": "AQIAABoAAAAAAAAAAAA3wA0AAAAnAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-12T22:29:20.574Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-12T22:29:20.574Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
               "Title": "CustomizationManager.cs",
               "DocumentMoniker": "C:\\Users\\James\\Dev\\Godot\\The Wheel\\CustomizationManager.cs",
               "RelativeDocumentMoniker": "CustomizationManager.cs",
               "ToolTip": "C:\\Users\\James\\Dev\\Godot\\The Wheel\\CustomizationManager.cs",
               "RelativeToolTip": "CustomizationManager.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAEAAAA",
+              "ViewState": "AQIAANgAAAAAAAAAAAAmwOwAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-04T22:24:34.035Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "SpinButton.cs",
               "DocumentMoniker": "C:\\Users\\James\\Dev\\Godot\\The Wheel\\SpinButton.cs",
               "RelativeDocumentMoniker": "SpinButton.cs",
@@ -171,7 +165,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "ToggleChatInputButton.cs",
               "DocumentMoniker": "C:\\Users\\James\\Dev\\Godot\\The Wheel\\ToggleChatInputButton.cs",
               "RelativeDocumentMoniker": "ToggleChatInputButton.cs",
@@ -179,8 +173,7 @@
               "RelativeToolTip": "ToggleChatInputButton.cs",
               "ViewState": "AQIAAAsAAAAAAAAAAAAAwBcAAAAcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-29T23:00:15.622Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-29T23:00:15.622Z"
             }
           ]
         }

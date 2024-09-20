@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://8cgspyr8gob4"]
+[gd_scene load_steps=29 format=3 uid="uid://8cgspyr8gob4"]
 
 [ext_resource type="Theme" uid="uid://cpm3ymheyptc0" path="res://WheelButtonTheme.tres" id="2_3bb4o"]
 [ext_resource type="Script" path="res://GameManager.cs" id="2_yv2g8"]
@@ -9,8 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://c1ofuprn5cbnr" path="res://wheel_progress_template.tscn" id="4_hrrrl"]
 [ext_resource type="Script" path="res://AddOptionButton.cs" id="5_tmtid"]
 [ext_resource type="PackedScene" uid="uid://c2jsx0bgu2s1j" path="res://option_template.tscn" id="5_xkam3"]
-[ext_resource type="Texture2D" uid="uid://d0nwpyh2o5hoj" path="res://Triangle.png" id="6_84g8d"]
 [ext_resource type="Script" path="res://OpenPopupButton.cs" id="7_b0qvu"]
+[ext_resource type="Texture2D" uid="uid://dr02kfhabwixo" path="res://Assets/W_Wheel.png" id="7_rrh5u"]
+[ext_resource type="Texture2D" uid="uid://dwpc4i30wj0f1" path="res://Assets/W_Wheel_Spin.png" id="8_4kpa8"]
 [ext_resource type="Theme" uid="uid://dlf27rdr7dp0n" path="res://ListFontColorTheme.tres" id="8_f126f"]
 [ext_resource type="Script" path="res://PopupManager.cs" id="9_4p5xn"]
 [ext_resource type="Script" path="res://ToggleChatInputButton.cs" id="10_05f66"]
@@ -19,13 +20,21 @@
 [ext_resource type="Theme" uid="uid://rxn0ric1nvrl" path="res://PopupFontTheme.tres" id="11_2pqje"]
 [ext_resource type="PackedScene" uid="uid://b1lc8f4e26bea" path="res://menu_popup_template.tscn" id="11_osn7t"]
 [ext_resource type="Script" path="res://ClearOptionWeightsButton.cs" id="12_654ys"]
+[ext_resource type="Texture2D" uid="uid://bgpo48sgbfw44" path="res://Assets/W_GenPopup_F1.png" id="13_amnot"]
+[ext_resource type="Texture2D" uid="uid://ofknm30tg4re" path="res://Assets/W_GenPopup_F2.png" id="14_hjhul"]
+[ext_resource type="Texture2D" uid="uid://jun4gsw235co" path="res://Assets/W_GenPopup_F3.png" id="15_jaagx"]
+[ext_resource type="Texture2D" uid="uid://c285osultlbux" path="res://Assets/W_MList_F1.png" id="16_itph4"]
+[ext_resource type="Texture2D" uid="uid://dmk55oiu7vfaw" path="res://Assets/W_MList_F2.png" id="17_gqd2j"]
+[ext_resource type="Texture2D" uid="uid://cp1ie005lq4a0" path="res://Assets/W_MList_F3.png" id="18_i1ts2"]
+[ext_resource type="Texture2D" uid="uid://r5h2lwdau3ha" path="res://Assets/M_ButtonMini_D.png" id="19_5qsuy"]
+[ext_resource type="Texture2D" uid="uid://delst5sfgn73u" path="res://Assets/Icon_Menu.png" id="21_5lgta"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("applicationBackground", "listBackground", "spinButton", "optionParent", "audioStreamPlayer", "twitchInfoArea")]
 script = ExtResource("2_yv2g8")
-primaryColor = Color(0.626637, 0.386466, 0.935588, 1)
-secondaryColor = Color(0.853281, 0.454139, 0.954567, 1)
+primaryColor = Color(0.262745, 0.133333, 0.694118, 1)
+secondaryColor = Color(0.533333, 0.152941, 0.839216, 1)
 applicationBackground = NodePath("../CanvasLayer/ApplicationBackground")
 listBackground = NodePath("../CanvasLayer/OptionArea/OptionBackground")
 spinButton = NodePath("../CanvasLayer/WheelArea/SpinButton")
@@ -82,23 +91,45 @@ grow_vertical = 2
 script = ExtResource("3_iyf3y")
 progressBarTemplate = ExtResource("4_hrrrl")
 
-[node name="SpinButton" type="Button" parent="CanvasLayer/WheelArea" node_paths=PackedStringArray("chatInputButton", "audioStreamPlayer", "wheel")]
-z_index = 1
-layout_mode = 2
+[node name="WheelFrame" type="TextureRect" parent="CanvasLayer/WheelArea"]
+layout_mode = 1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -76.0
-offset_top = -33.5
-offset_right = 76.0
-offset_bottom = 33.5
+offset_left = -330.0
+offset_top = -330.0
+offset_right = 330.0
+offset_bottom = 330.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(330, 330)
+texture = ExtResource("7_rrh5u")
+expand_mode = 1
+
+[node name="SpinButton" type="Button" parent="CanvasLayer/WheelArea" node_paths=PackedStringArray("chatInputButton", "audioStreamPlayer", "wheel")]
+z_index = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -44.0
+offset_right = 36.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(36, 36)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("2_3bb4o")
-text = "TEST BUTTON"
+theme_override_colors/font_color = Color(0.32549, 0.176471, 0.0509804, 1)
+icon = ExtResource("8_4kpa8")
+icon_alignment = 1
+expand_icon = true
 script = ExtResource("3_qqfjg")
 chatInputButton = NodePath("../../OptionArea/TopBar/ToggleChatInputButton")
 audioStreamPlayer = NodePath("../../../AudioManager")
@@ -108,23 +139,23 @@ speed = 2.0
 audioDecrementer = 0.0
 maxAudioTimer = 75.0
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/WheelArea/SpinButton"]
-modulate = Color(0.247059, 0.00784314, 0.321569, 1)
-z_as_relative = false
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/WheelArea/SpinButton"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -66.0
-offset_top = -82.0
-offset_right = 66.0
-offset_bottom = 33.0
+offset_left = -17.0
+offset_top = -5.5
+offset_right = 21.0
+offset_bottom = 19.5
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(66, 57)
-texture = ExtResource("6_84g8d")
+pivot_offset = Vector2(20, 12)
+theme_override_colors/default_color = Color(0.32549, 0.176471, 0.0509804, 1)
+bbcode_enabled = true
+text = "[center]SPIN[center]"
 
 [node name="TwitchInfoArea" type="ColorRect" parent="CanvasLayer"]
 anchors_preset = 3
@@ -132,28 +163,102 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -650.0
-offset_top = -150.0
-offset_right = -50.0
-offset_bottom = -50.0
+offset_left = -570.0
+offset_top = -207.0
+offset_right = -120.0
+offset_bottom = -10.0
 grow_horizontal = 0
 grow_vertical = 0
-pivot_offset = Vector2(600, 100)
+pivot_offset = Vector2(225, 98)
 theme = ExtResource("10_w6lq7")
-color = Color(1, 0.941176, 0.666667, 1)
+color = Color(1, 0.964706, 0.823529, 1)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/TwitchInfoArea"]
+[node name="Frame1" type="TextureRect" parent="CanvasLayer/TwitchInfoArea"]
+modulate = Color(0.976471, 0.92549, 0.717647, 1)
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.025
-anchor_top = 0.1
-anchor_right = 0.975
-anchor_bottom = 0.9
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -26.0
+offset_top = -89.0
+offset_right = 29.0
+offset_bottom = 39.77
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(150, 25)
+texture = ExtResource("13_amnot")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Frame2" type="TextureRect" parent="CanvasLayer/TwitchInfoArea"]
+modulate = Color(0.878431, 0.835294, 0.662745, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -26.0
+offset_top = -89.0
+offset_right = 29.0
+offset_bottom = 39.77
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(150, 25)
+texture = ExtResource("14_hjhul")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Frame3" type="TextureRect" parent="CanvasLayer/TwitchInfoArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -26.0
+offset_top = -89.0
+offset_right = 29.0
+offset_bottom = 39.77
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(150, 25)
+texture = ExtResource("15_jaagx")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TitleText" type="RichTextLabel" parent="CanvasLayer/TwitchInfoArea"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -125.0
+offset_top = -12.0
+offset_right = 125.0
+offset_bottom = 38.0
+grow_horizontal = 2
+pivot_offset = Vector2(125, 25)
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 35
+theme_override_font_sizes/bold_font_size = 35
+bbcode_enabled = true
+text = "[center][b]ATTENTION[b][center]"
+
+[node name="ExplanationText" type="RichTextLabel" parent="CanvasLayer/TwitchInfoArea"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -250.0
+offset_top = -138.0
+offset_right = 250.0
+offset_bottom = -38.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(250, 50)
 theme = ExtResource("11_2pqje")
-theme_override_font_sizes/normal_font_size = 17
-text = "Twitch Chat is Now Enabled! Type in the name of any option on the list to vote and change the weight of said option. Voting is NOT case sensitive, only one vote per user will register with the system!"
+theme_override_font_sizes/normal_font_size = 29
+bbcode_enabled = true
+text = "[center]Twitch Chat is Now Enabled! 
+It is NOT Case Sensitive![center]"
 
 [node name="OptionArea" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -176,25 +281,93 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0.419608, 0, 1)
+color = Color(1, 0.964706, 0.823529, 1)
+
+[node name="Frame1" type="TextureRect" parent="CanvasLayer/OptionArea/OptionBackground"]
+modulate = Color(0.976471, 0.92549, 0.717647, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -27.0
+offset_top = -26.0
+offset_right = 38.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_itph4")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Frame2" type="TextureRect" parent="CanvasLayer/OptionArea/OptionBackground"]
+modulate = Color(0.878431, 0.835294, 0.662745, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -27.0
+offset_top = -26.0
+offset_right = 38.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("17_gqd2j")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Frame3" type="TextureRect" parent="CanvasLayer/OptionArea/OptionBackground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -27.0
+offset_top = -26.0
+offset_right = 38.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("18_i1ts2")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="TopBar" type="HBoxContainer" parent="CanvasLayer/OptionArea"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 75.0
-offset_top = 11.0
-offset_right = -75.0
-offset_bottom = 61.0
+offset_left = 53.0
+offset_top = 18.0
+offset_right = -53.0
+offset_bottom = 68.0
 grow_horizontal = 2
 
 [node name="OpenOptionMenuButton" type="Button" parent="CanvasLayer/OptionArea/TopBar"]
-custom_minimum_size = Vector2(25, 25)
+custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 4
-text = "Menu"
+icon = ExtResource("19_5qsuy")
+flat = true
+icon_alignment = 1
+expand_icon = true
 script = ExtResource("7_b0qvu")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/OptionArea/TopBar/OpenOptionMenuButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(10, 10)
+texture = ExtResource("21_5lgta")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="ToggleChatInputButton" type="CheckBox" parent="CanvasLayer/OptionArea/TopBar" node_paths=PackedStringArray("feed")]
 custom_minimum_size = Vector2(25, 25)
@@ -237,7 +410,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 20.0
-offset_top = 61.0
+offset_top = 90.0
 offset_right = -20.0
 offset_bottom = -25.0
 grow_horizontal = 2

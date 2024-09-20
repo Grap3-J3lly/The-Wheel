@@ -83,7 +83,7 @@ public partial class CustomizationManager : Control
         generalBackgroundColor.Color = gameManager.ApplicationBackground.Color;
         wheelPrimaryColor.Color = gameManager.PrimaryColor;
         wheelSecondaryColor.Color = gameManager.SecondaryColor;
-        wheelButtonColor.Color = GetWheelButtonColor();
+        // wheelButtonColor.Color = GetWheelButtonColor();
         listBackgroundColor.Color = gameManager.ListBackground.Color;
         listFontColor.Color = GetListFontColor();
         popupBackgroundColor.Color = GetPopupBackgroundColor();
@@ -98,7 +98,7 @@ public partial class CustomizationManager : Control
         generalBackgroundColor.ColorChanged += ChangeGeneralBackgroundColor;
         wheelPrimaryColor.ColorChanged += ChangeWheelPrimaryColor;
         wheelSecondaryColor.ColorChanged += ChangeWheelSecondaryColor;
-        wheelButtonColor.ColorChanged += ChangeWheelButtonColor;
+        // wheelButtonColor.ColorChanged += ChangeWheelButtonColor;
         listBackgroundColor.ColorChanged += ChangeListBackgroundColor;
         listFontColor.ColorChanged += ChangeListFontColor;
         popupBackgroundColor.ColorChanged += ChangePopupBackgroundColor;
@@ -168,7 +168,7 @@ public partial class CustomizationManager : Control
         ChangeGeneralBackgroundColor(newColors[0]);
         ChangeWheelPrimaryColor(newColors[1]);
         ChangeWheelSecondaryColor(newColors[2]);
-        ChangeWheelButtonColor(newColors[3]);
+        //ChangeWheelButtonColor(newColors[3]);
         ChangeListBackgroundColor(newColors[4]);
         ChangeListFontColor(newColors[5]);
         ChangePopupBackgroundColor(newColors[6]);
@@ -183,7 +183,7 @@ public partial class CustomizationManager : Control
         ChangeGeneralBackgroundColor(colorPickerButtons[0].Color);
         ChangeWheelPrimaryColor(colorPickerButtons[1].Color);
         ChangeWheelSecondaryColor(colorPickerButtons[2].Color);
-        ChangeWheelButtonColor(colorPickerButtons[3].Color);
+        //ChangeWheelButtonColor(colorPickerButtons[3].Color);
         ChangeListBackgroundColor(colorPickerButtons[4].Color);
         ChangeListFontColor(colorPickerButtons[5].Color);
         ChangePopupBackgroundColor(colorPickerButtons[6].Color);
