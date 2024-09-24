@@ -1,6 +1,9 @@
-[gd_resource type="Theme" format=3 uid="uid://rxn0ric1nvrl"]
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://rxn0ric1nvrl"]
+
+[ext_resource type="FontFile" uid="uid://65anix1v37bg" path="res://Assets/super_corn/Super Corn.ttf" id="1_d6fcc"]
 
 [resource]
+default_font = ExtResource("1_d6fcc")
 Button/colors/font_color = Color(0.356863, 0.219608, 0.392157, 1)
 Button/colors/font_hover_color = Color(0.277567, 0.165404, 0.306394, 1)
 Button/colors/font_pressed_color = Color(0.194158, 0.109494, 0.21591, 1)

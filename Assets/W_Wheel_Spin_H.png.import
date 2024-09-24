@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddckb3sn64l8t"
-path="res://.godot/imported/Icon_Check.png-ef514436dcdab44a64efdfe8b8ff07f0.ctex"
+uid="uid://clcjbe0ejeejk"
+path="res://.godot/imported/W_Wheel_Spin_H.png-1662b48bab9785adb302ba3c8ce3f395.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Icon_Check.png"
-dest_files=["res://.godot/imported/Icon_Check.png-ef514436dcdab44a64efdfe8b8ff07f0.ctex"]
+source_file="res://Assets/W_Wheel_Spin_H.png"
+dest_files=["res://.godot/imported/W_Wheel_Spin_H.png-1662b48bab9785adb302ba3c8ce3f395.ctex"]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
