@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://cwucnn6t72ta5"]
+[gd_scene load_steps=9 format=3 uid="uid://cwucnn6t72ta5"]
 
 [ext_resource type="Script" path="res://ClosePopupButton.cs" id="1_g7cxh"]
 [ext_resource type="Theme" uid="uid://d3dvb7e4l28py" path="res://PopupBackgroundTheme.tres" id="1_sn5gn"]
+[ext_resource type="Texture2D" uid="uid://7hklt3btb6ej" path="res://Assets/W_WinPopup_F1.png" id="2_byaoc"]
 [ext_resource type="Theme" uid="uid://rxn0ric1nvrl" path="res://PopupFontTheme.tres" id="2_i2gxd"]
+[ext_resource type="Texture2D" uid="uid://be4ivkog34i83" path="res://Assets/W_WinPopup_F2.png" id="3_wk0jt"]
+[ext_resource type="Texture2D" uid="uid://6g6jhret8f88" path="res://Assets/W_WinPopup_F3.png" id="4_o7dnp"]
+[ext_resource type="FontFile" uid="uid://65anix1v37bg" path="res://Assets/super_corn/Super Corn.ttf" id="5_lkq8v"]
+[ext_resource type="Texture2D" uid="uid://dqvk1u05ye3ke" path="res://Assets/M_Button_D.png" id="7_r6iuj"]
 
 [node name="SelectedOptionPopup" type="Panel"]
 z_index = 5
@@ -20,34 +25,107 @@ grow_vertical = 2
 pivot_offset = Vector2(192, 128)
 theme = ExtResource("1_sn5gn")
 
-[node name="CorrectOptionText" type="RichTextLabel" parent="."]
+[node name="Frame1" type="TextureRect" parent="."]
+modulate = Color(0.972549, 0.921569, 0.717647, 1)
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = 15
 anchor_right = 1.0
-offset_left = 20.0
-offset_top = 20.0
-offset_right = -20.0
-offset_bottom = 120.0
+anchor_bottom = 1.0
+offset_left = -18.0
+offset_top = -61.0
+offset_right = 23.0
+offset_bottom = 33.0
 grow_horizontal = 2
-theme = ExtResource("2_i2gxd")
+grow_vertical = 2
+texture = ExtResource("2_byaoc")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Frame2" type="TextureRect" parent="."]
+modulate = Color(0.87451, 0.831373, 0.662745, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -18.0
+offset_top = -61.0
+offset_right = 23.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_wk0jt")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Frame3" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -18.0
+offset_top = -61.0
+offset_right = 23.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_o7dnp")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TitleText" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -172.0
+offset_right = 172.0
+offset_bottom = 32.0
+grow_horizontal = 2
+pivot_offset = Vector2(172, 0)
+theme_override_fonts/normal_font = ExtResource("5_lkq8v")
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
-text = "[center]THIS WAS THE OPTION SELECTED[/center]"
+text = "[center]THE WHEEL HAS CHOSEN[/center]"
+
+[node name="CorrectOptionText" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(172, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -86.0
+offset_top = -25.0
+offset_right = 86.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(86, 25)
+theme = ExtResource("2_i2gxd")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[center]AMOGUS[/center]"
 
 [node name="ClosePopupButton" type="Button" parent="."]
 layout_mode = 1
-anchors_preset = 12
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 106.0
-offset_top = -108.0
-offset_right = -106.0
-offset_bottom = -28.0
+offset_left = -72.0
+offset_top = -60.0
+offset_right = 72.0
+offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 0
-pivot_offset = Vector2(172, 100)
-theme = ExtResource("2_i2gxd")
+pivot_offset = Vector2(72, 40)
+theme_override_fonts/font = ExtResource("5_lkq8v")
 theme_override_font_sizes/font_size = 30
 text = "CLOSE"
+icon = ExtResource("7_r6iuj")
+flat = true
+icon_alignment = 1
+expand_icon = true
 script = ExtResource("1_g7cxh")
