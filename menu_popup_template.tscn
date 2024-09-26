@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b1lc8f4e26bea"]
+[gd_scene load_steps=34 format=3 uid="uid://b1lc8f4e26bea"]
 
 [ext_resource type="Script" path="res://CustomizeButton.cs" id="1_lh7j3"]
 [ext_resource type="Theme" uid="uid://d3dvb7e4l28py" path="res://PopupBackgroundTheme.tres" id="1_tjypc"]
@@ -18,15 +18,22 @@
 [ext_resource type="Texture2D" uid="uid://cq8q4p6ap4hu8" path="res://Assets/Icon_Save.png" id="9_q26gk"]
 [ext_resource type="Texture2D" uid="uid://bkk42p4a131a" path="res://Assets/Icon_Load.png" id="12_edsye"]
 [ext_resource type="Texture2D" uid="uid://dq2rp6jyw2bik" path="res://Assets/Icon_Trash.png" id="14_bjneq"]
+[ext_resource type="Texture2D" uid="uid://dt45i3k3wpjlh" path="res://Assets/M_Handle_D.png" id="16_3b7jd"]
+[ext_resource type="Texture2D" uid="uid://dqhqyywy03b3h" path="res://Assets/M_Handle_H.png" id="17_tvd1q"]
+[ext_resource type="Texture2D" uid="uid://dqvk1u05ye3ke" path="res://Assets/M_Button_D.png" id="18_hn4eo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e072i"]
 bg_color = Color(0.290196, 0.372549, 0.172549, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lnmw2"]
 bg_color = Color(0.478431, 0.694118, 0.25098, 1)
+border_width_left = 8
+border_color = Color(0.478431, 0.694118, 0.25098, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ocw73"]
 bg_color = Color(0.290196, 0.372549, 0.172549, 1)
+border_width_left = 8
+border_color = Color(0.290196, 0.372549, 0.172549, 1)
 
 [sub_resource type="ImageTexture" id="ImageTexture_2q7gr"]
 
@@ -37,18 +44,52 @@ bg_color = Color(0.478431, 0.694118, 0.25098, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cpbyv"]
 bg_color = Color(0.290196, 0.372549, 0.172549, 1)
+border_width_top = 10
+border_width_bottom = 10
+border_color = Color(0.290196, 0.372549, 0.172549, 1)
 
 [sub_resource type="Theme" id="Theme_3rp4f"]
 default_font = ExtResource("6_7hknv")
+OptionButton/colors/font_color = Color(1, 1, 1, 1)
+OptionButton/colors/font_focus_color = Color(1, 1, 1, 1)
+OptionButton/colors/font_hover_color = Color(1, 1, 1, 1)
+OptionButton/font_sizes/font_size = 16
+OptionButton/fonts/font = ExtResource("6_7hknv")
 OptionButton/styles/focus = SubResource("StyleBoxFlat_e072i")
 OptionButton/styles/hover = SubResource("StyleBoxFlat_lnmw2")
 OptionButton/styles/normal = SubResource("StyleBoxFlat_ocw73")
 PopupMenu/colors/font_color = Color(1, 1, 1, 1)
 PopupMenu/colors/font_hover_color = Color(1, 1, 1, 1)
+PopupMenu/constants/v_separation = 16
+PopupMenu/font_sizes/font_separator_size = 16
+PopupMenu/font_sizes/font_size = 26
 PopupMenu/icons/radio_checked = SubResource("ImageTexture_2q7gr")
 PopupMenu/icons/radio_unchecked = SubResource("ImageTexture_ac0k2")
 PopupMenu/styles/hover = SubResource("StyleBoxFlat_1ks3l")
 PopupMenu/styles/panel = SubResource("StyleBoxFlat_cpbyv")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sxvtg"]
+bg_color = Color(0.478431, 0.694118, 0.25098, 1)
+expand_margin_top = 6.0
+expand_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ly7wl"]
+bg_color = Color(0.478431, 0.694118, 0.25098, 1)
+expand_margin_top = 6.0
+expand_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8vwis"]
+bg_color = Color(0.207843, 0.207843, 0.207843, 1)
+expand_margin_top = 6.0
+expand_margin_bottom = 6.0
+
+[sub_resource type="Theme" id="Theme_lm6lt"]
+HSlider/constants/center_grabber = 0
+HSlider/icons/grabber = ExtResource("16_3b7jd")
+HSlider/icons/grabber_highlight = ExtResource("17_tvd1q")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_sxvtg")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_ly7wl")
+HSlider/styles/slider = SubResource("StyleBoxFlat_8vwis")
 
 [node name="MenuBackground" type="Panel"]
 z_index = 6
@@ -332,36 +373,71 @@ text = "VOLUME"
 
 [node name="AudioSlider" type="HSlider" parent="MenuItemContainer/AudioControl"]
 custom_minimum_size = Vector2(250, 0)
-layout_mode = 0
-offset_left = 45.0
-offset_top = 25.0
-offset_right = 295.0
-offset_bottom = 41.0
+layout_mode = 2
+offset_top = 20.0
+offset_right = 250.0
+offset_bottom = 44.0
+theme = SubResource("Theme_lm6lt")
 max_value = 1.0
 step = 0.01
-value = 1.0
+value = 0.5
+
+[node name="AudioVisualBackground" type="ColorRect" parent="MenuItemContainer/AudioControl"]
+layout_mode = 0
+offset_left = 265.0
+offset_top = 20.0
+offset_right = 325.0
+offset_bottom = 45.0
+pivot_offset = Vector2(25, 15)
+color = Color(0.87451, 0.831373, 0.662745, 1)
+
+[node name="AudioVisualText" type="RichTextLabel" parent="MenuItemContainer/AudioControl/AudioVisualBackground"]
+custom_minimum_size = Vector2(25, 20)
+layout_mode = 0
+offset_left = 18.0
+offset_top = 2.5
+offset_right = 43.0
+offset_bottom = 22.5
+size_flags_horizontal = 0
+theme = ExtResource("2_6ym2x")
+bbcode_enabled = true
+text = "100"
 
 [node name="CustomizeButton" type="Button" parent="MenuItemContainer" node_paths=PackedStringArray("menuBackground")]
 custom_minimum_size = Vector2(150, 40)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
-theme = ExtResource("2_6ym2x")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("6_7hknv")
+theme_override_font_sizes/font_size = 24
 text = "CUSTOMIZE"
+icon = ExtResource("18_hn4eo")
+flat = true
+icon_alignment = 1
+expand_icon = true
 script = ExtResource("1_lh7j3")
 menuBackground = NodePath("../..")
 customizationAreaTemplate = ExtResource("3_wd6i2")
+backgroundMultiplier = 1
 
 [node name="CloseButton" type="Button" parent="."]
+custom_minimum_size = Vector2(150, 40)
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 150.0
+offset_left = 120.0
 offset_top = -60.0
-offset_right = 236.0
+offset_right = 270.0
 offset_bottom = -20.0
 grow_vertical = 0
-theme = ExtResource("2_6ym2x")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("6_7hknv")
+theme_override_font_sizes/font_size = 24
 text = "CLOSE"
+icon = ExtResource("18_hn4eo")
+flat = true
+icon_alignment = 1
+expand_icon = true
 script = ExtResource("1_x3pfe")

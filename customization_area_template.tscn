@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ctgy026yqcb0v"]
+[gd_scene load_steps=8 format=3 uid="uid://ctgy026yqcb0v"]
 
 [ext_resource type="Script" path="res://CustomizationManager.cs" id="1_e1qy6"]
 [ext_resource type="Theme" uid="uid://d3dvb7e4l28py" path="res://PopupBackgroundTheme.tres" id="2_lxquq"]
@@ -6,13 +6,15 @@
 [ext_resource type="Theme" uid="uid://dlf27rdr7dp0n" path="res://ListFontColorTheme.tres" id="4_ykns8"]
 [ext_resource type="Theme" uid="uid://cpm3ymheyptc0" path="res://WheelButtonTheme.tres" id="5_v58tj"]
 [ext_resource type="Script" path="res://ResetButton.cs" id="6_jge7y"]
+[ext_resource type="Texture2D" uid="uid://bu424d8f76m01" path="res://Assets/W_MenuCustom.png" id="6_o6wrg"]
 
 [node name="CustomizationArea" type="Control" node_paths=PackedStringArray("generalBackgroundColor", "wheelPrimaryColor", "wheelSecondaryColor", "wheelButtonColor", "listBackgroundColor", "listFontColor", "popupBackgroundColor", "popupFontColor")]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 384.0
-offset_right = 768.0
-offset_bottom = 384.0
+offset_left = 316.0
+offset_top = -10.0
+offset_right = 700.0
+offset_bottom = 374.0
 script = ExtResource("1_e1qy6")
 generalBackgroundColor = NodePath("CustomizationOptions/GeneralBackground/ItemColorButton")
 wheelPrimaryColor = NodePath("CustomizationOptions/WheelPrimary/ItemColorButton")
@@ -27,31 +29,50 @@ popupFontTheme = ExtResource("3_n1x8u")
 listFontTheme = ExtResource("4_ykns8")
 wheelButtonTheme = ExtResource("5_v58tj")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 4.0
+offset_right = 323.0
+offset_bottom = 394.475
+color = Color(1, 0.964706, 0.823529, 1)
+
+[node name="BorderRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(384, 395.01)
+layout_mode = 1
+offset_top = -15.0
+offset_right = 395.98
+offset_bottom = 398.0
+texture = ExtResource("6_o6wrg")
+expand_mode = 1
+stretch_mode = 5
+
 [node name="CustomizationOptions" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -150.0
-offset_right = 150.0
-offset_bottom = 150.0
+offset_left = -96.0
+offset_top = -171.0
+offset_right = 112.0
+offset_bottom = 177.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="GeneralBackground" type="HBoxContainer" parent="CustomizationOptions"]
-custom_minimum_size = Vector2(300, 40)
+custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 
 [node name="ItemText" type="RichTextLabel" parent="CustomizationOptions/GeneralBackground"]
-custom_minimum_size = Vector2(175, 25)
+custom_minimum_size = Vector2(140, 25)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 theme = ExtResource("3_n1x8u")
-text = "General Background"
+text = "Main Background"
 
 [node name="ItemColorButton" type="ColorPickerButton" parent="CustomizationOptions/GeneralBackground"]
 custom_minimum_size = Vector2(25, 25)
@@ -67,11 +88,11 @@ script = ExtResource("6_jge7y")
 colorPickerButton = NodePath("../ItemColorButton")
 
 [node name="WheelPrimary" type="HBoxContainer" parent="CustomizationOptions"]
-custom_minimum_size = Vector2(300, 40)
+custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 
 [node name="ItemText" type="RichTextLabel" parent="CustomizationOptions/WheelPrimary"]
-custom_minimum_size = Vector2(175, 25)
+custom_minimum_size = Vector2(140, 25)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
@@ -92,11 +113,11 @@ script = ExtResource("6_jge7y")
 colorPickerButton = NodePath("../ItemColorButton")
 
 [node name="WheelSecondary" type="HBoxContainer" parent="CustomizationOptions"]
-custom_minimum_size = Vector2(300, 40)
+custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 
 [node name="ItemText" type="RichTextLabel" parent="CustomizationOptions/WheelSecondary"]
-custom_minimum_size = Vector2(175, 25)
+custom_minimum_size = Vector2(140, 25)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
@@ -117,11 +138,11 @@ script = ExtResource("6_jge7y")
 colorPickerButton = NodePath("../ItemColorButton")
 
 [node name="WheelButton" type="HBoxContainer" parent="CustomizationOptions"]
-custom_minimum_size = Vector2(300, 40)
+custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 
 [node name="ItemText" type="RichTextLabel" parent="CustomizationOptions/WheelButton"]
-custom_minimum_size = Vector2(175, 25)
+custom_minimum_size = Vector2(140, 25)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
@@ -142,11 +163,11 @@ script = ExtResource("6_jge7y")
 colorPickerButton = NodePath("../ItemColorButton")
 
 [node name="ListBackground" type="HBoxContainer" parent="CustomizationOptions"]
-custom_minimum_size = Vector2(300, 40)
+custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 
 [node name="ItemText" type="RichTextLabel" parent="CustomizationOptions/ListBackground"]
-custom_minimum_size = Vector2(175, 25)
+custom_minimum_size = Vector2(140, 25)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
@@ -167,11 +188,11 @@ script = ExtResource("6_jge7y")
 colorPickerButton = NodePath("../ItemColorButton")
 
 [node name="ListFontColor" type="HBoxContainer" parent="CustomizationOptions"]
-custom_minimum_size = Vector2(300, 40)
+custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 
 [node name="ItemText" type="RichTextLabel" parent="CustomizationOptions/ListFontColor"]
-custom_minimum_size = Vector2(175, 25)
+custom_minimum_size = Vector2(140, 25)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
@@ -192,11 +213,11 @@ script = ExtResource("6_jge7y")
 colorPickerButton = NodePath("../ItemColorButton")
 
 [node name="PopupBackgroundColor" type="HBoxContainer" parent="CustomizationOptions"]
-custom_minimum_size = Vector2(300, 40)
+custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 
 [node name="ItemText" type="RichTextLabel" parent="CustomizationOptions/PopupBackgroundColor"]
-custom_minimum_size = Vector2(175, 25)
+custom_minimum_size = Vector2(140, 25)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
@@ -217,11 +238,11 @@ script = ExtResource("6_jge7y")
 colorPickerButton = NodePath("../ItemColorButton")
 
 [node name="PopupFontColor" type="HBoxContainer" parent="CustomizationOptions"]
-custom_minimum_size = Vector2(300, 40)
+custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 
 [node name="ItemText" type="RichTextLabel" parent="CustomizationOptions/PopupFontColor"]
-custom_minimum_size = Vector2(175, 25)
+custom_minimum_size = Vector2(140, 25)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
