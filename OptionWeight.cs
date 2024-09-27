@@ -8,6 +8,7 @@ public partial class OptionWeight : LineEdit
     // --------------------------------
 
     private GameManager gameManager;
+	[Export]
 	private Option optionParent;
 
     // --------------------------------
@@ -16,7 +17,6 @@ public partial class OptionWeight : LineEdit
     public override void _Ready()
 	{
 		gameManager = GameManager.Instance;
-		optionParent = (Option)GetParentControl();
 		
 		this.TextChanged += UpdateOptionWeight;
 	}

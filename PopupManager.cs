@@ -47,8 +47,38 @@ public partial class PopupManager : Control
     /// <param name="winnerName"></param>
 	public void AssignWinningText(Panel popup, string winnerName)
 	{
-		RichTextLabel winText = popup.GetChild<RichTextLabel>(0);
-		winText.Text = "[center]The Winning Choice Is:\n" + winnerName + "[/center]";
+        int rtlCount = 0;
+        RichTextLabel winText = null;
+        foreach(Variant child in popup.GetChildren())
+        {
+            try
+            {
+                if (child.As<RichTextLabel>() != null)
+                {
+                    ++rtlCount;
+                    if (rtlCount > 1)
+                    {
+                        winText = child.As<RichTextLabel>();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                GD.Print("Continuing Loop");
+                continue;
+            }
+            
+            
+        }
+
+        if (winText != null)
+        {
+            winText.Text = "[center]" + winnerName + "[/center]";
+        }
+        else
+        {
+            GD.PrintErr("No WinText Found");
+        }
 	}
 
     // --------------------------------

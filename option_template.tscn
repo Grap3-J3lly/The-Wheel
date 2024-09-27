@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://DisableButton.cs" id="1_4k7kn"]
 [ext_resource type="Script" path="res://RemoveButton.cs" id="1_5l6pj"]
 [ext_resource type="Script" path="res://OptionName.cs" id="2_1qtey"]
-[ext_resource type="Texture2D" uid="uid://orwdcn5m0xu" path="res://Assets/M_Checkbox.png" id="2_xtjxq"]
+[ext_resource type="Theme" uid="uid://cukesnrrfeutr" path="res://CheckBoxTheme.tres" id="2_k8vlh"]
 [ext_resource type="Texture2D" uid="uid://ddckb3sn64l8t" path="res://Assets/Icon_Check.png" id="3_qmac4"]
 [ext_resource type="Script" path="res://OptionWeight.cs" id="3_t7gkw"]
 [ext_resource type="Theme" uid="uid://dlf27rdr7dp0n" path="res://ListFontColorTheme.tres" id="3_yd0c1"]
@@ -22,18 +22,18 @@ optionEnabledField = NodePath("DisableButton")
 optionNameField = NodePath("OptionName")
 optionWeightField = NodePath("OptionWeightLineEdit/OptionWeightBackground")
 
-[node name="DisableButton" type="Button" parent="."]
-custom_minimum_size = Vector2(35, 0)
+[node name="DisableButton" type="Button" parent="." node_paths=PackedStringArray("checkmark")]
+custom_minimum_size = Vector2(26, 26)
 layout_mode = 2
 offset_left = 3.0
-offset_top = 2.0
-offset_right = 38.0
-offset_bottom = 37.0
-icon = ExtResource("2_xtjxq")
-flat = true
+offset_top = 5.0
+offset_right = 31.0
+offset_bottom = 33.0
+theme = ExtResource("2_k8vlh")
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("1_4k7kn")
+checkmark = NodePath("CheckmarkIcon")
 
 [node name="CheckmarkIcon" type="TextureRect" parent="DisableButton"]
 custom_minimum_size = Vector2(26, 26)
@@ -64,13 +64,14 @@ offset_bottom = 33.0
 size_flags_horizontal = 4
 theme = ExtResource("3_yd0c1")
 theme_override_colors/background_color = Color(0.290196, 0.372549, 0.172549, 1)
-text = "TESTING VALUES"
 placeholder_text = "Enter Option Title"
 drag_and_drop_selection_enabled = false
 middle_mouse_paste_enabled = false
 wrap_mode = 1
 caret_multiple = false
 script = ExtResource("2_1qtey")
+defaultBackgroundColor = Color(0.290196, 0.372549, 0.172549, 1)
+disabledBackgroundColor = Color(0.207843, 0.207843, 0.207843, 1)
 
 [node name="OptionWeightLineEdit" type="ColorRect" parent="."]
 layout_mode = 0
@@ -81,7 +82,7 @@ offset_bottom = 33.0
 pivot_offset = Vector2(29, 17)
 color = Color(0.290196, 0.372549, 0.172549, 1)
 
-[node name="OptionWeightBackground" type="LineEdit" parent="OptionWeightLineEdit"]
+[node name="OptionWeightBackground" type="LineEdit" parent="OptionWeightLineEdit" node_paths=PackedStringArray("optionParent")]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 offset_right = 59.0
@@ -95,16 +96,16 @@ alignment = 1
 drag_and_drop_selection_enabled = false
 flat = true
 script = ExtResource("3_t7gkw")
+optionParent = NodePath("../..")
 
 [node name="RemoveButton" type="Button" parent="."]
-custom_minimum_size = Vector2(35, 35)
+custom_minimum_size = Vector2(28, 28)
 layout_mode = 2
-offset_left = 296.0
-offset_top = 2.0
-offset_right = 331.0
-offset_bottom = 37.0
-icon = ExtResource("2_xtjxq")
-flat = true
+offset_left = 300.0
+offset_top = 5.0
+offset_right = 328.0
+offset_bottom = 33.0
+theme = ExtResource("2_k8vlh")
 expand_icon = true
 script = ExtResource("1_5l6pj")
 

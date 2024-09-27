@@ -11,6 +11,8 @@ public partial class DisableButton : Button
 
 	private GameManager gameManager;
 	private bool enabled = true;
+    [Export]
+    private TextureRect checkmark;
 
     // --------------------------------
     //		    PROPERTIES
@@ -48,11 +50,13 @@ public partial class DisableButton : Button
         
         if(enabled)
         {
+            checkmark.Modulate = new Color(255, 255, 255, 1);
             gameManager.DisabledOptions.Remove(optionParent);
             gameManager.CreatedOptions.Add(optionParent);
         }
         else
         {
+            checkmark.Modulate = new Color(255, 255, 255, 0);
             gameManager.DisabledOptions.Add(optionParent);
             gameManager.CreatedOptions.Remove(optionParent);
         }

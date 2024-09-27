@@ -7,6 +7,11 @@ public partial class OptionName : TextEdit
     //			VARIABLES	
     // --------------------------------
 
+    [Export]
+    private Color defaultBackgroundColor;
+    [Export]
+    private Color disabledBackgroundColor;
+
     private GameManager gameManager;
 	private Option optionParent;
 
@@ -25,6 +30,21 @@ public partial class OptionName : TextEdit
 	public override void _Process(double delta)
 	{
         this.Editable = !gameManager.WheelSpinning && optionParent.OptionEnabled;
+        ChangeColor(optionParent.OptionEnabled);
+    }
+
+    private void ChangeColor(bool isEnabled)
+    {
+        if(isEnabled)
+        {
+            RemoveThemeColorOverride("background_color");
+            AddThemeColorOverride("background_color", defaultBackgroundColor);
+        }
+        else
+        {
+            RemoveThemeColorOverride("background_color");
+            AddThemeColorOverride("background_color", disabledBackgroundColor);
+        }
     }
 
     // --------------------------------
