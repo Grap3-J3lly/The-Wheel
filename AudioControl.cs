@@ -9,6 +9,8 @@ public partial class AudioControl : Control
 
     [Export]
 	private HSlider volumeControl;
+    [Export]
+    private RichTextLabel volumeDisplay;
 
     // --------------------------------
     //		STANDARD FUNCTIONS	
@@ -32,5 +34,6 @@ public partial class AudioControl : Control
     private void OnVolumeChange(double value)
 	{
 		AudioServer.SetBusVolumeDb(0, (float)Mathf.LinearToDb(value));
+        volumeDisplay.Text = Mathf.RoundToInt((100 * value)).ToString();
 	}
 }

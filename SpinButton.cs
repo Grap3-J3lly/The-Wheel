@@ -72,7 +72,9 @@ public partial class SpinButton : Button
 		audioTimer = maxAudioTimer / gameManager.CreatedOptions.Count;
 		currentAudioDecrementer = audioDecrementer * gameManager.CreatedOptions.Count;
 		gameManager.TwitchInfoArea.Visible = false;
+
 		chatInputButton.ButtonPressed = false;
+		chatInputButton.ToggleCheckbox(chatInputButton.ButtonPressed);
     }
 
 	/// <summary>

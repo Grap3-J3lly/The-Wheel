@@ -48,16 +48,28 @@ public partial class ToggleChatInputButton : Button
 
         if(!toggleChatInput)
         {
-            checkmark.Modulate = new Color(255, 255, 255, 0);
+            ToggleCheckbox(false);
             users.Clear();
+        }
+        else
+        {
+            ToggleCheckbox(true);
+        }
+        gameManager.TwitchInfoArea.Visible = toggleChatInput;
+
+        
+    }
+
+    public void ToggleCheckbox(bool isVisible)
+    {
+        if (!isVisible)
+        {
+            checkmark.Modulate = new Color(255, 255, 255, 0);
         }
         else
         {
             checkmark.Modulate = new Color(255, 255, 255, 1);
         }
-        gameManager.TwitchInfoArea.Visible = toggleChatInput;
-
-        
     }
 
     // --------------------------------

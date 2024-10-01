@@ -10,6 +10,13 @@ public partial class OptionWeight : LineEdit
     private GameManager gameManager;
 	[Export]
 	private Option optionParent;
+	[Export]
+	private ColorRect weightBackground;
+	[Export]
+	private Color defaultColor;
+	[Export]
+	private Color disabledColor;
+
 
     // --------------------------------
     //		STANDARD FUNCTIONS	
@@ -24,6 +31,18 @@ public partial class OptionWeight : LineEdit
 	public override void _Process(double delta)
 	{
         this.Editable = !gameManager.WheelSpinning && optionParent.OptionEnabled;
+		ChangeColor(optionParent.OptionEnabled);
+	}
+
+	private void ChangeColor(bool isEnabled)
+	{
+		if (isEnabled)
+		{
+			weightBackground.Color = defaultColor;
+			return;
+		}
+		weightBackground.Color = disabledColor;
+		
 	}
 
     // --------------------------------

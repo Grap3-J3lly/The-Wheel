@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ctgy026yqcb0v"]
+[gd_scene load_steps=10 format=3 uid="uid://ctgy026yqcb0v"]
 
 [ext_resource type="Script" path="res://CustomizationManager.cs" id="1_e1qy6"]
 [ext_resource type="Theme" uid="uid://d3dvb7e4l28py" path="res://PopupBackgroundTheme.tres" id="2_lxquq"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bu424d8f76m01" path="res://Assets/W_MenuCustom.png" id="6_o6wrg"]
 [ext_resource type="Texture2D" uid="uid://cwmjngd4xi66u" path="res://Assets/W_Checkbox.png" id="7_7cjr5"]
 [ext_resource type="PackedScene" uid="uid://ggapqp0tm4wl" path="res://reset_button.tscn" id="7_rxs1j"]
+[ext_resource type="Theme" uid="uid://c7wno4dccruj2" path="res://SmallButtonTheme.tres" id="9_rn774"]
 
 [node name="CustomizationArea" type="Control" node_paths=PackedStringArray("generalBackgroundColor", "wheelPrimaryColor", "wheelSecondaryColor", "wheelButtonColor", "listBackgroundColor", "listFontColor", "popupBackgroundColor", "popupFontColor")]
 z_index = 5
@@ -101,10 +102,15 @@ grow_vertical = 2
 size_flags_vertical = 4
 flat = true
 icon_alignment = 1
-expand_icon = true
 
 [node name="ResetButton" parent="CustomizationOptions/GeneralBackground" node_paths=PackedStringArray("colorPickerButton") instance=ExtResource("7_rxs1j")]
+custom_minimum_size = Vector2(26, 26)
 layout_mode = 2
+theme = ExtResource("9_rn774")
+icon = null
+flat = false
+icon_alignment = 0
+expand_icon = false
 colorPickerButton = NodePath("../ColorBorder/GB_ColorPick")
 
 [node name="WheelPrimary" type="HBoxContainer" parent="CustomizationOptions"]
@@ -147,7 +153,13 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="ResetButton" parent="CustomizationOptions/WheelPrimary" node_paths=PackedStringArray("colorPickerButton") instance=ExtResource("7_rxs1j")]
+custom_minimum_size = Vector2(26, 26)
 layout_mode = 2
+theme = ExtResource("9_rn774")
+icon = null
+flat = false
+icon_alignment = 0
+expand_icon = false
 colorPickerButton = NodePath("../ColorBorder/WP_ColorPick")
 
 [node name="WheelSecondary" type="HBoxContainer" parent="CustomizationOptions"]
@@ -190,7 +202,13 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="ResetButton" parent="CustomizationOptions/WheelSecondary" node_paths=PackedStringArray("colorPickerButton") instance=ExtResource("7_rxs1j")]
+custom_minimum_size = Vector2(26, 26)
 layout_mode = 2
+theme = ExtResource("9_rn774")
+icon = null
+flat = false
+icon_alignment = 0
+expand_icon = false
 colorPickerButton = NodePath("../ColorBorder/WS_ColorPick")
 
 [node name="WheelButton" type="HBoxContainer" parent="CustomizationOptions"]
@@ -233,7 +251,13 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="ResetButton" parent="CustomizationOptions/WheelButton" node_paths=PackedStringArray("colorPickerButton") instance=ExtResource("7_rxs1j")]
+custom_minimum_size = Vector2(26, 26)
 layout_mode = 2
+theme = ExtResource("9_rn774")
+icon = null
+flat = false
+icon_alignment = 0
+expand_icon = false
 colorPickerButton = NodePath("../ColorBorder/WB_ColorPick")
 
 [node name="ListBackground" type="HBoxContainer" parent="CustomizationOptions"]
@@ -276,7 +300,13 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="ResetButton" parent="CustomizationOptions/ListBackground" node_paths=PackedStringArray("colorPickerButton") instance=ExtResource("7_rxs1j")]
+custom_minimum_size = Vector2(26, 26)
 layout_mode = 2
+theme = ExtResource("9_rn774")
+icon = null
+flat = false
+icon_alignment = 0
+expand_icon = false
 colorPickerButton = NodePath("../ColorBorder/LB_ColorPick")
 
 [node name="ListFontColor" type="HBoxContainer" parent="CustomizationOptions"]
@@ -319,7 +349,13 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="ResetButton" parent="CustomizationOptions/ListFontColor" node_paths=PackedStringArray("colorPickerButton") instance=ExtResource("7_rxs1j")]
+custom_minimum_size = Vector2(26, 26)
 layout_mode = 2
+theme = ExtResource("9_rn774")
+icon = null
+flat = false
+icon_alignment = 0
+expand_icon = false
 colorPickerButton = NodePath("../ColorBorder/LFC_ColorPick")
 
 [node name="PopupBackgroundColor" type="HBoxContainer" parent="CustomizationOptions"]
@@ -362,7 +398,13 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="ResetButton" parent="CustomizationOptions/PopupBackgroundColor" node_paths=PackedStringArray("colorPickerButton") instance=ExtResource("7_rxs1j")]
+custom_minimum_size = Vector2(26, 26)
 layout_mode = 2
+theme = ExtResource("9_rn774")
+icon = null
+flat = false
+icon_alignment = 0
+expand_icon = false
 colorPickerButton = NodePath("../ColorBorder/PBC_ColorPick")
 
 [node name="PopupFontColor" type="HBoxContainer" parent="CustomizationOptions"]
@@ -405,5 +447,11 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="ResetButton" parent="CustomizationOptions/PopupFontColor" node_paths=PackedStringArray("colorPickerButton") instance=ExtResource("7_rxs1j")]
+custom_minimum_size = Vector2(26, 26)
 layout_mode = 2
+theme = ExtResource("9_rn774")
+icon = null
+flat = false
+icon_alignment = 0
+expand_icon = false
 colorPickerButton = NodePath("../ColorBorder/PFC_ColorPick")

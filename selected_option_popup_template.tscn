@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cwucnn6t72ta5"]
+[gd_scene load_steps=16 format=3 uid="uid://cwucnn6t72ta5"]
 
 [ext_resource type="Script" path="res://ClosePopupButton.cs" id="1_g7cxh"]
 [ext_resource type="Theme" uid="uid://d3dvb7e4l28py" path="res://PopupBackgroundTheme.tres" id="1_sn5gn"]
@@ -7,7 +7,31 @@
 [ext_resource type="Texture2D" uid="uid://be4ivkog34i83" path="res://Assets/W_WinPopup_F2.png" id="3_wk0jt"]
 [ext_resource type="Texture2D" uid="uid://6g6jhret8f88" path="res://Assets/W_WinPopup_F3.png" id="4_o7dnp"]
 [ext_resource type="FontFile" uid="uid://65anix1v37bg" path="res://Assets/super_corn/Super Corn.ttf" id="5_lkq8v"]
+[ext_resource type="Texture2D" uid="uid://pf7nx66rnsbv" path="res://Assets/M_Button_H.png" id="7_8ofxq"]
 [ext_resource type="Texture2D" uid="uid://dqvk1u05ye3ke" path="res://Assets/M_Button_D.png" id="7_r6iuj"]
+[ext_resource type="Texture2D" uid="uid://huew4d7ijmdc" path="res://Assets/M_Button_P.png" id="9_v3l5a"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dx8dl"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k8p1v"]
+texture = ExtResource("7_8ofxq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_12mfa"]
+texture = ExtResource("7_r6iuj")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3at6g"]
+texture = ExtResource("9_v3l5a")
+
+[sub_resource type="Theme" id="Theme_qti55"]
+default_font = ExtResource("5_lkq8v")
+default_font_size = 30
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/styles/focus = SubResource("StyleBoxEmpty_dx8dl")
+Button/styles/hover = SubResource("StyleBoxTexture_k8p1v")
+Button/styles/normal = SubResource("StyleBoxTexture_12mfa")
+Button/styles/pressed = SubResource("StyleBoxTexture_3at6g")
 
 [node name="SelectedOptionPopup" type="Panel"]
 z_index = 5
@@ -121,11 +145,6 @@ offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(72, 40)
-theme_override_fonts/font = ExtResource("5_lkq8v")
-theme_override_font_sizes/font_size = 30
+theme = SubResource("Theme_qti55")
 text = "CLOSE"
-icon = ExtResource("7_r6iuj")
-flat = true
-icon_alignment = 1
-expand_icon = true
 script = ExtResource("1_g7cxh")

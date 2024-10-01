@@ -11,8 +11,6 @@ public partial class CustomizeButton : Button
 
 	[Export]
 	private PackedScene customizationAreaTemplate;
-	[Export]
-	private int backgroundMultiplier = 4;
 
     // --------------------------------
     //		STANDARD FUNCTIONS	
@@ -34,10 +32,11 @@ public partial class CustomizeButton : Button
     public void OnButtonPressed()
 	{
 		if(PopupManager.Instance.IsCustomizationOpen) { return; }
-		menuBackground.Size = new Vector2(menuBackground.Size.X * backgroundMultiplier, menuBackground.Size.Y);
-		menuBackground.Position = new Vector2(menuBackground.Position.X/backgroundMultiplier, menuBackground.Position.Y);
-
 		Control customizationArea = (Control)customizationAreaTemplate.Instantiate();
 		menuBackground.AddChild(customizationArea);
+
+		menuBackground.Size = new Vector2(menuBackground.Size.X, menuBackground.Size.Y);
+		menuBackground.Position = new Vector2(menuBackground.Position.X - (customizationArea.Size.X/4), menuBackground.Position.Y);
+
 	}
 }

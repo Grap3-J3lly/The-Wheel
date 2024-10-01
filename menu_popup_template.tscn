@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://b1lc8f4e26bea"]
+[gd_scene load_steps=47 format=3 uid="uid://b1lc8f4e26bea"]
 
 [ext_resource type="Script" path="res://CustomizeButton.cs" id="1_lh7j3"]
 [ext_resource type="Theme" uid="uid://d3dvb7e4l28py" path="res://PopupBackgroundTheme.tres" id="1_tjypc"]
@@ -13,14 +13,23 @@
 [ext_resource type="Script" path="res://LoadListButton.cs" id="5_qlgbo"]
 [ext_resource type="FontFile" uid="uid://65anix1v37bg" path="res://Assets/super_corn/Super Corn.ttf" id="6_7hknv"]
 [ext_resource type="Script" path="res://DeleteButton.cs" id="6_x6u8j"]
-[ext_resource type="Texture2D" uid="uid://r5h2lwdau3ha" path="res://Assets/M_ButtonMini_D.png" id="7_7pw6l"]
 [ext_resource type="Script" path="res://AudioControl.cs" id="7_poh36"]
 [ext_resource type="Texture2D" uid="uid://cq8q4p6ap4hu8" path="res://Assets/Icon_Save.png" id="9_q26gk"]
 [ext_resource type="Texture2D" uid="uid://bkk42p4a131a" path="res://Assets/Icon_Load.png" id="12_edsye"]
+[ext_resource type="Theme" uid="uid://c7wno4dccruj2" path="res://SmallButtonTheme.tres" id="13_s3un3"]
 [ext_resource type="Texture2D" uid="uid://dq2rp6jyw2bik" path="res://Assets/Icon_Trash.png" id="14_bjneq"]
 [ext_resource type="Texture2D" uid="uid://dt45i3k3wpjlh" path="res://Assets/M_Handle_D.png" id="16_3b7jd"]
 [ext_resource type="Texture2D" uid="uid://dqhqyywy03b3h" path="res://Assets/M_Handle_H.png" id="17_tvd1q"]
 [ext_resource type="Texture2D" uid="uid://dqvk1u05ye3ke" path="res://Assets/M_Button_D.png" id="18_hn4eo"]
+[ext_resource type="Texture2D" uid="uid://pf7nx66rnsbv" path="res://Assets/M_Button_H.png" id="19_6a0je"]
+[ext_resource type="Texture2D" uid="uid://huew4d7ijmdc" path="res://Assets/M_Button_P.png" id="21_qkyd6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bl8ug"]
+
+[sub_resource type="Theme" id="Theme_44jeq"]
+default_font = ExtResource("6_7hknv")
+LineEdit/colors/font_color = Color(1, 1, 1, 1)
+LineEdit/styles/focus = SubResource("StyleBoxEmpty_bl8ug")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e072i"]
 bg_color = Color(0.290196, 0.372549, 0.172549, 1)
@@ -48,6 +57,42 @@ border_width_top = 10
 border_width_bottom = 10
 border_color = Color(0.290196, 0.372549, 0.172549, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_24frb"]
+content_margin_left = 15.0
+content_margin_top = 0.0
+content_margin_right = 15.0
+content_margin_bottom = 0.0
+bg_color = Color(0.533154, 0.771052, 0.282225, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qrgns"]
+content_margin_left = 15.0
+content_margin_top = 0.0
+content_margin_right = 15.0
+content_margin_bottom = 0.0
+bg_color = Color(0.584496, 0.841106, 0.31516, 1)
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ymqt1"]
+content_margin_left = 15.0
+content_margin_top = 0.0
+content_margin_right = 15.0
+content_margin_bottom = 0.0
+bg_color = Color(0.486323, 0.705249, 0.255427, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_42f8b"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 10.0
+content_margin_bottom = 0.0
+bg_color = Color(0.207843, 0.207843, 0.207843, 1)
+border_width_left = 2
+border_width_right = 2
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_detail = 1
+
 [sub_resource type="Theme" id="Theme_3rp4f"]
 default_font = ExtResource("6_7hknv")
 OptionButton/colors/font_color = Color(1, 1, 1, 1)
@@ -67,6 +112,10 @@ PopupMenu/icons/radio_checked = SubResource("ImageTexture_2q7gr")
 PopupMenu/icons/radio_unchecked = SubResource("ImageTexture_ac0k2")
 PopupMenu/styles/hover = SubResource("StyleBoxFlat_1ks3l")
 PopupMenu/styles/panel = SubResource("StyleBoxFlat_cpbyv")
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_24frb")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_qrgns")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_ymqt1")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_42f8b")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sxvtg"]
 bg_color = Color(0.478431, 0.694118, 0.25098, 1)
@@ -90,6 +139,26 @@ HSlider/icons/grabber_highlight = ExtResource("17_tvd1q")
 HSlider/styles/grabber_area = SubResource("StyleBoxFlat_sxvtg")
 HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_ly7wl")
 HSlider/styles/slider = SubResource("StyleBoxFlat_8vwis")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0rxyi"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_24h54"]
+texture = ExtResource("19_6a0je")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yeqfa"]
+texture = ExtResource("18_hn4eo")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_45cqu"]
+texture = ExtResource("21_qkyd6")
+
+[sub_resource type="Theme" id="Theme_srjbp"]
+default_font = ExtResource("6_7hknv")
+default_font_size = 24
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/styles/focus = SubResource("StyleBoxEmpty_0rxyi")
+Button/styles/hover = SubResource("StyleBoxTexture_24h54")
+Button/styles/normal = SubResource("StyleBoxTexture_yeqfa")
+Button/styles/pressed = SubResource("StyleBoxTexture_45cqu")
 
 [node name="MenuBackground" type="Panel"]
 z_index = 6
@@ -215,19 +284,16 @@ custom_minimum_size = Vector2(250, 35)
 layout_mode = 2
 offset_right = 250.0
 offset_bottom = 31.0
-theme_override_fonts/font = ExtResource("6_7hknv")
+theme = SubResource("Theme_44jeq")
 flat = true
 
 [node name="SaveListButton" type="Button" parent="MenuItemContainer/SaveItem/SaveItemContainer" node_paths=PackedStringArray("listNameField", "listOptions")]
-custom_minimum_size = Vector2(42.5, 42.5)
+custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-offset_left = 250.0
-offset_top = -3.0
-offset_right = 292.5
-offset_bottom = 39.5
-icon = ExtResource("7_7pw6l")
-flat = true
-expand_icon = true
+offset_left = 255.0
+offset_right = 290.0
+offset_bottom = 35.0
+theme = ExtResource("13_s3un3")
 script = ExtResource("3_w6nua")
 listNameField = NodePath("../ColorRect/ListNameField")
 listOptions = NodePath("../../../LoadItem/LoadItemContainer/ListOptions")
@@ -285,21 +351,20 @@ size_flags_vertical = 4
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 1
 offset_left = -17.0
+offset_top = -2.0
 offset_right = 233.0
-offset_bottom = 31.0
+offset_bottom = 33.0
 theme = SubResource("Theme_3rp4f")
 script = ExtResource("4_n8vde")
 
 [node name="LoadListButton" type="Button" parent="MenuItemContainer/LoadItem/LoadItemContainer" node_paths=PackedStringArray("customizeButton", "loadListOptionButton")]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-offset_left = 234.0
-offset_top = -6.0
-offset_right = 276.5
-offset_bottom = 36.5
-icon = ExtResource("7_7pw6l")
-flat = true
-expand_icon = true
+offset_left = 238.0
+offset_top = -2.0
+offset_right = 273.0
+offset_bottom = 33.0
+theme = ExtResource("13_s3un3")
 script = ExtResource("5_qlgbo")
 customizeButton = NodePath("../../../CustomizeButton")
 loadListOptionButton = NodePath("../ListOptions")
@@ -324,15 +389,13 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="DeleteButton" type="Button" parent="MenuItemContainer/LoadItem/LoadItemContainer" node_paths=PackedStringArray("listOptions")]
-custom_minimum_size = Vector2(42.5, 42.5)
+custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-offset_left = 274.0
-offset_top = -6.0
-offset_right = 316.5
-offset_bottom = 36.5
-icon = ExtResource("7_7pw6l")
-flat = true
-expand_icon = true
+offset_left = 278.0
+offset_top = -2.0
+offset_right = 313.0
+offset_bottom = 33.0
+theme = ExtResource("13_s3un3")
 script = ExtResource("6_x6u8j")
 listOptions = NodePath("../ListOptions")
 
@@ -355,11 +418,12 @@ texture = ExtResource("14_bjneq")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="AudioControl" type="Control" parent="MenuItemContainer" node_paths=PackedStringArray("volumeControl")]
+[node name="AudioControl" type="Control" parent="MenuItemContainer" node_paths=PackedStringArray("volumeControl", "volumeDisplay")]
 custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
 script = ExtResource("7_poh36")
 volumeControl = NodePath("AudioSlider")
+volumeDisplay = NodePath("AudioVisualBackground/AudioVisualText")
 
 [node name="AudioLabel" type="RichTextLabel" parent="MenuItemContainer/AudioControl"]
 custom_minimum_size = Vector2(75, 25)
@@ -408,18 +472,12 @@ custom_minimum_size = Vector2(150, 40)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
+theme = SubResource("Theme_srjbp")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("6_7hknv")
-theme_override_font_sizes/font_size = 24
 text = "CUSTOMIZE"
-icon = ExtResource("18_hn4eo")
-flat = true
-icon_alignment = 1
-expand_icon = true
 script = ExtResource("1_lh7j3")
 menuBackground = NodePath("../..")
 customizationAreaTemplate = ExtResource("3_wd6i2")
-backgroundMultiplier = 1
 
 [node name="CloseButton" type="Button" parent="."]
 custom_minimum_size = Vector2(150, 40)
@@ -432,12 +490,9 @@ offset_top = -60.0
 offset_right = 270.0
 offset_bottom = -20.0
 grow_vertical = 0
+theme = SubResource("Theme_srjbp")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("6_7hknv")
 theme_override_font_sizes/font_size = 24
 text = "CLOSE"
-icon = ExtResource("18_hn4eo")
-flat = true
-icon_alignment = 1
-expand_icon = true
 script = ExtResource("1_x3pfe")

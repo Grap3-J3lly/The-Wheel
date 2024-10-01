@@ -82,7 +82,7 @@ offset_bottom = 33.0
 pivot_offset = Vector2(29, 17)
 color = Color(0.290196, 0.372549, 0.172549, 1)
 
-[node name="OptionWeightBackground" type="LineEdit" parent="OptionWeightLineEdit" node_paths=PackedStringArray("optionParent")]
+[node name="OptionWeightBackground" type="LineEdit" parent="OptionWeightLineEdit" node_paths=PackedStringArray("optionParent", "weightBackground")]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 offset_right = 59.0
@@ -97,6 +97,9 @@ drag_and_drop_selection_enabled = false
 flat = true
 script = ExtResource("3_t7gkw")
 optionParent = NodePath("../..")
+weightBackground = NodePath("..")
+defaultColor = Color(0.290196, 0.372549, 0.172549, 1)
+disabledColor = Color(0.207843, 0.207843, 0.207843, 1)
 
 [node name="RemoveButton" type="Button" parent="."]
 custom_minimum_size = Vector2(28, 28)

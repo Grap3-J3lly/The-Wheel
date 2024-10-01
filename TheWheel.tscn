@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://8cgspyr8gob4"]
+[gd_scene load_steps=41 format=3 uid="uid://8cgspyr8gob4"]
 
 [ext_resource type="Theme" uid="uid://cpm3ymheyptc0" path="res://WheelButtonTheme.tres" id="2_3bb4o"]
 [ext_resource type="Script" path="res://GameManager.cs" id="2_yv2g8"]
@@ -39,24 +39,46 @@
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_24frb"]
-bg_color = Color(0.478431, 0.694118, 0.25098, 1)
+content_margin_left = 15.0
+content_margin_top = 0.0
+content_margin_right = 15.0
+content_margin_bottom = 0.0
+bg_color = Color(0.533154, 0.771052, 0.282225, 1)
 corner_detail = 1
-expand_margin_left = 9.0
-expand_margin_right = 1.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_42f8b"]
-content_margin_right = 1.0
-bg_color = Color(0.207843, 0.207843, 0.207843, 1)
-border_width_right = 1
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qrgns"]
+content_margin_left = 15.0
+content_margin_top = 0.0
+content_margin_right = 15.0
+content_margin_bottom = 0.0
+bg_color = Color(0.584496, 0.841106, 0.31516, 1)
 border_color = Color(0.8, 0.8, 0.8, 0)
 corner_detail = 1
-expand_margin_left = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ymqt1"]
+content_margin_left = 15.0
+content_margin_top = 0.0
+content_margin_right = 15.0
+content_margin_bottom = 0.0
+bg_color = Color(0.486323, 0.705249, 0.255427, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_42f8b"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 10.0
+content_margin_bottom = 0.0
+bg_color = Color(0.207843, 0.207843, 0.207843, 1)
+border_width_left = 2
+border_width_right = 2
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_detail = 1
 
 [sub_resource type="Theme" id="Theme_88tj4"]
 ScrollContainer/styles/panel = SubResource("StyleBoxFlat_0fidw")
 VScrollBar/styles/grabber = SubResource("StyleBoxFlat_24frb")
-VScrollBar/styles/grabber_highlight = null
-VScrollBar/styles/grabber_pressed = null
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_qrgns")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_ymqt1")
 VScrollBar/styles/scroll = SubResource("StyleBoxFlat_42f8b")
 
 [node name="Node2D" type="Node2D"]
@@ -70,14 +92,14 @@ listBackground = NodePath("../CanvasLayer/OptionArea/OptionBackground")
 spinButton = NodePath("../CanvasLayer/WheelArea/SpinButton")
 optionTemplate = ExtResource("5_xkam3")
 optionParent = NodePath("../CanvasLayer/OptionArea/ScrollArea/OptionList")
-default_generalBackgroundColor = Color(0.549, 0.549, 0.549, 1)
-default_wheelPrimaryColor = Color(0.627, 0.386, 0.936, 1)
-default_wheelSecondaryColor = Color(0.853, 0.454, 0.955, 1)
-default_wheelButtonColor = Color(0.247, 0.008, 0.322, 1)
-default_listBackgroundColor = Color(0, 0.42, 0, 1)
+default_generalBackgroundColor = Color(0.0862745, 0.0392157, 0.152941, 1)
+default_wheelPrimaryColor = Color(0.262745, 0.133333, 0.694118, 1)
+default_wheelSecondaryColor = Color(0.533333, 0.152941, 0.839216, 1)
+default_wheelButtonColor = Color(1, 0.964706, 0.823529, 1)
+default_listBackgroundColor = Color(1, 0.964706, 0.823529, 1)
 default_listFontColor = Color(1, 1, 1, 1)
-default_popupBackgroundColor = Color(1, 0.941, 0.667, 1)
-default_popupFontColor = Color(0.357, 0.22, 0.392, 1)
+default_popupBackgroundColor = Color(1, 0.964706, 0.823529, 1)
+default_popupFontColor = Color(0.32549, 0.176471, 0.0509804, 1)
 audioStreamPlayer = NodePath("../AudioManager")
 twitchInfoArea = NodePath("../CanvasLayer/TwitchInfoArea")
 
@@ -101,6 +123,7 @@ color = Color(0.0862745, 0.0392157, 0.152941, 1)
 
 [node name="BackgroundTexture" type="TextureRect" parent="CanvasLayer/ApplicationBackground"]
 modulate = Color(0.113725, 0.054902, 0.2, 1)
+custom_minimum_size = Vector2(1152, 648)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -109,7 +132,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("5_wkq58")
 expand_mode = 1
-stretch_mode = 5
+stretch_mode = 6
 
 [node name="WheelArea" type="Control" parent="CanvasLayer"]
 layout_mode = 3
