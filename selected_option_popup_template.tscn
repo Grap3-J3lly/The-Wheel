@@ -130,6 +130,9 @@ theme = ExtResource("2_i2gxd")
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 text = "[center]AMOGUS[/center]"
+fit_content = true
+scroll_active = false
+scroll_following = true
 
 [node name="ClosePopupButton" type="Button" parent="."]
 layout_mode = 1

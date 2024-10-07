@@ -7,10 +7,10 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b6vib"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x15ri"]
-texture = ExtResource("1_1ehs3")
+texture = ExtResource("2_y5biy")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sijsn"]
-texture = ExtResource("2_y5biy")
+texture = ExtResource("1_1ehs3")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8415a"]
 texture = ExtResource("3_husqm")
