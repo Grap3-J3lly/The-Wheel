@@ -5,6 +5,7 @@ public partial class SpinButton : Button
 	// --------------------------------
 	//			VARIABLES	
 	// --------------------------------
+	public bool idleSpinning = true;
 	[Export]
 	private ToggleChatInputButton chatInputButton;
 	[Export]
@@ -15,6 +16,8 @@ public partial class SpinButton : Button
 	private double maxTime = 3d;
 	[Export]
 	private float speed = .75f;
+	[Export]
+	private float idleSpeed = .1f;
 
     private GameManager gameManager;	
 	private double timer;
@@ -49,6 +52,7 @@ public partial class SpinButton : Button
 	{
 		base._Process(delta);
 		HandleWheelSpin(delta);
+		if (!gameManager.WheelSpinning && idleSpinning) HandleIdleSpin(delta);
 	}
 
     // --------------------------------
@@ -61,6 +65,7 @@ public partial class SpinButton : Button
     private void PressButton()
 	{
 		if(gameManager.WheelSpinning) { return; }
+		idleSpinning = false;
 		timer = 0d;
 		startRotation = true;
 
@@ -207,4 +212,13 @@ public partial class SpinButton : Button
 		}
 		audioTimer -= currentAudioDecrementer;
     }
+
+    // --------------------------------
+    //			IDLE LOGIC	
+    // --------------------------------
+
+	private void HandleIdleSpin(double delta)
+	{
+		wheel.RotationDegrees += (float)delta * idleSpeed;
+	}
 }

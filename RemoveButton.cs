@@ -31,19 +31,27 @@ public partial class RemoveButton : Button
 	/// </summary>
     private void PressButton()
 	{
-        if (gameManager.WheelSpinning || gameManager.CreatedOptions.Count <= 1) { return; }
+        if (gameManager.WheelSpinning) { return; }
 
-		if(gameManager.CreatedOptions.Contains(optionParent))
+		if (gameManager.CreatedOptions.Count > 1)
 		{
-			gameManager.CreatedOptions.Remove(optionParent);
-		}	
-		if(gameManager.DisabledOptions.Contains(optionParent))
-		{
-			gameManager.DisabledOptions.Remove(optionParent);
-		}
+            if (gameManager.CreatedOptions.Contains(optionParent))
+            {
+                gameManager.CreatedOptions.Remove(optionParent);
+            }
+            if (gameManager.DisabledOptions.Contains(optionParent))
+            {
+                gameManager.DisabledOptions.Remove(optionParent);
+            }
 
-		Option.DeleteOption(optionParent);
+            Option.DeleteOption(optionParent);
 
-		gameManager.WheelProgressParent.EmitSignal(WheelProgress.SignalName.WheelProgressUpdate, true);
+            gameManager.WheelProgressParent.EmitSignal(WheelProgress.SignalName.WheelProgressUpdate, true);
+        }
+        else
+        {
+            optionParent.OptionName = "";
+            optionParent.ResetDefaultWeight();
+        }
 	}
 }

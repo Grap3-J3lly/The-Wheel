@@ -83,19 +83,21 @@ VScrollBar/styles/scroll = SubResource("StyleBoxFlat_42f8b")
 
 [node name="Node2D" type="Node2D"]
 
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("applicationBackground", "listBackground", "spinButton", "optionParent", "audioStreamPlayer", "twitchInfoArea")]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("applicationBackground", "backgroundTexture", "listBackground", "spinButton", "optionParent", "audioStreamPlayer", "twitchInfoArea")]
 script = ExtResource("2_yv2g8")
 primaryColor = Color(0.262745, 0.133333, 0.694118, 1)
 secondaryColor = Color(0.533333, 0.152941, 0.839216, 1)
 applicationBackground = NodePath("../CanvasLayer/ApplicationBackground")
+backgroundTexture = NodePath("../CanvasLayer/ApplicationBackground/BackgroundTexture")
 listBackground = NodePath("../CanvasLayer/OptionArea/OptionBackground")
 spinButton = NodePath("../CanvasLayer/WheelArea/SpinButton")
 optionTemplate = ExtResource("5_xkam3")
 optionParent = NodePath("../CanvasLayer/OptionArea/ScrollArea/OptionList")
 default_generalBackgroundColor = Color(0.0862745, 0.0392157, 0.152941, 1)
+default_secondaryBackgroundColor = Color(0.113725, 0.054902, 0.2, 1)
 default_wheelPrimaryColor = Color(0.262745, 0.133333, 0.694118, 1)
 default_wheelSecondaryColor = Color(0.533333, 0.152941, 0.839216, 1)
-default_wheelButtonColor = Color(1, 0.964706, 0.823529, 1)
+default_wheelButtonColor = Color(1, 1, 1, 1)
 default_listBackgroundColor = Color(1, 0.964706, 0.823529, 1)
 default_listFontColor = Color(1, 1, 1, 1)
 default_popupBackgroundColor = Color(1, 0.964706, 0.823529, 1)
@@ -199,6 +201,7 @@ audioStreamPlayer = NodePath("../../../AudioManager")
 wheel = NodePath("../WheelProgressBars")
 maxTime = 5.0
 speed = 2.0
+idleSpeed = 1.0
 audioDecrementer = 0.0
 maxAudioTimer = 75.0
 
@@ -413,9 +416,9 @@ grow_horizontal = 2
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 0
 offset_left = 1.0
-offset_top = 10.0
+offset_top = 3.0
 offset_right = 33.0
-offset_bottom = 42.0
+offset_bottom = 35.0
 size_flags_horizontal = 2
 size_flags_vertical = 4
 theme = ExtResource("20_1qlyv")
@@ -443,13 +446,23 @@ texture = ExtResource("21_5lgta")
 expand_mode = 1
 stretch_mode = 5
 
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/OptionArea/TopBar/OpenOptionMenuButton"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 32.0
+offset_right = 32.0
+offset_bottom = 46.0
+theme_override_fonts/normal_font = ExtResource("12_83383")
+theme_override_font_sizes/normal_font_size = 12
+text = "Menu"
+
 [node name="ToggleChatInputButton" type="Button" parent="CanvasLayer/OptionArea/TopBar" node_paths=PackedStringArray("feed", "checkmark")]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 0
 offset_left = 40.0
-offset_top = 10.0
+offset_top = 3.0
 offset_right = 72.0
-offset_bottom = 42.0
+offset_bottom = 35.0
 size_flags_horizontal = 3
 theme = ExtResource("23_ps6x7")
 icon_alignment = 1
@@ -480,6 +493,15 @@ texture = ExtResource("25_l5lkr")
 expand_mode = 1
 stretch_mode = 5
 
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/OptionArea/TopBar/ToggleChatInputButton"]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 35.0
+offset_bottom = 46.0
+theme_override_fonts/normal_font = ExtResource("12_83383")
+theme_override_font_sizes/normal_font_size = 12
+text = "Twitch"
+
 [node name="OptionText" type="RichTextLabel" parent="CanvasLayer/OptionArea/TopBar"]
 custom_minimum_size = Vector2(130, 40)
 layout_mode = 0
@@ -498,47 +520,16 @@ text = "[center]Options[/center]"
 scroll_active = false
 autowrap_mode = 0
 
-[node name="ClearOptionWeightsButton" type="Button" parent="CanvasLayer/OptionArea/TopBar"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 0
-offset_left = 250.0
-offset_top = 10.0
-offset_right = 282.0
-offset_bottom = 42.0
-size_flags_horizontal = 10
-size_flags_vertical = 4
-theme = ExtResource("20_1qlyv")
-expand_icon = true
-script = ExtResource("12_654ys")
-
-[node name="ResetIcon" type="TextureRect" parent="CanvasLayer/OptionArea/TopBar/ClearOptionWeightsButton"]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -14.0
-offset_top = -14.0
-offset_right = 12.0
-offset_bottom = 12.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("29_jnu0i")
-expand_mode = 1
-stretch_mode = 5
-
 [node name="AddOptionButton" type="Button" parent="CanvasLayer/OptionArea/TopBar"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -35.0
-offset_top = 10.0
-offset_right = -3.0
-offset_bottom = 42.0
+offset_left = -75.0
+offset_top = 3.0
+offset_right = -43.0
+offset_bottom = 35.0
 grow_horizontal = 0
 size_flags_horizontal = 10
 size_flags_vertical = 4
@@ -563,6 +554,58 @@ grow_vertical = 2
 texture = ExtResource("31_gbu6j")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/OptionArea/TopBar/AddOptionButton"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 32.0
+offset_right = 28.0
+offset_bottom = 47.0
+theme_override_fonts/normal_font = ExtResource("12_83383")
+theme_override_font_sizes/normal_font_size = 12
+text = "Add"
+
+[node name="ClearOptionWeightsButton" type="Button" parent="CanvasLayer/OptionArea/TopBar"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 0
+offset_left = 290.0
+offset_top = 3.0
+offset_right = 322.0
+offset_bottom = 35.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+theme = ExtResource("20_1qlyv")
+expand_icon = true
+script = ExtResource("12_654ys")
+
+[node name="ResetIcon" type="TextureRect" parent="CanvasLayer/OptionArea/TopBar/ClearOptionWeightsButton"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -14.0
+offset_top = -14.0
+offset_right = 12.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("29_jnu0i")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/OptionArea/TopBar/ClearOptionWeightsButton"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 32.0
+offset_right = 35.0
+offset_bottom = 56.0
+theme_override_fonts/normal_font = ExtResource("12_83383")
+theme_override_font_sizes/normal_font_size = 10
+bbcode_enabled = true
+text = "[center]Reset Weight"
 
 [node name="ScrollArea" type="ScrollContainer" parent="CanvasLayer/OptionArea"]
 layout_mode = 1
@@ -593,8 +636,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -17.0
-offset_right = -17.0
+offset_left = -16.0
+offset_top = 10.0
+offset_right = -16.0
+offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("9_4p5xn")

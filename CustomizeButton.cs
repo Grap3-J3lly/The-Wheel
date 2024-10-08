@@ -31,12 +31,14 @@ public partial class CustomizeButton : Button
 	/// </summary>
     public void OnButtonPressed()
 	{
-		if(PopupManager.Instance.IsCustomizationOpen) { return; }
+        GD.Print("Customization Button Pressed");
+        if (PopupManager.Instance.IsCustomizationOpen) { return; }
+		GD.Print("Creating Customization Area");
 		Control customizationArea = (Control)customizationAreaTemplate.Instantiate();
 		menuBackground.AddChild(customizationArea);
 
 		menuBackground.Size = new Vector2(menuBackground.Size.X, menuBackground.Size.Y);
 		menuBackground.Position = new Vector2(menuBackground.Position.X - (customizationArea.Size.X/4), menuBackground.Position.Y);
-
-	}
+        GD.Print("Finished Creating Customization Area");
+    }
 }

@@ -22,5 +22,6 @@ public partial class ClosePopupButton : Button
     private void OnButtonPress()
 	{
 		PopupManager.Instance.ClosePopup(GetParent<Control>());
+        GameManager.Instance.SpinButton.idleSpinning = true;
 	}
 }

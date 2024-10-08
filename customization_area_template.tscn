@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://ggapqp0tm4wl" path="res://reset_button.tscn" id="7_rxs1j"]
 [ext_resource type="Theme" uid="uid://c7wno4dccruj2" path="res://SmallButtonTheme.tres" id="9_rn774"]
 
-[node name="CustomizationArea" type="Control" node_paths=PackedStringArray("generalBackgroundColor", "wheelPrimaryColor", "wheelSecondaryColor", "wheelButtonColor", "listBackgroundColor", "listFontColor", "popupBackgroundColor", "popupFontColor")]
+[node name="CustomizationArea" type="Control" node_paths=PackedStringArray("generalBackgroundColor", "secondaryBackgroundColor", "wheelPrimaryColor", "wheelSecondaryColor", "wheelButtonColor", "listBackgroundColor", "listFontColor", "popupBackgroundColor", "popupFontColor")]
 z_index = 5
 z_as_relative = false
 layout_mode = 3
@@ -21,6 +21,7 @@ offset_right = 700.0
 offset_bottom = 374.0
 script = ExtResource("1_e1qy6")
 generalBackgroundColor = NodePath("CustomizationOptions/GeneralBackground/ColorBorder/GB_ColorPick")
+secondaryBackgroundColor = NodePath("CustomizationOptions/SecondaryBackground/ColorBorder/SB_ColorPick")
 wheelPrimaryColor = NodePath("CustomizationOptions/WheelPrimary/ColorBorder/WP_ColorPick")
 wheelSecondaryColor = NodePath("CustomizationOptions/WheelSecondary/ColorBorder/WS_ColorPick")
 wheelButtonColor = NodePath("CustomizationOptions/WheelButton/ColorBorder/WB_ColorPick")
@@ -60,14 +61,14 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -96.0
-offset_top = -171.0
+offset_top = -181.0
 offset_right = 112.0
-offset_bottom = 177.0
+offset_bottom = 199.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="GeneralBackground" type="HBoxContainer" parent="CustomizationOptions"]
-custom_minimum_size = Vector2(200, 40)
+custom_minimum_size = Vector2(200, 30)
 layout_mode = 2
 
 [node name="ItemText" type="RichTextLabel" parent="CustomizationOptions/GeneralBackground"]
@@ -76,7 +77,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 theme = ExtResource("3_n1x8u")
-text = "Main Background"
+text = "BG Primary"
 
 [node name="ColorBorder" type="TextureRect" parent="CustomizationOptions/GeneralBackground"]
 custom_minimum_size = Vector2(22, 22)
@@ -113,8 +114,55 @@ icon_alignment = 0
 expand_icon = false
 colorPickerButton = NodePath("../ColorBorder/GB_ColorPick")
 
+[node name="SecondaryBackground" type="HBoxContainer" parent="CustomizationOptions"]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+
+[node name="ItemText" type="RichTextLabel" parent="CustomizationOptions/SecondaryBackground"]
+custom_minimum_size = Vector2(140, 25)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme = ExtResource("3_n1x8u")
+text = "BG Secondary"
+
+[node name="ColorBorder" type="TextureRect" parent="CustomizationOptions/SecondaryBackground"]
+custom_minimum_size = Vector2(22, 22)
+layout_mode = 2
+texture = ExtResource("7_7cjr5")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SB_ColorPick" type="ColorPickerButton" parent="CustomizationOptions/SecondaryBackground/ColorBorder"]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -13.0
+offset_top = -13.0
+offset_right = 13.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+flat = true
+icon_alignment = 1
+
+[node name="ResetButton" parent="CustomizationOptions/SecondaryBackground" node_paths=PackedStringArray("colorPickerButton") instance=ExtResource("7_rxs1j")]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+theme = ExtResource("9_rn774")
+icon = null
+flat = false
+icon_alignment = 0
+expand_icon = false
+colorPickerButton = NodePath("../ColorBorder/SB_ColorPick")
+
 [node name="WheelPrimary" type="HBoxContainer" parent="CustomizationOptions"]
-custom_minimum_size = Vector2(200, 40)
+custom_minimum_size = Vector2(200, 30)
 layout_mode = 2
 
 [node name="ItemText" type="RichTextLabel" parent="CustomizationOptions/WheelPrimary"]
@@ -163,7 +211,7 @@ expand_icon = false
 colorPickerButton = NodePath("../ColorBorder/WP_ColorPick")
 
 [node name="WheelSecondary" type="HBoxContainer" parent="CustomizationOptions"]
-custom_minimum_size = Vector2(200, 40)
+custom_minimum_size = Vector2(200, 30)
 layout_mode = 2
 
 [node name="ItemText" type="RichTextLabel" parent="CustomizationOptions/WheelSecondary"]
@@ -212,7 +260,7 @@ expand_icon = false
 colorPickerButton = NodePath("../ColorBorder/WS_ColorPick")
 
 [node name="WheelButton" type="HBoxContainer" parent="CustomizationOptions"]
-custom_minimum_size = Vector2(200, 40)
+custom_minimum_size = Vector2(200, 30)
 layout_mode = 2
 
 [node name="ItemText" type="RichTextLabel" parent="CustomizationOptions/WheelButton"]
@@ -261,7 +309,7 @@ expand_icon = false
 colorPickerButton = NodePath("../ColorBorder/WB_ColorPick")
 
 [node name="ListBackground" type="HBoxContainer" parent="CustomizationOptions"]
-custom_minimum_size = Vector2(200, 40)
+custom_minimum_size = Vector2(200, 30)
 layout_mode = 2
 
 [node name="ItemText" type="RichTextLabel" parent="CustomizationOptions/ListBackground"]
@@ -310,7 +358,7 @@ expand_icon = false
 colorPickerButton = NodePath("../ColorBorder/LB_ColorPick")
 
 [node name="ListFontColor" type="HBoxContainer" parent="CustomizationOptions"]
-custom_minimum_size = Vector2(200, 40)
+custom_minimum_size = Vector2(200, 30)
 layout_mode = 2
 
 [node name="ItemText" type="RichTextLabel" parent="CustomizationOptions/ListFontColor"]
@@ -359,7 +407,7 @@ expand_icon = false
 colorPickerButton = NodePath("../ColorBorder/LFC_ColorPick")
 
 [node name="PopupBackgroundColor" type="HBoxContainer" parent="CustomizationOptions"]
-custom_minimum_size = Vector2(200, 40)
+custom_minimum_size = Vector2(200, 30)
 layout_mode = 2
 
 [node name="ItemText" type="RichTextLabel" parent="CustomizationOptions/PopupBackgroundColor"]
@@ -408,7 +456,7 @@ expand_icon = false
 colorPickerButton = NodePath("../ColorBorder/PBC_ColorPick")
 
 [node name="PopupFontColor" type="HBoxContainer" parent="CustomizationOptions"]
-custom_minimum_size = Vector2(200, 40)
+custom_minimum_size = Vector2(200, 30)
 layout_mode = 2
 
 [node name="ItemText" type="RichTextLabel" parent="CustomizationOptions/PopupFontColor"]

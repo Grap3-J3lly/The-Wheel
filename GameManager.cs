@@ -27,6 +27,8 @@ public partial class GameManager : Node
 	[Export]
 	private ColorRect applicationBackground;
 	[Export]
+	private TextureRect backgroundTexture;
+	[Export]
 	private ColorRect listBackground;
 	[Export]
 	private SpinButton spinButton;
@@ -40,6 +42,8 @@ public partial class GameManager : Node
 	// Default Color Data
 	[Export]
 	private Color default_generalBackgroundColor;
+    [Export]
+    private Color default_secondaryBackgroundColor;
     [Export]
     private Color default_wheelPrimaryColor;
     [Export]
@@ -89,6 +93,7 @@ public partial class GameManager : Node
 		get => secondaryColor; set => secondaryColor = value;
 	}
 	public ColorRect ApplicationBackground { get => applicationBackground; }
+	public TextureRect BackgroundTexture { get => backgroundTexture; }
 	public ColorRect ListBackground { get => listBackground; }
 	public SpinButton SpinButton { get => spinButton; }
 
@@ -128,6 +133,7 @@ public partial class GameManager : Node
 	private void SetListToDefaultValues(List<Color> list)
 	{
 		list.Add(default_generalBackgroundColor);
+		list.Add(default_secondaryBackgroundColor);
         list.Add(default_wheelPrimaryColor);
 		list.Add(default_wheelSecondaryColor);
         list.Add(default_wheelButtonColor);
