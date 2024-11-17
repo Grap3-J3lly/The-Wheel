@@ -62,6 +62,7 @@ public partial class ToggleChatInputButton : Button
 
     public void ToggleCheckbox(bool isVisible)
     {
+        toggleChatInput = isVisible;
         if (!isVisible)
         {
             checkmark.Modulate = new Color(255, 255, 255, 0);

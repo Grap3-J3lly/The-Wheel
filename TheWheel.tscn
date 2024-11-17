@@ -83,7 +83,7 @@ VScrollBar/styles/scroll = SubResource("StyleBoxFlat_42f8b")
 
 [node name="Node2D" type="Node2D"]
 
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("applicationBackground", "backgroundTexture", "listBackground", "spinButton", "optionParent", "audioStreamPlayer", "twitchInfoArea")]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("applicationBackground", "backgroundTexture", "listBackground", "spinButton", "optionParent", "audioStreamPlayer", "twitchInfoArea", "option_leftBegin", "option_rightEnd", "option_topBegin", "option_bottomEnd")]
 script = ExtResource("2_yv2g8")
 primaryColor = Color(0.262745, 0.133333, 0.694118, 1)
 secondaryColor = Color(0.533333, 0.152941, 0.839216, 1)
@@ -104,6 +104,10 @@ default_popupBackgroundColor = Color(1, 0.964706, 0.823529, 1)
 default_popupFontColor = Color(0.32549, 0.176471, 0.0509804, 1)
 audioStreamPlayer = NodePath("../AudioManager")
 twitchInfoArea = NodePath("../CanvasLayer/TwitchInfoArea")
+option_leftBegin = NodePath("../CanvasLayer/OptionArea/TopBar/ClearOptionWeightsButton")
+option_rightEnd = NodePath("../CanvasLayer/WheelArea/SpinButton")
+option_topBegin = NodePath("../CanvasLayer/OptionArea/TopBar/ClearOptionWeightsButton")
+option_bottomEnd = NodePath("../CanvasLayer/WheelArea/SpinButton")
 
 [node name="TwitchManager" type="Node" parent="."]
 script = ExtResource("3_16l3w")
@@ -421,6 +425,8 @@ offset_right = 33.0
 offset_bottom = 35.0
 size_flags_horizontal = 2
 size_flags_vertical = 4
+focus_neighbor_right = NodePath("../ToggleChatInputButton")
+focus_next = NodePath("../ToggleChatInputButton")
 theme = ExtResource("20_1qlyv")
 icon_alignment = 1
 expand_icon = true
@@ -464,6 +470,10 @@ offset_top = 3.0
 offset_right = 72.0
 offset_bottom = 35.0
 size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../OpenOptionMenuButton")
+focus_neighbor_right = NodePath("../AddOptionButton")
+focus_next = NodePath("../AddOptionButton")
+focus_previous = NodePath("../OpenOptionMenuButton")
 theme = ExtResource("23_ps6x7")
 icon_alignment = 1
 expand_icon = true
@@ -533,6 +543,10 @@ offset_bottom = 35.0
 grow_horizontal = 0
 size_flags_horizontal = 10
 size_flags_vertical = 4
+focus_neighbor_left = NodePath("../ToggleChatInputButton")
+focus_neighbor_right = NodePath("../ClearOptionWeightsButton")
+focus_next = NodePath("../ClearOptionWeightsButton")
+focus_previous = NodePath("../ToggleChatInputButton")
 theme = ExtResource("20_1qlyv")
 expand_icon = true
 script = ExtResource("5_tmtid")
@@ -574,6 +588,7 @@ offset_right = 322.0
 offset_bottom = 35.0
 size_flags_horizontal = 10
 size_flags_vertical = 4
+focus_previous = NodePath("../AddOptionButton")
 theme = ExtResource("20_1qlyv")
 expand_icon = true
 script = ExtResource("12_654ys")

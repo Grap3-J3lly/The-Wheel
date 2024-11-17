@@ -7,7 +7,6 @@ public partial class Option : Control
     // --------------------------------
     //			VARIABLES	
     // --------------------------------
-
     [Export]
     private DisableButton optionEnabledField;
     [Export]
@@ -20,14 +19,27 @@ public partial class Option : Control
 	private int optionWeight = 1;
 	private ProgressBar optionProgressBar;
 
+
     // --------------------------------
     //			PROPERTIES	
     // --------------------------------
 
+    public DisableButton OptionEnabledField { get => optionEnabledField; }
+    public OptionName OptionNameField {  get => optionNameField; }
+    public OptionWeight OptionWeightField { get => optionWeightField; }
     public bool OptionEnabled { get => optionEnabled; set => optionEnabled = value; }
     public string OptionName { get => optionName; set => optionName = value; }
     public int OptionWeight { get => optionWeight; set => optionWeight = value; }
     public ProgressBar OptionProgressBar { get => optionProgressBar; set => optionProgressBar = value; }
+
+    // --------------------------------
+    //		STANDARD FUNCTIONS	
+    // --------------------------------
+
+    public override void _Ready()
+    {
+        base._Ready();
+    }
 
     // --------------------------------
     //		OPTION FUNCTIONS	
@@ -143,6 +155,81 @@ public partial class Option : Control
         newOption.OptionWeight = (int)optionData[2];
         newOption.optionWeightField.Text = newOption.OptionWeight.ToString();
 
+        // Assign Focus
+        newOption.AssignFocus(optionParent);
+
         return newOption;
+    }
+
+    // --------------------------------
+    //		    FOCUS LOGIC
+    // --------------------------------
+
+    public void AssignFocus(Control optionParent)
+    {
+        GameManager gameManager = GameManager.Instance;
+        Array<Node> allOptions = optionParent.GetChildren();
+        RemoveButton removeButton = GetChild<RemoveButton>(3);
+
+        FocusMode = FocusModeEnum.All;
+
+        optionEnabledField.FocusNeighborRight = optionNameField.GetPath();
+        optionEnabledField.FocusNext = optionNameField.GetPath();
+        optionEnabledField.FocusNeighborBottom = gameManager.Option_BottomEnd.GetPath();
+
+        optionNameField.FocusNeighborLeft = optionEnabledField.GetPath();
+        optionNameField.FocusPrevious = optionEnabledField.GetPath();
+        optionNameField.FocusNeighborRight = optionWeightField.GetPath();
+        optionNameField.FocusNext = optionWeightField.GetPath();
+        optionNameField.FocusNeighborBottom = gameManager.Option_BottomEnd.GetPath();
+
+        optionWeightField.FocusNeighborLeft = optionNameField.GetPath();
+        optionWeightField.FocusPrevious = optionNameField.GetPath();
+        optionWeightField.FocusNeighborRight = removeButton.GetPath();
+        optionWeightField.FocusNext = removeButton.GetPath();
+        optionWeightField.FocusNeighborBottom = gameManager.Option_BottomEnd.GetPath();
+
+        removeButton.FocusNeighborLeft = optionWeightField.GetPath();
+        removeButton.FocusPrevious = optionWeightField.GetPath();
+        removeButton.FocusNeighborRight = gameManager.Option_RightEnd.GetPath();
+        removeButton.FocusNext = gameManager.Option_RightEnd.GetPath();
+        removeButton.FocusNeighborBottom = gameManager.Option_BottomEnd.GetPath();
+
+        // If Option is First Option
+        if (allOptions.Count == 0)
+        {
+            // use leftBegin
+            optionEnabledField.FocusNeighborLeft = gameManager.Option_LeftBegin.GetPath();
+            optionEnabledField.FocusPrevious = gameManager.Option_LeftBegin.GetPath();
+
+            // use topBegin
+            optionEnabledField.FocusNeighborTop = gameManager.Option_TopBegin.GetPath();
+            optionNameField.FocusNeighborTop = gameManager.Option_TopBegin.GetPath();
+            optionWeightField.FocusNeighborTop = gameManager.Option_TopBegin.GetPath();
+            removeButton.FocusNeighborTop = gameManager.Option_TopBegin.GetPath();
+            return;
+        }
+
+        Option previousOption = (Option)allOptions[allOptions.Count - 1];
+        RemoveButton prevRemoveButton = previousOption.GetChild<RemoveButton>(3);
+
+        // Update previous option to point to new option
+        previousOption.OptionEnabledField.FocusNeighborBottom = optionWeightField.GetPath();
+        previousOption.OptionNameField.FocusNeighborBottom = optionNameField.GetPath();
+        previousOption.OptionWeightField.FocusNeighborBottom = optionWeightField.GetPath();
+        prevRemoveButton.FocusNeighborBottom = removeButton.GetPath();
+
+        prevRemoveButton.FocusNeighborRight = optionEnabledField.GetPath();
+        prevRemoveButton.FocusNext = optionEnabledField.GetPath();
+
+        // Update new option to point to previous option
+        optionEnabledField.FocusNeighborTop = previousOption.OptionEnabledField.GetPath();
+        optionNameField.FocusNeighborTop = previousOption.OptionNameField.GetPath();
+        optionWeightField.FocusNeighborTop = previousOption.OptionWeightField.GetPath();
+        removeButton.FocusNeighborTop = prevRemoveButton.GetPath();
+
+        optionEnabledField.FocusNeighborLeft = prevRemoveButton.GetPath();
+        optionEnabledField.FocusPrevious = prevRemoveButton.GetPath();
+
     }
 }

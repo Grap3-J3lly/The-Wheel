@@ -19,8 +19,8 @@ offset_bottom = 43.0
 size_flags_vertical = 0
 script = ExtResource("1_1c5ab")
 optionEnabledField = NodePath("DisableButton")
-optionNameField = NodePath("OptionName")
-optionWeightField = NodePath("OptionWeightLineEdit/OptionWeightBackground")
+optionNameField = NodePath("OptionNameBackground/OptionNameLineEdit")
+optionWeightField = NodePath("OptionWeightBackground/OptionWeightLineEdit")
 
 [node name="DisableButton" type="Button" parent="." node_paths=PackedStringArray("checkmark")]
 custom_minimum_size = Vector2(26, 26)
@@ -54,26 +54,34 @@ texture = ExtResource("3_qmac4")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="OptionName" type="TextEdit" parent="."]
-custom_minimum_size = Vector2(185, 20)
-layout_mode = 2
-offset_left = 39.0
+[node name="OptionNameBackground" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 38.0
 offset_top = 5.0
-offset_right = 232.0
+offset_right = 233.0
 offset_bottom = 33.0
+pivot_offset = Vector2(29, 17)
+color = Color(0.290196, 0.372549, 0.172549, 1)
+
+[node name="OptionNameLineEdit" type="LineEdit" parent="OptionNameBackground" node_paths=PackedStringArray("optionParent", "nameBackground")]
+custom_minimum_size = Vector2(195, 0)
+layout_mode = 2
+offset_right = 59.0
+offset_bottom = 28.0
 size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.0
 theme = ExtResource("3_yd0c1")
-theme_override_colors/background_color = Color(0.290196, 0.372549, 0.172549, 1)
+theme_override_font_sizes/font_size = 0
 placeholder_text = "Enter Option Title"
 drag_and_drop_selection_enabled = false
-middle_mouse_paste_enabled = false
-wrap_mode = 1
-caret_multiple = false
+flat = true
 script = ExtResource("2_1qtey")
-defaultBackgroundColor = Color(0.290196, 0.372549, 0.172549, 1)
-disabledBackgroundColor = Color(0.207843, 0.207843, 0.207843, 1)
+optionParent = NodePath("../..")
+nameBackground = NodePath("..")
+defaultColor = Color(0.290196, 0.372549, 0.172549, 1)
+disabledColor = Color(0.207843, 0.207843, 0.207843, 1)
 
-[node name="OptionWeightLineEdit" type="ColorRect" parent="."]
+[node name="OptionWeightBackground" type="ColorRect" parent="."]
 layout_mode = 0
 offset_left = 236.0
 offset_top = 5.0
@@ -82,7 +90,7 @@ offset_bottom = 33.0
 pivot_offset = Vector2(29, 17)
 color = Color(0.290196, 0.372549, 0.172549, 1)
 
-[node name="OptionWeightBackground" type="LineEdit" parent="OptionWeightLineEdit" node_paths=PackedStringArray("optionParent", "weightBackground")]
+[node name="OptionWeightLineEdit" type="LineEdit" parent="OptionWeightBackground" node_paths=PackedStringArray("optionParent", "weightBackground")]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 offset_right = 59.0

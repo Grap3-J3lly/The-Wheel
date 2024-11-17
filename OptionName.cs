@@ -1,19 +1,23 @@
 using Godot;
 using System;
 
-public partial class OptionName : TextEdit
+public partial class OptionName : LineEdit
 {
     // --------------------------------
     //			VARIABLES	
     // --------------------------------
 
-    [Export]
-    private Color defaultBackgroundColor;
-    [Export]
-    private Color disabledBackgroundColor;
-
     private GameManager gameManager;
-	private Option optionParent;
+
+    [Export]
+    private Option optionParent;
+    [Export]
+    private ColorRect nameBackground;
+    [Export]
+    private Color defaultColor;
+    [Export]
+    private Color disabledColor;
+
 
     // --------------------------------
     //		STANDARD LOGIC	
@@ -22,8 +26,6 @@ public partial class OptionName : TextEdit
     public override void _Ready()
 	{
 		gameManager = GameManager.Instance;
-        optionParent = (Option)GetParentControl();
-
         this.TextChanged += UpdateOptionName;
     }
 
@@ -35,16 +37,12 @@ public partial class OptionName : TextEdit
 
     private void ChangeColor(bool isEnabled)
     {
-        if(isEnabled)
+        if (isEnabled)
         {
-            RemoveThemeColorOverride("background_color");
-            AddThemeColorOverride("background_color", defaultBackgroundColor);
+            nameBackground.Color = defaultColor;
+            return;
         }
-        else
-        {
-            RemoveThemeColorOverride("background_color");
-            AddThemeColorOverride("background_color", disabledBackgroundColor);
-        }
+        nameBackground.Color = disabledColor;
     }
 
     // --------------------------------
@@ -54,7 +52,7 @@ public partial class OptionName : TextEdit
     /// <summary>
     /// Attached to the TextChanged listener, this assigns the Options name value based off the current text value. Also updates the text on the assigned ProgressBar
     /// </summary>
-    public void UpdateOptionName()
+    public void UpdateOptionName(string newText)
 	{
 		optionParent.OptionName = this.Text;
 		optionParent.OptionProgressBar.SetName(this.Text);

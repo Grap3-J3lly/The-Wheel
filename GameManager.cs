@@ -68,6 +68,17 @@ public partial class GameManager : Node
 	[Export]
 	private ColorRect twitchInfoArea;
 
+    // Focus Info
+    [Export]
+    private Control option_leftBegin;
+    [Export]
+    private Control option_rightEnd;
+    [Export]
+    private Control option_topBegin;
+    [Export]
+    private Control option_bottomEnd;
+
+
     // --------------------------------
     //			PROPERTIES	
     // --------------------------------
@@ -109,6 +120,12 @@ public partial class GameManager : Node
 
 	// Twitch Variables
 	public ColorRect TwitchInfoArea { get => twitchInfoArea; }
+
+    // Focus Info
+    public Control Option_LeftBegin {  get => option_leftBegin; }
+    public Control Option_RightEnd {  get => option_rightEnd; }
+    public Control Option_TopBegin { get => option_topBegin; }
+    public Control Option_BottomEnd { get => option_bottomEnd; }
 
     // --------------------------------
     //		STANDARD FUNCTIONS
