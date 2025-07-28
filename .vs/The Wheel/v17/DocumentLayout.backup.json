@@ -70,8 +70,20 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 6,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AudioControl.cs",
+              "DocumentMoniker": "C:\\Users\\James\\Dev\\Godot\\The Wheel\\AudioControl.cs",
+              "RelativeDocumentMoniker": "AudioControl.cs",
+              "ToolTip": "C:\\Users\\James\\Dev\\Godot\\The Wheel\\AudioControl.cs",
+              "RelativeToolTip": "AudioControl.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAwCYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-09T22:26:22.11Z"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 2,
@@ -144,18 +156,6 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-08T22:49:55.606Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AudioControl.cs",
-              "DocumentMoniker": "C:\\Users\\James\\Dev\\Godot\\The Wheel\\AudioControl.cs",
-              "RelativeDocumentMoniker": "AudioControl.cs",
-              "ToolTip": "C:\\Users\\James\\Dev\\Godot\\The Wheel\\AudioControl.cs",
-              "RelativeToolTip": "AudioControl.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAAwCYAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-09T22:26:22.11Z"
             },
             {
               "$type": "Document",

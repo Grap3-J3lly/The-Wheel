@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c1ofuprn5cbnr"]
 
 [ext_resource type="Texture2D" uid="uid://bxyqmlbgyn7io" path="res://Circle.png" id="1_h1bqp"]
-[ext_resource type="Script" path="res://ProgressBar.cs" id="2_ge17i"]
+[ext_resource type="Script" uid="uid://8o5ipsrnfdcs" path="res://ProgressBar.cs" id="2_ge17i"]
 [ext_resource type="FontFile" uid="uid://65anix1v37bg" path="res://Assets/super_corn/Super Corn.ttf" id="3_tm8qt"]
 
 [node name="WheelProgressTemplate" type="TextureProgressBar"]

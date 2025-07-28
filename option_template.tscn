@@ -1,12 +1,12 @@
 [gd_scene load_steps=10 format=3 uid="uid://c2jsx0bgu2s1j"]
 
-[ext_resource type="Script" path="res://Option.cs" id="1_1c5ab"]
-[ext_resource type="Script" path="res://DisableButton.cs" id="1_4k7kn"]
-[ext_resource type="Script" path="res://RemoveButton.cs" id="1_5l6pj"]
-[ext_resource type="Script" path="res://OptionName.cs" id="2_1qtey"]
+[ext_resource type="Script" uid="uid://bmx320hbwx4xr" path="res://Option.cs" id="1_1c5ab"]
+[ext_resource type="Script" uid="uid://d0m187w7k4nyj" path="res://DisableButton.cs" id="1_4k7kn"]
+[ext_resource type="Script" uid="uid://38n8f8kcp6xo" path="res://RemoveButton.cs" id="1_5l6pj"]
+[ext_resource type="Script" uid="uid://j7ckbs1x0mfv" path="res://OptionName.cs" id="2_1qtey"]
 [ext_resource type="Theme" uid="uid://cukesnrrfeutr" path="res://CheckBoxTheme.tres" id="2_k8vlh"]
 [ext_resource type="Texture2D" uid="uid://ddckb3sn64l8t" path="res://Assets/Icon_Check.png" id="3_qmac4"]
-[ext_resource type="Script" path="res://OptionWeight.cs" id="3_t7gkw"]
+[ext_resource type="Script" uid="uid://2ga8i5fcli2i" path="res://OptionWeight.cs" id="3_t7gkw"]
 [ext_resource type="Theme" uid="uid://dlf27rdr7dp0n" path="res://ListFontColorTheme.tres" id="3_yd0c1"]
 [ext_resource type="Texture2D" uid="uid://dq2rp6jyw2bik" path="res://Assets/Icon_Trash.png" id="9_jhya4"]
 

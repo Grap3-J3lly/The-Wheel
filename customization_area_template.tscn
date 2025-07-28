@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://ctgy026yqcb0v"]
 
-[ext_resource type="Script" path="res://CustomizationManager.cs" id="1_e1qy6"]
+[ext_resource type="Script" uid="uid://cteqtfm6d5hjt" path="res://CustomizationManager.cs" id="1_e1qy6"]
 [ext_resource type="Theme" uid="uid://d3dvb7e4l28py" path="res://PopupBackgroundTheme.tres" id="2_lxquq"]
 [ext_resource type="Theme" uid="uid://rxn0ric1nvrl" path="res://PopupFontTheme.tres" id="3_n1x8u"]
 [ext_resource type="Theme" uid="uid://dlf27rdr7dp0n" path="res://ListFontColorTheme.tres" id="4_ykns8"]

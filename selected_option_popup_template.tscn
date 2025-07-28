@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://cwucnn6t72ta5"]
 
-[ext_resource type="Script" path="res://ClosePopupButton.cs" id="1_g7cxh"]
+[ext_resource type="Script" uid="uid://bwubif4t31qoa" path="res://ClosePopupButton.cs" id="1_g7cxh"]
 [ext_resource type="Theme" uid="uid://d3dvb7e4l28py" path="res://PopupBackgroundTheme.tres" id="1_sn5gn"]
 [ext_resource type="Texture2D" uid="uid://7hklt3btb6ej" path="res://Assets/W_WinPopup_F1.png" id="2_byaoc"]
 [ext_resource type="Theme" uid="uid://rxn0ric1nvrl" path="res://PopupFontTheme.tres" id="2_i2gxd"]
