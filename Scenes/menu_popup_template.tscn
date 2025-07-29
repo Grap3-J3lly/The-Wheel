@@ -1,0 +1,498 @@
+[gd_scene load_steps=47 format=3 uid="uid://b1lc8f4e26bea"]
+
+[ext_resource type="Script" uid="uid://dwnyi5eejjvtn" path="res://Scripts/Menu/CustomizeButton.cs" id="1_lh7j3"]
+[ext_resource type="Theme" uid="uid://d3dvb7e4l28py" path="res://Themes/PopupBackgroundTheme.tres" id="1_tjypc"]
+[ext_resource type="Script" uid="uid://bwubif4t31qoa" path="res://Scripts/Menu/ClosePopupButton.cs" id="1_x3pfe"]
+[ext_resource type="Theme" uid="uid://rxn0ric1nvrl" path="res://Themes/PopupFontTheme.tres" id="2_6ym2x"]
+[ext_resource type="Texture2D" uid="uid://j3jubmcho75w" path="res://Assets/UI/W_Menu_F1.png" id="2_n2lxd"]
+[ext_resource type="Texture2D" uid="uid://dex71sdhk0l38" path="res://Assets/UI/W_Menu_F2.png" id="3_2f60u"]
+[ext_resource type="Script" uid="uid://bvak5tti30476" path="res://Scripts/Menu/SaveListButton.cs" id="3_w6nua"]
+[ext_resource type="PackedScene" uid="uid://ctgy026yqcb0v" path="res://Scenes/customization_area_template.tscn" id="3_wd6i2"]
+[ext_resource type="Texture2D" uid="uid://cuxg30esyak34" path="res://Assets/UI/W_Menu_F3.png" id="4_4vjka"]
+[ext_resource type="Script" uid="uid://nn77bag5a6bn" path="res://Scripts/OptionArea/ListOptions.cs" id="4_n8vde"]
+[ext_resource type="Script" uid="uid://dhmesj8ukl1au" path="res://Scripts/Menu/LoadListButton.cs" id="5_qlgbo"]
+[ext_resource type="FontFile" uid="uid://65anix1v37bg" path="res://Assets/super_corn/Super Corn.ttf" id="6_7hknv"]
+[ext_resource type="Script" uid="uid://bg2d7pavn5r40" path="res://Scripts/Menu/DeleteListButton.cs" id="6_x6u8j"]
+[ext_resource type="Script" uid="uid://bwqgmyc71ljw1" path="res://Scripts/Managers/AudioControl.cs" id="7_poh36"]
+[ext_resource type="Texture2D" uid="uid://cq8q4p6ap4hu8" path="res://Assets/UI/Icon_Save.png" id="9_q26gk"]
+[ext_resource type="Texture2D" uid="uid://bkk42p4a131a" path="res://Assets/UI/Icon_Load.png" id="12_edsye"]
+[ext_resource type="Theme" uid="uid://c7wno4dccruj2" path="res://Themes/SmallButtonTheme.tres" id="13_s3un3"]
+[ext_resource type="Texture2D" uid="uid://dq2rp6jyw2bik" path="res://Assets/UI/Icon_Trash.png" id="14_bjneq"]
+[ext_resource type="Texture2D" uid="uid://dt45i3k3wpjlh" path="res://Assets/UI/M_Handle_D.png" id="16_3b7jd"]
+[ext_resource type="Texture2D" uid="uid://dqhqyywy03b3h" path="res://Assets/UI/M_Handle_H.png" id="17_tvd1q"]
+[ext_resource type="Texture2D" uid="uid://dqvk1u05ye3ke" path="res://Assets/UI/M_Button_D.png" id="18_hn4eo"]
+[ext_resource type="Texture2D" uid="uid://pf7nx66rnsbv" path="res://Assets/UI/M_Button_H.png" id="19_6a0je"]
+[ext_resource type="Texture2D" uid="uid://huew4d7ijmdc" path="res://Assets/UI/M_Button_P.png" id="21_qkyd6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bl8ug"]
+
+[sub_resource type="Theme" id="Theme_44jeq"]
+default_font = ExtResource("6_7hknv")
+LineEdit/colors/font_color = Color(1, 1, 1, 1)
+LineEdit/styles/focus = SubResource("StyleBoxEmpty_bl8ug")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e072i"]
+bg_color = Color(0.290196, 0.372549, 0.172549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lnmw2"]
+bg_color = Color(0.478431, 0.694118, 0.25098, 1)
+border_width_left = 8
+border_color = Color(0.478431, 0.694118, 0.25098, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ocw73"]
+bg_color = Color(0.290196, 0.372549, 0.172549, 1)
+border_width_left = 8
+border_color = Color(0.290196, 0.372549, 0.172549, 1)
+
+[sub_resource type="ImageTexture" id="ImageTexture_2q7gr"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_ac0k2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ks3l"]
+bg_color = Color(0.478431, 0.694118, 0.25098, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cpbyv"]
+bg_color = Color(0.290196, 0.372549, 0.172549, 1)
+border_width_top = 10
+border_width_bottom = 10
+border_color = Color(0.290196, 0.372549, 0.172549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_24frb"]
+content_margin_left = 15.0
+content_margin_top = 0.0
+content_margin_right = 15.0
+content_margin_bottom = 0.0
+bg_color = Color(0.533154, 0.771052, 0.282225, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qrgns"]
+content_margin_left = 15.0
+content_margin_top = 0.0
+content_margin_right = 15.0
+content_margin_bottom = 0.0
+bg_color = Color(0.584496, 0.841106, 0.31516, 1)
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ymqt1"]
+content_margin_left = 15.0
+content_margin_top = 0.0
+content_margin_right = 15.0
+content_margin_bottom = 0.0
+bg_color = Color(0.486323, 0.705249, 0.255427, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_42f8b"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 10.0
+content_margin_bottom = 0.0
+bg_color = Color(0.207843, 0.207843, 0.207843, 1)
+border_width_left = 2
+border_width_right = 2
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_detail = 1
+
+[sub_resource type="Theme" id="Theme_3rp4f"]
+default_font = ExtResource("6_7hknv")
+OptionButton/colors/font_color = Color(1, 1, 1, 1)
+OptionButton/colors/font_focus_color = Color(1, 1, 1, 1)
+OptionButton/colors/font_hover_color = Color(1, 1, 1, 1)
+OptionButton/font_sizes/font_size = 16
+OptionButton/fonts/font = ExtResource("6_7hknv")
+OptionButton/styles/focus = SubResource("StyleBoxFlat_e072i")
+OptionButton/styles/hover = SubResource("StyleBoxFlat_lnmw2")
+OptionButton/styles/normal = SubResource("StyleBoxFlat_ocw73")
+PopupMenu/colors/font_color = Color(1, 1, 1, 1)
+PopupMenu/colors/font_hover_color = Color(1, 1, 1, 1)
+PopupMenu/constants/v_separation = 16
+PopupMenu/font_sizes/font_separator_size = 16
+PopupMenu/font_sizes/font_size = 26
+PopupMenu/icons/radio_checked = SubResource("ImageTexture_2q7gr")
+PopupMenu/icons/radio_unchecked = SubResource("ImageTexture_ac0k2")
+PopupMenu/styles/hover = SubResource("StyleBoxFlat_1ks3l")
+PopupMenu/styles/panel = SubResource("StyleBoxFlat_cpbyv")
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_24frb")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_qrgns")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_ymqt1")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_42f8b")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sxvtg"]
+bg_color = Color(0.478431, 0.694118, 0.25098, 1)
+expand_margin_top = 6.0
+expand_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ly7wl"]
+bg_color = Color(0.478431, 0.694118, 0.25098, 1)
+expand_margin_top = 6.0
+expand_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8vwis"]
+bg_color = Color(0.207843, 0.207843, 0.207843, 1)
+expand_margin_top = 6.0
+expand_margin_bottom = 6.0
+
+[sub_resource type="Theme" id="Theme_lm6lt"]
+HSlider/constants/center_grabber = 0
+HSlider/icons/grabber = ExtResource("16_3b7jd")
+HSlider/icons/grabber_highlight = ExtResource("17_tvd1q")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_sxvtg")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_ly7wl")
+HSlider/styles/slider = SubResource("StyleBoxFlat_8vwis")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0rxyi"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_24h54"]
+texture = ExtResource("19_6a0je")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yeqfa"]
+texture = ExtResource("18_hn4eo")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_45cqu"]
+texture = ExtResource("21_qkyd6")
+
+[sub_resource type="Theme" id="Theme_srjbp"]
+default_font = ExtResource("6_7hknv")
+default_font_size = 24
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/styles/focus = SubResource("StyleBoxEmpty_0rxyi")
+Button/styles/hover = SubResource("StyleBoxTexture_24h54")
+Button/styles/normal = SubResource("StyleBoxTexture_yeqfa")
+Button/styles/pressed = SubResource("StyleBoxTexture_45cqu")
+
+[node name="MenuBackground" type="Panel"]
+z_index = 6
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = -192.0
+offset_right = 192.0
+offset_bottom = 192.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_tjypc")
+
+[node name="Frame1" type="TextureRect" parent="."]
+modulate = Color(0.972549, 0.921569, 0.717647, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -19.0
+offset_top = -31.0
+offset_right = 22.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_n2lxd")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Frame2" type="TextureRect" parent="."]
+modulate = Color(0.87451, 0.831373, 0.662745, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -19.0
+offset_top = -31.0
+offset_right = 22.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_2f60u")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Frame3" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -19.0
+offset_top = -31.0
+offset_right = 22.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_4vjka")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MenuName" type="RichTextLabel" parent="."]
+layout_mode = 1
+offset_left = 150.0
+offset_top = 6.0
+offset_right = 235.0
+offset_bottom = 42.0
+theme = ExtResource("2_6ym2x")
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 34
+bbcode_enabled = true
+text = "[center]MENU[/center]"
+
+[node name="MenuItemContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 25.0
+offset_top = -112.0
+offset_right = 365.0
+offset_bottom = 108.0
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="SaveItem" type="Control" parent="MenuItemContainer"]
+custom_minimum_size = Vector2(0, 55)
+layout_mode = 2
+
+[node name="SaveLabel" type="RichTextLabel" parent="MenuItemContainer/SaveItem"]
+custom_minimum_size = Vector2(80, 25)
+layout_mode = 1
+offset_right = 80.0
+offset_bottom = 25.0
+size_flags_horizontal = 0
+theme = ExtResource("2_6ym2x")
+text = "SAVE LIST"
+
+[node name="SaveItemContainer" type="Control" parent="MenuItemContainer/SaveItem"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+offset_right = 301.0
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ColorRect" type="ColorRect" parent="MenuItemContainer/SaveItem/SaveItemContainer"]
+custom_minimum_size = Vector2(250, 35)
+layout_mode = 2
+offset_right = 250.0
+offset_bottom = 35.0
+color = Color(0.290196, 0.372549, 0.172549, 1)
+
+[node name="ListNameField" type="LineEdit" parent="MenuItemContainer/SaveItem/SaveItemContainer/ColorRect"]
+custom_minimum_size = Vector2(250, 35)
+layout_mode = 2
+offset_right = 250.0
+offset_bottom = 31.0
+theme = SubResource("Theme_44jeq")
+flat = true
+
+[node name="SaveListButton" type="Button" parent="MenuItemContainer/SaveItem/SaveItemContainer" node_paths=PackedStringArray("listNameField", "listOptions")]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+offset_left = 255.0
+offset_right = 290.0
+offset_bottom = 35.0
+theme = ExtResource("13_s3un3")
+script = ExtResource("3_w6nua")
+listNameField = NodePath("../ColorRect/ListNameField")
+listOptions = NodePath("../../../LoadItem/LoadItemContainer/ListOptions")
+
+[node name="SaveIcon" type="TextureRect" parent="MenuItemContainer/SaveItem/SaveItemContainer/SaveListButton"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -15.0
+offset_right = 15.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(15, 15)
+texture = ExtResource("9_q26gk")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LoadItem" type="Control" parent="MenuItemContainer"]
+custom_minimum_size = Vector2(0, 55)
+layout_mode = 2
+
+[node name="LoadLabel" type="RichTextLabel" parent="MenuItemContainer/LoadItem"]
+custom_minimum_size = Vector2(75, 25)
+layout_mode = 1
+offset_right = 80.0
+offset_bottom = 25.0
+size_flags_horizontal = 0
+theme = ExtResource("2_6ym2x")
+bbcode_enabled = true
+text = "LOAD LIST"
+
+[node name="LoadItemContainer" type="Control" parent="MenuItemContainer/LoadItem"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -153.0
+offset_top = -31.0
+offset_right = 153.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ListOptions" type="OptionButton" parent="MenuItemContainer/LoadItem/LoadItemContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 1
+offset_left = -17.0
+offset_top = -2.0
+offset_right = 233.0
+offset_bottom = 33.0
+theme = SubResource("Theme_3rp4f")
+script = ExtResource("4_n8vde")
+
+[node name="LoadListButton" type="Button" parent="MenuItemContainer/LoadItem/LoadItemContainer" node_paths=PackedStringArray("customizeButton", "loadListOptionButton")]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+offset_left = 238.0
+offset_top = -2.0
+offset_right = 273.0
+offset_bottom = 33.0
+theme = ExtResource("13_s3un3")
+script = ExtResource("5_qlgbo")
+customizeButton = NodePath("../../../CustomizeButton")
+loadListOptionButton = NodePath("../ListOptions")
+
+[node name="LoadIcon" type="TextureRect" parent="MenuItemContainer/LoadItem/LoadItemContainer/LoadListButton"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -15.0
+offset_right = 15.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(15, 15)
+texture = ExtResource("12_edsye")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="DeleteButton" type="Button" parent="MenuItemContainer/LoadItem/LoadItemContainer" node_paths=PackedStringArray("listOptions")]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+offset_left = 278.0
+offset_top = -2.0
+offset_right = 313.0
+offset_bottom = 33.0
+theme = ExtResource("13_s3un3")
+script = ExtResource("6_x6u8j")
+listOptions = NodePath("../ListOptions")
+
+[node name="TrashIcon" type="TextureRect" parent="MenuItemContainer/LoadItem/LoadItemContainer/DeleteButton"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -14.0
+offset_top = -14.0
+offset_right = 14.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(14, 14)
+texture = ExtResource("14_bjneq")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AudioControl" type="Control" parent="MenuItemContainer" node_paths=PackedStringArray("volumeControl", "volumeDisplay")]
+custom_minimum_size = Vector2(0, 55)
+layout_mode = 2
+script = ExtResource("7_poh36")
+volumeControl = NodePath("AudioSlider")
+volumeDisplay = NodePath("AudioVisualBackground/AudioVisualText")
+
+[node name="AudioLabel" type="RichTextLabel" parent="MenuItemContainer/AudioControl"]
+custom_minimum_size = Vector2(75, 25)
+layout_mode = 0
+offset_right = 80.0
+offset_bottom = 25.0
+size_flags_horizontal = 0
+theme = ExtResource("2_6ym2x")
+bbcode_enabled = true
+text = "VOLUME"
+
+[node name="AudioSlider" type="HSlider" parent="MenuItemContainer/AudioControl"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+offset_top = 20.0
+offset_right = 250.0
+offset_bottom = 44.0
+theme = SubResource("Theme_lm6lt")
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="AudioVisualBackground" type="ColorRect" parent="MenuItemContainer/AudioControl"]
+layout_mode = 0
+offset_left = 265.0
+offset_top = 20.0
+offset_right = 325.0
+offset_bottom = 45.0
+pivot_offset = Vector2(25, 15)
+color = Color(0.87451, 0.831373, 0.662745, 1)
+
+[node name="AudioVisualText" type="RichTextLabel" parent="MenuItemContainer/AudioControl/AudioVisualBackground"]
+custom_minimum_size = Vector2(25, 20)
+layout_mode = 0
+offset_left = 18.0
+offset_top = 2.5
+offset_right = 43.0
+offset_bottom = 22.5
+size_flags_horizontal = 0
+theme = ExtResource("2_6ym2x")
+bbcode_enabled = true
+text = "100"
+
+[node name="CustomizeButton" type="Button" parent="MenuItemContainer" node_paths=PackedStringArray("menuBackground")]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme = SubResource("Theme_srjbp")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "CUSTOMIZE"
+script = ExtResource("1_lh7j3")
+menuBackground = NodePath("../..")
+customizationAreaTemplate = ExtResource("3_wd6i2")
+
+[node name="CloseButton" type="Button" parent="."]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 120.0
+offset_top = -60.0
+offset_right = 270.0
+offset_bottom = -20.0
+grow_vertical = 0
+theme = SubResource("Theme_srjbp")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("6_7hknv")
+theme_override_font_sizes/font_size = 24
+text = "CLOSE"
+script = ExtResource("1_x3pfe")

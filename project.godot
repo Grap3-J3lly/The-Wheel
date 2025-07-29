@@ -13,7 +13,7 @@ config_version=5
 config/name="The Wheel"
 run/main_scene="res://TheWheel.tscn"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
-config/icon="res://Logo.png"
+config/icon="res://Assets/Logo.png"
 
 [display]
 
