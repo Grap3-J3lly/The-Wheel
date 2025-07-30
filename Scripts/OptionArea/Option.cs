@@ -146,12 +146,12 @@ public partial class Option : Control
     {
         Option newOption = (Option)optionTemplate.Instantiate();
         optionParent.AddChild(newOption);
-        newOption.OptionEnabled = (bool)optionData[0];
+        newOption.optionName = (string)optionData[0];
+        newOption.optionNameField.Text = newOption.OptionName;
         newOption.optionEnabledField.ButtonPressed = newOption.OptionEnabled;
         newOption.optionEnabledField.Enabled = newOption.OptionEnabled;
-        newOption.OptionName = (string)optionData[1];
-        newOption.optionNameField.Text = newOption.OptionName;
-        newOption.OptionWeight = (int)optionData[2];
+        newOption.optionEnabled = (bool)optionData[1];
+        newOption.optionWeight = (int)optionData[2];
         newOption.optionWeightField.Text = newOption.OptionWeight.ToString();
 
         // Assign Focus

@@ -22,6 +22,8 @@ public partial class CustomizationManager : Control
     [Export]
     private ColorPickerButton wheelButtonColor;
     [Export]
+    private ColorPickerButton wheelButtonText;
+    [Export]
     private ColorPickerButton listBackgroundColor;
     [Export]
     private ColorPickerButton listFontColor;
@@ -39,6 +41,8 @@ public partial class CustomizationManager : Control
     private Theme listFontTheme;
     [Export]
     private Theme wheelButtonTheme;
+    //[Export]
+    //private Theme wheelButtonTextTheme;
 
 
     // --------------------------------
@@ -86,6 +90,7 @@ public partial class CustomizationManager : Control
         wheelPrimaryColor.Color = gameManager.PrimaryColor;
         wheelSecondaryColor.Color = gameManager.SecondaryColor;
         wheelButtonColor.Color = GetWheelButtonColor();
+        
         listBackgroundColor.Color = gameManager.ListBackground.Color;
         listFontColor.Color = GetListFontColor();
         popupBackgroundColor.Color = GetPopupBackgroundColor();
@@ -102,6 +107,7 @@ public partial class CustomizationManager : Control
         wheelPrimaryColor.ColorChanged += ChangeWheelPrimaryColor;
         wheelSecondaryColor.ColorChanged += ChangeWheelSecondaryColor;
         wheelButtonColor.ColorChanged += ChangeWheelButtonColor;
+        wheelButtonText.ColorChanged += ChangeWheelButtonTextColor;
         listBackgroundColor.ColorChanged += ChangeListBackgroundColor;
         listFontColor.ColorChanged += ChangeListFontColor;
         popupBackgroundColor.ColorChanged += ChangePopupBackgroundColor;
@@ -249,6 +255,13 @@ public partial class CustomizationManager : Control
         gameManager.Colors[4] = color;
     }
 
+    private void ChangeWheelButtonTextColor(Color color)
+    {
+        // Need to add new color to GameManager
+        // Need to SetWheelButtonTextColor
+        //Is there a means in which we can avoid using hard-set index values?
+    }
+
     /// <summary>
     /// Assigns the list background color value and updates the corresponding Color list element for future save data
     /// </summary>
@@ -317,6 +330,18 @@ public partial class CustomizationManager : Control
 
         StyleBoxTexture pressedResult = (StyleBoxTexture)wheelButtonTheme.Get("Button/styles/pressed");
         pressedResult.Set("modulate_color", color.Darkened(.5f));
+    }
+
+    private Color GetWheelButtonTextColor()
+    {
+        Color wheelButtonTextColor = (Color)wheelButtonTheme.Get("Button/colors/font_color");
+        return wheelButtonTextColor;
+    }
+
+    private void SetWheelButtonTextColor(Color color)
+    {
+        wheelButtonTheme.Set("Button/colors/font_color", color);
+        //wheelButtonTextColor.Set("modulate_color", color);
     }
 
     /// <summary>

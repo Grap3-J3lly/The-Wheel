@@ -16,6 +16,7 @@ texture = ExtResource("1_1ehs3")
 texture = ExtResource("3_husqm")
 
 [resource]
+Button/colors/font_color = Color(1, 0.964706, 0.823529, 1)
 Button/styles/focus = SubResource("StyleBoxEmpty_b6vib")
 Button/styles/hover = SubResource("StyleBoxTexture_x15ri")
 Button/styles/normal = SubResource("StyleBoxTexture_sijsn")

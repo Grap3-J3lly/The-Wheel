@@ -1,5 +1,5 @@
 using Godot;
-using System.Collections.Generic;
+using Godot.Collections;
 
 public partial class ListOptions : OptionButton
 {
@@ -28,13 +28,13 @@ public partial class ListOptions : OptionButton
     /// </summary>
     public void LoadLists()
 	{
-		//List<string> saveFiles = gameManager.GetSaveFiles();
+        Array<string> saveFiles = gameManager.GetSaveFiles();
 
-		//this.Clear();
+        Clear();
 
-		//foreach (string file in saveFiles) 
-		//{
-		//	this.AddItem(file.Substring(0, file.LastIndexOf('.')));
-		//}
-	}
+        foreach (string file in saveFiles)
+        {
+            AddItem(file.Substring(0, file.LastIndexOf('.')));
+        }
+    }
 }

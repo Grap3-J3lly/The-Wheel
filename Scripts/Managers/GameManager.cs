@@ -8,7 +8,7 @@ public partial class GameManager : Node
     // --------------------------------
 
 	// Save Data
-	private const string CONST_SaveFileName = "wheelData";
+	// private const string CONST_SaveFileName = "wheelData";
 	private Array<Variant> dataToSave = new Array<Variant>();
 	private Array<Color> colors = new Array<Color>();
 	private Array<Option> createdOptions = new Array<Option>();
@@ -224,9 +224,17 @@ public partial class GameManager : Node
 			optionData.Add(allOptions[i].GetOptionData());
 		}
 
-		SaveSystem.AddDataItem(CONST_SaveFileName, ListName, optionData);
-		SaveSystem.AddDataItem(CONST_SaveFileName, "colors", colors);
-		SaveSystem.SaveData(CONST_SaveFileName);
+		SaveSystem.AddDataItem(ListName, "optionData", optionData);
+
+		Array<Array<float>> colorData = new Array<Array<float>>();
+		foreach(Color color in colors)
+		{
+			Array<float> colorDataObj = [color.R, color.G, color.B, color.A];
+			colorData.Add(colorDataObj);
+		}
+
+		SaveSystem.AddDataItem(ListName, "colors", colorData);
+		SaveSystem.SaveData(ListName);
 	}
 
 	/// <summary>
@@ -238,37 +246,15 @@ public partial class GameManager : Node
 		
 		DeleteOptions(createdOptions);
 		DeleteOptions(disabledOptions);
-		
-		
 
-        using var saveFile = FileAccess.Open("user://" + specificFile + ".save", FileAccess.ModeFlags.Read);
+		GD.Print($"GameManager.cs: Specific File to be opened: {specificFile}");
 
-		while (saveFile.GetPosition() < saveFile.GetLength())
-		{
-			var jsonString = saveFile.GetLine();
+		ListName = specificFile;
+		Array<Array> optionDataToPopulate = SaveSystem.GetDataItem(ListName, "optionData", new Array<Array>());
+		Array<Array<float>> loadedColors = SaveSystem.GetDataItem(ListName, "colors", new Array<Array<float>>());
 
-			var json = new Json();
-			var parseResult = json.Parse(jsonString, true);
-
-            if (parseResult != Error.Ok)
-            {
-                GD.Print($"JSON Parse Error: {json.GetErrorMessage()} in {jsonString} at line {json.GetErrorLine()}");
-                continue;
-            }
-
-			Array data = new Godot.Collections.Array((Godot.Collections.Array)json.Data);
-
-			// Update ListName
-			listName = (string)data[0];
-			// Update Colors
-			Array colorsArray = (Array)data[1];
-			PopulateColors(colorsArray);
-			CustomizationManager.Instance.AssignColorsToList(colors);
-
-			// Update Option List
-			Array options = (Array)data[2];
-			PopulateOptions(options);
-        }
+		PopulateOptions(optionDataToPopulate);
+		PopulateColors(loadedColors);
     }
 
 	/// <summary>
@@ -297,8 +283,9 @@ public partial class GameManager : Node
 
 		foreach (string file in allFiles)
 		{
-			if(file.EndsWith(".save"))
+			if(file.EndsWith(".saved"))
 			{
+				GD.Print($"GameManager.cs: SaveFile Name: {file}");
 				saveFiles.Add(file);
 			}
 		}
@@ -307,28 +294,10 @@ public partial class GameManager : Node
     }
 
 	/// <summary>
-	/// Takes in a generic array (should be strings of hexcode) and loads them into the colors list
-	/// </summary>
-	/// <param name="newColors"></param>
-	private void PopulateColors(Array newColors)
-	{
-		for(int i = 0; i < newColors.Count; i++)
-		{
-			newColors[i] = (string)newColors[i];
-		}
-
-		colors.Clear();
-		foreach(string color in newColors)
-		{
-			colors.Add(new Color(color));
-		}
-	}
-
-	/// <summary>
 	/// Creates and populates options based off the general array provided (primarily through the load system)
 	/// </summary>
 	/// <param name="loadOptions"></param>
-	private void PopulateOptions(Array loadOptions)
+	private void PopulateOptions(Array<Array> loadOptions)
 	{
 		foreach(Array option in loadOptions)
 		{
@@ -341,5 +310,19 @@ public partial class GameManager : Node
 			disabledOptions.Add(newOption);
 		}
         WheelProgressParent.EmitSignal(WheelProgress.SignalName.WheelProgressUpdate, true);
+    }
+
+    /// <summary>
+    /// Takes in a generic array (should be strings of hexcode) and loads them into the colors list
+    /// </summary>
+    /// <param name="newColors"></param>
+    private void PopulateColors(Array<Array<float>> newColors)
+    {
+        colors.Clear();
+        foreach(Array<float> color in newColors)
+		{
+			colors.Add(new Color(color[0], color[1], color[2], color[3]));
+		}
+		CustomizationManager.Instance.AssignColorsToList(colors);
     }
 }
