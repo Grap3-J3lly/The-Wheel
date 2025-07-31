@@ -14,6 +14,8 @@ public partial class PopupManager : Control
 
     private bool isCustomizationOpen = false;
 
+    private const int CONST_MaxRTLCount = 1;
+
     // --------------------------------
     //			PROPERTIES
     // --------------------------------
@@ -56,7 +58,7 @@ public partial class PopupManager : Control
                 if (child.As<RichTextLabel>() != null)
                 {
                     ++rtlCount;
-                    if (rtlCount > 1)
+                    if (rtlCount > CONST_MaxRTLCount)
                     {
                         winText = child.As<RichTextLabel>();
                     }
@@ -92,7 +94,7 @@ public partial class PopupManager : Control
     /// <returns>The panel created</returns>
     public Panel CreatePopup(PackedScene popup)
     {
-        this.Visible = true;
+        Visible = true;
         Panel newPopup = (Panel)popup.Instantiate();
         AddChild(newPopup);
         isCustomizationOpen = false;
@@ -105,7 +107,7 @@ public partial class PopupManager : Control
     /// <param name="popupToRemove"></param>
     public void ClosePopup(Control popupToRemove)
     {
-        this.Visible = false;
+        Visible = false;
         popupToRemove.QueueFree();
     }
 }

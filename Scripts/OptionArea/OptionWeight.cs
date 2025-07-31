@@ -16,6 +16,7 @@ public partial class OptionWeight : LineEdit
 	[Export]
 	private Color disabledColor;
 
+	private const bool CONST_WheelNeedsReset = true;
 
     // --------------------------------
     //		STANDARD FUNCTIONS	
@@ -24,12 +25,12 @@ public partial class OptionWeight : LineEdit
 	{
 		gameManager = GameManager.Instance;
 		
-		this.TextChanged += UpdateOptionWeight;
+		TextChanged += UpdateOptionWeight;
 	}
 
 	public override void _Process(double delta)
 	{
-        this.Editable = !gameManager.WheelSpinning && optionParent.OptionEnabled;
+        Editable = !gameManager.WheelSpinning && optionParent.OptionEnabled;
 		ChangeColor(optionParent.OptionEnabled);
 	}
 
@@ -54,11 +55,11 @@ public partial class OptionWeight : LineEdit
 	/// <param name="newText"></param>
     public void UpdateOptionWeight(string newText)
 	{
-		if(int.TryParse(this.Text, out int result))
+		if(int.TryParse(Text, out int result))
 		{
 			optionParent.OptionWeight = result;
 		}
-        gameManager.WheelProgressParent.EmitSignal(WheelProgress.SignalName.WheelProgressUpdate, true);
+        gameManager.WheelProgressParent.EmitSignal(WheelProgress.SignalName.WheelProgressUpdate, CONST_WheelNeedsReset);
     }
 
 	/// <summary>
@@ -66,7 +67,7 @@ public partial class OptionWeight : LineEdit
 	/// </summary>
 	public void UpdateOptionWeightField()
 	{
-		this.Text = optionParent.OptionWeight.ToString();
-        gameManager.WheelProgressParent.EmitSignal(WheelProgress.SignalName.WheelProgressUpdate, true);
+		Text = optionParent.OptionWeight.ToString();
+        gameManager.WheelProgressParent.EmitSignal(WheelProgress.SignalName.WheelProgressUpdate, CONST_WheelNeedsReset);
     }
 }

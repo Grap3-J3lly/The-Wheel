@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://ggapqp0tm4wl" path="res://Scenes/reset_button.tscn" id="7_rxs1j"]
 [ext_resource type="Theme" uid="uid://c7wno4dccruj2" path="res://Themes/SmallButtonTheme.tres" id="9_rn774"]
 
-[node name="CustomizationArea" type="Control" node_paths=PackedStringArray("generalBackgroundColor", "secondaryBackgroundColor", "wheelPrimaryColor", "wheelSecondaryColor", "wheelButtonColor", "wheelButtonText", "listBackgroundColor", "listFontColor", "popupBackgroundColor", "popupFontColor")]
+[node name="CustomizationArea" type="Control" node_paths=PackedStringArray("generalBackgroundColor", "secondaryBackgroundColor", "wheelPrimaryColor", "wheelSecondaryColor", "wheelButtonColor", "wheelButtonTextColor", "listBackgroundColor", "listFontColor", "popupBackgroundColor", "popupFontColor")]
 z_index = 5
 z_as_relative = false
 layout_mode = 3
@@ -25,7 +25,7 @@ secondaryBackgroundColor = NodePath("CustomizationOptions/SecondaryBackground/Co
 wheelPrimaryColor = NodePath("CustomizationOptions/WheelPrimary/ColorBorder/WP_ColorPick")
 wheelSecondaryColor = NodePath("CustomizationOptions/WheelSecondary/ColorBorder/WS_ColorPick")
 wheelButtonColor = NodePath("CustomizationOptions/WheelButton/ColorBorder/WB_ColorPick")
-wheelButtonText = NodePath("CustomizationOptions/WheelButtonText/ColorBorder/WBT_ColorPick")
+wheelButtonTextColor = NodePath("CustomizationOptions/WheelButtonText/ColorBorder/WBT_ColorPick")
 listBackgroundColor = NodePath("CustomizationOptions/ListBackground/ColorBorder/LB_ColorPick")
 listFontColor = NodePath("CustomizationOptions/ListFontColor/ColorBorder/LFC_ColorPick")
 popupBackgroundColor = NodePath("CustomizationOptions/PopupBackgroundColor/ColorBorder/PBC_ColorPick")

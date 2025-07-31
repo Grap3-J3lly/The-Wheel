@@ -53,8 +53,8 @@ public partial class OptionName : LineEdit
     /// </summary>
     public void UpdateOptionName(string newText)
 	{
-		optionParent.OptionName = this.Text;
-		optionParent.OptionProgressBar.SetName(this.Text);
+		optionParent.OptionName = Text;
+		optionParent.OptionProgressBar.SetName(Text);
 	}
 
     /// <summary>
@@ -62,7 +62,7 @@ public partial class OptionName : LineEdit
     /// </summary>
 	public void UpdateOptionNameField()
 	{
-		this.Text = optionParent.OptionName;
-        optionParent.OptionProgressBar.SetName(this.Text);
+		Text = optionParent.OptionName;
+        optionParent.OptionProgressBar.SetName(Text);
     }
 }

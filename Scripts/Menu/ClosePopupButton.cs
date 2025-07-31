@@ -2,6 +2,8 @@ using Godot;
 
 public partial class ClosePopupButton : Button
 {
+    private const bool CONST_DefaultIdleSpinning = true;
+
     // --------------------------------
     //		STANDARD FUNCTIONS	
     // --------------------------------
@@ -21,6 +23,6 @@ public partial class ClosePopupButton : Button
     private void OnButtonPress()
 	{
 		PopupManager.Instance.ClosePopup(GetParent<Control>());
-        GameManager.Instance.SpinButton.idleSpinning = true;
+        GameManager.Instance.SpinButton.idleSpinning = CONST_DefaultIdleSpinning;
 	}
 }

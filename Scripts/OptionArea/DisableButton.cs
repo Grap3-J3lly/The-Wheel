@@ -13,6 +13,10 @@ public partial class DisableButton : Button
     [Export]
     private TextureRect checkmark;
 
+    private const bool CONST_DefaultEnabled = true;
+    private Color CheckMarkVisibleColor = new Color(255, 255, 255, 1);
+    private Color CheckMarkInvisibleColor = new Color(255, 255, 255, 0);
+
     // --------------------------------
     //		    PROPERTIES
     // --------------------------------
@@ -27,7 +31,7 @@ public partial class DisableButton : Button
 	{
 		base._Ready();
 		gameManager = GameManager.Instance;
-		enabled = true;
+        enabled = CONST_DefaultEnabled;
         ButtonPressed = enabled;
         optionParent = (Option)GetParentControl();
 		this.Pressed += PressButton;
@@ -49,13 +53,13 @@ public partial class DisableButton : Button
         
         if(enabled)
         {
-            checkmark.Modulate = new Color(255, 255, 255, 1);
+            checkmark.Modulate = CheckMarkVisibleColor;
             gameManager.DisabledOptions.Remove(optionParent);
             gameManager.CreatedOptions.Add(optionParent);
         }
         else
         {
-            checkmark.Modulate = new Color(255, 255, 255, 0);
+            checkmark.Modulate = CheckMarkInvisibleColor;
             gameManager.DisabledOptions.Add(optionParent);
             gameManager.CreatedOptions.Remove(optionParent);
         }
