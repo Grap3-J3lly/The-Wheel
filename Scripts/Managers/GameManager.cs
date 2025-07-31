@@ -53,6 +53,8 @@ public partial class GameManager : Node
     private Color default_wheelSecondaryColor;
     [Export]
     private Color default_wheelButtonColor;
+	[Export]
+	private Color default_wheelButtonTextColor;
     [Export]
     private Color default_listBackgroundColor;
     [Export]
@@ -141,29 +143,42 @@ public partial class GameManager : Node
 	{
 		base._Ready();
 		Instance = this;
-		SetListToDefaultValues(colors);
-		SetListToDefaultValues(defaultColors);
+		colors = SetListToDefaultValues();
+		defaultColors = SetListToDefaultValues();
 		twitchInfoArea.Visible = false;
+
+		CallDeferred("DelayedResetToDefaultColors");
 	}
 
     // --------------------------------
     //		CUSTOMIZATION LOGIC
     // --------------------------------
 
-	/// <summary>
-	/// Populates the given list with the assigned default color values
-	/// </summary>
-	private void SetListToDefaultValues(Array<Color> list)
+	private void DelayedResetToDefaultColors()
 	{
-		list.Add(default_generalBackgroundColor);
-		list.Add(default_secondaryBackgroundColor);
-        list.Add(default_wheelPrimaryColor);
-		list.Add(default_wheelSecondaryColor);
-        list.Add(default_wheelButtonColor);
-        list.Add(default_listBackgroundColor);
-		list.Add(default_listFontColor);
-        list.Add(default_popupBackgroundColor);
-		list.Add(default_popupFontColor);
+		// Need to separate "Customization Manager" and "Custimzation Area" so CustomizationManager can exist outside of Menu structure
+        CustomizationManager.Instance.AssignColorsToList(defaultColors);
+    }
+
+    /// <summary>
+    /// Populates the given list with the assigned default color values
+    /// </summary>
+    private Array<Color> SetListToDefaultValues()
+	{
+		Array<Color> list = 
+		[
+            default_generalBackgroundColor,
+            default_secondaryBackgroundColor,
+            default_wheelPrimaryColor,
+            default_wheelSecondaryColor,
+            default_wheelButtonColor,
+			default_wheelButtonTextColor,
+            default_listBackgroundColor,
+            default_listFontColor,
+            default_popupBackgroundColor,
+            default_popupFontColor
+        ];
+		return list;
 	}
 
 	/// <summary>
@@ -180,34 +195,6 @@ public partial class GameManager : Node
     // --------------------------------
     //		SAVE/LOAD LOGIC
     // --------------------------------
-
-	/// <summary>
-	/// Prepares all necessary data for saving into the appropriate list
-	/// </summary>
-    private void PopulateDataToSave()
-	{
-		Array<Option> allOptions = new Array<Option>();
-		allOptions.AddRange(createdOptions);
-		allOptions.AddRange(disabledOptions);
-
-		Array colorsArray = new Array();
-		
-		foreach(Color color in colors)
-		{
-			colorsArray.Add(color.ToHtml());
-		}
-		
-		Array optionsArray = new Array();
-
-		foreach (Option option in allOptions)
-		{
-			optionsArray.Add(option.GetOptionData());
-		}
-
-		dataToSave.Add(ListName);
-		dataToSave.Add(colorsArray);
-		dataToSave.Add(optionsArray);
-	}
 
 	/// <summary>
 	/// Stores all data in the appropriate data list into a json object and writes it into a file, using the listName for the fileName

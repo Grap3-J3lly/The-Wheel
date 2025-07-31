@@ -18,6 +18,12 @@ public partial class Option : Control
 	private int optionWeight = 1;
 	private ProgressBar optionProgressBar;
 
+    // Const Values
+    private const int CONST_DefaultWeight = 1;
+
+    private const int CONST_Index_OptionName = 0;
+    private const int CONST_Index_OptionEnabled = 1;
+    private const int CONST_Index_OptionWeight = 2;
 
     // --------------------------------
     //			PROPERTIES	
@@ -49,7 +55,7 @@ public partial class Option : Control
     /// </summary>
     public void ResetDefaultWeight()
     {
-        OptionWeight = 1;
+        OptionWeight = CONST_DefaultWeight;
         UpdateOptionFields();
     }
 
@@ -146,12 +152,12 @@ public partial class Option : Control
     {
         Option newOption = (Option)optionTemplate.Instantiate();
         optionParent.AddChild(newOption);
-        newOption.optionName = (string)optionData[0];
+        newOption.optionName = (string)optionData[CONST_Index_OptionName];
         newOption.optionNameField.Text = newOption.OptionName;
-        newOption.optionEnabledField.ButtonPressed = newOption.OptionEnabled;
+        newOption.optionEnabled = (bool)optionData[CONST_Index_OptionEnabled];
         newOption.optionEnabledField.Enabled = newOption.OptionEnabled;
-        newOption.optionEnabled = (bool)optionData[1];
-        newOption.optionWeight = (int)optionData[2];
+        newOption.optionEnabledField.ButtonPressed = newOption.OptionEnabled;
+        newOption.optionWeight = (int)optionData[CONST_Index_OptionWeight];
         newOption.optionWeightField.Text = newOption.OptionWeight.ToString();
 
         // Assign Focus

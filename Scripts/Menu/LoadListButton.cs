@@ -19,7 +19,7 @@ public partial class LoadListButton : Button
     public override void _Ready()
 	{
 		gameManager = GameManager.Instance;
-		this.Pressed += OnButtonPress;
+		Pressed += OnButtonPress;
 
 	}
 

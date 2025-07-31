@@ -34,7 +34,7 @@ public partial class ListOptions : OptionButton
 
         foreach (string file in saveFiles)
         {
-            AddItem(file.Substring(0, file.LastIndexOf('.')));
+            AddItem(file.Substring(startIndex: 0, file.LastIndexOf('.')));
         }
     }
 }

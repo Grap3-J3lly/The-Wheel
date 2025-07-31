@@ -1,8 +1,9 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://cpm3ymheyptc0"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://cpm3ymheyptc0"]
 
 [ext_resource type="Texture2D" uid="uid://clcjbe0ejeejk" path="res://Assets/UI/W_Wheel_Spin_H.png" id="1_1ehs3"]
 [ext_resource type="Texture2D" uid="uid://d0mhpasq1lmrg" path="res://Assets/UI/W_Wheel_Spin_P.png" id="2_y5biy"]
 [ext_resource type="Texture2D" uid="uid://dt2c27y8ck41m" path="res://Assets/UI/W_Wheel_Spin_D.png" id="3_husqm"]
+[ext_resource type="FontFile" uid="uid://65anix1v37bg" path="res://Assets/super_corn/Super Corn.ttf" id="4_x6wor"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b6vib"]
 
@@ -16,8 +17,10 @@ texture = ExtResource("1_1ehs3")
 texture = ExtResource("3_husqm")
 
 [resource]
-Button/colors/font_color = Color(1, 0.964706, 0.823529, 1)
+default_font = ExtResource("4_x6wor")
+default_font_size = 20
 Button/styles/focus = SubResource("StyleBoxEmpty_b6vib")
 Button/styles/hover = SubResource("StyleBoxTexture_x15ri")
 Button/styles/normal = SubResource("StyleBoxTexture_sijsn")
 Button/styles/pressed = SubResource("StyleBoxTexture_8415a")
+RichTextLabel/colors/default_color = Color(0, 0, 0, 1)

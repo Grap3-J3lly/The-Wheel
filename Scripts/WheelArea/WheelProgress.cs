@@ -52,21 +52,21 @@ public partial class WheelProgress : Control
 			// Reduce Fill Degree for every option on wheel to evenly distribute across wheel
 
 			float previousAngle = 0f;
-            for (int i = 0; i < options.Count; i++)
+            for (int index = 0; index < options.Count; index++)
 			{
 				ProgressBar progressBar = (ProgressBar)progressBarTemplate.Instantiate();
 				AddChild(progressBar);
-				options[i].OptionProgressBar = progressBar;
-				progressBar.AssignedOption = options[i];
-				progressBar.SetName(options[i].OptionName);
+				options[index].OptionProgressBar = progressBar;
+				progressBar.AssignedOption = options[index];
+				progressBar.SetName(options[index].OptionName);
 
-				progressBar.RadialFillDegrees = (360.0f / Option.GetTotalWeight(options)) * options[i].OptionWeight;
+				progressBar.RadialFillDegrees = (360.0f / Option.GetTotalWeight(options)) * options[index].OptionWeight;
 				progressBar.RadialInitialAngle = previousAngle;
 				previousAngle += progressBar.RadialFillDegrees;
 				progressBar.AssignTextRotation();
 
 				// Gives a slight separation between options when necessary
-				if(i == options.Count - 1 && options.Count % 2 == 1)
+				if(index == options.Count - 1 && options.Count % 2 == 1)
 				{
 					progressBar.RadialFillDegrees -= .5f;
 				}

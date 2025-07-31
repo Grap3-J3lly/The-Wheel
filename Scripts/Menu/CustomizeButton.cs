@@ -11,6 +11,8 @@ public partial class CustomizeButton : Button
 	[Export]
 	private PackedScene customizationAreaTemplate;
 
+    private const float CONST_CAHorizontalResizeMultiplier = .25f;
+
     // --------------------------------
     //		STANDARD FUNCTIONS	
     // --------------------------------
@@ -37,7 +39,11 @@ public partial class CustomizeButton : Button
 		menuBackground.AddChild(customizationArea);
 
 		menuBackground.Size = new Vector2(menuBackground.Size.X, menuBackground.Size.Y);
-		menuBackground.Position = new Vector2(menuBackground.Position.X - (customizationArea.Size.X/4), menuBackground.Position.Y);
+		menuBackground.Position = 
+            new Vector2 (
+            menuBackground.Position.X - (customizationArea.Size.X * CONST_CAHorizontalResizeMultiplier), 
+            menuBackground.Position.Y
+            );
         GD.Print("Finished Creating Customization Area");
     }
 }
