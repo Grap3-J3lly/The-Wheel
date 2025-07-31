@@ -10,6 +10,9 @@ public partial class ResetButton : Button
 	private ColorPickerButton colorPickerButton;
 	private GameManager gameManager;
 
+    [Export]
+    private ColorPalette.Colors colorToReset;
+
     // --------------------------------
     //		STANDARD FUNCTIONS	
     // --------------------------------
@@ -30,8 +33,6 @@ public partial class ResetButton : Button
     /// </summary>
     private void OnButtonPressed()
 	{
-		int colorPickerIndex = CustomizationManager.Instance.ColorPickerButtons.IndexOf(colorPickerButton);
-		colorPickerButton.Color = gameManager.DefaultColors[colorPickerIndex];
-		CustomizationManager.Instance.UpdateColors();
+        GameManager.Instance.ResetColor((int)colorToReset);
 	}
 }

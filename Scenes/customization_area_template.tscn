@@ -161,6 +161,7 @@ flat = false
 icon_alignment = 0
 expand_icon = false
 colorPickerButton = NodePath("../ColorBorder/SB_ColorPick")
+colorToReset = 1
 
 [node name="WheelPrimary" type="HBoxContainer" parent="CustomizationOptions"]
 custom_minimum_size = Vector2(200, 30)
@@ -210,6 +211,7 @@ flat = false
 icon_alignment = 0
 expand_icon = false
 colorPickerButton = NodePath("../ColorBorder/WP_ColorPick")
+colorToReset = 2
 
 [node name="WheelSecondary" type="HBoxContainer" parent="CustomizationOptions"]
 custom_minimum_size = Vector2(200, 30)
@@ -259,6 +261,7 @@ flat = false
 icon_alignment = 0
 expand_icon = false
 colorPickerButton = NodePath("../ColorBorder/WS_ColorPick")
+colorToReset = 3
 
 [node name="WheelButton" type="HBoxContainer" parent="CustomizationOptions"]
 custom_minimum_size = Vector2(200, 30)
@@ -308,6 +311,7 @@ flat = false
 icon_alignment = 0
 expand_icon = false
 colorPickerButton = NodePath("../ColorBorder/WB_ColorPick")
+colorToReset = 4
 
 [node name="WheelButtonText" type="HBoxContainer" parent="CustomizationOptions"]
 custom_minimum_size = Vector2(200, 30)
@@ -357,6 +361,7 @@ flat = false
 icon_alignment = 0
 expand_icon = false
 colorPickerButton = NodePath("../ColorBorder/WBT_ColorPick")
+colorToReset = 5
 
 [node name="ListBackground" type="HBoxContainer" parent="CustomizationOptions"]
 custom_minimum_size = Vector2(200, 30)
@@ -406,6 +411,7 @@ flat = false
 icon_alignment = 0
 expand_icon = false
 colorPickerButton = NodePath("../ColorBorder/LB_ColorPick")
+colorToReset = 6
 
 [node name="ListFontColor" type="HBoxContainer" parent="CustomizationOptions"]
 custom_minimum_size = Vector2(200, 30)
@@ -455,6 +461,7 @@ flat = false
 icon_alignment = 0
 expand_icon = false
 colorPickerButton = NodePath("../ColorBorder/LFC_ColorPick")
+colorToReset = 7
 
 [node name="PopupBackgroundColor" type="HBoxContainer" parent="CustomizationOptions"]
 custom_minimum_size = Vector2(200, 30)
@@ -504,6 +511,7 @@ flat = false
 icon_alignment = 0
 expand_icon = false
 colorPickerButton = NodePath("../ColorBorder/PBC_ColorPick")
+colorToReset = 8
 
 [node name="PopupFontColor" type="HBoxContainer" parent="CustomizationOptions"]
 custom_minimum_size = Vector2(200, 30)
@@ -553,3 +561,4 @@ flat = false
 icon_alignment = 0
 expand_icon = false
 colorPickerButton = NodePath("../ColorBorder/PFC_ColorPick")
+colorToReset = 9
