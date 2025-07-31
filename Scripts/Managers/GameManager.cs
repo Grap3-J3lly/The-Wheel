@@ -10,7 +10,6 @@ public partial class GameManager : Node
 	// Save Data
 	// private const string CONST_SaveFileName = "wheelData";
 	private Array<Variant> dataToSave = new Array<Variant>();
-	private Array<Color> colors = new Array<Color>();
 	private Array<Option> createdOptions = new Array<Option>();
 	private Array<Option> disabledOptions = new Array<Option>();
 
@@ -20,17 +19,6 @@ public partial class GameManager : Node
 	private WheelProgress wheelProgressParent;
 
 	// Customizable UI Elements
-	[ExportGroup("Customizable UI Elements")]
-    [Export]
-    private Color primaryColor;
-    [Export]
-    private Color secondaryColor;
-	[Export]
-	private ColorRect applicationBackground;
-	[Export]
-	private TextureRect backgroundTexture;
-	[Export]
-	private ColorRect listBackground;
 	[Export]
 	private SpinButton spinButton;
 
@@ -41,29 +29,13 @@ public partial class GameManager : Node
     [Export]
     private Control optionParent;
 
-	[ExportGroup("Default Color Data")]
 	// Default Color Data
-	[Export]
-	private Color default_generalBackgroundColor;
+	[ExportGroup("Default Color Data")]
     [Export]
-    private Color default_secondaryBackgroundColor;
-    [Export]
-    private Color default_wheelPrimaryColor;
-    [Export]
-    private Color default_wheelSecondaryColor;
-    [Export]
-    private Color default_wheelButtonColor;
-	[Export]
-	private Color default_wheelButtonTextColor;
-    [Export]
-    private Color default_listBackgroundColor;
-    [Export]
-    private Color default_listFontColor;
-    [Export]
-    private Color default_popupBackgroundColor;
-    [Export]
-    private Color default_popupFontColor;
-	private Array<Color> defaultColors = new Array<Color>();
+    private ColorPalette default_palette;
+	//private Array<Color> defaultColors = new Array<Color>();
+    public ColorPalette currentColors;
+
 
     [ExportGroup("Audio Info")]
     // Audio Info
@@ -92,8 +64,6 @@ public partial class GameManager : Node
     // --------------------------------
 
     public static GameManager Instance { get; private set; }
-
-	public Array<Color> Colors { get => colors; set => colors = value; }
     public Array<Option> CreatedOptions {  get { return createdOptions; } }
 	public Array<Option> DisabledOptions { get { return disabledOptions; } }
 
@@ -102,26 +72,11 @@ public partial class GameManager : Node
 	public bool WheelSpinning { get => wheelSpinning; set => wheelSpinning = value; }
 	public WheelProgress WheelProgressParent { get => wheelProgressParent; set => wheelProgressParent = value; }
 
-    // Customizable UI Elements
-    public Color PrimaryColor 
-	{
-		get => primaryColor; set => primaryColor = value;
-	}
-	public Color SecondaryColor 
-	{ 
-		get => secondaryColor; set => secondaryColor = value;
-	}
-	public ColorRect ApplicationBackground { get => applicationBackground; }
-	public TextureRect BackgroundTexture { get => backgroundTexture; }
-	public ColorRect ListBackground { get => listBackground; }
 	public SpinButton SpinButton { get => spinButton; }
 
 	// Option Data
 	public PackedScene OptionTemplate { get => optionTemplate; }
 	public Control OptionParent { get => optionParent; }
-
-	// Default Color Data
-	public Array<Color> DefaultColors { get => defaultColors; }
 
 	// Audio Info
 	public AudioStreamPlayer AudioStreamPlayer { get => audioStreamPlayer; }
@@ -143,48 +98,20 @@ public partial class GameManager : Node
 	{
 		base._Ready();
 		Instance = this;
-		colors = SetListToDefaultValues();
-		defaultColors = SetListToDefaultValues();
+        CustomizationManager.ColorPalletChanged += UpdateWheelColors;
+        default_palette.ReadyColors();
+        ResetColors();
 		twitchInfoArea.Visible = false;
-
-		CallDeferred("DelayedResetToDefaultColors");
 	}
 
     // --------------------------------
     //		CUSTOMIZATION LOGIC
     // --------------------------------
 
-	private void DelayedResetToDefaultColors()
-	{
-		// Need to separate "Customization Manager" and "Custimzation Area" so CustomizationManager can exist outside of Menu structure
-        CustomizationManager.Instance.AssignColorsToList(defaultColors);
-    }
-
-    /// <summary>
-    /// Populates the given list with the assigned default color values
-    /// </summary>
-    private Array<Color> SetListToDefaultValues()
-	{
-		Array<Color> list = 
-		[
-            default_generalBackgroundColor,
-            default_secondaryBackgroundColor,
-            default_wheelPrimaryColor,
-            default_wheelSecondaryColor,
-            default_wheelButtonColor,
-			default_wheelButtonTextColor,
-            default_listBackgroundColor,
-            default_listFontColor,
-            default_popupBackgroundColor,
-            default_popupFontColor
-        ];
-		return list;
-	}
-
 	/// <summary>
 	/// Assigns the Progress Bars to their primary or secondary colors
 	/// </summary>
-	public void UpdateWheelColors()
+	public void UpdateWheelColors(ColorPalette palett)
 	{
 		foreach(Option option in CreatedOptions)
 		{
@@ -214,7 +141,7 @@ public partial class GameManager : Node
 		SaveSystem.AddDataItem(ListName, "optionData", optionData);
 
 		Array<Array<float>> colorData = new Array<Array<float>>();
-		foreach(Color color in colors)
+		foreach(Color color in currentColors)
 		{
 			Array<float> colorDataObj = [color.R, color.G, color.B, color.A];
 			colorData.Add(colorDataObj);
@@ -230,7 +157,6 @@ public partial class GameManager : Node
 	/// <param name="specificFile"></param>
 	public void LoadGame(string specificFile)
 	{
-		
 		DeleteOptions(createdOptions);
 		DeleteOptions(disabledOptions);
 
@@ -305,11 +231,23 @@ public partial class GameManager : Node
     /// <param name="newColors"></param>
     private void PopulateColors(Array<Array<float>> newColors)
     {
-        colors.Clear();
-        foreach(Array<float> color in newColors)
-		{
-			colors.Add(new Color(color[0], color[1], color[2], color[3]));
-		}
-		CustomizationManager.Instance.AssignColorsToList(colors);
+        for(int i = 0; i < newColors.Count; i++) 
+        {
+            Array<float> color = newColors[i];
+            currentColors[i] = new Color(color[0], color[1], color[2], color[3]);
+        }
+		CustomizationManager.UpdateColors();
+    }
+
+    public void ResetColor(int colorIndex)
+    {
+        currentColors[colorIndex] = default_palette[colorIndex];
+        CustomizationManager.UpdateColors();
+    }
+
+    public void ResetColors() 
+    {
+        currentColors = new ColorPalette(default_palette);
+        CustomizationManager.UpdateColors();
     }
 }
