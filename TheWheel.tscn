@@ -1,17 +1,22 @@
-[gd_scene load_steps=41 format=3 uid="uid://8cgspyr8gob4"]
+[gd_scene load_steps=58 format=3 uid="uid://8cgspyr8gob4"]
 
 [ext_resource type="Theme" uid="uid://cpm3ymheyptc0" path="res://Themes/WheelButtonTheme.tres" id="2_3bb4o"]
 [ext_resource type="Script" uid="uid://dq5r4c8nnpqo8" path="res://Scripts/Managers/GameManager.cs" id="2_yv2g8"]
+[ext_resource type="Script" uid="uid://crl8gyb4oysvv" path="res://Scripts/Resources/ColorPalette.cs" id="3_6eskp"]
 [ext_resource type="Script" uid="uid://bhp3fu6ryf154" path="res://Scripts/Twitch/TwitchChatFeed.cs" id="3_16l3w"]
 [ext_resource type="Script" uid="uid://bhctbwennv1at" path="res://Scripts/WheelArea/WheelProgress.cs" id="3_iyf3y"]
 [ext_resource type="Script" uid="uid://63r6fausp7kv" path="res://Scripts/WheelArea/SpinButton.cs" id="3_qqfjg"]
 [ext_resource type="AudioStream" uid="uid://dkwj7334s12jg" path="res://Assets/SFX/block.wav" id="4_a0jfc"]
+[ext_resource type="Script" uid="uid://b3svcdmaw414p" path="res://Scripts/ColorChangers/ThemeColorChanger.cs" id="4_ghpbr"]
 [ext_resource type="PackedScene" uid="uid://c1ofuprn5cbnr" path="res://Scenes/wheel_progress_template.tscn" id="4_hrrrl"]
 [ext_resource type="Script" uid="uid://c8uh66bf8w0id" path="res://Scripts/OptionArea/AddOptionButton.cs" id="5_tmtid"]
 [ext_resource type="Texture2D" uid="uid://184pukkxnirq" path="res://Assets/UI/W_BGv2_2.png" id="5_wkq58"]
 [ext_resource type="PackedScene" uid="uid://c2jsx0bgu2s1j" path="res://Scenes/option_template.tscn" id="5_xkam3"]
+[ext_resource type="Script" uid="uid://d0rdxto0pqjjf" path="res://Scripts/Resources/ThemeChangerLineOption.cs" id="6_hb2pm"]
 [ext_resource type="Script" uid="uid://cbsqbsbwdaede" path="res://Scripts/OptionArea/OpenPopupButton.cs" id="7_b0qvu"]
+[ext_resource type="Script" uid="uid://dt2yb6taqr12v" path="res://Scripts/ColorChangers/TextureRectColorChanger.cs" id="7_cslys"]
 [ext_resource type="Texture2D" uid="uid://dr02kfhabwixo" path="res://Assets/UI/W_Wheel.png" id="7_rrh5u"]
+[ext_resource type="Script" uid="uid://bdo6avrwovqeb" path="res://Scripts/ColorChangers/ColorRectChanger.cs" id="7_wlc4v"]
 [ext_resource type="Theme" uid="uid://dlf27rdr7dp0n" path="res://Themes/ListFontColorTheme.tres" id="8_f126f"]
 [ext_resource type="Script" uid="uid://dsn7wbhmityfq" path="res://Scripts/Managers/PopupManager.cs" id="9_4p5xn"]
 [ext_resource type="Script" uid="uid://b8aittgwti6er" path="res://Scripts/Twitch/ToggleChatInputButton.cs" id="10_05f66"]
@@ -34,6 +39,119 @@
 [ext_resource type="Texture2D" uid="uid://ctg3n7875jbc2" path="res://Assets/UI/Icon_Reset.png" id="29_jnu0i"]
 [ext_resource type="Texture2D" uid="uid://cslrdlnim20y0" path="res://Assets/UI/Icon_Plus.png" id="31_gbu6j"]
 [ext_resource type="Script" uid="uid://4bawhwtbhael" path="res://Scripts/OptionArea/ScrollArea.cs" id="32_25fds"]
+
+[sub_resource type="Resource" id="Resource_6eskp"]
+script = ExtResource("3_6eskp")
+_generalBackgroundColor = Color(0.0862745, 0.0392157, 0.152941, 1)
+_secondaryBackgroundColor = Color(0.113725, 0.054902, 0.2, 1)
+_wheelPrimaryColor = Color(0.262745, 0.133333, 0.694118, 1)
+_wheelSecondaryColor = Color(0.533333, 0.152941, 0.839216, 1)
+_wheelButtonColor = Color(1, 1, 1, 1)
+_wheelButtonTextColor = Color(0, 0, 0, 1)
+_listBackgroundColor = Color(1, 0.964706, 0.823529, 1)
+_listFontColor = Color(1, 1, 1, 1)
+_popupBackgroundColor = Color(1, 0.964706, 0.823529, 1)
+_popupFontColor = Color(0.32549, 0.176471, 0.0509804, 1)
+metadata/_custom_type_script = "uid://crl8gyb4oysvv"
+
+[sub_resource type="Resource" id="Resource_kcaas"]
+script = ExtResource("6_hb2pm")
+targetLine = "Button/styles/normal"
+darkenBy = 0.0
+opacity = 1.0
+useStyleBox = true
+styleBoxLine = "modulate_color"
+metadata/_custom_type_script = "uid://d0rdxto0pqjjf"
+
+[sub_resource type="Resource" id="Resource_ngf85"]
+script = ExtResource("6_hb2pm")
+targetLine = "Button/styles/hover"
+darkenBy = 0.25
+opacity = 1.0
+useStyleBox = true
+styleBoxLine = "modulate_color"
+metadata/_custom_type_script = "uid://d0rdxto0pqjjf"
+
+[sub_resource type="Resource" id="Resource_ynraf"]
+script = ExtResource("6_hb2pm")
+targetLine = "Button/styles/pressed"
+darkenBy = 0.5
+opacity = 1.0
+useStyleBox = true
+styleBoxLine = "modulate_color"
+metadata/_custom_type_script = "uid://d0rdxto0pqjjf"
+
+[sub_resource type="Resource" id="Resource_boqar"]
+script = ExtResource("6_hb2pm")
+targetLine = "RichTextLabel/colors/default_color"
+darkenBy = 0.0
+opacity = 1.0
+useStyleBox = false
+styleBoxLine = ""
+metadata/_custom_type_script = "uid://d0rdxto0pqjjf"
+
+[sub_resource type="Resource" id="Resource_ghpbr"]
+script = ExtResource("6_hb2pm")
+targetLine = "LineEdit/colors/font_color"
+darkenBy = 0.0
+opacity = 1.0
+useStyleBox = false
+styleBoxLine = ""
+metadata/_custom_type_script = "uid://d0rdxto0pqjjf"
+
+[sub_resource type="Resource" id="Resource_hb2pm"]
+script = ExtResource("6_hb2pm")
+targetLine = "TextEdit/colors/font_color"
+darkenBy = 0.0
+opacity = 1.0
+useStyleBox = false
+styleBoxLine = ""
+metadata/_custom_type_script = "uid://d0rdxto0pqjjf"
+
+[sub_resource type="Resource" id="Resource_36gdu"]
+script = ExtResource("6_hb2pm")
+targetLine = "TextEdit/colors/font_placeholder_color"
+darkenBy = 0.0
+opacity = 0.6
+useStyleBox = false
+styleBoxLine = ""
+metadata/_custom_type_script = "uid://d0rdxto0pqjjf"
+
+[sub_resource type="Resource" id="Resource_abnyl"]
+script = ExtResource("6_hb2pm")
+targetLine = "RichTextLabel/colors/default_color"
+darkenBy = 0.0
+opacity = 1.0
+useStyleBox = false
+styleBoxLine = ""
+metadata/_custom_type_script = "uid://d0rdxto0pqjjf"
+
+[sub_resource type="Resource" id="Resource_hax8q"]
+script = ExtResource("6_hb2pm")
+targetLine = "Panel/styles/panel"
+darkenBy = 0.0
+opacity = 1.0
+useStyleBox = true
+styleBoxLine = "bg_color"
+metadata/_custom_type_script = "uid://d0rdxto0pqjjf"
+
+[sub_resource type="Resource" id="Resource_boh0q"]
+script = ExtResource("6_hb2pm")
+targetLine = "RichTextLabel/colors/default_color"
+darkenBy = 0.0
+opacity = 1.0
+useStyleBox = false
+styleBoxLine = ""
+metadata/_custom_type_script = "uid://d0rdxto0pqjjf"
+
+[sub_resource type="Resource" id="Resource_i0ugu"]
+script = ExtResource("6_hb2pm")
+targetLine = "Button/colors/font_color"
+darkenBy = 0.0
+opacity = 1.0
+useStyleBox = false
+styleBoxLine = ""
+metadata/_custom_type_script = "uid://d0rdxto0pqjjf"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0fidw"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -83,32 +201,53 @@ VScrollBar/styles/scroll = SubResource("StyleBoxFlat_42f8b")
 
 [node name="Node2D" type="Node2D"]
 
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("applicationBackground", "backgroundTexture", "listBackground", "spinButton", "optionParent", "audioStreamPlayer", "twitchInfoArea", "option_leftBegin", "option_rightEnd", "option_topBegin", "option_bottomEnd")]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("spinButton", "optionParent", "audioStreamPlayer", "twitchInfoArea", "option_leftBegin", "option_rightEnd", "option_topBegin", "option_bottomEnd")]
 script = ExtResource("2_yv2g8")
-primaryColor = Color(0.262745, 0.133333, 0.694118, 1)
-secondaryColor = Color(0.533333, 0.152941, 0.839216, 1)
-applicationBackground = NodePath("../CanvasLayer/ApplicationBackground")
-backgroundTexture = NodePath("../CanvasLayer/ApplicationBackground/BackgroundTexture")
-listBackground = NodePath("../CanvasLayer/OptionArea/OptionBackground")
 spinButton = NodePath("../CanvasLayer/WheelArea/SpinButton")
 optionTemplate = ExtResource("5_xkam3")
 optionParent = NodePath("../CanvasLayer/OptionArea/ScrollArea/OptionList")
-default_generalBackgroundColor = Color(0.0862745, 0.0392157, 0.152941, 1)
-default_secondaryBackgroundColor = Color(0.266667, 0.133333, 0.466667, 1)
-default_wheelPrimaryColor = Color(0.290196, 0.372549, 0.172549, 1)
-default_wheelSecondaryColor = Color(1, 0.964706, 0.823529, 1)
-default_wheelButtonColor = Color(0.32549, 0.176471, 0.0509804, 1)
-default_wheelButtonTextColor = Color(0.717647, 0.52549, 0.356863, 1)
-default_listBackgroundColor = Color(1, 0.964706, 0.823529, 1)
-default_listFontColor = Color(1, 1, 1, 1)
-default_popupBackgroundColor = Color(1, 0.964706, 0.823529, 1)
-default_popupFontColor = Color(0.32549, 0.176471, 0.0509804, 1)
+default_palette = SubResource("Resource_6eskp")
 audioStreamPlayer = NodePath("../AudioManager")
 twitchInfoArea = NodePath("../CanvasLayer/TwitchInfoArea")
 option_leftBegin = NodePath("../CanvasLayer/OptionArea/TopBar/ClearOptionWeightsButton")
 option_rightEnd = NodePath("../CanvasLayer/WheelArea/SpinButton")
 option_topBegin = NodePath("../CanvasLayer/OptionArea/TopBar/ClearOptionWeightsButton")
 option_bottomEnd = NodePath("../CanvasLayer/WheelArea/SpinButton")
+
+[node name="WheelButtonColorChanger" type="Node" parent="GameManager"]
+script = ExtResource("4_ghpbr")
+targetTheme = ExtResource("2_3bb4o")
+lineOptions = Array[ExtResource("6_hb2pm")]([SubResource("Resource_kcaas"), SubResource("Resource_ngf85"), SubResource("Resource_ynraf")])
+watchedColor = 4
+metadata/_custom_type_script = "uid://b3svcdmaw414p"
+
+[node name="WheelButtonTextColorChanger" type="Node" parent="GameManager"]
+script = ExtResource("4_ghpbr")
+targetTheme = ExtResource("2_3bb4o")
+lineOptions = [SubResource("Resource_boqar")]
+watchedColor = 5
+metadata/_custom_type_script = "uid://b3svcdmaw414p"
+
+[node name="ListFontColorChanger" type="Node" parent="GameManager"]
+script = ExtResource("4_ghpbr")
+targetTheme = ExtResource("8_f126f")
+lineOptions = [SubResource("Resource_ghpbr"), SubResource("Resource_hb2pm"), SubResource("Resource_36gdu"), SubResource("Resource_abnyl")]
+watchedColor = 7
+metadata/_custom_type_script = "uid://b3svcdmaw414p"
+
+[node name="PopupBackgroundColorChanger" type="Node" parent="GameManager"]
+script = ExtResource("4_ghpbr")
+targetTheme = ExtResource("10_w6lq7")
+lineOptions = [SubResource("Resource_hax8q")]
+watchedColor = 8
+metadata/_custom_type_script = "uid://b3svcdmaw414p"
+
+[node name="PopupFontColorChanger" type="Node" parent="GameManager"]
+script = ExtResource("4_ghpbr")
+targetTheme = ExtResource("11_2pqje")
+lineOptions = [SubResource("Resource_boh0q"), SubResource("Resource_i0ugu")]
+watchedColor = 9
+metadata/_custom_type_script = "uid://b3svcdmaw414p"
 
 [node name="TwitchManager" type="Node" parent="."]
 script = ExtResource("3_16l3w")
@@ -140,6 +279,17 @@ grow_vertical = 2
 texture = ExtResource("5_wkq58")
 expand_mode = 1
 stretch_mode = 6
+
+[node name="TextureRectColorChanger" type="Node" parent="CanvasLayer/ApplicationBackground/BackgroundTexture" node_paths=PackedStringArray("targetRect")]
+script = ExtResource("7_cslys")
+targetRect = NodePath("..")
+watchedColor = 1
+metadata/_custom_type_script = "uid://dt2yb6taqr12v"
+
+[node name="ColorRectChanger" type="Node" parent="CanvasLayer/ApplicationBackground" node_paths=PackedStringArray("targetRect")]
+script = ExtResource("7_wlc4v")
+targetRect = NodePath("..")
+metadata/_custom_type_script = "uid://bdo6avrwovqeb"
 
 [node name="WheelArea" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -402,6 +552,12 @@ grow_vertical = 2
 texture = ExtResource("18_i1ts2")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="ColorRectChanger" type="Node" parent="CanvasLayer/OptionArea/OptionBackground" node_paths=PackedStringArray("targetRect")]
+script = ExtResource("7_wlc4v")
+targetRect = NodePath("..")
+watchedColor = 6
+metadata/_custom_type_script = "uid://bdo6avrwovqeb"
 
 [node name="TopBar" type="Control" parent="CanvasLayer/OptionArea"]
 custom_minimum_size = Vector2(300, 45)

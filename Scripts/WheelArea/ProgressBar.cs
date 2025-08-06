@@ -70,14 +70,16 @@ public partial class ProgressBar : TextureProgressBar
     /// </summary>
     public void AssignBarColor()
 	{
-        if (previousColor == Color.Color8(0, 0, 0, 0) || previousColor == gameManager.SecondaryColor)
+        Color primary = gameManager.currentColors.GetColor(ColorPalette.Colors.WheelPrimary);
+        Color secondary = gameManager.currentColors.GetColor(ColorPalette.Colors.WheelSecondary);
+        if (previousColor == Color.Color8(0, 0, 0, 0) || previousColor == secondary)
         {
-            previousColor = gameManager.PrimaryColor;
+            previousColor = primary;
             AssignBarColor(previousColor);
         }
         else
         {
-            previousColor = gameManager.SecondaryColor;
+            previousColor = secondary;
             AssignBarColor(previousColor);
         }
     }
@@ -89,14 +91,16 @@ public partial class ProgressBar : TextureProgressBar
 	public void AssignBarColor(Color color)
 	{
 		this.TintProgress = color;
+        Color primary = gameManager.currentColors.GetColor(ColorPalette.Colors.WheelPrimary);
+        Color secondary = gameManager.currentColors.GetColor(ColorPalette.Colors.WheelSecondary);
 
-        if (this.TintProgress == gameManager.PrimaryColor)
+        if (this.TintProgress == primary)
         {
-            AssignBarTextColor(gameManager.SecondaryColor);
+            AssignBarTextColor(secondary);
         }
         else
         {
-            AssignBarTextColor(gameManager.PrimaryColor);
+            AssignBarTextColor(primary);
         }
     }
 }
