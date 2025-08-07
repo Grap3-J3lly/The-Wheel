@@ -40,7 +40,7 @@
 [ext_resource type="Texture2D" uid="uid://cslrdlnim20y0" path="res://Assets/UI/Icon_Plus.png" id="31_gbu6j"]
 [ext_resource type="Script" uid="uid://4bawhwtbhael" path="res://Scripts/OptionArea/ScrollArea.cs" id="32_25fds"]
 
-[sub_resource type="Resource" id="Resource_6eskp"]
+[sub_resource type="Resource" id="Resource_jpnym"]
 script = ExtResource("3_6eskp")
 _generalBackgroundColor = Color(0.0862745, 0.0392157, 0.152941, 1)
 _secondaryBackgroundColor = Color(0.113725, 0.054902, 0.2, 1)
@@ -206,7 +206,7 @@ script = ExtResource("2_yv2g8")
 spinButton = NodePath("../CanvasLayer/WheelArea/SpinButton")
 optionTemplate = ExtResource("5_xkam3")
 optionParent = NodePath("../CanvasLayer/OptionArea/ScrollArea/OptionList")
-default_palette = SubResource("Resource_6eskp")
+default_palette = SubResource("Resource_jpnym")
 audioStreamPlayer = NodePath("../AudioManager")
 twitchInfoArea = NodePath("../CanvasLayer/TwitchInfoArea")
 option_leftBegin = NodePath("../CanvasLayer/OptionArea/TopBar/ClearOptionWeightsButton")
@@ -217,7 +217,7 @@ option_bottomEnd = NodePath("../CanvasLayer/WheelArea/SpinButton")
 [node name="WheelButtonColorChanger" type="Node" parent="GameManager"]
 script = ExtResource("4_ghpbr")
 targetTheme = ExtResource("2_3bb4o")
-lineOptions = Array[ExtResource("6_hb2pm")]([SubResource("Resource_kcaas"), SubResource("Resource_ngf85"), SubResource("Resource_ynraf")])
+lineOptions = [SubResource("Resource_kcaas"), SubResource("Resource_ngf85"), SubResource("Resource_ynraf")]
 watchedColor = 4
 metadata/_custom_type_script = "uid://b3svcdmaw414p"
 
