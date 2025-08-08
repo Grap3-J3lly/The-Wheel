@@ -1,54 +1,39 @@
 using Godot;
 using Godot.Collections;
 
-public partial class CustomizationManager : Control
+public partial class CustomizationManager : Node
 {
     // --------------------------------
     //			VARIABLES	
     // --------------------------------
-    private System.Collections.Generic.List<ColorPickerButton> colorPickerButtons = new System.Collections.Generic.List<ColorPickerButton>();
-
-    // Color Picker Buttons
     [Export]
-    private ColorPickerButton generalBackgroundColor;
-    [Export]
-    private ColorPickerButton secondaryBackgroundColor;
-    [Export]
-    private ColorPickerButton wheelPrimaryColor;
-    [Export]
-    private ColorPickerButton wheelSecondaryColor;
-    [Export]
-    private ColorPickerButton wheelButtonColor;
-    [Export]
-    private ColorPickerButton wheelButtonTextColor;
-    [Export]
-    private ColorPickerButton listBackgroundColor;
-    [Export]
-    private ColorPickerButton listFontColor;
-    [Export]
-    private ColorPickerButton popupBackgroundColor;
-    [Export]
-    private ColorPickerButton popupFontColor;
+    private ColorPalette defaultColors;
+    private ColorPalette currentColors;
 
     // --------------------------------
     //		    PROPERTIES	
     // --------------------------------
     public static CustomizationManager Instance { get; private set; }
 
+    public ColorPalette DefaultColors { get => defaultColors; }
+    public ColorPalette CurrentColors { get => currentColors; }
+
     // --------------------------------
     //	    C# STYLE EVENT LOGIC
     // --------------------------------
     public delegate void OnColorPalletChanged(ColorPalette newColorPalett);
     public static event OnColorPalletChanged ColorPalletChanged;
-    
+
 
     // --------------------------------
     //		STANDARD FUNCTIONS	
     // --------------------------------
 
     public override void _Ready()
-	{
-        base._Ready();        
+    {
+        base._Ready();
+        currentColors = defaultColors;
+        ColorPalletChanged += UpdateWheelColors;
         Setup();
     }
 
@@ -62,69 +47,23 @@ public partial class CustomizationManager : Control
     private void Setup()
     {
         Instance = this;
-        PopupManager.Instance.IsCustomizationOpen = true;
-
-        //Changed order here to better utilize new arrays
-        PopulateColorPickerList();
-        AssignPickerColors();
-        AttachListeners();
+        DefaultColors.ReadyColors();
+        CallDeferred("ResetColors");
     }
+
+    // --------------------------------
+    //		    COLOR LOGIC
+    // --------------------------------
 
     /// <summary>
-    /// Assigns initial colors to designated colior picker buttons
-    /// </summary>
-    private void AssignPickerColors()
+	/// Assigns the Progress Bars to their primary or secondary colors
+	/// </summary>
+	public void UpdateWheelColors(ColorPalette palett)
     {
-        for (int i = 0; i < colorPickerButtons.Count; i++) 
+        foreach (Option option in GameManager.Instance.CreatedOptions)
         {
-            GD.Print(i);
-            colorPickerButtons[i].Color = GameManager.Instance.currentColors[i];
+            option.OptionProgressBar.AssignBarColor();
         }
-    }
-
-    /// <summary>
-    /// Attaches proper logic to each color picker's ColorChanged event listener
-    /// </summary>
-    private void AttachListeners()
-    {
-        for(int i = 0; i < colorPickerButtons.Count; i++) 
-        {
-            colorPickerButtons[i].ColorChanged += ColorPickerChanged;
-        }
-    }
-
-    private void ColorPickerChanged(Color c) 
-    {
-        for (int i = 0; i < colorPickerButtons.Count; i++)
-        {
-            GameManager.Instance.currentColors[i] = colorPickerButtons[i].Color;
-        }
-
-        UpdateColors();
-    }
-
-    /// <summary>
-    /// Populates the list of color pickers if empty
-    /// </summary>
-    private void PopulateColorPickerList()
-    {
-        if(colorPickerButtons.Count > 0)
-        {
-            return;
-        }
-        colorPickerButtons =
-        [
-            generalBackgroundColor,
-            secondaryBackgroundColor,
-            wheelPrimaryColor,
-            wheelSecondaryColor,
-            wheelButtonColor,
-            wheelButtonTextColor,
-            listBackgroundColor,
-            listFontColor,
-            popupBackgroundColor,
-            popupFontColor
-        ];
     }
 
     /// <summary>
@@ -132,7 +71,33 @@ public partial class CustomizationManager : Control
     /// </summary>
     public static void UpdateColors()
     {
-        ColorPalletChanged?.Invoke(GameManager.Instance.currentColors);
-        Instance?.AssignPickerColors();
+        GD.Print($"CustomizationManager.cs: Calling UpdateColors");
+        ColorPalletChanged?.Invoke(Instance.currentColors);
+    }
+
+    /// <summary>
+    /// Takes in a generic array (should be strings of hexcode) and loads them into the colors list
+    /// </summary>
+    /// <param name="newColors"></param>
+    public void PopulateColors(Array<Array<float>> newColors)
+    {
+        for (int i = 0; i < newColors.Count; i++)
+        {
+            Array<float> color = newColors[i];
+            currentColors[i] = new Color(color[0], color[1], color[2], color[3]);
+        }
+        UpdateColors();
+    }
+
+    public void ResetColor(int colorIndex)
+    {
+        currentColors[colorIndex] = defaultColors[colorIndex];
+        UpdateColors();
+    }
+
+    public void ResetColors()
+    {
+        currentColors = new ColorPalette(defaultColors);
+        UpdateColors();
     }
 }

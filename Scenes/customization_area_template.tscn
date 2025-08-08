@@ -1,10 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://ctgy026yqcb0v"]
+[gd_scene load_steps=7 format=3 uid="uid://ctgy026yqcb0v"]
 
-[ext_resource type="Script" uid="uid://cteqtfm6d5hjt" path="res://Scripts/Managers/CustomizationManager.cs" id="1_e1qy6"]
-[ext_resource type="Theme" uid="uid://d3dvb7e4l28py" path="res://Themes/PopupBackgroundTheme.tres" id="2_lxquq"]
+[ext_resource type="Script" uid="uid://bixpoihhv14ug" path="res://Scripts/Menu/CustomizationMenu.cs" id="1_dxwv8"]
 [ext_resource type="Theme" uid="uid://rxn0ric1nvrl" path="res://Themes/PopupFontTheme.tres" id="3_n1x8u"]
-[ext_resource type="Theme" uid="uid://dlf27rdr7dp0n" path="res://Themes/ListFontColorTheme.tres" id="4_ykns8"]
-[ext_resource type="Theme" uid="uid://cpm3ymheyptc0" path="res://Themes/WheelButtonTheme.tres" id="5_v58tj"]
 [ext_resource type="Texture2D" uid="uid://bu424d8f76m01" path="res://Assets/UI/W_MenuCustom.png" id="6_o6wrg"]
 [ext_resource type="Texture2D" uid="uid://cwmjngd4xi66u" path="res://Assets/UI/W_Checkbox.png" id="7_7cjr5"]
 [ext_resource type="PackedScene" uid="uid://ggapqp0tm4wl" path="res://Scenes/reset_button.tscn" id="7_rxs1j"]
@@ -19,7 +16,7 @@ offset_left = 316.0
 offset_top = -10.0
 offset_right = 700.0
 offset_bottom = 374.0
-script = ExtResource("1_e1qy6")
+script = ExtResource("1_dxwv8")
 generalBackgroundColor = NodePath("CustomizationOptions/GeneralBackground/ColorBorder/GB_ColorPick")
 secondaryBackgroundColor = NodePath("CustomizationOptions/SecondaryBackground/ColorBorder/SB_ColorPick")
 wheelPrimaryColor = NodePath("CustomizationOptions/WheelPrimary/ColorBorder/WP_ColorPick")
@@ -27,13 +24,9 @@ wheelSecondaryColor = NodePath("CustomizationOptions/WheelSecondary/ColorBorder/
 wheelButtonColor = NodePath("CustomizationOptions/WheelButton/ColorBorder/WB_ColorPick")
 wheelButtonTextColor = NodePath("CustomizationOptions/WheelButtonText/ColorBorder/WBT_ColorPick")
 listBackgroundColor = NodePath("CustomizationOptions/ListBackground/ColorBorder/LB_ColorPick")
-listFontColor = NodePath("CustomizationOptions/ListFontColor/ColorBorder/LFC_ColorPick")
-popupBackgroundColor = NodePath("CustomizationOptions/PopupBackgroundColor/ColorBorder/PBC_ColorPick")
-popupFontColor = NodePath("CustomizationOptions/PopupFontColor/ColorBorder/PFC_ColorPick")
-popupBackgroundTheme = ExtResource("2_lxquq")
-popupFontTheme = ExtResource("3_n1x8u")
-listFontTheme = ExtResource("4_ykns8")
-wheelButtonTheme = ExtResource("5_v58tj")
+listFontColor = NodePath("CustomizationOptions/ListFontColor/ColorBorder/LF_ColorPick")
+popupBackgroundColor = NodePath("CustomizationOptions/PopupBackgroundColor/ColorBorder/PB_ColorPick")
+popupFontColor = NodePath("CustomizationOptions/PopupFontColor/ColorBorder/PF_ColorPick")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
@@ -105,7 +98,7 @@ size_flags_vertical = 4
 flat = true
 icon_alignment = 1
 
-[node name="ResetButton" parent="CustomizationOptions/GeneralBackground" node_paths=PackedStringArray("colorPickerButton") instance=ExtResource("7_rxs1j")]
+[node name="ResetButton" parent="CustomizationOptions/GeneralBackground" node_paths=PackedStringArray("customizationMenu", "colorPickerButton") instance=ExtResource("7_rxs1j")]
 custom_minimum_size = Vector2(26, 26)
 layout_mode = 2
 theme = ExtResource("9_rn774")
@@ -113,6 +106,7 @@ icon = null
 flat = false
 icon_alignment = 0
 expand_icon = false
+customizationMenu = NodePath("../../..")
 colorPickerButton = NodePath("../ColorBorder/GB_ColorPick")
 
 [node name="SecondaryBackground" type="HBoxContainer" parent="CustomizationOptions"]
@@ -152,7 +146,7 @@ size_flags_vertical = 4
 flat = true
 icon_alignment = 1
 
-[node name="ResetButton" parent="CustomizationOptions/SecondaryBackground" node_paths=PackedStringArray("colorPickerButton") instance=ExtResource("7_rxs1j")]
+[node name="ResetButton" parent="CustomizationOptions/SecondaryBackground" node_paths=PackedStringArray("customizationMenu", "colorPickerButton") instance=ExtResource("7_rxs1j")]
 custom_minimum_size = Vector2(26, 26)
 layout_mode = 2
 theme = ExtResource("9_rn774")
@@ -160,6 +154,7 @@ icon = null
 flat = false
 icon_alignment = 0
 expand_icon = false
+customizationMenu = NodePath("../../..")
 colorPickerButton = NodePath("../ColorBorder/SB_ColorPick")
 colorToReset = 1
 
@@ -202,7 +197,7 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="ResetButton" parent="CustomizationOptions/WheelPrimary" node_paths=PackedStringArray("colorPickerButton") instance=ExtResource("7_rxs1j")]
+[node name="ResetButton" parent="CustomizationOptions/WheelPrimary" node_paths=PackedStringArray("customizationMenu", "colorPickerButton") instance=ExtResource("7_rxs1j")]
 custom_minimum_size = Vector2(26, 26)
 layout_mode = 2
 theme = ExtResource("9_rn774")
@@ -210,6 +205,7 @@ icon = null
 flat = false
 icon_alignment = 0
 expand_icon = false
+customizationMenu = NodePath("../../..")
 colorPickerButton = NodePath("../ColorBorder/WP_ColorPick")
 colorToReset = 2
 
@@ -252,7 +248,7 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="ResetButton" parent="CustomizationOptions/WheelSecondary" node_paths=PackedStringArray("colorPickerButton") instance=ExtResource("7_rxs1j")]
+[node name="ResetButton" parent="CustomizationOptions/WheelSecondary" node_paths=PackedStringArray("customizationMenu", "colorPickerButton") instance=ExtResource("7_rxs1j")]
 custom_minimum_size = Vector2(26, 26)
 layout_mode = 2
 theme = ExtResource("9_rn774")
@@ -260,6 +256,7 @@ icon = null
 flat = false
 icon_alignment = 0
 expand_icon = false
+customizationMenu = NodePath("../../..")
 colorPickerButton = NodePath("../ColorBorder/WS_ColorPick")
 colorToReset = 3
 
@@ -302,7 +299,7 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="ResetButton" parent="CustomizationOptions/WheelButton" node_paths=PackedStringArray("colorPickerButton") instance=ExtResource("7_rxs1j")]
+[node name="ResetButton" parent="CustomizationOptions/WheelButton" node_paths=PackedStringArray("customizationMenu", "colorPickerButton") instance=ExtResource("7_rxs1j")]
 custom_minimum_size = Vector2(26, 26)
 layout_mode = 2
 theme = ExtResource("9_rn774")
@@ -310,6 +307,7 @@ icon = null
 flat = false
 icon_alignment = 0
 expand_icon = false
+customizationMenu = NodePath("../../..")
 colorPickerButton = NodePath("../ColorBorder/WB_ColorPick")
 colorToReset = 4
 
@@ -352,7 +350,7 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="ResetButton" parent="CustomizationOptions/WheelButtonText" node_paths=PackedStringArray("colorPickerButton") instance=ExtResource("7_rxs1j")]
+[node name="ResetButton" parent="CustomizationOptions/WheelButtonText" node_paths=PackedStringArray("customizationMenu", "colorPickerButton") instance=ExtResource("7_rxs1j")]
 custom_minimum_size = Vector2(26, 26)
 layout_mode = 2
 theme = ExtResource("9_rn774")
@@ -360,6 +358,7 @@ icon = null
 flat = false
 icon_alignment = 0
 expand_icon = false
+customizationMenu = NodePath("../../..")
 colorPickerButton = NodePath("../ColorBorder/WBT_ColorPick")
 colorToReset = 5
 
@@ -402,7 +401,7 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="ResetButton" parent="CustomizationOptions/ListBackground" node_paths=PackedStringArray("colorPickerButton") instance=ExtResource("7_rxs1j")]
+[node name="ResetButton" parent="CustomizationOptions/ListBackground" node_paths=PackedStringArray("customizationMenu", "colorPickerButton") instance=ExtResource("7_rxs1j")]
 custom_minimum_size = Vector2(26, 26)
 layout_mode = 2
 theme = ExtResource("9_rn774")
@@ -410,6 +409,7 @@ icon = null
 flat = false
 icon_alignment = 0
 expand_icon = false
+customizationMenu = NodePath("../../..")
 colorPickerButton = NodePath("../ColorBorder/LB_ColorPick")
 colorToReset = 6
 
@@ -432,7 +432,7 @@ texture = ExtResource("7_7cjr5")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="LFC_ColorPick" type="ColorPickerButton" parent="CustomizationOptions/ListFontColor/ColorBorder"]
+[node name="LF_ColorPick" type="ColorPickerButton" parent="CustomizationOptions/ListFontColor/ColorBorder"]
 custom_minimum_size = Vector2(26, 26)
 layout_mode = 1
 anchors_preset = 8
@@ -452,7 +452,7 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="ResetButton" parent="CustomizationOptions/ListFontColor" node_paths=PackedStringArray("colorPickerButton") instance=ExtResource("7_rxs1j")]
+[node name="ResetButton" parent="CustomizationOptions/ListFontColor" node_paths=PackedStringArray("customizationMenu", "colorPickerButton") instance=ExtResource("7_rxs1j")]
 custom_minimum_size = Vector2(26, 26)
 layout_mode = 2
 theme = ExtResource("9_rn774")
@@ -460,7 +460,8 @@ icon = null
 flat = false
 icon_alignment = 0
 expand_icon = false
-colorPickerButton = NodePath("../ColorBorder/LFC_ColorPick")
+customizationMenu = NodePath("../../..")
+colorPickerButton = NodePath("../ColorBorder/LF_ColorPick")
 colorToReset = 7
 
 [node name="PopupBackgroundColor" type="HBoxContainer" parent="CustomizationOptions"]
@@ -482,7 +483,7 @@ texture = ExtResource("7_7cjr5")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="PBC_ColorPick" type="ColorPickerButton" parent="CustomizationOptions/PopupBackgroundColor/ColorBorder"]
+[node name="PB_ColorPick" type="ColorPickerButton" parent="CustomizationOptions/PopupBackgroundColor/ColorBorder"]
 custom_minimum_size = Vector2(26, 26)
 layout_mode = 1
 anchors_preset = 8
@@ -502,7 +503,7 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="ResetButton" parent="CustomizationOptions/PopupBackgroundColor" node_paths=PackedStringArray("colorPickerButton") instance=ExtResource("7_rxs1j")]
+[node name="ResetButton" parent="CustomizationOptions/PopupBackgroundColor" node_paths=PackedStringArray("customizationMenu", "colorPickerButton") instance=ExtResource("7_rxs1j")]
 custom_minimum_size = Vector2(26, 26)
 layout_mode = 2
 theme = ExtResource("9_rn774")
@@ -510,7 +511,8 @@ icon = null
 flat = false
 icon_alignment = 0
 expand_icon = false
-colorPickerButton = NodePath("../ColorBorder/PBC_ColorPick")
+customizationMenu = NodePath("../../..")
+colorPickerButton = NodePath("../ColorBorder/PB_ColorPick")
 colorToReset = 8
 
 [node name="PopupFontColor" type="HBoxContainer" parent="CustomizationOptions"]
@@ -532,7 +534,7 @@ texture = ExtResource("7_7cjr5")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="PFC_ColorPick" type="ColorPickerButton" parent="CustomizationOptions/PopupFontColor/ColorBorder"]
+[node name="PF_ColorPick" type="ColorPickerButton" parent="CustomizationOptions/PopupFontColor/ColorBorder"]
 custom_minimum_size = Vector2(26, 26)
 layout_mode = 1
 anchors_preset = 8
@@ -552,7 +554,7 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="ResetButton" parent="CustomizationOptions/PopupFontColor" node_paths=PackedStringArray("colorPickerButton") instance=ExtResource("7_rxs1j")]
+[node name="ResetButton" parent="CustomizationOptions/PopupFontColor" node_paths=PackedStringArray("customizationMenu", "colorPickerButton") instance=ExtResource("7_rxs1j")]
 custom_minimum_size = Vector2(26, 26)
 layout_mode = 2
 theme = ExtResource("9_rn774")
@@ -560,5 +562,6 @@ icon = null
 flat = false
 icon_alignment = 0
 expand_icon = false
-colorPickerButton = NodePath("../ColorBorder/PFC_ColorPick")
+customizationMenu = NodePath("../../..")
+colorPickerButton = NodePath("../ColorBorder/PF_ColorPick")
 colorToReset = 9

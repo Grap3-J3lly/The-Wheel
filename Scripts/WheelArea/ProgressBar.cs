@@ -6,6 +6,8 @@ public partial class ProgressBar : TextureProgressBar
     //			VARIABLES	
     // --------------------------------
 
+    CustomizationManager customizationManager;
+
     [Export]
 	private float rotationOffset = -90;
 	private RichTextLabel optionName;
@@ -27,6 +29,7 @@ public partial class ProgressBar : TextureProgressBar
 	{
 		base._Ready();
 		gameManager = GameManager.Instance;
+        customizationManager = CustomizationManager.Instance;
 		optionName = GetChild<RichTextLabel>(0);
 	}
 
@@ -48,7 +51,7 @@ public partial class ProgressBar : TextureProgressBar
     /// </summary>
 	public void AssignTextRotation()
 	{
-		float rotation = (this.RadialFillDegrees/2) + this.RadialInitialAngle + rotationOffset;
+		float rotation = (RadialFillDegrees/2) + RadialInitialAngle + rotationOffset;
 		optionName.RotationDegrees = rotation;
 	}
 
@@ -70,8 +73,10 @@ public partial class ProgressBar : TextureProgressBar
     /// </summary>
     public void AssignBarColor()
 	{
-        Color primary = gameManager.currentColors.GetColor(ColorPalette.Colors.WheelPrimary);
-        Color secondary = gameManager.currentColors.GetColor(ColorPalette.Colors.WheelSecondary);
+        // Use 2 Previous Colors instead of one
+        // Assign Previous Color beforeHand? 
+        Color primary = customizationManager.CurrentColors.GetColor(ColorPalette.Colors.WheelPrimary);
+        Color secondary = customizationManager.CurrentColors.GetColor(ColorPalette.Colors.WheelSecondary);
         if (previousColor == Color.Color8(0, 0, 0, 0) || previousColor == secondary)
         {
             previousColor = primary;
@@ -90,11 +95,11 @@ public partial class ProgressBar : TextureProgressBar
     /// <param name="color"></param>
 	public void AssignBarColor(Color color)
 	{
-		this.TintProgress = color;
-        Color primary = gameManager.currentColors.GetColor(ColorPalette.Colors.WheelPrimary);
-        Color secondary = gameManager.currentColors.GetColor(ColorPalette.Colors.WheelSecondary);
+		TintProgress = color;
+        Color primary = customizationManager.CurrentColors.GetColor(ColorPalette.Colors.WheelPrimary);
+        Color secondary = customizationManager.CurrentColors.GetColor(ColorPalette.Colors.WheelSecondary);
 
-        if (this.TintProgress == primary)
+        if (TintProgress == primary)
         {
             AssignBarTextColor(secondary);
         }

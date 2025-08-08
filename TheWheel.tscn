@@ -1,9 +1,10 @@
-[gd_scene load_steps=58 format=3 uid="uid://8cgspyr8gob4"]
+[gd_scene load_steps=59 format=3 uid="uid://8cgspyr8gob4"]
 
 [ext_resource type="Theme" uid="uid://cpm3ymheyptc0" path="res://Themes/WheelButtonTheme.tres" id="2_3bb4o"]
 [ext_resource type="Script" uid="uid://dq5r4c8nnpqo8" path="res://Scripts/Managers/GameManager.cs" id="2_yv2g8"]
 [ext_resource type="Script" uid="uid://crl8gyb4oysvv" path="res://Scripts/Resources/ColorPalette.cs" id="3_6eskp"]
 [ext_resource type="Script" uid="uid://bhp3fu6ryf154" path="res://Scripts/Twitch/TwitchChatFeed.cs" id="3_16l3w"]
+[ext_resource type="Script" uid="uid://cteqtfm6d5hjt" path="res://Scripts/Managers/CustomizationManager.cs" id="3_hb2pm"]
 [ext_resource type="Script" uid="uid://bhctbwennv1at" path="res://Scripts/WheelArea/WheelProgress.cs" id="3_iyf3y"]
 [ext_resource type="Script" uid="uid://63r6fausp7kv" path="res://Scripts/WheelArea/SpinButton.cs" id="3_qqfjg"]
 [ext_resource type="AudioStream" uid="uid://dkwj7334s12jg" path="res://Assets/SFX/block.wav" id="4_a0jfc"]
@@ -43,11 +44,11 @@
 [sub_resource type="Resource" id="Resource_jpnym"]
 script = ExtResource("3_6eskp")
 _generalBackgroundColor = Color(0.0862745, 0.0392157, 0.152941, 1)
-_secondaryBackgroundColor = Color(0.113725, 0.054902, 0.2, 1)
-_wheelPrimaryColor = Color(0.262745, 0.133333, 0.694118, 1)
-_wheelSecondaryColor = Color(0.533333, 0.152941, 0.839216, 1)
-_wheelButtonColor = Color(1, 1, 1, 1)
-_wheelButtonTextColor = Color(0, 0, 0, 1)
+_secondaryBackgroundColor = Color(0.266667, 0.133333, 0.466667, 1)
+_wheelPrimaryColor = Color(0.290196, 0.372549, 0.172549, 1)
+_wheelSecondaryColor = Color(1, 0.964706, 0.823529, 1)
+_wheelButtonColor = Color(0.313726, 0.156863, 0.0352941, 1)
+_wheelButtonTextColor = Color(0.996078, 0.996078, 0.894118, 1)
 _listBackgroundColor = Color(1, 0.964706, 0.823529, 1)
 _listFontColor = Color(1, 1, 1, 1)
 _popupBackgroundColor = Color(1, 0.964706, 0.823529, 1)
@@ -206,7 +207,6 @@ script = ExtResource("2_yv2g8")
 spinButton = NodePath("../CanvasLayer/WheelArea/SpinButton")
 optionTemplate = ExtResource("5_xkam3")
 optionParent = NodePath("../CanvasLayer/OptionArea/ScrollArea/OptionList")
-default_palette = SubResource("Resource_jpnym")
 audioStreamPlayer = NodePath("../AudioManager")
 twitchInfoArea = NodePath("../CanvasLayer/TwitchInfoArea")
 option_leftBegin = NodePath("../CanvasLayer/OptionArea/TopBar/ClearOptionWeightsButton")
@@ -214,38 +214,42 @@ option_rightEnd = NodePath("../CanvasLayer/WheelArea/SpinButton")
 option_topBegin = NodePath("../CanvasLayer/OptionArea/TopBar/ClearOptionWeightsButton")
 option_bottomEnd = NodePath("../CanvasLayer/WheelArea/SpinButton")
 
-[node name="WheelButtonColorChanger" type="Node" parent="GameManager"]
+[node name="CustomizationManager" type="Node" parent="."]
+script = ExtResource("3_hb2pm")
+defaultColors = SubResource("Resource_jpnym")
+
+[node name="WheelButtonColorChanger" type="Node" parent="CustomizationManager"]
 script = ExtResource("4_ghpbr")
 targetTheme = ExtResource("2_3bb4o")
-lineOptions = [SubResource("Resource_kcaas"), SubResource("Resource_ngf85"), SubResource("Resource_ynraf")]
+lineOptions = Array[ExtResource("6_hb2pm")]([SubResource("Resource_kcaas"), SubResource("Resource_ngf85"), SubResource("Resource_ynraf")])
 watchedColor = 4
 metadata/_custom_type_script = "uid://b3svcdmaw414p"
 
-[node name="WheelButtonTextColorChanger" type="Node" parent="GameManager"]
+[node name="WheelButtonTextColorChanger" type="Node" parent="CustomizationManager"]
 script = ExtResource("4_ghpbr")
 targetTheme = ExtResource("2_3bb4o")
-lineOptions = [SubResource("Resource_boqar")]
+lineOptions = Array[ExtResource("6_hb2pm")]([SubResource("Resource_boqar")])
 watchedColor = 5
 metadata/_custom_type_script = "uid://b3svcdmaw414p"
 
-[node name="ListFontColorChanger" type="Node" parent="GameManager"]
+[node name="ListFontColorChanger" type="Node" parent="CustomizationManager"]
 script = ExtResource("4_ghpbr")
 targetTheme = ExtResource("8_f126f")
-lineOptions = [SubResource("Resource_ghpbr"), SubResource("Resource_hb2pm"), SubResource("Resource_36gdu"), SubResource("Resource_abnyl")]
+lineOptions = Array[ExtResource("6_hb2pm")]([SubResource("Resource_ghpbr"), SubResource("Resource_hb2pm"), SubResource("Resource_36gdu"), SubResource("Resource_abnyl")])
 watchedColor = 7
 metadata/_custom_type_script = "uid://b3svcdmaw414p"
 
-[node name="PopupBackgroundColorChanger" type="Node" parent="GameManager"]
+[node name="PopupBackgroundColorChanger" type="Node" parent="CustomizationManager"]
 script = ExtResource("4_ghpbr")
 targetTheme = ExtResource("10_w6lq7")
-lineOptions = [SubResource("Resource_hax8q")]
+lineOptions = Array[ExtResource("6_hb2pm")]([SubResource("Resource_hax8q")])
 watchedColor = 8
 metadata/_custom_type_script = "uid://b3svcdmaw414p"
 
-[node name="PopupFontColorChanger" type="Node" parent="GameManager"]
+[node name="PopupFontColorChanger" type="Node" parent="CustomizationManager"]
 script = ExtResource("4_ghpbr")
 targetTheme = ExtResource("11_2pqje")
-lineOptions = [SubResource("Resource_boh0q"), SubResource("Resource_i0ugu")]
+lineOptions = Array[ExtResource("6_hb2pm")]([SubResource("Resource_boh0q"), SubResource("Resource_i0ugu")])
 watchedColor = 9
 metadata/_custom_type_script = "uid://b3svcdmaw414p"
 
@@ -268,7 +272,7 @@ grow_vertical = 2
 color = Color(0.0862745, 0.0392157, 0.152941, 1)
 
 [node name="BackgroundTexture" type="TextureRect" parent="CanvasLayer/ApplicationBackground"]
-modulate = Color(0.113725, 0.054902, 0.2, 1)
+modulate = Color(0.266667, 0.133333, 0.466667, 1)
 custom_minimum_size = Vector2(1152, 648)
 layout_mode = 1
 anchors_preset = 15

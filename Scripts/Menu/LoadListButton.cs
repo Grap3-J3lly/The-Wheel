@@ -32,7 +32,7 @@ public partial class LoadListButton : Button
     /// </summary>
     private void OnButtonPress()
 	{
-		customizeButton.OnButtonPressed();
+		// customizeButton.OnButtonPressed();
 		gameManager.LoadGame(loadListOptionButton.Text);
 	}
 }

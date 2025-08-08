@@ -5,6 +5,8 @@ public partial class ResetButton : Button
     // --------------------------------
     //			VARIABLES	
     // --------------------------------
+    [Export]
+    private CustomizationMenu customizationMenu;
 
     [Export]
 	private ColorPickerButton colorPickerButton;
@@ -21,7 +23,7 @@ public partial class ResetButton : Button
 	{
 		base._Ready();
 		gameManager = GameManager.Instance;
-		this.Pressed += OnButtonPressed;
+		Pressed += OnButtonPressed;
 	}
 
     // --------------------------------
@@ -33,6 +35,9 @@ public partial class ResetButton : Button
     /// </summary>
     private void OnButtonPressed()
 	{
-        GameManager.Instance.ResetColor((int)colorToReset);
+        CustomizationManager customizationManager = CustomizationManager.Instance;
+
+        colorPickerButton.Color = customizationManager.DefaultColors[(int)colorToReset];
+        customizationManager.ResetColor((int)colorToReset);
 	}
 }

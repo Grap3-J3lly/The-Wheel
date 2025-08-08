@@ -29,13 +29,6 @@ public partial class GameManager : Node
     [Export]
     private Control optionParent;
 
-	// Default Color Data
-	[ExportGroup("Default Color Data")]
-    [Export]
-    private ColorPalette default_palette;
-	//private Array<Color> defaultColors = new Array<Color>();
-    public ColorPalette currentColors;
-
 
     [ExportGroup("Audio Info")]
     // Audio Info
@@ -98,25 +91,7 @@ public partial class GameManager : Node
 	{
 		base._Ready();
 		Instance = this;
-        CustomizationManager.ColorPalletChanged += UpdateWheelColors;
-        default_palette.ReadyColors();
-        ResetColors();
 		twitchInfoArea.Visible = false;
-	}
-
-    // --------------------------------
-    //		CUSTOMIZATION LOGIC
-    // --------------------------------
-
-	/// <summary>
-	/// Assigns the Progress Bars to their primary or secondary colors
-	/// </summary>
-	public void UpdateWheelColors(ColorPalette palett)
-	{
-		foreach(Option option in CreatedOptions)
-		{
-			option.OptionProgressBar.AssignBarColor();
-		}
 	}
 
     // --------------------------------
@@ -141,7 +116,7 @@ public partial class GameManager : Node
 		SaveSystem.AddDataItem(ListName, "optionData", optionData);
 
 		Array<Array<float>> colorData = new Array<Array<float>>();
-		foreach(Color color in currentColors)
+		foreach(Color color in CustomizationManager.Instance.CurrentColors)
 		{
 			Array<float> colorDataObj = [color.R, color.G, color.B, color.A];
 			colorData.Add(colorDataObj);
@@ -167,7 +142,7 @@ public partial class GameManager : Node
 		Array<Array<float>> loadedColors = SaveSystem.GetDataItem(ListName, "colors", new Array<Array<float>>());
 
 		PopulateOptions(optionDataToPopulate);
-		PopulateColors(loadedColors);
+		CustomizationManager.Instance.PopulateColors(loadedColors);
     }
 
 	/// <summary>
@@ -223,31 +198,5 @@ public partial class GameManager : Node
 			disabledOptions.Add(newOption);
 		}
         WheelProgressParent.EmitSignal(WheelProgress.SignalName.WheelProgressUpdate, true);
-    }
-
-    /// <summary>
-    /// Takes in a generic array (should be strings of hexcode) and loads them into the colors list
-    /// </summary>
-    /// <param name="newColors"></param>
-    private void PopulateColors(Array<Array<float>> newColors)
-    {
-        for(int i = 0; i < newColors.Count; i++) 
-        {
-            Array<float> color = newColors[i];
-            currentColors[i] = new Color(color[0], color[1], color[2], color[3]);
-        }
-		CustomizationManager.UpdateColors();
-    }
-
-    public void ResetColor(int colorIndex)
-    {
-        currentColors[colorIndex] = default_palette[colorIndex];
-        CustomizationManager.UpdateColors();
-    }
-
-    public void ResetColors() 
-    {
-        currentColors = new ColorPalette(default_palette);
-        CustomizationManager.UpdateColors();
     }
 }
