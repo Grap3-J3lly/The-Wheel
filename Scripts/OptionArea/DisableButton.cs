@@ -31,7 +31,7 @@ public partial class DisableButton : Button
 	{
 		base._Ready();
 		gameManager = GameManager.Instance;
-        enabled = CONST_DefaultEnabled;
+        //enabled = CONST_DefaultEnabled;
         ButtonPressed = enabled;
         optionParent = (Option)GetParentControl();
 		this.Pressed += PressButton;
@@ -53,17 +53,29 @@ public partial class DisableButton : Button
         
         if(enabled)
         {
-            checkmark.Modulate = CheckMarkVisibleColor;
+            ToggleCheckmark(enabled: true);
             gameManager.DisabledOptions.Remove(optionParent);
             gameManager.CreatedOptions.Add(optionParent);
         }
         else
         {
-            checkmark.Modulate = CheckMarkInvisibleColor;
+            ToggleCheckmark(enabled: false);
             gameManager.DisabledOptions.Add(optionParent);
             gameManager.CreatedOptions.Remove(optionParent);
         }
         gameManager.WheelProgressParent.EmitSignal(WheelProgress.SignalName.WheelProgressUpdate, true);
         ButtonPressed = enabled;
+    }
+
+    public void ToggleCheckmark(bool enabled)
+    {
+        if(enabled)
+        {
+            checkmark.Modulate = CheckMarkVisibleColor;
+        }
+        else
+        {
+            checkmark.Modulate = CheckMarkInvisibleColor;
+        }
     }
 }

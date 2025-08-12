@@ -8,6 +8,9 @@ public partial class DeleteListButton : Button
     [Export]
 	private ListOptions listOptions;
 
+    private const string CONST_FilePrefix = "user://";
+    private const string CONST_FilePostfix = ".saved";
+
     // --------------------------------
     //		STANDARD FUNCTIONS	
     // --------------------------------
@@ -27,7 +30,7 @@ public partial class DeleteListButton : Button
     /// </summary>
     private void OnButtonPress()
 	{
-		string fileName = "user://" + listOptions.Text + ".save";
+		string fileName = CONST_FilePrefix + listOptions.Text + CONST_FilePostfix;
 		DirAccess.RemoveAbsolute(fileName);
 		listOptions.LoadLists();
 	}

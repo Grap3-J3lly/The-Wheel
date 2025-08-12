@@ -154,9 +154,12 @@ public partial class Option : Control
         optionParent.AddChild(newOption);
         newOption.optionName = (string)optionData[CONST_Index_OptionName];
         newOption.optionNameField.Text = newOption.OptionName;
+
         newOption.optionEnabled = (bool)optionData[CONST_Index_OptionEnabled];
         newOption.optionEnabledField.Enabled = newOption.OptionEnabled;
         newOption.optionEnabledField.ButtonPressed = newOption.OptionEnabled;
+        newOption.GetChild<DisableButton>(0).ToggleCheckmark(newOption.OptionEnabled);
+
         newOption.optionWeight = (int)optionData[CONST_Index_OptionWeight];
         newOption.optionWeightField.Text = newOption.OptionWeight.ToString();
 

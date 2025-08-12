@@ -60,9 +60,10 @@ public partial class CustomizationManager : Node
 	/// </summary>
 	public void UpdateWheelColors(ColorPalette palett)
     {
-        foreach (Option option in GameManager.Instance.CreatedOptions)
+        Array<Option> options = GameManager.Instance.CreatedOptions;
+        foreach (Option option in options)
         {
-            option.OptionProgressBar.AssignBarColor();
+            option.OptionProgressBar.AssignBarColor(options.IndexOf(option));
         }
     }
 
@@ -71,7 +72,7 @@ public partial class CustomizationManager : Node
     /// </summary>
     public static void UpdateColors()
     {
-        GD.Print($"CustomizationManager.cs: Calling UpdateColors");
+        // GD.Print($"CustomizationManager.cs: Calling UpdateColors");
         ColorPalletChanged?.Invoke(Instance.currentColors);
     }
 

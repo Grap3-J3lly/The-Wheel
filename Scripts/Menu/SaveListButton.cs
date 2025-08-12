@@ -21,7 +21,8 @@ public partial class SaveListButton : Button
 	{
 		base._Ready();
 		gameManager = GameManager.Instance;
-		this.Pressed += SaveList;
+		Pressed += SaveList;
+		listNameField.Text = gameManager.ListName;
 	}
 
     // --------------------------------
@@ -38,6 +39,7 @@ public partial class SaveListButton : Button
 		if(name == "")
 		{
 			name = listOptions.Text;
+			listNameField.Text = name;
 			GD.Print(name);
 		}
 		return name;

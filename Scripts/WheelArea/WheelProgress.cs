@@ -72,7 +72,7 @@ public partial class WheelProgress : Control
 				}
 
 				// Handles coloring the wheel slices
-				progressBar.AssignBarColor();
+				progressBar.AssignBarColor(index);
 			}
 		}
 	}

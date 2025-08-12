@@ -71,41 +71,28 @@ public partial class ProgressBar : TextureProgressBar
     /// <summary>
     /// Assigns the color of the Bar based on the previous color (primary vs secondary)
     /// </summary>
-    public void AssignBarColor()
+    public void AssignBarColor(int optionIndex)
 	{
-        // Use 2 Previous Colors instead of one
-        // Assign Previous Color beforeHand? 
         Color primary = customizationManager.CurrentColors.GetColor(ColorPalette.Colors.WheelPrimary);
         Color secondary = customizationManager.CurrentColors.GetColor(ColorPalette.Colors.WheelSecondary);
-        if (previousColor == Color.Color8(0, 0, 0, 0) || previousColor == secondary)
+
+        if (optionIndex %2 == 1)
         {
-            previousColor = primary;
-            AssignBarColor(previousColor);
+            AssignBarColor(secondary, primary);
         }
         else
         {
-            previousColor = secondary;
-            AssignBarColor(previousColor);
+            AssignBarColor(primary, secondary);
         }
     }
 
     /// <summary>
     /// Assigns the color of the bar to the given value, and assigns the text to be the opposite value (primary vs secondary colors)
     /// </summary>
-    /// <param name="color"></param>
-	public void AssignBarColor(Color color)
+    /// <param name="tintProgressColor"></param>
+	public void AssignBarColor(Color tintProgressColor, Color textColor)
 	{
-		TintProgress = color;
-        Color primary = customizationManager.CurrentColors.GetColor(ColorPalette.Colors.WheelPrimary);
-        Color secondary = customizationManager.CurrentColors.GetColor(ColorPalette.Colors.WheelSecondary);
-
-        if (TintProgress == primary)
-        {
-            AssignBarTextColor(secondary);
-        }
-        else
-        {
-            AssignBarTextColor(primary);
-        }
+		TintProgress = tintProgressColor;
+        AssignBarTextColor(textColor);
     }
 }

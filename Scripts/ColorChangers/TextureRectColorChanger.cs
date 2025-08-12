@@ -9,7 +9,6 @@ public partial class TextureRectColorChanger : ColorChanger
 
     protected override void ChangeColor(Color newColor)
     {
-        GD.Print($"TextureRectColorChanger: Called");
         targetRect.Modulate = newColor;
     }
 }
