@@ -1,11 +1,15 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 public partial class WSClient : Node
 {
-    // --------------------------------
-    //			VARIABLES	
-    // --------------------------------
+	// --------------------------------
+	//			VARIABLES	
+	// --------------------------------
+
+	[Export]
+	private string connectionUrl = "ws://localhost:8080";
 
     [Export]
 	private string[] handshakeHeaders;
@@ -110,32 +114,77 @@ public partial class WSClient : Node
 		}
 	}
 
+	public static string DoAction(string actionName)
+	{
+        return
+        """
+        {
+            "request": "DoAction",
+            "action": {
+                "name": "
+        """
+        +
+        actionName
+        +
+        """ 
+        "
+            },
+            "id": "<id>"
+        }
+        """;
+    }
+
     public override void _Ready()
     {
-        if(socket.ConnectToUrl("ws://localhost:8080") != Error.Ok)
+		GetTree().AutoAcceptQuit = false;
+
+        if(socket.ConnectToUrl(connectionUrl) != Error.Ok)
 		{
 			GD.Print($"WSClient.cs: Unable to connect");
 			SetProcess(false);
 		}
-		// Redo the JSON bits, PLEASE
+
+
 		ConnectedToServer += () => Send(
-            """
+			"""
 			{
-			\"request\": \"Subscribe\",
-				\"id\": \"my-subscribe-id\",
-				\"events\": {
-					\"raw\": [
-						\"Action\",
+				"request": "Subscribe",
+				"id": "my-subscribe-id",
+				"events": 
+				{
+					"raw": 
+					[
+						"Action"
 					]
-				},
+				}
 			}
 			"""
-    );
+		);
+		ConnectedToServer += () => Send(DoAction("EnableWheelRewards"));
 
-    }
+	}
 
 	public override void _Process(double delta)
 	{
 		Poll();
 	}
+
+    public override void _Notification(int what)
+    {
+        base._Notification(what);
+		if(what == NotificationWMCloseRequest)
+		{
+			OnQuit();
+		}
+    }
+
+    public async Task OnQuit()
+    {
+		GD.Print($"WSClient.cs: Running On Quit");
+		Send(DoAction("DisableWheelRewards"));
+        await ToSignal(GetTree().CreateTimer(.5), SceneTreeTimer.SignalName.Timeout);
+        GetTree().Quit();
+    }
+
+	
 }

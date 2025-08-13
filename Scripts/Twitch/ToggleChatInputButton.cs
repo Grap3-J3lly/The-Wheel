@@ -7,8 +7,6 @@ public partial class ToggleChatInputButton : Button
     //			VARIABLES	
     // --------------------------------
 
-    [Export]
-    private TwitchChatFeed feed;
     private GameManager gameManager;
     private bool toggleChatInput = false;
     private Array<string> users = new Array<string>();
@@ -28,8 +26,7 @@ public partial class ToggleChatInputButton : Button
         }
 
         base._Ready();
-        this.Pressed += OnButtonPress;
-        feed.listener += OnMessage;
+        Pressed += OnButtonPress;
 
         gameManager = GameManager.Instance;
     }

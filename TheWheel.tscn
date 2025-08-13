@@ -3,7 +3,6 @@
 [ext_resource type="Theme" uid="uid://cpm3ymheyptc0" path="res://Themes/WheelButtonTheme.tres" id="2_3bb4o"]
 [ext_resource type="Script" uid="uid://dq5r4c8nnpqo8" path="res://Scripts/Managers/GameManager.cs" id="2_yv2g8"]
 [ext_resource type="Script" uid="uid://crl8gyb4oysvv" path="res://Scripts/Resources/ColorPalette.cs" id="3_6eskp"]
-[ext_resource type="Script" uid="uid://bhp3fu6ryf154" path="res://Scripts/Twitch/TwitchChatFeed.cs" id="3_16l3w"]
 [ext_resource type="Script" uid="uid://cteqtfm6d5hjt" path="res://Scripts/Managers/CustomizationManager.cs" id="3_hb2pm"]
 [ext_resource type="Script" uid="uid://bhctbwennv1at" path="res://Scripts/WheelArea/WheelProgress.cs" id="3_iyf3y"]
 [ext_resource type="Script" uid="uid://63r6fausp7kv" path="res://Scripts/WheelArea/SpinButton.cs" id="3_qqfjg"]
@@ -24,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://cwucnn6t72ta5" path="res://Scenes/selected_option_popup_template.tscn" id="10_fm5px"]
 [ext_resource type="Theme" uid="uid://d3dvb7e4l28py" path="res://Themes/PopupBackgroundTheme.tres" id="10_w6lq7"]
 [ext_resource type="Theme" uid="uid://rxn0ric1nvrl" path="res://Themes/PopupFontTheme.tres" id="11_2pqje"]
+[ext_resource type="Script" uid="uid://cggloerp7kydr" path="res://Scripts/Twitch/WSClient.cs" id="11_hb2pm"]
 [ext_resource type="PackedScene" uid="uid://b1lc8f4e26bea" path="res://Scenes/menu_popup_template.tscn" id="11_osn7t"]
 [ext_resource type="Script" uid="uid://w1ikr7yjpoi3" path="res://Scripts/OptionArea/ClearOptionWeightsButton.cs" id="12_654ys"]
 [ext_resource type="FontFile" uid="uid://65anix1v37bg" path="res://Assets/super_corn/Super Corn.ttf" id="12_83383"]
@@ -48,7 +48,7 @@ _secondaryBackgroundColor = Color(0.266667, 0.133333, 0.466667, 1)
 _wheelPrimaryColor = Color(0.290196, 0.372549, 0.172549, 1)
 _wheelSecondaryColor = Color(1, 0.964706, 0.823529, 1)
 _wheelButtonColor = Color(0.313726, 0.156863, 0.0352941, 1)
-_wheelButtonTextColor = Color(0.996078, 0.996078, 0.894118, 1)
+_wheelButtonTextColor = Color(0.937255, 0.745098, 0.207843, 1)
 _listBackgroundColor = Color(1, 0.964706, 0.823529, 1)
 _listFontColor = Color(1, 1, 1, 1)
 _popupBackgroundColor = Color(1, 0.964706, 0.823529, 1)
@@ -254,7 +254,7 @@ watchedColor = 9
 metadata/_custom_type_script = "uid://b3svcdmaw414p"
 
 [node name="TwitchManager" type="Node" parent="."]
-script = ExtResource("3_16l3w")
+script = ExtResource("11_hb2pm")
 
 [node name="AudioManager" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_a0jfc")
@@ -621,7 +621,7 @@ theme_override_fonts/normal_font = ExtResource("12_83383")
 theme_override_font_sizes/normal_font_size = 12
 text = "Menu"
 
-[node name="ToggleChatInputButton" type="Button" parent="CanvasLayer/OptionArea/TopBar" node_paths=PackedStringArray("feed", "checkmark")]
+[node name="ToggleChatInputButton" type="Button" parent="CanvasLayer/OptionArea/TopBar" node_paths=PackedStringArray("checkmark")]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 0
 offset_left = 40.0
@@ -637,7 +637,6 @@ theme = ExtResource("23_ps6x7")
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("10_05f66")
-feed = NodePath("../../../../TwitchManager")
 checkmark = NodePath("CheckMark")
 
 [node name="CheckMark" type="TextureRect" parent="CanvasLayer/OptionArea/TopBar/ToggleChatInputButton"]
