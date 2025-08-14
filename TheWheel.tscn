@@ -621,7 +621,7 @@ theme_override_fonts/normal_font = ExtResource("12_83383")
 theme_override_font_sizes/normal_font_size = 12
 text = "Menu"
 
-[node name="ToggleChatInputButton" type="Button" parent="CanvasLayer/OptionArea/TopBar" node_paths=PackedStringArray("checkmark")]
+[node name="ToggleChatInputButton" type="Button" parent="CanvasLayer/OptionArea/TopBar" node_paths=PackedStringArray("wsClient", "checkmark")]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 0
 offset_left = 40.0
@@ -637,7 +637,10 @@ theme = ExtResource("23_ps6x7")
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("10_05f66")
+wsClient = NodePath("../../../../TwitchManager")
 checkmark = NodePath("CheckMark")
+defaultTheme = ExtResource("23_ps6x7")
+menuButtonTheme = ExtResource("20_1qlyv")
 
 [node name="CheckMark" type="TextureRect" parent="CanvasLayer/OptionArea/TopBar/ToggleChatInputButton"]
 modulate = Color(1, 1, 1, 0)

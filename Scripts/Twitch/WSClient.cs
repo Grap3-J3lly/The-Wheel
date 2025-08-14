@@ -47,7 +47,7 @@ public partial class WSClient : Node
 		return (int)Error.Ok;
 	}
 
-	private int Send(string message)
+	public int Send(string message)
 	{
 		return (int)socket.SendText(message);
 	}
@@ -63,7 +63,7 @@ public partial class WSClient : Node
 
 		if(socket.WasStringPacket())
 		{
-			GD.Print(pkt.GetStringFromUtf8());
+			// GD.Print(pkt.GetStringFromUtf8());
 			return pkt.GetStringFromUtf8();
 		}
 		return pkt;
@@ -107,12 +107,13 @@ public partial class WSClient : Node
 			{
 				EmitSignal(SignalName.ConnectionClosed);
 			}
-			while (socket.GetReadyState() == WebSocketPeer.State.Open && socket.GetAvailablePacketCount() > 0)
-			{
-				EmitSignal(SignalName.MessageReceived, GetMessage());
-			}
 		}
-	}
+        while (socket.GetReadyState() == WebSocketPeer.State.Open && socket.GetAvailablePacketCount() > 0)
+        {
+            EmitSignal(SignalName.MessageReceived, GetMessage());
+            //GD.Print($"WSClient.cs: MessageReceived: {GetMessage().ToString()}");
+        }
+    }
 
 	public static string DoAction(string actionName)
 	{
@@ -155,12 +156,16 @@ public partial class WSClient : Node
 					"raw": 
 					[
 						"Action"
+					],
+					"twitch":
+					[
+						"ChatMessage"
 					]
 				}
 			}
 			"""
 		);
-		ConnectedToServer += () => Send(DoAction("EnableWheelRewards"));
+	// ConnectedToServer += () => Send(DoAction("EnableWheelRewards"));
 
 	}
 
@@ -182,7 +187,7 @@ public partial class WSClient : Node
     {
 		GD.Print($"WSClient.cs: Running On Quit");
 		Send(DoAction("DisableWheelRewards"));
-        await ToSignal(GetTree().CreateTimer(.5), SceneTreeTimer.SignalName.Timeout);
+        await ToSignal(GetTree().CreateTimer(.1), SceneTreeTimer.SignalName.Timeout);
         GetTree().Quit();
     }
 
