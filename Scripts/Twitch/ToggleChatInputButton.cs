@@ -102,13 +102,28 @@ public partial class ToggleChatInputButton : Button
     private void OnMessage(Variant message)
     {
         string messageText = message.ToString();
-        string parsedText = ParseJson(messageText, new string[] { "data", "parts", "text"});
-        string parsedSender = ParseJson(messageText, new string[] { "data", "user", "login"});
+        // GD.Print($"ToggleChatInputButton.cs: {messageText}");
 
-        GD.Print($"ToggleChatInputButton.cs: Message Text: {parsedText}");
-        GD.Print($"ToggleChatInputButton.cs: Message Sender: {parsedSender}");
+        JsonNode checkText = ParseJson(messageText, "event/type");
+
+        if (checkText?.ToString() == "Action")
+        {
+            JsonNode parsedAction = ParseJson(messageText, "data/arguments/actionName");
+            GD.Print($"ToggleChatInputButton.cs: Action Called: {parsedAction.ToString()}");
+        }
+        if (checkText?.ToString() == "ChatMessage")
+        {
+            JsonNode parsedText = ParseJson(messageText, "data/text");
+            JsonNode parsedSender = ParseJson(messageText, "data/user/login");
+
+            GD.Print($"ToggleChatInputButton.cs: Message Text: {parsedText.ToString()}");
+        }
+
+        // Need to split OnMessage up based off type of event coming in (Action vs. ChatMessage)
+        // Setup event call to trigger logic in Game Manager
 
 
+        // Don't care about bottom half rn
 
         string sender = "";
 
@@ -124,18 +139,18 @@ public partial class ToggleChatInputButton : Button
         }
     }
 
-    private string ParseJson(string messageToParse, string[] args)
+    private JsonNode ParseJson(string messageToParse, string dataPath)
     {
         JsonNode root = JsonNode.Parse(messageToParse);
         
         if(root == null)
         {
-            GD.Print("Failed to Parse");
-            return "";
+            GD.Print($"ToggleChatInputButton.cs: Failed to Parse");
+            return null;
         }
 
-        JsonArray partsArray = root[args[0]][args[1]].AsArray();
+        JsonNode result = root.GetJsonNodeValueByString(dataPath);
 
-        return partsArray[0][args[2]].ToString();
+        return result;
     }
 }
