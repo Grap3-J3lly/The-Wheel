@@ -51,6 +51,10 @@ public partial class GameManager : Node
     [Export]
     private Control option_bottomEnd;
 
+    [Signal]
+    public delegate void ToggleTwitchEventHandler(bool twitchIsActive);
+    [Signal]
+    public delegate void TwitchActionCalledEventHandler();
 
     // --------------------------------
     //			PROPERTIES	
@@ -143,6 +147,8 @@ public partial class GameManager : Node
 
 		PopulateOptions(optionDataToPopulate);
 		CustomizationManager.Instance.PopulateColors(loadedColors);
+
+		EmitSignal(GameManager.SignalName.ToggleTwitch, false);
     }
 
 	/// <summary>

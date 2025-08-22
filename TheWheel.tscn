@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://8cgspyr8gob4"]
+[gd_scene load_steps=60 format=3 uid="uid://8cgspyr8gob4"]
 
 [ext_resource type="Theme" uid="uid://cpm3ymheyptc0" path="res://Themes/WheelButtonTheme.tres" id="2_3bb4o"]
 [ext_resource type="Script" uid="uid://dq5r4c8nnpqo8" path="res://Scripts/Managers/GameManager.cs" id="2_yv2g8"]
@@ -24,6 +24,7 @@
 [ext_resource type="Theme" uid="uid://d3dvb7e4l28py" path="res://Themes/PopupBackgroundTheme.tres" id="10_w6lq7"]
 [ext_resource type="Theme" uid="uid://rxn0ric1nvrl" path="res://Themes/PopupFontTheme.tres" id="11_2pqje"]
 [ext_resource type="Script" uid="uid://cggloerp7kydr" path="res://Scripts/Twitch/WSClient.cs" id="11_hb2pm"]
+[ext_resource type="Script" uid="uid://cpuv2aomshkjg" path="res://Scripts/Managers/TwitchManager.cs" id="11_kcaas"]
 [ext_resource type="PackedScene" uid="uid://b1lc8f4e26bea" path="res://Scenes/menu_popup_template.tscn" id="11_osn7t"]
 [ext_resource type="Script" uid="uid://w1ikr7yjpoi3" path="res://Scripts/OptionArea/ClearOptionWeightsButton.cs" id="12_654ys"]
 [ext_resource type="FontFile" uid="uid://65anix1v37bg" path="res://Assets/super_corn/Super Corn.ttf" id="12_83383"]
@@ -253,7 +254,12 @@ lineOptions = Array[ExtResource("6_hb2pm")]([SubResource("Resource_boh0q"), SubR
 watchedColor = 9
 metadata/_custom_type_script = "uid://b3svcdmaw414p"
 
-[node name="TwitchManager" type="Node" parent="."]
+[node name="TwitchManager" type="Node" parent="." node_paths=PackedStringArray("wsClient", "toggleChatInputButton")]
+script = ExtResource("11_kcaas")
+wsClient = NodePath("WebSocketClient")
+toggleChatInputButton = NodePath("../CanvasLayer/OptionArea/TopBar/ToggleChatInputButton")
+
+[node name="WebSocketClient" type="Node" parent="TwitchManager"]
 script = ExtResource("11_hb2pm")
 
 [node name="AudioManager" type="AudioStreamPlayer" parent="."]
@@ -484,7 +490,7 @@ pivot_offset = Vector2(250, 50)
 theme = ExtResource("11_2pqje")
 theme_override_font_sizes/normal_font_size = 29
 bbcode_enabled = true
-text = "[center]Twitch Chat is Now Enabled! 
+text = "[center]Twitch Voting is Now Enabled! 
 It is NOT Case Sensitive![center]"
 
 [node name="OptionArea" type="Control" parent="CanvasLayer"]
@@ -621,7 +627,7 @@ theme_override_fonts/normal_font = ExtResource("12_83383")
 theme_override_font_sizes/normal_font_size = 12
 text = "Menu"
 
-[node name="ToggleChatInputButton" type="Button" parent="CanvasLayer/OptionArea/TopBar" node_paths=PackedStringArray("wsClient", "checkmark")]
+[node name="ToggleChatInputButton" type="Button" parent="CanvasLayer/OptionArea/TopBar" node_paths=PackedStringArray("twitchManager", "checkmark")]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 0
 offset_left = 40.0
@@ -637,7 +643,7 @@ theme = ExtResource("23_ps6x7")
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("10_05f66")
-wsClient = NodePath("../../../../TwitchManager")
+twitchManager = NodePath("../../../../TwitchManager")
 checkmark = NodePath("CheckMark")
 defaultTheme = ExtResource("23_ps6x7")
 menuButtonTheme = ExtResource("20_1qlyv")
@@ -812,23 +818,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -16.0
-offset_top = 10.0
-offset_right = -16.0
-offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("9_4p5xn")
 selectedOptionPopup = ExtResource("10_fm5px")
 menuPopup = ExtResource("11_osn7t")
-
-[node name="FadedBackground" type="ColorRect" parent="CanvasLayer/PopupArea"]
-visible = false
-z_index = 5
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.254902, 0.266667, 0.243137, 0.501961)
