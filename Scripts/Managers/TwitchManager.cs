@@ -1,8 +1,7 @@
 using Godot;
-using Godot.Collections;
+// using Godot.Collections;
 using System;
 using System.Collections.Generic;
-using System.Data.Common;
 using System.Text.Json.Nodes;
 
 public partial class TwitchManager : Node
@@ -14,10 +13,13 @@ public partial class TwitchManager : Node
     private WSClient wsClient;
     private GameManager gameManager;
     private bool toggleChatInput = false;
-    private Array<string> users = new Array<string>();
+    private Dictionary<string, Option> userVotes = new Dictionary<string, Option>();
 
     [Export]
     private ToggleChatInputButton toggleChatInputButton;
+
+    [Export]
+    private string wsGlobalVar_TwitchRewardUser = "rewardUser";
 
     // --------------------------------
     //		STANDARD FUNCTIONS	
@@ -29,6 +31,10 @@ public partial class TwitchManager : Node
         wsClient.ConnectedToServer += OnConnection;
         gameManager.ToggleTwitch += ToggleInteractions;
     }
+
+    // --------------------------------
+    //	   TWITCH CONNECTION LOGIC	
+    // --------------------------------
 
     /// <summary>
     /// Toggles the variable to listen to the chat or not
@@ -60,13 +66,9 @@ public partial class TwitchManager : Node
         {
             wsClient.MessageReceived -= OnWebSocketMessage;
             wsClient.Send(WSClient.DoAction("DisableWheelRewards"));
-            users.Clear();
+            userVotes.Clear();
         }
     }
-
-    // --------------------------------
-    //		    CHAT LOGIC	
-    // --------------------------------
 
     /// <summary>
     /// Checks the incoming chat logs to determine if a vote was made on an existing option and updates the weight if the user has not already voted previously
@@ -76,50 +78,105 @@ public partial class TwitchManager : Node
     private void OnWebSocketMessage(Variant message)
     {
         string socketMessageString = message.ToString();
-        // GD.Print($"ToggleChatInputButton.cs: {messageText}");
-
+        // GD.Print($"TwitchManager.cs: SocketMessageString: {socketMessageString}");
         JsonNode checkText = ParseJson(socketMessageString, "event/type");
-
 
         // Need to move Action checks to GameManager, need to create an event for when toggleChatInput becomes TRUE,
         // so Action checks can know when  to subscribe to the MessageReceived event from the websocket.
         if (checkText?.ToString() == "Action")
         {
-            JsonNode parsedAction = ParseJson(socketMessageString, "data/arguments/actionName");
-            GD.Print($"ToggleChatInputButton.cs: Action Called: {parsedAction.ToString()}");
-            HandleAction();
+            HandleAction(socketMessageString);
+            return;
         }
         if (checkText?.ToString() == "ChatMessage")
         {
-            JsonNode parsedText = ParseJson(socketMessageString, "data/text");
-            JsonNode parsedSender = ParseJson(socketMessageString, "data/user/login");
-
-            GD.Print($"ToggleChatInputButton.cs: Message Text: {parsedText.ToString()}");
-            HandleChatMessage(parsedText, parsedSender);
+            HandleChatMessage(socketMessageString);
+            return;
         }
 
-        
+        checkText = ParseJson(socketMessageString, "variables");
+        if(checkText != null)
+        {
+            // GD.Print($"TwitchManager.cs: CheckText for Variables: {checkText.ToString()}");
+            TriggerAction_RemoveVote(socketMessageString);
+        }
     }
 
-    private void HandleAction()
+    private JsonNode ParseJson(string messageToParse, string dataPath)
     {
+        JsonNode root = JsonNode.Parse(messageToParse);
 
+        if (root == null)
+        {
+            GD.Print($"ToggleChatInputButton.cs: Failed to Parse");
+            return null;
+        }
+
+        JsonNode result = root.GetJsonNodeValueByString(dataPath);
+
+        return result;
     }
 
-    private void HandleChatMessage(JsonNode parsedText, JsonNode parsedSender)
+    // --------------------------------
+    //		    ACTION LOGIC	
+    // --------------------------------
+
+    private void HandleAction(string socketMessageString)
     {
+        JsonNode parsedAction = ParseJson(socketMessageString, "data/arguments/actionName");
+        GD.Print($"TwitchManager.cs: Action Called: {parsedAction.ToString()}");
+
+        switch (parsedAction.ToString())
+        {
+            case "Remove Vote":
+                wsClient.Send(WSClient.GetGlobal(wsGlobalVar_TwitchRewardUser));
+                break;
+            default: GD.Print($"Not compatible action");
+                break;
+        }
+    }
+
+    private void TriggerAction_RemoveVote(string socketMessageString)
+    {
+        JsonNode parsedUser = ParseJson(socketMessageString, "variables/" + wsGlobalVar_TwitchRewardUser + "/value");
+                
+        GD.Print($"TwitchManager.cs: Action Triggered: Remove Vote - ParsedUser: {parsedUser.ToString()}");
+        string previousVoterName = parsedUser.ToString();
+        if (userVotes.ContainsKey(previousVoterName))
+        {
+            Option option = userVotes[previousVoterName];
+            --option.OptionWeight;
+            option.UpdateOptionFields();
+            userVotes.Remove(previousVoterName);
+        }
+        else 
+        {
+            GD.PushWarning($"TwitchManager.cs: User Not Found in Dictionary, but User attempted to Remove Vote anyway");
+        }
+    }
+
+    // --------------------------------
+    //		    CHAT LOGIC	
+    // --------------------------------
+
+    private void HandleChatMessage(string socketMessageString)
+    {
+        JsonNode parsedText = ParseJson(socketMessageString, "data/text");
+        JsonNode parsedSender = ParseJson(socketMessageString, "data/user/login");
+
+        GD.Print($"ToggleChatInputButton.cs: Message Text: {parsedText.ToString()}");
+
         if (parsedText == null || parsedSender == null) return;
         CheckingForOptionMatch(parsedText.ToString(), parsedSender.ToString());
     }
 
     private void CheckingForOptionMatch(string chatMessage, string sender)
     {
-        if (users.Contains(sender))
+        if (userVotes.ContainsKey(sender))
         {
-            GD.Print($"ToggleChatInputButton.cs: User {sender} has already voted");
+            GD.Print($"TwitchManager.cs: User {sender} has already voted");
             return;
         }
-        users.Add(sender);
 
         string[] optionNames = new string[gameManager.CreatedOptions.Count];
         foreach (Option option in gameManager.CreatedOptions)
@@ -131,7 +188,7 @@ public partial class TwitchManager : Node
         if (optionResult != -1)
         {
             Option currentOption = gameManager.CreatedOptions[optionResult];
-            users.Add(sender);
+            userVotes.Add(sender, currentOption);
             ++currentOption.OptionWeight;
             currentOption.UpdateOptionFields();
         }
@@ -174,20 +231,5 @@ public partial class TwitchManager : Node
 
 
         return finalCandidate;
-    }
-
-    private JsonNode ParseJson(string messageToParse, string dataPath)
-    {
-        JsonNode root = JsonNode.Parse(messageToParse);
-
-        if (root == null)
-        {
-            GD.Print($"ToggleChatInputButton.cs: Failed to Parse");
-            return null;
-        }
-
-        JsonNode result = root.GetJsonNodeValueByString(dataPath);
-
-        return result;
     }
 }

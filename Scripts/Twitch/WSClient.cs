@@ -135,6 +135,37 @@ public partial class WSClient : Node
         """;
     }
 
+	public static string GetGlobal(string globalVarName)
+	{
+        return
+        """
+		{
+			"request": "GetGlobal",
+			"id": "my-subscribe-id",
+			"variable": "
+		"""
+            +
+			globalVarName
+			+
+		"""
+		",
+			"persisted": "true",
+		}
+		""";
+    }
+
+	public static string GetGlobals()
+	{
+        return
+        """
+		{
+			"request": "GetGlobals",
+			"id": "my-subscribe-id",
+			"persisted": "true",
+		}
+		""";
+    }
+
     public override void _Ready()
     {
 		GetTree().AutoAcceptQuit = false;

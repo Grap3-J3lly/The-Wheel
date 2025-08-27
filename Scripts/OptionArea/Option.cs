@@ -60,7 +60,7 @@ public partial class Option : Control
     }
 
     /// <summary>
-    /// Updates teh weight and name fields to reflect the variables behind the scenes
+    /// Updates the weight and name fields to reflect the variables behind the scenes
     /// </summary>
     public void UpdateOptionFields()
     {
