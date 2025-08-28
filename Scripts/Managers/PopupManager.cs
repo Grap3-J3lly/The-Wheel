@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 using System;
 
 public partial class PopupManager : Control
@@ -7,22 +8,25 @@ public partial class PopupManager : Control
     //			VARIABLES	
     // --------------------------------
 
-    [Export] 
-	private PackedScene selectedOptionPopup;
+    public enum PopupType
+    {
+        SelectedOption,
+        Menu,
+        Toast
+    }
     [Export]
-    private PackedScene menuPopup;
+    private Dictionary<PopupType, PackedScene> popupTypes = new Dictionary<PopupType, PackedScene> ();
 
     private bool isCustomizationOpen = false;
 
     private const int CONST_MaxRTLCount = 1;
 
+    [Signal]
+    public delegate void CreateToastEventHandler(string userName);
+
     // --------------------------------
     //			PROPERTIES
     // --------------------------------
-
-    public PackedScene SelectedOptionPopup { get => selectedOptionPopup; }
-    public PackedScene MenuPopup { get => menuPopup; }
-
     public bool IsCustomizationOpen { get => isCustomizationOpen; set => isCustomizationOpen = value; }
 
     public static PopupManager Instance { get; private set; }
@@ -35,7 +39,9 @@ public partial class PopupManager : Control
 	{
 		base._Ready();
 		Instance = this;
-		this.Visible = false;
+		Visible = false;
+
+        CreateToast += CreateToastNotification;
 	}
 
     // --------------------------------
@@ -87,15 +93,21 @@ public partial class PopupManager : Control
     //		GENERAL LOGIC
     // --------------------------------
 
+    private void CreateToastNotification(string userName)
+    {
+        ToastNotification newToast = (ToastNotification)CreatePopup(PopupType.Toast);
+        newToast.ChangeText(userName);
+    }
+
     /// <summary>
     /// Creates a popup of the given type
     /// </summary>
     /// <param name="popup"></param>
     /// <returns>The panel created</returns>
-    public Panel CreatePopup(PackedScene popup)
+    public Panel CreatePopup(PopupType typeToSpawn)
     {
         Visible = true;
-        Panel newPopup = (Panel)popup.Instantiate();
+        Panel newPopup = (Panel)popupTypes[typeToSpawn].Instantiate();
         AddChild(newPopup);
         isCustomizationOpen = false;
         return newPopup;

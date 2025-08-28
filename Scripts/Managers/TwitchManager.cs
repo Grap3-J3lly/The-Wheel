@@ -21,6 +21,9 @@ public partial class TwitchManager : Node
     [Export]
     private string wsGlobalVar_TwitchRewardUser = "rewardUser";
 
+    [Export]
+    private int priorityUserWeightValue = 10;
+
     // --------------------------------
     //		STANDARD FUNCTIONS	
     // --------------------------------
@@ -145,8 +148,7 @@ public partial class TwitchManager : Node
         if (userVotes.ContainsKey(previousVoterName))
         {
             Option option = userVotes[previousVoterName];
-            --option.OptionWeight;
-            option.UpdateOptionFields();
+            option.UpdateOptionFields(option.OptionWeight - priorityUserWeightValue);
             userVotes.Remove(previousVoterName);
         }
         else 
@@ -189,8 +191,9 @@ public partial class TwitchManager : Node
         {
             Option currentOption = gameManager.CreatedOptions[optionResult];
             userVotes.Add(sender, currentOption);
-            ++currentOption.OptionWeight;
-            currentOption.UpdateOptionFields();
+            currentOption.UpdateOptionFields(currentOption.OptionWeight + priorityUserWeightValue);
+            // Spawn Toast Notification
+            PopupManager.Instance.EmitSignal(PopupManager.SignalName.CreateToast, sender);
         }
     }
 

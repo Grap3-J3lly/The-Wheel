@@ -55,15 +55,15 @@ public partial class Option : Control
     /// </summary>
     public void ResetDefaultWeight()
     {
-        OptionWeight = CONST_DefaultWeight;
-        UpdateOptionFields();
+        UpdateOptionFields(CONST_DefaultWeight);
     }
 
     /// <summary>
     /// Updates the weight and name fields to reflect the variables behind the scenes
     /// </summary>
-    public void UpdateOptionFields()
+    public void UpdateOptionFields(int newWeight)
     {
+        OptionWeight = newWeight;
         optionWeightField.UpdateOptionWeightField();
         optionNameField.UpdateOptionNameField();
     }

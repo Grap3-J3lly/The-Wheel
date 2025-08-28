@@ -165,7 +165,7 @@ public partial class SpinButton : Button
 
             if (winnerName != "")
             {
-                Panel result = PopupManager.Instance.CreatePopup(PopupManager.Instance.SelectedOptionPopup);
+                Panel result = PopupManager.Instance.CreatePopup(PopupManager.PopupType.SelectedOption);
                 PopupManager.Instance.AssignWinningText(result, winnerName);
             }
             else

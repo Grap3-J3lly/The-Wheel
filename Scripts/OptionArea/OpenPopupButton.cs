@@ -20,6 +20,6 @@ public partial class OpenPopupButton : Button
     /// </summary>
     private void OnButtonPress()
 	{
-		PopupManager.Instance.CreatePopup(PopupManager.Instance.MenuPopup);
+        PopupManager.Instance.CreatePopup(PopupManager.PopupType.Menu);
 	}
 }

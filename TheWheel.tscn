@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://8cgspyr8gob4"]
+[gd_scene load_steps=61 format=3 uid="uid://8cgspyr8gob4"]
 
 [ext_resource type="Theme" uid="uid://cpm3ymheyptc0" path="res://Themes/WheelButtonTheme.tres" id="2_3bb4o"]
 [ext_resource type="Script" uid="uid://dq5r4c8nnpqo8" path="res://Scripts/Managers/GameManager.cs" id="2_yv2g8"]
@@ -41,6 +41,7 @@
 [ext_resource type="Texture2D" uid="uid://ctg3n7875jbc2" path="res://Assets/UI/Icon_Reset.png" id="29_jnu0i"]
 [ext_resource type="Texture2D" uid="uid://cslrdlnim20y0" path="res://Assets/UI/Icon_Plus.png" id="31_gbu6j"]
 [ext_resource type="Script" uid="uid://4bawhwtbhael" path="res://Scripts/OptionArea/ScrollArea.cs" id="32_25fds"]
+[ext_resource type="PackedScene" uid="uid://t41gr3owro08" path="res://Scenes/toast_notification.tscn" id="42_ngf85"]
 
 [sub_resource type="Resource" id="Resource_jpnym"]
 script = ExtResource("3_6eskp")
@@ -820,6 +821,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("9_4p5xn")
-selectedOptionPopup = ExtResource("10_fm5px")
-menuPopup = ExtResource("11_osn7t")
+popupTypes = Dictionary[int, PackedScene]({
+0: ExtResource("10_fm5px"),
+1: ExtResource("11_osn7t"),
+2: ExtResource("42_ngf85")
+})

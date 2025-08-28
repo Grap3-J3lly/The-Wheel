@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://t41gr3owro08"]
+
+[ext_resource type="Script" uid="uid://c4p4hl5d2csct" path="res://Scripts/OptionArea/ToastNotification.cs" id="1_h6er1"]
+[ext_resource type="Texture2D" uid="uid://r2tt6mqsbqqb" path="res://Assets/tempNotification.png" id="1_nvokv"]
+[ext_resource type="FontFile" uid="uid://65anix1v37bg" path="res://Assets/super_corn/Super Corn.ttf" id="2_bbq0d"]
+
+[node name="ToastNotification" type="Panel" node_paths=PackedStringArray("toastMessage")]
+offset_right = 200.0
+offset_bottom = 52.0
+script = ExtResource("1_h6er1")
+startLocation = Vector2(165, 700)
+finalLocation = Vector2(165, 527)
+toastMessage = NodePath("RichTextLabel")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 52.0
+texture = ExtResource("1_nvokv")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -17.5
+offset_right = 90.0
+offset_bottom = 17.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2_bbq0d")
+theme_override_font_sizes/normal_font_size = 22
+text = "Grap3J3lly Voted!"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1

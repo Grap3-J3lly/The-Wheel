@@ -148,7 +148,7 @@ public partial class GameManager : Node
 		PopulateOptions(optionDataToPopulate);
 		CustomizationManager.Instance.PopulateColors(loadedColors);
 
-		EmitSignal(GameManager.SignalName.ToggleTwitch, false);
+		EmitSignal(SignalName.ToggleTwitch, false);
     }
 
 	/// <summary>
