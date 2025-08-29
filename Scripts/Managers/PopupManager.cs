@@ -1,6 +1,7 @@
 using Godot;
 using Godot.Collections;
 using System;
+using System.Collections;
 
 public partial class PopupManager : Control
 {
@@ -20,6 +21,11 @@ public partial class PopupManager : Control
     private bool isCustomizationOpen = false;
 
     private const int CONST_MaxRTLCount = 1;
+
+    private Queue incomingNotifications = new Queue();
+    [Export]
+    private float queueDelay = 3;
+    private float queueTimer = 0;
 
     [Signal]
     public delegate void CreateToastEventHandler(string userName);
@@ -43,6 +49,26 @@ public partial class PopupManager : Control
 
         CreateToast += CreateToastNotification;
 	}
+
+    public override void _Process(double delta)
+    {
+        base._Process(delta);
+
+        if (queueTimer <= 0)
+        {
+            queueTimer = queueDelay;
+
+            if(incomingNotifications.Count > 0)
+            {
+                ToastNotification toast = (ToastNotification)incomingNotifications.Dequeue();
+                toast.PlayToastAnimation();
+            }
+        }
+        else
+        {
+        }
+            queueTimer -= (float)delta;
+    }
 
     // --------------------------------
     //		WIN POPUP LOGIC
@@ -97,6 +123,8 @@ public partial class PopupManager : Control
     {
         ToastNotification newToast = (ToastNotification)CreatePopup(PopupType.Toast);
         newToast.ChangeText(userName);
+
+        incomingNotifications.Enqueue(newToast);
     }
 
     /// <summary>

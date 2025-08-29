@@ -1,6 +1,5 @@
 using Godot;
 // using Godot.Collections;
-using System;
 using System.Collections.Generic;
 using System.Text.Json.Nodes;
 
@@ -33,6 +32,7 @@ public partial class TwitchManager : Node
         gameManager = GameManager.Instance;
         wsClient.ConnectedToServer += OnConnection;
         gameManager.ToggleTwitch += ToggleInteractions;
+        gameManager.ClearWeights += ClearUserVotes;
     }
 
     // --------------------------------
@@ -160,6 +160,11 @@ public partial class TwitchManager : Node
     // --------------------------------
     //		    CHAT LOGIC	
     // --------------------------------
+
+    public void ClearUserVotes()
+    {
+        userVotes.Clear();
+    }
 
     private void HandleChatMessage(string socketMessageString)
     {

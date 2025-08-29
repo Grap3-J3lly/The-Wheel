@@ -35,5 +35,6 @@ public partial class ClearOptionWeightsButton : Button
 		{
             option.ResetDefaultWeight();
         }
+        gameManager.EmitSignal(GameManager.SignalName.ClearWeights);
 	}	
 }

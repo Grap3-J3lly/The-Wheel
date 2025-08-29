@@ -55,6 +55,8 @@ public partial class GameManager : Node
     public delegate void ToggleTwitchEventHandler(bool twitchIsActive);
     [Signal]
     public delegate void TwitchActionCalledEventHandler();
+	[Signal]
+	public delegate void ClearWeightsEventHandler();
 
     // --------------------------------
     //			PROPERTIES	

@@ -11,6 +11,8 @@ script = ExtResource("1_h6er1")
 startLocation = Vector2(165, 700)
 finalLocation = Vector2(165, 527)
 toastMessage = NodePath("RichTextLabel")
+startDuration = 1.5
+endDuration = 1.0
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0

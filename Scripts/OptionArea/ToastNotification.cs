@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 public partial class ToastNotification : Panel
 {
@@ -32,7 +33,7 @@ public partial class ToastNotification : Panel
     public override void _Ready()
 	{
 		Position = startLocation;
-        PlayToastAnimation();
+        // PlayToastAnimation();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -40,23 +41,27 @@ public partial class ToastNotification : Panel
 	{
 	}
 
-    public override void _ExitTree()
-    {
-        base._ExitTree();
-        PopupManager.Instance.Visible = false;
-    }
+    //public override void _ExitTree()
+    //{
+    //    base._ExitTree();
+    //    PopupManager.Instance.Visible = false;
+    //}
 
     public void ChangeText(string userName)
     {
         toastMessage.Text = userName + defaultMessage;
     }
 
-    private void PlayToastAnimation()
+    public async Task PlayToastAnimation()
     {
-        Tween tween = CreateTween().SetParallel(true);
+        Tween tween = CreateTween().SetParallel(true).SetTrans(Tween.TransitionType.Spring).SetEase(Tween.EaseType.InOut);
+        // Tween tween = CreateTween().SetParallel(true).SetTrans(Tween.TransitionType.Sine);
         tween.TweenProperty(this, "position", finalLocation, startDuration);
-        tween.Chain().TweenProperty(this, "position", Position, hangDuration);
-        tween.Chain().TweenProperty(this, "position", startLocation, endDuration);
-        tween.Chain().TweenCallback(Callable.From(QueueFree));
+        await ToSignal(GetTree().CreateTimer(hangDuration), SceneTreeTimer.SignalName.Timeout);
+        tween = CreateTween().SetParallel(true).SetTrans(Tween.TransitionType.Circ).SetEase(Tween.EaseType.In);
+        tween.TweenProperty(this, "position", startLocation, endDuration);
+        // tween.Chain().TweenCallback(Callable.From(QueueFree));
+        await ToSignal(GetTree().CreateTimer(endDuration), SceneTreeTimer.SignalName.Timeout);
+        this.QueueFree();
     }
 }
