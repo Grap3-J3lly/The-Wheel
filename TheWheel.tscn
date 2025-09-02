@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://8cgspyr8gob4"]
+[gd_scene load_steps=62 format=3 uid="uid://8cgspyr8gob4"]
 
 [ext_resource type="Theme" uid="uid://cpm3ymheyptc0" path="res://Themes/WheelButtonTheme.tres" id="2_3bb4o"]
 [ext_resource type="Script" uid="uid://dq5r4c8nnpqo8" path="res://Scripts/Managers/GameManager.cs" id="2_yv2g8"]
@@ -28,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://b1lc8f4e26bea" path="res://Scenes/menu_popup_template.tscn" id="11_osn7t"]
 [ext_resource type="Script" uid="uid://w1ikr7yjpoi3" path="res://Scripts/OptionArea/ClearOptionWeightsButton.cs" id="12_654ys"]
 [ext_resource type="FontFile" uid="uid://65anix1v37bg" path="res://Assets/super_corn/Super Corn.ttf" id="12_83383"]
+[ext_resource type="AudioStream" uid="uid://kuiy4nvnh5v0" path="res://Assets/SFX/connectionConfirm.wav" id="12_ynraf"]
 [ext_resource type="Texture2D" uid="uid://bgpo48sgbfw44" path="res://Assets/UI/W_GenPopup_F1.png" id="13_amnot"]
 [ext_resource type="Texture2D" uid="uid://ofknm30tg4re" path="res://Assets/UI/W_GenPopup_F2.png" id="14_hjhul"]
 [ext_resource type="Texture2D" uid="uid://jun4gsw235co" path="res://Assets/UI/W_GenPopup_F3.png" id="15_jaagx"]
@@ -255,8 +256,10 @@ lineOptions = Array[ExtResource("6_hb2pm")]([SubResource("Resource_boh0q"), SubR
 watchedColor = 9
 metadata/_custom_type_script = "uid://b3svcdmaw414p"
 
-[node name="TwitchManager" type="Node" parent="." node_paths=PackedStringArray("wsClient", "toggleChatInputButton")]
+[node name="TwitchManager" type="Node" parent="." node_paths=PackedStringArray("audioStreamPlayer", "wsClient", "toggleChatInputButton")]
 script = ExtResource("11_kcaas")
+audioStreamPlayer = NodePath("../AudioManager")
+connectionSFX = ExtResource("12_ynraf")
 wsClient = NodePath("WebSocketClient")
 toggleChatInputButton = NodePath("../CanvasLayer/OptionArea/TopBar/ToggleChatInputButton")
 
@@ -265,7 +268,6 @@ script = ExtResource("11_hb2pm")
 
 [node name="AudioManager" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_a0jfc")
-volume_db = 24.0
 max_polyphony = 10
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -368,6 +370,7 @@ wheel = NodePath("../WheelProgressBars")
 maxTime = 5.0
 speed = 2.0
 idleSpeed = 1.0
+spinSFX = ExtResource("4_a0jfc")
 audioDecrementer = 0.0
 maxAudioTimer = 75.0
 
@@ -814,7 +817,7 @@ layout_mode = 2
 theme_override_constants/separation = 6
 vertical = true
 
-[node name="PopupArea" type="Control" parent="CanvasLayer"]
+[node name="PopupArea" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("maskParent")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -823,8 +826,24 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("9_4p5xn")
+maskParent = NodePath("MaskParent")
 popupTypes = Dictionary[int, PackedScene]({
 0: ExtResource("10_fm5px"),
 1: ExtResource("11_osn7t"),
 2: ExtResource("42_ngf85")
 })
+
+[node name="MaskParent" type="ColorRect" parent="CanvasLayer/PopupArea"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -497.08
+offset_top = -152.655
+offset_right = -137.08
+offset_bottom = -52.655
+grow_horizontal = 2
+grow_vertical = 0

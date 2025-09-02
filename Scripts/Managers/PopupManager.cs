@@ -9,6 +9,8 @@ public partial class PopupManager : Control
     //			VARIABLES	
     // --------------------------------
 
+    [Export]
+    private Control maskParent;
     public enum PopupType
     {
         SelectedOption,
@@ -66,8 +68,8 @@ public partial class PopupManager : Control
         }
         else
         {
-        }
             queueTimer -= (float)delta;
+        }
     }
 
     // --------------------------------
@@ -123,6 +125,8 @@ public partial class PopupManager : Control
     {
         ToastNotification newToast = (ToastNotification)CreatePopup(PopupType.Toast);
         newToast.ChangeText(userName);
+        newToast.Reparent(maskParent);
+        newToast.Setup();
 
         incomingNotifications.Enqueue(newToast);
     }

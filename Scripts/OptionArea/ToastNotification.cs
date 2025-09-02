@@ -32,7 +32,7 @@ public partial class ToastNotification : Panel
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
-		Position = startLocation;
+        
         // PlayToastAnimation();
 	}
 
@@ -40,12 +40,26 @@ public partial class ToastNotification : Panel
 	public override void _Process(double delta)
 	{
 	}
+    
+    public void Setup()
+    {
+        Control parent = GetParent<Control>();
 
-    //public override void _ExitTree()
-    //{
-    //    base._ExitTree();
-    //    PopupManager.Instance.Visible = false;
-    //}
+        GD.Print($"ToastNotification.cs: Parent Position: {parent.Position}");
+        GD.Print($"ToastNotification.cs: Parent Size: {parent.Size}");
+
+        Vector2 finalPos = new Vector2(parent.Size.X/2 - Size.X/2, parent.Size.Y / 4);
+        // Vector2 finalPos = new Vector2(parent.Size.X / 5, parent.Size.Y / 4);
+        Vector2 startPos = finalPos + new Vector2(0, 100);
+
+        GD.Print($"ToastNotification.cs: Start Position: {startPos}");
+        GD.Print($"ToastNotification.cs: Final Position: {finalPos}");
+
+        finalLocation = finalPos;
+        startLocation = startPos;
+
+        Position = startLocation;
+    }
 
     public void ChangeText(string userName)
     {

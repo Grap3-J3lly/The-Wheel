@@ -26,6 +26,8 @@ public partial class SpinButton : Button
 	private float randomAngle;
 	private float extraPerAngle = 0;
 
+	[Export]
+	private AudioStream spinSFX;
 	private int polyphonyCount = 1;
 	private float audioTimer = 0;
 	[Export]
@@ -41,11 +43,11 @@ public partial class SpinButton : Button
 	{
 		base._Ready();
 		gameManager = GameManager.Instance;
-		this.Pressed += PressButton;
+		Pressed += PressButton;
 		timer = 0.0d;
 		slowDownValue = timer;
 
-		gameManager.AudioStreamPlayer.MaxPolyphony = polyphonyCount;
+		audioStreamPlayer.MaxPolyphony = polyphonyCount;
     }
 
 	public override void _Process(double delta)
@@ -117,7 +119,7 @@ public partial class SpinButton : Button
 
 			if (Mathf.RoundToInt(timer) > polyphonyCount)
 			{
-                gameManager.AudioStreamPlayer.MaxPolyphony = Mathf.RoundToInt(timer);
+                audioStreamPlayer.MaxPolyphony = Mathf.RoundToInt(timer);
 			}
 		}
 	}
@@ -148,7 +150,7 @@ public partial class SpinButton : Button
             currentAudioDecrementer -= (float)delta;
             if (Mathf.RoundToInt(slowDownValue) < polyphonyCount)
             {
-                gameManager.AudioStreamPlayer.MaxPolyphony = Mathf.RoundToInt(slowDownValue);
+                audioStreamPlayer.MaxPolyphony = Mathf.RoundToInt(slowDownValue);
             }
         }
     }
@@ -205,7 +207,9 @@ public partial class SpinButton : Button
 	{
 		if(audioTimer <= 0)
 		{
-			gameManager.AudioStreamPlayer.Play();
+			audioStreamPlayer.VolumeDb = 24;
+			audioStreamPlayer.Stream = spinSFX;
+			audioStreamPlayer.Play();
 			audioTimer = maxAudioTimer;
 		}
 		audioTimer -= currentAudioDecrementer;

@@ -9,6 +9,11 @@ public partial class TwitchManager : Node
     //			VARIABLES	
     // --------------------------------
     [Export]
+    private AudioStreamPlayer audioStreamPlayer;
+    [Export]
+    private AudioStream connectionSFX;
+
+    [Export]
     private WSClient wsClient;
     private GameManager gameManager;
     private bool toggleChatInput = false;
@@ -47,6 +52,10 @@ public partial class TwitchManager : Node
     {
         toggleChatInputButton.Disabled = false;
         toggleChatInputButton.ToggleCheckbox(isVisible: true);
+
+        audioStreamPlayer.VolumeDb = 0;
+        audioStreamPlayer.Stream = connectionSFX;
+        audioStreamPlayer.Play();
     }
 
     public void ToggleInteractions()
@@ -96,13 +105,6 @@ public partial class TwitchManager : Node
             HandleChatMessage(socketMessageString);
             return;
         }
-
-        checkText = ParseJson(socketMessageString, "variables");
-        if(checkText != null)
-        {
-            // GD.Print($"TwitchManager.cs: CheckText for Variables: {checkText.ToString()}");
-            TriggerAction_RemoveVote(socketMessageString);
-        }
     }
 
     private JsonNode ParseJson(string messageToParse, string dataPath)
@@ -132,7 +134,7 @@ public partial class TwitchManager : Node
         switch (parsedAction.ToString())
         {
             case "Remove Vote":
-                wsClient.Send(WSClient.GetGlobal(wsGlobalVar_TwitchRewardUser));
+                TriggerAction_RemoveVote(socketMessageString);
                 break;
             default: GD.Print($"Not compatible action");
                 break;
@@ -141,7 +143,7 @@ public partial class TwitchManager : Node
 
     private void TriggerAction_RemoveVote(string socketMessageString)
     {
-        JsonNode parsedUser = ParseJson(socketMessageString, "variables/" + wsGlobalVar_TwitchRewardUser + "/value");
+        JsonNode parsedUser = ParseJson(socketMessageString, "data/arguments/userName");
                 
         GD.Print($"TwitchManager.cs: Action Triggered: Remove Vote - ParsedUser: {parsedUser.ToString()}");
         string previousVoterName = parsedUser.ToString();

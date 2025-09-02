@@ -5,8 +5,18 @@
 [ext_resource type="FontFile" uid="uid://65anix1v37bg" path="res://Assets/super_corn/Super Corn.ttf" id="2_bbq0d"]
 
 [node name="ToastNotification" type="Panel" node_paths=PackedStringArray("toastMessage")]
-offset_right = 200.0
-offset_bottom = 52.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -26.0
+offset_right = 100.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(100, 26)
 script = ExtResource("1_h6er1")
 startLocation = Vector2(165, 700)
 finalLocation = Vector2(165, 527)
